@@ -1,0 +1,11 @@
+.vscode
+.DS_Store
+/node_modules
+/storage/*.key
+/vendor
+package-lock.json
+.env
+.env.backup
+.phpunit.result.cache
+npm-debug.log
+yarn-error.log

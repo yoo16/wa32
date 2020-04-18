@@ -1,0 +1,23 @@
+{
+  "name": "wa32",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoo16/wa32.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yoo16/wa32/issues"
+  },
+  "homepage": "https://github.com/yoo16/wa32#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.3.3",
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.5.0",
+    "popper.js": "^1.16.1"
+  }
+}
