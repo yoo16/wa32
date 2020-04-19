@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <link rel="stylesheet" href="../css/default.css">
+
+  <title>WA32 samples</title>
+</head>
+
+<body>
+  <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4"
+      aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a class="navbar-brand" href="/doc.html">WA32</a>
+
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav">
+      </ul>
+    </div>
+  </nav>
+
+  <div id="content" class="container">
+    <div>
+      <h2>JSライブラリ</h2>
+      <ul>
+        <li>jQuery</li>
+        <li>Bootstrap.js</li>
+        <li>prism.js</li>
+      </ul>
+
+      <h2>概要</h2>
+      <ul>
+        <li>郵便番号検索APIからデータを取得</li>
+        <li>クロスドメイン（ドメインが異なる）通信利用</li>
+        <li>検索した住所を、データ変換（JSON）し、外部に送信できるようにする</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2>住所</h2>
+      </div>
+      <div class="card-body">
+        <form class="">
+          <div class="form-group">
+            <label for="zip">郵便番号</label>
+            <div class="input-group">
+              <input id="zip" class="address form-control col-2" type="text" required>
+              <input id="search" class="btn btn-sm btn-primary" type="button" value="検索">
+            </div>
+            <label for="prefecture">住所</label>
+            <div class="input-group">
+              <select id="prefecture" class="address form-control col-2"></select>
+            </div>
+
+            <label for="city">市区町村群</label>
+            <input id="city" class="address form-control col-3" type="text">
+
+            <label for="town">番地など</label>
+            <input id="town" class="address form-control" type="text">
+
+            <label for="building">建物名</label>
+            <input id="building" type="text" class="address regist_address form-control" type="text">
+
+          </div>
+        </form>
+      </div>
+      <div class="card-footer text-center">
+        <input id="regist" class="btn btn-sm btn-primary" type="button" value="登録">
+        <input id="clear" class="btn btn-sm btn-outline-primary" type="button" value="クリア">
+      </div>
+    </div>
+
+    <h2>サーバ送信データ（JSON）</h2>
+    <textarea id="postJson" class="form-control" cols="30" rows="3"></textarea>
+
+    <script src="../js/jquery-3.5.0.min.js"></script>
+    <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <script src="../js/prism.js"></script>
+    <script src="../js/default.js"></script>
+    <script src="./js/prefecture.js"></script>
+    <script src="./js/main.js"></script>
+
+    <h3>jQuery</h3>
+    <div>
+      コードのシンタックスハイライトは「prism.js」を利用
+    </div>
+    <div class="code">
+      <pre class="language-javascript"><code>
+var address = {}
+const api_url = 'http://zipcloud.ibsnet.co.jp/api/search?callback=?'
+
+$(function () {
+    loadPrefecture()
+
+    /**
+      * clear
+      */
+    $('#clear').click(function () {
+        $('.address').val('');
+    });
+
+    /**
+      * search
+      */
+    $('#search').click(function () {
+        $.getJSON(api_url, { zipcode: $('#zip').val() }
+        ).done(function (data) {
+            if (data.results) {
+                var result = data.results[0];
+                $('#prefecture').val(result.prefcode)
+                $('#city').val(result.address2)
+                $('#town').val(result.address3)
+            } else {
+                alert('郵便番号が正しくありません')
+            }
+        });
+    });
+
+    /**
+      * regist
+      */
+    $('#regist').click(function () {
+        address.zip = $('#zip').val()
+        address.prefcode = $('#prefecture').val()
+        address.city = $('#city').val()
+        address.town = $('#town').val()
+        address.building = $('#building').val()
+
+        let json = JSON.stringify(address)
+        //TODO Ajax
+        $('#postJson').val(json)
+    });
+
+    /**
+      * loadPrefecture
+      */
+    function loadPrefecture() {
+        $.each(prefectures, function (key, value) {
+            option = $('<option>').val(value.code).text(value.label)
+            $('#prefecture').append(option)
+        });
+    }
+});
+      </code></pre>
+
+      <h3>JavaScript Native</h3>
+      loadPrefecture() を Native で記述すると
+      <div class="code">
+        <pre class="language-javascript"><code>
+function loadPrefecture() {
+    for (var i = 0; i < prefectures.length; i++) {
+        let option = document.createElement('option')
+        option.value = prefectures[i].code
+        option.text = prefectures[i].label
+        document.getElementById('prefecture').appendChild(option)
+    }
+}
+        </code></pre>
+      </div>
+    </div>
+</body>
+
+</html>
