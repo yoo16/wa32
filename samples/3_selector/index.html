@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/prism.css">
+  <link rel="stylesheet" href="../../css/default.css">
+
+  <title>WA32 samples</title>
+</head>
+
+<body>
+  <section id="content" class="container">
+    <h1 class="h1">セレクタ</h1>
+    <div class="content">
+      <div>
+        要素の value プロパティ（属性）を入力
+      </div>
+      <pre class="language-javascript"><code>
+      $(セレクタ).val(値);
+    </code></pre>
+    </div>
+
+    <div class="content">
+      <h2 class="h2">input</h2>
+      <h3>全て</h3>
+      <div>
+        HTML上の全ての input の value を「初期値」に書き換える
+      </div>
+      <pre class="language-javascript"><code>
+      $('input').val('初期値書き換え');
+    </code></pre>
+      <p>
+        <input type="text" value="名前">
+      </p>
+    </div>
+
+    <div class="content">
+      <h2 class="h2">ID</h2>
+      <h3 class="h3">ex) input id="title"</h3>
+      <pre class="language-javascript"><code>
+      $('#title').val('タイトル書き換え');
+      </code></pre>
+      <p>
+        <input type="text" id="title">
+      </p>
+    </div>
+
+    <div class="content">
+      <h2 class="h2">クラス</h2>
+      <h3 class="h3">ex) input class="memo"</h3>
+      <pre class="language-javascript"><code>
+      $('.memo').val('メモ書き換え');
+      </code></pre>
+
+      <p>
+        <input type="text" class="memo">
+        <input type="text" class="memo">
+        <input type="text" class="memo">
+      </p>
+    </div>
+
+    <h2 class="h2">階層</h2>
+    <h3>親要素 > 子要素</h3>
+    <pre class="language-javascript"><code>
+    $('親要素 > 子要素')
+    </code></pre>
+
+    <h3 class="h3">ex) div > input</h3>
+    <div class="content">
+      <pre class="language-javascript"><code>
+      $('div > input').val('メモ書き換え');
+      </code></pre>
+
+      <div>
+        <input type="text" value="初期値">
+        <input type="text" value="初期値">
+      </div>
+
+    </div>
+
+    <div class="content">
+      <h2 class="h2">属性（プロパティ）セレクタ</h2>
+      <pre class="language-javascript"><code>
+        $('セレクタ[属性名]');
+        $('セレクタ[属性名=属性値]');
+        </code></pre>
+      <h3 class="h3">ex) input[name=price]</h3>
+      <div>
+        input name="price" の要素を全て書き換え
+      </div>
+      <pre class="language-javascript"><code>
+      $('input[name=price]').val('1000');
+      </code></pre>
+      <p>
+        <input type="text" name="price" value="100">
+        <input type="text" name="price" value="200">
+        <input type="text" name="price" value="300">
+        <input type="text" name="price" value="400">
+      </p>
+    </div>
+
+    <div class="content">
+      <h2 class="h2">フォームセレクタ</h2>
+      <pre class="language-javascript"><code>
+      $('セレクタ:type属性]')
+      </code></pre>
+      <h3 class="h3">ex) input:hidden</h3>
+      <div>
+        input type="hidden" の要素を全て書き換え
+      </div>
+      <pre class="language-javascript"><code>
+      $('input[type=hidden]').val('3');
+      </code></pre>
+      <input type="hidden" name="user_id" value="0">
+    </div>
+
+    <div class="content">
+      <h2 class="h2">フィルタ</h2>
+      <pre class="language-javascript"><code>
+        $('li:first')
+        $('li:nth-child(数値)')
+      </code></pre>
+
+      <div id="filter">
+        <ul>
+          <li><input type="text" value="100"></li>
+          <li><input type="text" value="200"></li>
+          <li><input type="text" value="300"></li>
+          <li><input type="text" value="400"></li>
+        </ul>
+      </div>
+
+      <pre class="language-javascript"><code>
+        $('li:first input').val('li の最初');
+        $('li:nth-child(3) input').val('li の3つ目');
+        $('li:last input').val('li の最後');
+      </code></pre>
+    </div>
+  </section>
+
+  <script src="../../js/jquery-3.5.0.min.js"></script>
+  <script src="../../js/bootstrap/bootstrap.bundle.min.js"></script>
+
+  <script src="../../js/prism.js"></script>
+  <script src="../../js/default.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
