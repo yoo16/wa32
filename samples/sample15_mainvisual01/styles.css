@@ -1,0 +1,11 @@
+#photolist{
+  position: relative;
+  width: 540px;   /* 画像の幅 */
+  margin: 24px auto;
+}
+
+#photolist li{
+  display: none;
+  position: absolute;
+  list-style: none;
+}

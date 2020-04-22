@@ -1,0 +1,17 @@
+th, td{
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th .ind{
+  color: #f00;
+}
+
+.errorMsg{
+  display: block;
+  color: #f00;
+}
+
+.errorInput{
+  background: #fcf0f2;
+}

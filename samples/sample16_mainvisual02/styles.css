@@ -1,0 +1,35 @@
+#photoBox{
+  width: 420px;
+  margin: 20px auto;
+}
+
+#photolist{
+  position: relative;
+}
+
+#photolist li{
+  position: absolute;
+  display: none;
+  list-style: none;
+}
+
+#tnlist{
+  position: relative;
+  top: 640px;
+  width: 480px;
+}
+
+#tnlist ul{
+  width: 400px;
+  margin: 0 auto;
+}
+
+#tnlist li{
+  float: left;
+  width: 100px;
+  list-style: none;
+}
+
+#tnlist li a{
+  cursor: pointer;
+}

@@ -1,0 +1,32 @@
+#photoBox{
+  width: 500px;
+  margin: 24px auto;
+}
+
+#photolist li{
+  position: absolute;
+  display: none;
+  list-style: none;
+}
+
+#control{
+  position: relative;
+  top: 130px;
+}
+
+#control li{
+  position: absolute;
+  list-style: none;
+}
+
+#control #prev{
+  left: -300px;
+}
+
+#control #next{
+  left: 600px;
+}
+
+#control li a{
+  cursor: pointer;
+}
