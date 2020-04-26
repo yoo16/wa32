@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/prism.css">
+  <link rel="stylesheet" href="../../css/default.css">
+
+  <title>WA32 samples</title>
+</head>
+
+<body>
+  <div id="content" class="container">
+    <h1 class="h1">メソッドチェーン</h1>
+    <div>
+      <ul>
+        <li>CSS 絶対値の座標指定</li>
+        <li>x軸 600px に 2000ms で移動</li>
+        <li>y軸 100px に 500ms で移動</li>
+      </ul>
+    </div>
+    <h2 class="h2">css & animaition </h2>
+    <pre class="language-javascript"><code>
+      $('img').css('position', 'absolute');
+      $('img').animate({'left': 600}, 2000);
+    
+      $('img').css('position', 'absolute')
+              .animate({'top': 100}, 500);;
+    </code></pre>
+    <div>
+      <img src="images/charcters/girl_1.png" alt="">
+    </div>
+  </div>
+
+  <script src="../../js/jquery-3.5.0.min.js"></script>
+  <script src="../../js/bootstrap/bootstrap.bundle.min.js"></script>
+
+  <script src="../../js/prism.js"></script>
+  <script src="../../js/default.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -15,11 +15,17 @@ $(function () {
 
     $('input[type=hidden]').val('3');
 
-    $('li:first input').val('li の最初');
-    //$('li:first-child input').val('li の最初');
+    $('li:first input').val(0);
+    //$('li:first-child input').val('0');
+    //$('li:nth-child(1) input').val('10');
 
-    $('li:nth-child(3) input').val('li の3つ目');
+    $('li:nth-child(3) input').val(500);
+    $('li:eq(2) input').val(500);
 
-    $('li:last input').val('li の最後');
-    //$('li:last-child input').val('li の最後');
+    $('li:last input').val(1000);
+
+    $('div:has(p)').css('border', '1px solid #ff0000');
+    //$('div:has(p)').css('background-color', '#ff0000');
+    //$('div:has(p)').css('color', '#ffffff');
+    //$('div > p').css('border', '1px solid #0000ff');
 });
