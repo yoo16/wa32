@@ -13,24 +13,13 @@
 </head>
 
 <body>
-  <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4"
-      aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <a class="navbar-brand" href="../../doc.html">WA32</a>
-
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="../">サンプル一覧</a></li>
-      </ul>
-    </div>
-  </nav>
-
   <div id="content" class="container">
-    <div id="jqueryObject">
-      <h2>セレクタ</h2>
+    <div>
+      <a href="../">Back</a>
+    </div>
+    <h1 class="h1">基本構文</h1>
+    <div>
+      <h2 class="h2">セレクタ</h2>
       <pre class="language-javascript"><code>
     jQuery(セレクタ).メソッド(パラメータ);
 
@@ -38,8 +27,8 @@
     </code></pre>
     </div>
 
-    <div id="domContentLoaded">
-      <h2>DOMContentLoaded(DOM読み込み完了後)</h2>
+    <div>
+      <h2 class="h2">DOMContentLoaded(DOM読み込み完了後)</h2>
       <pre class="language-javascript"><code>
     $(function () {
       //DOM読み込み完了時に、実行される
@@ -53,21 +42,30 @@
     </div>
 
     <div id="variable">
-      <h2>変数</h2>
+      <h2 class="h2">変数</h2>
       <ul id="itemList">
         <li class="dummy">Item 1</li>
         <li class="dummy">Item 2</li>
         <li class="dummy">Item 3</li>
       </ul>
 
-      <h3>変数を利用しない場合</h3>
+      <h3>HTML</h3>
+      <script type="text/plain" class="language-markup">
+      <ul id="itemList">
+        <li class="dummy">Item 1</li>
+        <li class="dummy">Item 2</li>
+        <li class="dummy">Item 3</li>
+      </ul>
+      </script>
+
+      <h3>JS:変数を利用しない場合</h3>
       <pre class="language-javascript"><code>
-    $('#itemList li').removeClass('item');
-    $('#itemList li').addClass('item');
-    $('#itemList li').css('color', 'red');
+    $('#itemList li').removeClass('dummy'); //class から dummy を削除
+    $('#itemList li').addClass('item');     //class に item を追加
+    $('#itemList li').css('color', 'red');  //css に color="red" を追加
     </code></pre>
 
-      <h3>変数を利用する場合</h3>
+      <h3>JS:変数を利用する場合</h3>
       <pre class="language-javascript"><code>
     let target = $('#itemList li');
     target.removeClass('item');
@@ -75,7 +73,7 @@
     target.css('color', 'red');
     </code></pre>
 
-      <h3>省略</h3>
+      <h3>JS:省略（メソッドチェーン）</h3>
       <pre class="language-javascript"><code>
     let target = $('#itemList li');
     target.removeClass('item').addClass('item').css('color', 'red');

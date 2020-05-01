@@ -11,7 +11,7 @@ $(function () {
     // $('#itemList li').css('color', 'red');
 
     let target = $('#itemList li');
-    target.removeClass('item');
+    target.removeClass('dummy');
     target.addClass('item');
     target.css('color', 'red');
 

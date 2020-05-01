@@ -14,6 +14,9 @@
 
 <body>
   <section id="content" class="container">
+    <div>
+      <a href="../">Back</a>
+    </div>
     <h1 class="h1">セレクタ</h1>
 
     <section class="content">
@@ -28,52 +31,128 @@
 
     <section class="content">
       <h2 class="h2">HTML要素</h2>
-      <h3>全て</h3>
       <div>
         HTML上の全ての input の value を「初期値」に書き換える
       </div>
+
+      <h3 class="h3">HTML</h3>
+      <script type="text/plain" class="language-markup">
+      <input type="text" value="名前">
+      </script>
+
+      <h3 class="h3">JS</h3>
       <pre class="language-javascript"><code>
       $('input').val('初期値書き換え');
-    </code></pre>
+      </code></pre>
+
       <input type="text" value="名前">
     </section>
 
     <section class="content">
       <h2 class="h2">ID</h2>
+
       <h3 class="h3">ex) input id="title"</h3>
+
+      <h3 class="h3">HTML</h3>
+      <script type="text/plain" class="language-markup">
+      <input type="text" id="title">
+      </script>
+
+      <h3 class="h3">JS</h3>
       <pre class="language-javascript"><code>
       $('#title').val('タイトル書き換え');
       </code></pre>
+
       <input type="text" id="title">
     </section>
 
-    <div class="content">
-      <h2 class="h2">クラス</h2>
-      <h3 class="h3">ex) input class="memo"</h3>
+    <section class="content">
+      <h2 class="h2">Class</h2>
+
+      <h3 class="h3">JS</h3>
       <pre class="language-javascript"><code>
-      $('.memo').val('メモ書き換え');
+      $('.memo').val('メモ');
       </code></pre>
+
+      <h3 class="h3">HTML</h3>
+      <script type="text/plain" class="language-markup">
+      <input type="text" class="memo">
+      <input type="text" class="memo">
+      <input type="text" class="memo">
+      </script>
 
       <input type="text" class="memo">
       <input type="text" class="memo">
       <input type="text" class="memo">
-    </div>
+    </section>
 
     <section class="content">
       <h2 class="h2">階層</h2>
-      <h3>親要素 > 子要素</h3>
+      <h3 class="h3">親要素 > 子要素</h3>
+      <div>
+        親直下の子要素を選択
+      </div>
+
       <pre class="language-javascript"><code>
-    $('親要素 > 子要素')
-    </code></pre>
+      $('親要素 > 子要素')
+      </code></pre>
 
       <h3 class="h3">ex) div > input</h3>
+      div 内の input 要素全て選択
+
+      <h3 class="h3">HTML</h3>
+      <script type="text/plain" class="language-markup">
+      <div>
+        <input type="text" value="初期値">
+        <input type="text" value="初期値">
+        <input type="text" value="初期値">
+      </div>
+      </script>
+
+      <h3 class="h3">JS</h3>
       <pre class="language-javascript"><code>
-      $('div > input').val('メモ書き換え');
+      $('div > input').val('子要素');
       </code></pre>
 
       <div>
         <input type="text" value="初期値">
         <input type="text" value="初期値">
+        <input type="text" value="初期値">
+      </div>
+
+      <h3 class="h3">親要素 子孫要素</h3>
+      <div>
+        親以降のすべての要素を選択
+      </div>
+      <pre class="language-javascript"><code>
+    $('親要素 子孫要素')
+    </code></pre>
+
+      <h3 class="h3">ex) div input</h3>
+      div 内の input 要素全て選択
+
+      <h3 class="h3">HTML</h3>
+      <script type="text/plain" class="language-markup">
+      <div>
+        <section>
+          <select name="question_1"></select>
+          <select name="question_2"></select>
+          <select name="question_3"></select>
+        </section>
+      </div>
+      </script>
+
+      <h3 class="h3">JS</h3>
+      <pre class="language-javascript"><code>
+      $('div input').val('子孫要素');
+      </code></pre>
+
+      <div>
+        <section>
+          <select name="question_1"></select>
+          <select name="question_2"></select>
+          <select name="question_3"></select>
+        </section>
       </div>
 
     </section>
@@ -84,13 +163,25 @@
         $('セレクタ[属性名]');
         $('セレクタ[属性名=属性値]');
         </code></pre>
+
       <h3 class="h3">ex) input[name=price]</h3>
       <div>
         input name="price" の要素を全て書き換え
       </div>
+
+      <h3 class="h3">HTML</h3>
+      <script type="text/plain" class="language-markup">
+      <input type="text" name="price" value="100">
+      <input type="text" name="price" value="200">
+      <input type="text" name="price" value="300">
+      <input type="text" name="price" value="400">
+      </script>
+
+      <h3 class="h3">JS</h3>
       <pre class="language-javascript"><code>
-      $('input[name=price]').val('1000');
+      $('input[name=price]').val(0);
       </code></pre>
+      
       <input type="text" name="price" value="100">
       <input type="text" name="price" value="200">
       <input type="text" name="price" value="300">
@@ -102,23 +193,62 @@
       <pre class="language-javascript"><code>
       $('セレクタ:type属性]')
       </code></pre>
+
       <h3 class="h3">ex) input:hidden</h3>
       <div>
         input type="hidden" の要素を全て書き換え
       </div>
+
+      <h3 class="h3">HTML</h3>
+      <script type="text/plain" class="language-markup">
+      <input type="hidden" name="user_id" value="0">
+      </script>
+
+      <h3 class="h3">JS</h3>
       <pre class="language-javascript"><code>
       $('input[type=hidden]').val('3');
       </code></pre>
+
+      <div>
+        HTMLソースを確認
+      </div>
+
       <input type="hidden" name="user_id" value="0">
     </section>
 
     <section class="content">
       <h2 class="h2">フィルタ</h2>
+
       <pre class="language-javascript"><code>
         $('li:first')
-        $('li:nth-child(数値)')
+        $('li:eq(数値)')  //0, 1, 2...
+        $('li:nth-child(数値)')  //1, 2, 3...
         $('li:last')
       </code></pre>
+
+      <h3 class="h3">HTML</h3>
+      <script type="text/plain" class="language-markup">
+      <ul>
+        <li><input type="text" value="100"></li>
+        <li><input type="text" value="200"></li>
+        <li><input type="text" value="300"></li>
+        <li><input type="text" value="400"></li>
+      </ul>
+      </script>
+
+      <h3 class="h3">JS</h3>
+      <pre class="language-javascript"><code>
+        $('li:first input').val(0);
+        //$('li:first-child input').val('0');
+        //$('li:nth-child(1) input').val('0');
+        //$('li:eq(0) input').val('0');
+
+        $('li:eq(2) input').val(500);
+        //$('li:nth-child(3) input').val(500);
+
+        $('li:last input').val(1000);
+      </code></pre>
+
 
       <ul>
         <li><input type="text" value="100"></li>
@@ -127,29 +257,59 @@
         <li><input type="text" value="400"></li>
       </ul>
 
+    </section>
+
+    <section class="content">
+      <h2 class="h2">複数選択</h2>
+
+      <h3 class="h3">JS</h3>
       <pre class="language-javascript"><code>
-        $('li:first input').val(0);
-        $('li:nth-child(3) input').val(500);
-        $('li:last input').val(1000);
+      $('.weapon, #shop input').val('複数');
       </code></pre>
+
+      <h3 class="h3">HTML</h3>
+      <script type="text/plain" class="language-markup">
+      <div id="shop">
+        <input class="message" type="text" name="初期値">
+      </div>
+      <input class="weapon" type="text" name="初期値">
+      </script>
+
+      <div id="shop">
+        <input class="message" type="text" name="初期値">
+      </div>
+      <input class="weapon" type="text" name="初期値">
+
     </section>
 
     <section class="content">
       <h2 class="h2">コンテンツフィルタ</h2>
       <pre class="language-javascript"><code>
-        $('div:has(p)')
+        $('要素1:has(要素2)')
       </code></pre>
-
       <div>
-        外側
-        <p>内側</p>
+        要素2をもつ、要素1を選択
       </div>
 
+      <h3 class="h3">HTML</h3>
+      <script type="text/plain" class="language-markup">
+      <div>
+        <h5>タイトル</h5>
+        <p>本文</p>
+      </div>
+      </script>
+      </pre>
+
+      <h3 class="h3">JS</h3>
       <pre class="language-javascript"><code>
         $('div:has(p)').css('border: 1px solid #ff0000;');
       </code></pre>
-    </section>
 
+      <div>
+        <h5>タイトル</h5>
+        <p>本文</p>
+      </div>
+    </section>
 
   </section>
 

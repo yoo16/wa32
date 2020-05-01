@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/prism.css">
+  <link rel="stylesheet" href="../../css/default.css">
+
+  <title>WA32 samples</title>
+</head>
+
+<body>
+  <div class="container">
+    <div>
+      <a href="../">Back</a>
+    </div>
+
+    <h1 class="h1">noConfrict()</h1>
+
+    <h2 class="h2">prototype.js 読み込み(CDN)</h2>
+    <script type="text/plain" class="language-markup">
+    <script src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js"></script>
+    </script>
+
+    <h2 class="h2">main1.js</h2>
+    <h3 class="h3">prototype.js でエラー</h3>
+    <script type="text/plain" class="language-javascript">
+    $(function() {
+      alert('jQuery で実行');
+    });
+    
+    document.observe("dom:loaded", function() {
+        alert('prototype.js で実行');
+    });
+    </script>
+
+    <h2 class="h2">main2.js</h2>
+    <h3 class="h3">jQuery でエラー</h3>
+    <script type="text/plain" class="language-javascript">
+    jQuery.noConflict();
+
+    jQuery(function() {
+        alert('jQuery で実行');
+    });
+    
+    document.observe("dom:loaded", function () {
+        alert('prototype.js で実行');
+    });
+    </script>
+
+    <h2 class="h2">main3.js</h2>
+    <h3 class="h3">両方実行できる</h3>
+    <script type="text/plain" class="language-javascript">
+    jQuery.noConflict();
+
+    jQuery(function($) {
+        alert('jQuery で実行');
+    });
+    
+    document.observe("dom:loaded", function () {
+        alert('prototype.js で実行');
+    });
+    </script>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.3.0/prototype.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+  <script src="js/main3.js"></script>
+
+  <script src="../../js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../../js/prism.js"></script>
+  <script src="../../js/default.js"></script>
+</body>
+
+</html>
