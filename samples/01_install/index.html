@@ -14,26 +14,41 @@
 
 <body>
   <div class="container">
-    <div>
-      <a href="../">Back</a>
-    </div>
+    <div><a href="../">Back</a></div>
+
     <h1 class="h1">インストール</h1>
+    <h2 class="h2">公式サイト</h2>
+    <a href="https://jquery.com/" target="_blank">jQuery</a>
+
+    <h3 class="h3">CDN</h3>
+    <a href="https://code.jquery.com/" target="_blank">https://code.jquery.com/</a>
 
     <h2 class="h2">バージョン確認</h2>
+    <h3 class="h3">HTML</h3>
+    <p>jQueryの配置したファイルを指定</p>
+
+    <pre class="language-javascript"><code>
+    &lt;script src="https://code.jquery.com/jquery-3.5.0.min.js"&gt;&lt;script&gt;
+    &lt;script src="../../js/jquery-3.5.0.min.js"&gt;&lt;script&gt;
+    </code></pre>
+
+    <h3 class="h3">JS</h3>
     <pre class="language-javascript"><code>
     $(function() {
-      let message = 'jQuery verision is ' + jQuery.fn.jquery;
-      console.log(message);
+        let message = 'jQuery verision is ' + jQuery.fn.jquery;
+        console.log(message);
     });
-  </code></pre>
+    </code></pre>
+
+    <div><a href="../">Back</a></div>
   </div>
 
   <script src="../../js/jquery-3.5.0.min.js"></script>
   <script src="../../js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
 
   <script src="../../js/prism.js"></script>
   <script src="../../js/default.js"></script>
-  <script src="js/main.js"></script>
 </body>
 
 </html>

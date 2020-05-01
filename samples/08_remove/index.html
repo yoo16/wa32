@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/prism.css">
+  <link rel="stylesheet" href="../../css/default.css">
+
+  <title>WA32 remove</title>
+</head>
+
+<body>
+  <div class="container">
+    <div><a href="../">Back</a></div>
+
+    <h2 class="h2">HTML</h3>
+      <h3 class="h3">実行前</h3>
+      <script type="text/plain" class="language-markup">
+      <div id="div1">
+        <p id="txt1">Hello1</p>
+      </div>
+
+      <div id="div2">
+        <p id="txt2">Hello2</p>
+      </div>
+
+      <div id="div3"></div>
+      </script>
+
+      <h3 class="h3">実行後</h3>
+      <script type="text/plain" class="language-markup">
+      <div id="div2">
+        <p id="txt2">Hello2</p>
+      </div>
+
+      <div id="div3">
+        <p id="txt1">Hello1</p>
+      </div>
+      </script>
+
+      <h3 class="h3">JS</h3>
+      <div>
+        #txt1 を削除し、div3 に元の内容を入れる
+        <p>HTML上から削除されるが、戻り値でキャッシュすることができる</p>
+      </div>
+      <pre class="language-javascript"><code>
+      $(function () {
+          let div = $('#div3');
+          let txt = $('#txt1').remove();
+          div.html(txt);
+      });
+      </code></pre>
+
+      <h1 class="h1">remove()</h1>
+
+      <div id="div1">
+        <p id="txt1">Hello1</p>
+      </div>
+
+      <div id="div2">
+        <p id="txt2">Hello2</p>
+      </div>
+
+      <div id="div3"></div>
+
+      <script src="../../js/jquery-3.5.0.min.js"></script>
+      <script src="../../js/bootstrap/bootstrap.bundle.min.js"></script>
+      <script src="js/main.js"></script>
+
+      <script src="../../js/prism.js"></script>
+      <script src="../../js/default.js"></script>
+  </div>
+</body>
+
+</html>

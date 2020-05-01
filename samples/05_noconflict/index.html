@@ -14,32 +14,35 @@
 
 <body>
   <div class="container">
-    <div>
-      <a href="../">Back</a>
-    </div>
+    <div><a href="../">Back</a></div>
 
     <h1 class="h1">noConfrict()</h1>
 
+    <h2 class="h2">jQuery 読み込み(CDN)</h2>
+    <pre class="language-javascript"><code>
+    &lt;script src="https://code.jquery.com/jquery-3.5.0.min.js"&gt;&lt;script&gt;
+    </code></pre>
+
     <h2 class="h2">prototype.js 読み込み(CDN)</h2>
-    <script type="text/plain" class="language-markup">
-    <script src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js"></script>
-    </script>
+    <pre class="language-javascript"><code>
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js"&gt;&lt;script&gt;
+    </code></pre>
 
     <h2 class="h2">main1.js</h2>
     <h3 class="h3">prototype.js でエラー</h3>
-    <script type="text/plain" class="language-javascript">
+    <pre class="language-javascript"><code>
     $(function() {
-      alert('jQuery で実行');
+        alert('jQuery で実行');
     });
     
     document.observe("dom:loaded", function() {
         alert('prototype.js で実行');
     });
-    </script>
+    </code></pre>
 
     <h2 class="h2">main2.js</h2>
     <h3 class="h3">jQuery でエラー</h3>
-    <script type="text/plain" class="language-javascript">
+    <pre class="language-javascript"><code>
     jQuery.noConflict();
 
     jQuery(function() {
@@ -49,11 +52,11 @@
     document.observe("dom:loaded", function () {
         alert('prototype.js で実行');
     });
-    </script>
+    </code></pre>
 
     <h2 class="h2">main3.js</h2>
     <h3 class="h3">両方実行できる</h3>
-    <script type="text/plain" class="language-javascript">
+    <pre class="language-javascript"><code>
     jQuery.noConflict();
 
     jQuery(function($) {
@@ -63,12 +66,22 @@
     document.observe("dom:loaded", function () {
         alert('prototype.js で実行');
     });
-    </script>
+    </code></pre>
+
+    <div><a href="../">Back</a></div>
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.3.0/prototype.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+  <!--
+  <script src="js/main1.js"></script>
+  -->
+  <!--
+  <script src="js/main2.js"></script>
+  -->
+  <!--
   <script src="js/main3.js"></script>
+  -->
 
   <script src="../../js/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="../../js/prism.js"></script>

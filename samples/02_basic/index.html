@@ -14,17 +14,16 @@
 
 <body>
   <div id="content" class="container">
-    <div>
-      <a href="../">Back</a>
-    </div>
+    <div><a href="../">Back</a></div>
+
     <h1 class="h1">基本構文</h1>
     <div>
       <h2 class="h2">セレクタ</h2>
       <pre class="language-javascript"><code>
-    jQuery(セレクタ).メソッド(パラメータ);
-
-    $(セレクタ).メソッド(パラメータ);
-    </code></pre>
+      $(セレクタ).メソッド(パラメータ);
+      //または
+      jQuery(セレクタ).メソッド(パラメータ);
+      </code></pre>
     </div>
 
     <div>
@@ -79,14 +78,16 @@
     target.removeClass('item').addClass('item').css('color', 'red');
     </code></pre>
     </div>
+
+    <div><a href="../">Back</a></div>
   </div>
 
   <script src="../../js/jquery-3.5.0.min.js"></script>
   <script src="../../js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
 
   <script src="../../js/prism.js"></script>
   <script src="../../js/default.js"></script>
-  <script src="js/main.js"></script>
 </body>
 
 </html>
