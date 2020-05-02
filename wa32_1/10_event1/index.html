@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/prism.css">
+  <link rel="stylesheet" href="../../css/default.css">
+
+  <title>WA32 event1</title>
+</head>
+
+<body>
+  <div class="container">
+    <div><a href="../">Back</a></div>
+    <h1 class="h1">イベント1</h1>
+
+    <div>
+      <h2 class="h2">結果</h2>
+      <div id="result" class="p-4"></div>
+      <div id="mouse" class="p-4"></div>
+      <div id="window_size" class="p-4"></div>
+    </div>
+
+    <h2 class="h2">操作</h2>
+    <div>
+      <button id="btn1" class="btn btn-outline-primary">ボタン1</button>
+      <button id="btn2" class="btn btn-outline-primary">ボタン2</button>
+      <button id="btn3" class="btn btn-outline-primary">ボタン3</button>
+      <button id="btn4" class="btn btn-outline-primary">ボタン4</button>
+      <button id="btn5" class="btn btn-outline-primary">江畑ボタン</button>
+      <button id="btn6" class="btn btn-outline-primary">清水ボタン</button>
+    </div>
+
+    <div>
+      <button id="btn7" class="btn btn-outline-primary">ボタン7</button>
+      <button id="btn8" class="btn btn-outline-primary">ボタン8</button>
+      <button id="btn9" class="btn btn-outline-primary">ボタン9</button>
+    </div>
+
+    <div>
+      <h3 class="h3">メッセージ表示：showMessage()</h3>
+      <div>
+        #result に与えられたテキストを表示する共通関数を作成
+      </div>
+      <pre class="language-javascript"><code>
+      let result = $('#result');
+
+      function showMessage(message) {
+          result.text(message);
+      }
+      </code></pre>
+
+      <h3 class="h3">click: ボタン1, 2, 3</h3>
+      <pre class="language-javascript"><code>
+      $('#btn1').on('click', function () {
+          showMessage('ボタン1がクリックされました。');
+      });
+
+      $('#btn2').on('click', function () {
+          showMessage('ボタン2がクリックされました。');
+      });
+
+      $('#btn3').on('click', function () {
+          showMessage('ボタン3がクリックされました。');
+      });
+      </code></pre>
+
+      <h3 class="h3">click: ボタン4</h3>
+      <pre class="language-javascript"><code>
+      $('#btn4').on('click',
+          {
+              msg1: 'ボタン4がクリックされました。',
+              msg2: 'こんにちは',
+              msg3: 'さようなら'
+          },
+          function (e) {
+              let message = e.data.msg1 + ' ' + e.data.msg2  + ' ' +  e.data.msg3;
+              showMessage(message);
+          }
+      );
+      </code></pre>
+
+      <h2 class="h2">JS</h2>
+      <h3 class="h3">click: #btn5, #btn6</h3>
+      <pre class="language-javascript"><code>
+      function eventFunc(e) {
+          let message = '';
+          message+= 'name:' + e.data.name;
+          message+= ',mail:' + e.data.mail;
+          message+= ',tel:' + e.data.tel;
+          showMessage(message);
+      }
+  
+      $('#btn5').on('click',
+          {
+              name: '江畑',
+              mail: 'ebata@aaa.bbb',
+              tel: '1234567890'
+          },
+          eventFunc
+      );
+  
+      $('#btn6').on('click',
+          {
+              name: '清水',
+              mail: 'simiz@aaa.bbb',
+              tel: '01234567890'
+          },
+          eventFunc
+      );
+      </code></pre>
+
+      <h3 class="h3">click, mouseover, mouseout</h3>
+      <pre class="language-javascript"><code>
+      $('#btn7').on('click', function () {
+          showMessage('click');
+      });
+
+      $('#btn7').on('mouseover', function () {
+          showMessage('mouseover');
+      });
+
+      $('#btn7').on('mouseout', function () {
+          showMessage('mouseout');
+      });
+
+      $('#btn8').on({
+          'click': function () {
+              showMessage('click');
+          },
+          'mouseover': function () {
+              showMessage('mouseover');
+          },
+          'mouseout': function () {
+              showMessage('mouseout');
+          }
+      });
+
+      $('#btn9').on(
+          'click mouseover mouseout',
+          function (e) { showMessage(e.type); }
+      );
+      </code></pre>
+
+      <h3 class="h3">Window Size</h3>
+      <pre class="language-javascript"><code>
+      $(window).on('resize', function () {
+        $('#window_size').text(
+            '(width, height) = (' 
+            + $(window).width() + ', '
+            + $(window).height() + ')'
+        );
+      });
+      </code></pre>
+
+    </div>
+    <div><a href="../">Back</a></div>
+  </div>
+
+  <script src="../../js/jquery-3.5.0.min.js"></script>
+  <script src="../../js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script src="../../js/prism.js"></script>
+  <script src="../../js/default.js"></script>
+</body>
+
+</html>
