@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <link rel="stylesheet" href="../css/default.css">
+
+  <title>WA32 event1</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="content">
+      <p id="photo_1">
+        <img src="images/girl_1.png">
+      </p>
+      <p id="photo_2">
+        <img src="images/girl_1.png">
+      </p>
+    </div>
+
+    <div id="code">
+      <pre class="language-javascript"><code>
+    //fade in
+    let photo = $('#photo');
+    function open() {
+        photo.fadeIn(3000, "swing",
+            function () {
+                setTimeout(close, 1000);
+            });
+    }
+
+    //fade out
+    function close() {
+        photo.fadeOut(1500, "swing",
+            function () {
+                setTimeout(open, 500);
+            });
+    }
+    open();
+    </code></pre>
+    </div>
+
+  </div>
+
+  <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="../js/jquery.easing.1.3.js"></script>
+  <script src="js/main.js"></script>
+
+  <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../js/prism.js"></script>
+</body>
+
+</html>

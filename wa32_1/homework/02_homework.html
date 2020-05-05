@@ -32,37 +32,73 @@
     <p><a href="../">Back</a></p>
 
     <h1 class="h1">課題02</h1>
-
-    <div class="homework">
-      <ol>
-        <li>ul を作成し子要素 li を3つ作成</li>
-        <li>作成した li に子要素 div を class = “item_name” で作成</li>
-        <li>作成した li に子要素 input を name = “price” で作成</li>
-        <li>最初の div の値を「銅のつるぎ」に設定</li>
-        <li>2番目の div の値を「皮のたて」に設定</li>
-        <li>最後の div の値を「皮のぼうし」に設定</li>
-        <li>最初の input の値を「150」に設定</li>
-        <li>2番目の input の値を「90」に設定</li>
-        <li>最後の input の値を「50」に設定</li>
-      </ol>
-    </div>
+    <h2 class="h2">jQueryセレクタ2</h2>
 
     <div>
-      <ul>
-        <li>
-          <div class="item_name">アイテム名</div>
-          <input type="text" name="price" value="0">
-        </li>
-        <li>
-          <div class="item_name">アイテム名</div>
-          <input type="text" name="price" value="0">
-        </li>
-        <li>
-          <div class="item_name">アイテム名</div>
-          <input type="text" name="price" value="0">
-        </li>
-      </ul>
+      <h2 class="h2">内容</h2>
+      <dl class="list-group">
+        <dd class="list-group-item">ul を id = "itemList" で作成</dd>
+        <dd class="list-group-item">ul の 子要素 li を5つ作成</dd>
+        <dd class="list-group-item">li に子要素 input を name = “price” を追加</dd>
+        <dd class="list-group-item">最初の input の値を「150」に設定</dd>
+        <dd class="list-group-item">3番目の input の値を「90」に設定</dd>
+        <dd class="list-group-item">最後の input の値を「50」に設定</dd>
+      </dl>
     </div>
+
+    <h2 class="h2">ファイル構成</h2>
+    <div>
+      <pre>
+wa32_homework_02_出席番号
+  |- index.html
+  |- js/main.js
+      </pre>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <h2 class="h2">実行前</h2>
+        <ul>
+          <li>
+            <input type="text">
+          </li>
+          <li>
+            <input type="text">
+          </li>
+          <li>
+            <input type="text">
+          </li>
+          <li>
+            <input type="text">
+          </li>
+          <li>
+            <input type="text">
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-6">
+        <h2 class="h2">実行後</h2>
+        <ul>
+          <li>
+            <input type="text" value="150">
+          </li>
+          <li>
+            <input type="text" value="">
+          </li>
+          <li>
+            <input type="text" value="90">
+          </li>
+          <li>
+            <input type="text" value="">
+          </li>
+          <li>
+            <input type="text" value="50">
+          </li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 
   <script src="../../js/jquery-3.5.0.min.js"></script>

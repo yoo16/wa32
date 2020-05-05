@@ -33,111 +33,144 @@
 
     <h1 class="h1">課題03</h1>
 
-    <h2 class="h2">課題</h2>
-    <div>セレクタテスト</div>
+    <h2 class="h2">主題</h2>
+    <p>HTML操作</p>
 
-    <h2 class="h2">内容</h2>
     <div>
-      <ul>
-        <li>セレクタのテスト用プログラムを作成する</li>
-        <li>セレクタを使用してエレメント（要素）に値を設定する</li>
-        <li>セレクタの指定方法は10種類以上を使用する</li>
-      </ul>
+      <h2 class="h2">内容</h2>
+      <h3 class="h3">HTML</h3>
+      <dl class="list-group">
+        <dd class="list-group-item">input を作成 (id = character_name)</dd>
+        <dd class="list-group-item">ul を作成 (id = item_list)</dd>
+        <dd class="list-group-item">ul に li を5つ追加し、li に div を追加</dd>
+        <dd class="list-group-item">div に p を追加 (class = item_name)</dd>
+        <dd class="list-group-item">div に input を追加 (name = price)</dd>
+        <dd class="list-group-item">div に input を追加 (name = amount)</dd>
+      </dl>
+
+      <h3 class="h3">Javascript</h3>
+      <dl class="list-group">
+        <dd class="list-group-item">id = character_name の要素の値を「HAL」 に設定</dd>
+        <dd class="list-group-item">class = item_name の要素のテキストをすべて「アイテム名」を設定</dd>
+        <dd class="list-group-item">class = price, amount の要素の値をすべて 「0」 に設定</dd>
+        <dd class="list-group-item">
+          「アイテム名」を変更
+          <ul>
+            <li>最初:「銅のつるぎ</li>
+            <li>3番目：「皮のたて」</li>
+            <li>最後：「皮のぼうし」</li>
+          </ul>
+        </dd>
+        <dd class="list-group-item">
+          class = price の要素の値を変更
+          <ul>
+            <li>「銅のつるぎ」:150</li>
+            <li>「皮のたて」：90</li>
+            <li>「皮のぼうし」：50</li>
+          </ul>
+        </dd>
+        <dd class="list-group-item">
+          class = amount の要素の値をすべて 「1」 に変更
+        </dd>
+      </dl>
     </div>
 
     <h2 class="h2">ファイル構成</h2>
     <div>
       <pre>
-wa32_kadai04_出席番号
+wa32_homework_03_出席番号
   |- index.html
   |- js/main.js
-    </pre>
+      </pre>
     </div>
 
     <div class="row">
-      <div class="col-12">
-        <h2 class="h2">設定前</h2>
-        <h3 class="h3">問1</h3>
-        <input type="text" value="問1">
-
-        <h3 class="h3">問2</h3>
-        <input type="text" value="問2">
-
-        <h3 class="h3">問3</h3>
-        <input type="text" value="問3">
-
-        <h3 class="h3">問4</h3>
-        <input type="text" value="問4-1">
-        <input type="text" value="問4-2">
-        <input type="text" value="問4-3">
-
-        <h3 class="h3">問5</h3>
-        <input type="text" value="問5-1">
-        <input type="text" value="問5-2">
-
-        <h3 class="h3">問6</h3>
-        <input type="text" value="問6-1">
-        <input type="text" value="問6-2">
-
-        <h3 class="h3">問7</h3>
-        <input type="text" value="問7">
-
-        <h3 class="h3">問8</h3>
-        <input type="text" value="問8">
-
-        <h3 class="h3">問9</h3>
-        <input type="text" value="問9-1">
-        <input type="text" value="問9-2">
-        <input type="text" value="問9-3">
-
-        <h3 class="h3">問10</h3>
-        <input type="text" value="問10-1">
-        <input type="text" value="問10-2">
-        <input type="text" value="問10-3">
-        <input type="text" value="問10-4">
+      <div class="col-6">
+        <h2 class="h2">実行前</h2>
+        <input id="character_name" type="text">
+        <ul id="item_list">
+          <li>
+            <div>
+              <p class="item_name"></p>
+              <input type="text" name="price">
+              <input type="text" name="amount">
+            </div>
+          </li>
+          <li>
+            <div>
+              <p class="item_name"></p>
+              <input type="text" name="price">
+              <input type="text" name="amount">
+            </div>
+          </li>
+          <li>
+            <div>
+              <p class="item_name"></p>
+              <input type="text" name="price">
+              <input type="text" name="amount">
+            </div>
+          </li>
+          <li>
+            <div>
+              <p class="item_name"></p>
+              <input type="text" name="price">
+              <input type="text" name="amount">
+            </div>
+          </li>
+          <li>
+            <div>
+              <p class="item_name"></p>
+              <input type="text" name="price">
+              <input type="text" name="amount">
+            </div>
+          </li>
+        </ul>
       </div>
 
-      <div class="col-12">
-        <h2 class="h2">設定後</h2>
+      <div class="col-6">
+        <h2 class="h2">実行後</h2>
+        <input id="character_name" type="text" value="HAL">
+        <ul id="item_list">
+          <li>
+            <div class="item">
+              <p class="item_name">銅のつるぎ</p>
+              <input type="text" value="150">
+              <input type="text" value="1">
+            </div>
+          </li>
 
-        <h3 class="h3">問1</h3>
-        <input type="text" value="input要素">
+          <li>
+            <div class="item">
+              <p class="item_name">アイテム名</p>
+              <input type="text" value="0">
+              <input type="text" value="1">
+            </div>
+          </li>
 
-        <h3 class="h3">問2</h3>
-        <input type="text" value="id名">
+          <li>
+            <div class="item">
+              <p class="item_name">皮のたて</p>
+              <input type="text" value="90">
+              <input type="text" value="1">
+            </div>
+          </li>
 
-        <h3 class="h3">問3</h3>
-        <input type="text" value="class名">
+          <li>
+            <div>
+              <p class="item_name">アイテム名</p>
+              <input type="text" value="0">
+              <input type="text" value="1">
+            </div>
+          </li>
 
-        <h3 class="h3">問4</h3>
-        <input type="text" value="id名を複数指定">
-        <input type="text" value="id名を複数指定">
-        <input type="text" value="id名を複数指定">
-
-        <h3 class="h3">問5</h3>
-        <input type="text" value="div の子 input 要素">
-        <input type="text" value="input要素">
-
-        <h3 class="h3">問6</h3>
-        <input type="text" value="divの子孫input要素">
-        <input type="text" value="divの子孫input要素">
-
-        <h3 class="h3">問7</h3>
-        <input type="text" value="name属性の要素">
-
-        <h3 class="h3">問8</h3>
-        <input type="text" value="name=nm8の要素">
-
-        <h3 class="h3">問9</h3>
-        <input type="text" value="最初の要素">
-        <input type="text" value="input要素">
-        <input type="text" value="input要素">
-
-        <h3 class="h3">問10</h3>
-        <input type="text" value="input要素">
-        <input type="text" value="input要素">
-        <input type="text" value="3番目の要素">
-        <input type="text" value="最後の要素">
+          <li>
+            <div>
+              <p class="item_name">皮のぼうし</p>
+              <input type="text" value="50">
+              <input type="text" value="1">
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
 
