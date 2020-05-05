@@ -68,19 +68,19 @@ th {
     margin-bottom: 30px;
 }
 
-#homework ol {
+.homework ol {
     counter-reset: my-counter;
     list-style: none;
     padding: 0;
 }
 
-#homework li {
+.homework li {
     margin-bottom: 10px;
     padding-left: 32px;
     position: relative;
 }
 
-#homework li:before {
+.homework li:before {
     content: counter(my-counter);
     counter-increment: my-counter;
     background-color: #0036aadc;
