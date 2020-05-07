@@ -1,8 +1,7 @@
 @charset "UTF-8";
 body {
-  font-family: "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Arial, sans-serif;
-  font-size: 1.0rem;
-  margin-top: 70px;
+    font-family: "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Arial, sans-serif;
+    font-size: 1.0rem;
 }
 
 a {
@@ -10,12 +9,12 @@ a {
 }
 
 a:not([href]):not([tabindex]) {
-  color: #0088cc;
+    color: #0088cc;
 }
 
 input[type="text"],
 input[type="password"] {
-  font-size: 1.0rem;
+    font-size: 1.0rem;
 }
 
 .bs-navbar {
