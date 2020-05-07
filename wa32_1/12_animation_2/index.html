@@ -17,7 +17,7 @@
 <body>
   <div class="container">
     <div><a href="../">Back</a></div>
-    <h1>easeIn & easeOut</h1>
+    <h1 class="h1">easeIn & easeOut</h1>
 
     <div class="content">
       <p id="photo_1">
@@ -25,26 +25,88 @@
       </p>
     </div>
 
-    <div id="code">
-      <pre class="language-javascript"><code>
-    //fade in
-    let photo = $('#photo');
-    function open() {
-        photo.fadeIn(3000, "swing",
-            function () {
-                setTimeout(close, 1000);
-            });
-    }
+    <div>
+      <h2 class="h2">jQuery拡張</h2>
+      <p>アニメーションの easing を拡張</p>
 
-    //fade out
-    function close() {
-        photo.fadeOut(1500, "swing",
-            function () {
-                setTimeout(open, 500);
-            });
-    }
-    open();
-    </code></pre>
+      <h3 class="h3">jQuery UI</h3>
+      <p>様々なUI機能を拡張できる</p>
+      <a href="https://jqueryui.com/easing/" target="_blank">jQuery UI</a>
+
+      <pre class="language-markup"><code>
+      &lt;script src="js/jquery-ui.min.js"&gt;&lt;/script&gt;
+      </code></pre>
+
+      <h3 class="h3">jQuery Easing Plugin</h3>
+      <p>easingに特化</p>
+      <a href="http://gsgd.co.uk/sandbox/jquery/easing/" target="_blank">jQuery Easing Plugin</a>
+
+      <pre class="language-markup"><code>
+      &lt;script src="js/jquery.easing.1.3.js"&gt;&lt;/script&gt;
+      </code></pre>
+
+      <h2 class="h2">JS</h2>
+      <div>
+        <pre class="language-javascript"><code>
+        let photo = $('#photo_1');
+        //easein
+        function open() {
+            photo.fadeIn(3000, "easeInSine",
+                function () {
+                    setTimeout(close, 1000);
+                });
+        }
+        //easeout
+        function close() {
+            photo.fadeOut(1500, "easeOutSine",
+                function () {
+                    setTimeout(open, 500);
+                });
+        }
+        open();
+        </code></pre>
+      </div>
+
+      <div>
+        <h3 class="h3">Easing</h3>
+
+        <ul class="list-group">
+          <li class="list-group-item">linear</li>
+          <li class="list-group-item">swing</li>
+          <li class="list-group-item">jswing</li>
+          <li class="list-group-item">easeInQuad</li>
+          <li class="list-group-item">easeOutQuad</li>
+          <li class="list-group-item">easeInOutQuad</li>
+          <li class="list-group-item">easeInCubic</li>
+          <li class="list-group-item">easeOutCubic</li>
+          <li class="list-group-item">easeInOutCubic</li>
+          <li class="list-group-item">easeInQuart</li>
+          <li class="list-group-item">easeOutQuart</li>
+          <li class="list-group-item">easeInOutQuart</li>
+          <li class="list-group-item">easeInQuint</li>
+          <li class="list-group-item">easeOutQuint</li>
+          <li class="list-group-item">easeInOutQuint</li>
+          <li class="list-group-item">easeInSine</li>
+          <li class="list-group-item">easeOutSine</li>
+          <li class="list-group-item">easeInOutSine</li>
+          <li class="list-group-item">easeInExpo</li>
+          <li class="list-group-item">easeOutExpo</li>
+          <li class="list-group-item">easeInOutExpo</li>
+          <li class="list-group-item">easeInCirc</li>
+          <li class="list-group-item">easeOutCirc</li>
+          <li class="list-group-item">easeInOutCirc</li>
+          <li class="list-group-item">easeInElastic</li>
+          <li class="list-group-item">easeOutElastic</li>
+          <li class="list-group-item">easeInOutElastic</li>
+          <li class="list-group-item">easeInBack</li>
+          <li class="list-group-item">easeOutBack</li>
+          <li class="list-group-item">easeInOutBack</li>
+          <li class="list-group-item">easeInBounce</li>
+          <li class="list-group-item">easeOutBounce</li>
+          <li class="list-group-item">easeInOutBounce</li>
+        </ul>
+      </div>
+
     </div>
 
   </div>

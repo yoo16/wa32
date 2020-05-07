@@ -1,5 +1,6 @@
 $(function () {
     let photo = $('#photo');
+    slideToRight();
 
     //slide right
     function slideToRight() {
@@ -47,5 +48,4 @@ $(function () {
                 setTimeout(slideToLeft, 1000);
             });
     };
-    slideToRight();
 });

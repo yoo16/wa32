@@ -7,9 +7,9 @@
 
   <link rel="stylesheet" href="css/style.css">
 
-  <link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="../../css/prism.css">
-  <link rel="stylesheet" href="../../css/default.css">
+  <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <link rel="stylesheet" href="../css/default.css">
 
   <title>WA32 animation2</title>
 </head>
@@ -18,7 +18,7 @@
   <div class="container">
     <div><a href="../">Back</a></div>
 
-    <h1>fadeIn & fadeOut</h1>
+    <h1 class="h1">fadeIn & fadeOut</h1>
 
     <div class="content">
       <p id="photo">
@@ -27,30 +27,79 @@
     </div>
 
     <div id="code">
-      <pre class="language-javascript"><code>
-    //fade in
-    let photo = $('#photo');
-    function open() {
-        photo.fadeIn(3000, "swing",
-            function () {
-                setTimeout(close, 1000);
-            });
-    }
+      <h2 class="h2">JS</h2>
 
-    //fade out
-    function close() {
-        photo.fadeOut(1500, "swing",
-            function () {
-                setTimeout(open, 500);
-            });
-    }
-    open();
-    </code></pre>
+      <h3 class="h3">fadeIn()</h3>
+      <p>アニメーションで表示</p>
+      <pre class="language-javascript"><code>
+      $(セレクタ).fadeIn(duration, easing, complete);
+      </code></pre>
+
+      <h3 class="h3">fadeOut()</h3>
+      <p>アニメーションで非表示</p>
+      <pre class="language-javascript"><code>
+      $(セレクタ).fadeOut(duration, easing, complete);
+      </code></pre>
+
+      <dl>
+        <dt>duration</dt>
+        <dd>アニメーションの実行時間（ms:ミリ秒)</dd>
+        <dt>easing</dt>
+        <dd>アニメーションの加速/減速させるための関数</dd>
+        <dt>complete</dt>
+        <dd>アニメーション完了後に実行される関数</dd>
+      </dl>
+
+      <h3 class="h3">setTimeout()</h3>
+      <pre class="language-javascript"><code>
+      setTimeout(function, delay, param1, param2, ...)
+      </code></pre>
+
+      <dl>
+        <dt>function</dt>
+        <dd>delay 時間(ms)後に実行される関数</dd>
+        <dt>delay</dt>
+        <dd>遅延時間(ms)</dd>
+        <dt>param1, param2...</dt>
+        <dd>関数の引数</dd>
+      </dl>
+
+      <h3 class="h3">Sample</h3>
+      <pre class="language-javascript"><code>
+      //fade in
+      let photo = $('#photo');
+      function open() {
+          photo.fadeIn(3000, "swing",
+              function () {
+                  setTimeout(close, 1000);
+              });
+      }
+
+      //fade out
+      function close() {
+          photo.fadeOut(1500, "swing",
+              function () {
+                  setTimeout(open, 500);
+              });
+      }
+      open();
+      </code></pre>
+
+      <div>
+        <h3 class="h3">Easing</h3>
+
+        <ul class="list-group">
+          <li class="list-group-item">linear</li>
+          <li class="list-group-item">swing</li>
+        </ul>
+      </div>
+
     </div>
 
   </div>
 
   <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="../js/jquery-ui.min.js"></script>
   <script src="js/main.js"></script>
 
   <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>

@@ -5,3 +5,7 @@ p {
 #photo {
     position: absolute;
 }
+
+.content {
+    height: 400px;
+}

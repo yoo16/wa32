@@ -1,26 +1,112 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-    <link rel="stylesheet" href="css/style.css">
-  
-    <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/prism.css">
-    <link rel="stylesheet" href="../css/default.css">
-  
-    <title>WA32 animation slide</title>
-  </head>
-  
-  <body>
-    <p id="photo"><img src="../images/girl_1.png"></p>
 
-    <script src="../js/jquery-3.5.0.min.js"></script>
-    <script src="../js/jquery.easing.1.3.js"></script>
-    <script src="js/main.js"></script>
-  
-    <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="../js/prism.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <link rel="stylesheet" href="../css/default.css">
+
+  <title>WA32 animation slide</title>
+</head>
+
+<body>
+  <div class="container">
+    <div><a href="../">Back</a></div>
+    <h1 class="h1">Slide</h1>
+
+    <div class="content">
+      <p id="photo">
+        <img src="../images/girl_1.png">
+      </p>
+    </div>
+
+    <div>
+      <h3 class="h3">JS</h3>
+      <div id="code">
+      <pre class="language-javascript"><code>
+      $(セレクタ).animate(properties, duration, easing, function);
+      </code></pre>
+
+      <dl>
+        <dt>properties</dt>
+        <dd>アニメーション設定のプロパティ（オブジェクト）</dd>
+        <dt>duration</dt>
+        <dd>アニメーションの実行時間（ms:ミリ秒)</dd>
+        <dt>easing</dt>
+        <dd>アニメーションの加速/減速させるための関数</dd>
+        <dt>function</dt>
+        <dd>アニメーション完了後に実行される関数</dd>
+      </dl>
+
+      <div id="code">
+        <pre class="language-javascript"><code>
+      $(function () {
+        let photo = $('#photo');
+        slideToRight();
+    
+        //slide right
+        function slideToRight() {
+            photo.animate(
+                { 'left': 300 },
+                1000,
+                'linear',
+                function () {
+                    setTimeout(slideToDown, 1000);
+                });
+        };
+    
+        //slide left
+        function slideToLeft() {
+            photo.animate({ 'left': 0 }, 1000,
+                'linear',
+                function () {
+                    setTimeout(slideToUp, 1000)
+                });
+        };
+    
+        //slide down
+        function slideToDown() {
+            photo.animate({ 'top': 100 }, 1000,
+                'linear',
+                function () {
+                    setTimeout(slideToLeftUp, 1000);
+                });
+        };
+    
+        //slide left up
+        function slideToLeftUp() {
+            photo.animate({ 'left': 0, 'top': 0 }, 1000,
+                'linear',
+                function () {
+                    setTimeout(slideToRight, 1000);
+                });
+        };
+    
+        //slide up
+        function slideToUp() {
+            photo.animate({ 'top': 0 }, 1000,
+                'linear',
+                function () {
+                    setTimeout(slideToLeft, 1000);
+                });
+        };
+    });
+    </code></pre>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="../js/jquery-ui.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../js/prism.js"></script>
+</body>
+
 </html>
