@@ -38,7 +38,7 @@
             position: relative;
             overflow: hidden;
             width: 133px;
-            height: 330px;
+            height: 300px;
             margin: 24px auto 0;
         }
 
@@ -114,6 +114,30 @@
         <h2 class="h2">Image</h2>
         <img src="images/top.gif">
       </div>
+
+      <h2 class="h2">リファクタリング</h2>
+      <pre class="language-javascript"><code>
+      let currentNo = target.prop('num');
+      let nextNo = currentNo + 1;
+      let maxNo = target.prop('max');
+      let width = target.prop('w');
+      let height = target.prop('h');
+      let col = currentNo % 6;
+      let row = Math.floor(currentNo / 6);
+      let x = width * col;
+      let y = height * row;
+
+      target.prop('num', nextNo);
+      if (nextNo > maxNo) {
+          clearInterval(intervalID);
+      } else {
+          target.css({
+              'top': -y + 'px',
+              'left': -x + 'px'
+          });
+      }
+      </code></pre>
+
     </div>
 
   </div>

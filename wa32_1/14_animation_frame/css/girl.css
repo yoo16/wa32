@@ -1,0 +1,10 @@
+#girl-box {
+    position: relative;
+    overflow: hidden;
+    width: 200px;
+    height: 400px;
+}
+
+#girl {
+    position: absolute;
+}

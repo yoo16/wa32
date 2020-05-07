@@ -2,10 +2,10 @@
     position: relative;
     overflow: hidden;
     width: 133px;
-    height: 330px;
+    height: 300px;
     margin: 24px auto 0;
 }
 
-#pic{
+#pic {
     position: absolute;
 }
