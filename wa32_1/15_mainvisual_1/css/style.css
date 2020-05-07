@@ -1,0 +1,18 @@
+#photolist {
+    position: relative;
+    margin: 24px auto;
+}
+
+#photolist li {
+    display: none;
+    position: absolute;
+    list-style: none;
+}
+
+
+/* code */
+.code {
+    position: absolute;
+    top: 800px;
+    width: 100%;
+}

@@ -1,0 +1,11 @@
+#pic-box{
+    position: relative;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    margin: 24px auto 0;
+}
+
+#pic{
+    position: absolute;
+}

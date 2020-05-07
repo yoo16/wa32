@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <link rel="stylesheet" href="../css/default.css">
+
+  <title>WA32 メインビジュアル 01</title>
+</head>
+
+<body>
+  <div class="container">
+
+    <ul id="photolist">
+      <li><img src="images/sample1.jpg"></li>
+      <li><img src="images/sample2.jpg"></li>
+      <li><img src="images/sample3.jpg"></li>
+      <li><img src="images/sample4.jpg"></li>
+      <li><img src="images/sample5.jpg"></li>
+    </ul>
+
+    <div class="code">
+      <h2 class="h2">HTML</h2>
+      <script type="text/plain" class="language-markup">
+        <ul id="photolist">
+          <li><img src="images/sample1.jpg"></li>
+          <li><img src="images/sample2.jpg"></li>
+          <li><img src="images/sample3.jpg"></li>
+          <li><img src="images/sample4.jpg"></li>
+          <li><img src="images/sample5.jpg"></li>
+        </ul>
+        </script>
+
+      <h2 class="h2">CSS</h2>
+      <pre class="language-css"><code>
+      #photolist {
+          position: relative;
+          margin: 24px auto;
+      }
+      
+      #photolist li {
+          display: none;
+          position: absolute;
+          list-style: none;
+      }
+      </code></pre>
+
+      </code></pre>
+
+      <h2 class="h2">JS</h2>
+      <pre class="language-javascript"><code>
+    $(function () {
+      function photoChange(target) {
+          let items = target.find('li');  // li要素のセレクタを格納した配列
+          let current = 0;                // 現在表示されているインデックス
+  
+          function open() {
+              $(items[current]).fadeIn(
+                  1200,
+                  "easeInQuad",
+                  function () { setTimeout(change, 1500); }
+              );
+          }
+  
+          function close() {
+              $(items[current]).fadeOut(1200, "easeOutQuad");
+          }
+  
+          function change() {
+              close();
+              current = ++current % items.length;
+              open();
+          }
+  
+          open();
+      }
+  
+      photoChange($('#photolist'));
+  });
+  </code></pre>
+
+      <h2 class="h2">スコープ内の関数定義</h2>
+      <div>
+        <p>open(), close(), change() は、 photoChange() のスコープ内のみ実行可能</p>
+        <p>photoCHange() 外からは実行できない</p>
+      </div>
+      <pre class="language-javascript"><code>
+      function photoChange(target) {
+
+          function open() {
+          }
+  
+          function close() {
+          }
+  
+          function change() {
+          }
+  
+         open();
+      }
+      </code></pre>
+
+      <div>
+        <p>photoChange() は、$(function () {}) のスコープ内のみ実行可能
+      </div>
+      <pre class="language-javascript"><code>
+      $(function () {
+          function photoChange(target) {
+              let items = target.find('li');
+              let current = 0;
+      
+              function open() {
+              }
+      
+              function close() {
+              }
+      
+              function change() {
+              }
+      
+              open();
+          }
+      
+          photoChange($(‘#photolist’));
+      });
+      </code></pre>
+
+      <h2 class="h2">次の画像インデックス番号を取得</h2>
+      <pre class="language-javascript"><code>
+      current = ++current % items.length;
+      </code></pre>
+      <ol>
+        <li>current を1増加</li>
+        <li>items（li 要素配列）の個数の余り</li>
+      </ol>
+
+      <h3 class="h3">画像が5個の場合</h3>
+      <dl class="list-group">
+        <dt class="list-group-item">current = 0  : <strong class="text-danger">0 % 5</strong></li>
+        <dt class="list-group-item">current = 4  : <strong class="text-danger">1 % 5</strong></li>
+        <dt class="list-group-item">current = 3  : <strong class="text-danger">2 % 5</strong></li>
+        <dt class="list-group-item">current = 2  : <strong class="text-danger">3 % 5</strong></li>
+        <dt class="list-group-item">current = 1  : <strong class="text-danger">4 % 5</strong></li>
+        <dt class="list-group-item">current = 0  : <strong class="text-danger">5 % 5</strong></li>
+      </dl>
+    </div>
+  </div>
+
+  <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="../js/jquery-ui.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../js/prism.js"></script>
+</body>
+
+</html>
