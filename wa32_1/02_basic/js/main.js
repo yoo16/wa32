@@ -17,4 +17,10 @@ $(function () {
 
     // let target = $('#itemList li');
     // target.removeClass('item').addClass('item').css('color', 'red');
+
+    let foo = '';
+    if (true) {
+        foo = 'bar';
+    }
+    console.log(foo);  //成功
 });

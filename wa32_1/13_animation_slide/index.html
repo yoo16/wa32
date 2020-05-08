@@ -26,25 +26,42 @@
     </div>
 
     <div>
-      <h3 class="h3">JS</h3>
+      <h2 class="h2">amimate()</h2>
       <div id="code">
-      <pre class="language-javascript"><code>
+        <pre class="language-javascript"><code>
       $(セレクタ).animate(properties, duration, easing, function);
       </code></pre>
 
-      <dl>
-        <dt>properties</dt>
-        <dd>アニメーション設定のプロパティ（オブジェクト）</dd>
-        <dt>duration</dt>
-        <dd>アニメーションの実行時間（ms:ミリ秒)</dd>
-        <dt>easing</dt>
-        <dd>アニメーションの加速/減速させるための関数</dd>
-        <dt>function</dt>
-        <dd>アニメーション完了後に実行される関数</dd>
-      </dl>
+        <h3 class="h3">properties</h3>
+        <p>アニメーション設定のプロパティ（オブジェクト）</p>
+        <h3 class="h3">duration</h3>
+        <p>アニメーションの実行時間（ms:ミリ秒)</p>
+        <h3 class="h3">easing</h3>
+        <p>アニメーションの加速/減速させるための関数</p>
+        <h3 class="h3">function</h3>
+        <p>アニメーション完了後に実行される関数</p>
 
-      <div id="code">
-        <pre class="language-javascript"><code>
+        <div id="code">
+          <h2 class="h2">HTML</h2>
+          <script type="text/plain" class="language-markup">
+        <p id="photo">
+          <img src="../images/girl_1.png">
+        </p>
+        </script>
+
+          <h2 class="h2">CSS</h2>
+          <pre class="language-css"><code>
+        p {
+            margin: 24px;
+        }
+        
+        #photo {
+            position: absolute;
+        }
+        </code></pre>
+
+          <h2 class="h2">JS</h2>
+          <pre class="language-javascript"><code>
       $(function () {
         let photo = $('#photo');
         slideToRight();
@@ -97,16 +114,16 @@
         };
     });
     </code></pre>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script src="../js/jquery-3.5.0.min.js"></script>
-  <script src="../js/jquery-ui.min.js"></script>
-  <script src="js/main.js"></script>
+    <script src="../js/jquery-3.5.0.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script src="js/main.js"></script>
 
-  <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="../js/prism.js"></script>
+    <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
 </body>
 
 </html>

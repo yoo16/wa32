@@ -24,5 +24,6 @@ $(function () {
         open();
     }
 
-    photoChange($('#photolist'));
+    photoChange($('#photoList'));
+
 });
