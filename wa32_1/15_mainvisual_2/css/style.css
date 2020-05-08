@@ -1,0 +1,30 @@
+#photoList img {
+    width: 200px;
+}
+
+#photoList li {
+    position: absolute;
+    display: none;
+    list-style: none;
+}
+
+#thumbnailList {
+    position: relative;
+    top: 300px;
+    width: 480px;
+}
+
+#thumbnailList li {
+    float: left;
+    width: 100px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* code */
+#code {
+    position: absolute;
+    top: 600px;
+    width: 100%;
+}

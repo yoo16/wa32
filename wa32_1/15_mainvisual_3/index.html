@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <link rel="stylesheet" href="../css/default.css">
+
+  <title>WA32 メインビジュアル 01</title>
+</head>
+
+<body>
+  <div class="container">
+    <div><a href="../">Back</a></div>
+    <h1 class="h1">メインビジュアル 02（サムネイル画像クリック）</h1>
+
+    <div>
+      <div id="photoBox">
+        <ul id="photoList">
+          <li><img src="images/sample1.jpg"></li>
+          <li><img src="images/sample2.jpg"></li>
+          <li><img src="images/sample3.jpg"></li>
+          <li><img src="images/sample4.jpg"></li>
+        </ul>
+        <div id="control">
+          <ul>
+            <li id="prev"><a><img src="images/prev.jpg"></a></li>
+            <li id="next"><a><img src="images/next.jpg"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- code -->
+    <div id="code">
+      <h2 class="h2">HTML</h2>
+      <script type="text/plain" class="language-markup">
+      <div id="photoBox">
+        <ul id="photoList">
+          <li><img src="images/sample1.jpg"></li>
+          <li><img src="images/sample2.jpg"></li>
+          <li><img src="images/sample3.jpg"></li>
+          <li><img src="images/sample4.jpg"></li>
+        </ul>
+        <div id="control">
+          <ul>
+            <li id="prev"><a><img src="images/prev.jpg"></a></li>
+            <li id="next"><a><img src="images/next.jpg"></a></li>
+          </ul>
+        </div>
+      </div>
+      </script>
+
+      <h2 class="h2">CSS</h2>
+      <pre class="language-css"><code>
+      #photoList li {
+          position: absolute;
+          left: 145px;
+          display: none;
+          list-style: none;
+      }
+      
+      #photoList img {
+          width: 500px;
+      }
+      
+      #control {
+          position: relative;
+          top: 130px;
+      }
+      
+      #control li {
+          position: absolute;
+          list-style: none;
+      }
+      
+      #control #prev {
+          display: hidden;
+          width: 30px;
+          left: -10px;
+      }
+      
+      #control #next {
+          display: hidden;
+          left: 600px;
+      }
+      
+      #control img {
+          width: 60px;
+      }
+      </code></pre>
+
+      <h2 class="h2">JS</h2>
+      <pre class="language-javascript"><code>
+      $(function () {
+          function photoChange(target) {
+              let photoList = target.find('#photoList li');
+              let current = 0;
+              let prevBtn = $('#prev a');
+              let nextBtn = $('#next a');
+      
+              // 画像のフェードイン
+              function open() {
+                  prevBtn.off('click');
+                  nextBtn.off('click');
+                  $(photoList[current]).stop().fadeIn(1200, 'easeInQuad', checkControl);
+              }
+      
+              // 画像のフェードアウト
+              function close() {
+                  $(photoList[current]).stop().fadeOut(1200, 'easeOutQuad');
+              }
+      
+              // コントロールボタンによる画像の切り替え
+              function clickControl(type) {
+                  close();
+                  switch (type) {
+                      case 'prev':
+                          current--;
+                          break;
+                      case 'next':
+                          current++;
+                          break;
+                  }
+                  open();
+              }
+      
+              // コントロールボタンの設定
+              function checkControl() {
+                  switch (current) {
+                      case 0:
+                          hideControl(prevBtn);
+                          showControl(nextBtn);
+                          break;
+                      case photoList.length - 1:
+                          showControl(prevBtn);
+                          hideControl(nextBtn);
+                          break;
+                      default:
+                          showControl(prevBtn);
+                          showControl(nextBtn);
+                          break;
+                  }
+              }
+      
+              // コントロールボタンを非表示にする
+              function hideControl(btn) {
+                  btn.hide();
+                  btn.off('click');
+              }
+      
+              // コントロールボタンを表示する
+              function showControl(btn) {
+                  btn.show();
+                  btn.off('click').on('click', function () {
+                      clickControl($(this).parent().attr('id'));
+                  });
+              }
+      
+              checkControl();
+              open();
+          }
+      
+          photoChange($('#photoBox'));
+      });
+      </code></pre>
+
+      <h2 class="h2">photoChange() 内の関数定義</h2>
+      <pre class="language-javascript"><code>
+      function photoChange(target) {
+  
+          function open() {
+          }
+  
+          function close() {
+          }
+  
+          function change() {
+          }
+
+          function checkControl() {
+          }
+
+      }
+     </code></pre>
+
+      <h2 class="h2">ready イベント内の関数定義</h2>
+      <pre class="language-javascript"><code>
+      $(function () {
+          function photoChange(target) {
+          }
+
+          photoChange($('#photoBox'));
+      }
+      </code></pre>
+
+      <h2 class="h2">セレクタ表示/非表示</h2>
+      <h3 class="h3">表示</h3>
+      <pre class="language-javascript"><code>
+      $(セレクタ).show();
+      </code></pre>
+      <h3 class="h3">非表示</h3>
+      <pre class="language-javascript"><code>
+      $(セレクタ).hide();
+      </code></pre>
+
+      <h2 class="h2">イベント削除</h2>
+      <pre class="language-javascript"><code>
+      $(セレクタ).off(イベント名);
+      </code></pre>
+      <ul>
+        <li>セレクタに on() を実行した分、イベント登録される</li>
+        <li>登録されているイベントの分、イベントハンドラが実行さる</li>
+      </ul>
+
+      <h2 class="h2">アニメーションを止める</h2>
+      <pre class="language-javascript"><code>
+      $(セレクタ).stop();
+      </code></pre>
+
+      <pre class="language-javascript"><code>
+      $(photoList[current]).stop().fadeIn(1200, 'easeInQuad', checkControl);
+      </code></pre>
+      <p>アニメーションを止めないと、現在実行中の途中で重なって実行される</p>
+    </div>
+  </div>
+
+  <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="../js/jquery-ui.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../js/prism.js"></script>
+</body>
+
+</html>

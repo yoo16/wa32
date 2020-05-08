@@ -1,0 +1,42 @@
+#photoList li {
+    position: absolute;
+    left: 145px;
+    display: none;
+    list-style: none;
+}
+
+#photoList img {
+    width: 500px;
+}
+
+#control {
+    position: relative;
+    top: 130px;
+}
+
+#control li {
+    position: absolute;
+    list-style: none;
+}
+
+#control #prev {
+    display: hidden;
+    width: 30px;
+    left: -10px;
+}
+
+#control #next {
+    display: hidden;
+    left: 600px;
+}
+
+#control img {
+    width: 60px;
+}
+
+/* code */
+#code {
+    position: absolute;
+    top: 500px;
+    width: 100%;
+}

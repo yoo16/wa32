@@ -55,7 +55,7 @@
 
       <h2 class="h2">JS</h2>
       <pre class="language-javascript"><code>
-        $(function () {
+      $(function () {
           function photoChange(target) {
               let items = target.find('li');  // li要素のセレクタを格納した配列
               let current = 0;                // 現在表示されているインデックス
@@ -91,20 +91,20 @@
         <p>photoCHange() 外からは実行できない</p>
       </div>
       <pre class="language-javascript"><code>
-        function photoChange(target) {
+      function photoChange(target) {
 
-            function open() {
-            }
-    
-            function close() {
-            }
-    
-            function change() {
-            }
-    
-          open();
-        }
-        </code></pre>
+          function open() {
+          }
+  
+          function close() {
+          }
+  
+          function change() {
+          }
+  
+        open();
+      }
+      </code></pre>
 
       <div>
         <p>photoChange() は、$(function () {}) のスコープ内のみ実行可能
@@ -149,10 +149,13 @@
       <pre class="language-javascript"><code>
         current = ++current % items.length;
       </code></pre>
-      <ol>
-        <li>current を1増加</li>
-        <li>items（li 要素配列）の個数の余り</li>
-      </ol>
+
+      <div>
+        <ol>
+          <li>current を1増加</li>
+          <li>items（li 要素配列）の個数の余り</li>
+        </ol>
+      </div>
 
       <h3 class="h3">画像が5個の場合</h3>
       <dl class="list-group">
