@@ -21,14 +21,14 @@
     <a href="https://jquery.com/" target="_blank">jQuery</a>
 
     <h2 class="h2">バージョン確認</h2>
-    <h3 class="h3">HTML(ファイルパス)</h3>
+    <h3 class="h3">ファイルパス</h3>
     <p>jQueryの配置したファイルを指定</p>
 
     <pre class="language-javascript"><code>
     &lt;script src="js/jquery-3.5.0.min.js"&gt;&lt;script&gt;
     </code></pre>
 
-    <h3 class="h3">HTML(CDN)</h3>
+    <h3 class="h3">CDN</h3>
     <p>
       <a href="https://code.jquery.com/" target="_blank">https://code.jquery.com/</a>
     </p>
@@ -40,8 +40,16 @@
     <pre class="language-javascript"><code>
     $(function() {
         let message = 'jQuery verision is ' + jQuery.fn.jquery;
+        //let message = 'jQuery verision is ' + $.fn.jquery;
         console.log(message);
     });
+    </code></pre>
+
+    <h3 class="h3">バージョン取得</h3>
+    <pre class="language-javascript"><code>
+    jQuery.fn.jquery
+    //または
+    $.fn.jquery
     </code></pre>
 
     <h3 class="h3">結果</h3>
@@ -57,7 +65,7 @@
   <script src="../js/jquery-3.5.0.min.js"></script>
   <script src="js/main.js"></script>
 
-  <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../js/bootstrap/bootstrap.min.js"></script>
   <script src="../js/prism.js"></script>
 </body>
 

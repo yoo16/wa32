@@ -17,7 +17,9 @@ $(function () {
      * click search
      */
     $('#search').on('click', function () {
-        $.getJSON(api_url, { zipcode: $('#zip').val() }
+        $.getJSON(api_url, { 
+            zipcode: $('#zip').val()
+        }
         ).done(function (data) {
             //console.log(data)
             if (data.results) {

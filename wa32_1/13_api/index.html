@@ -17,11 +17,58 @@
     <h1 class="h1">API</h1>
     <p><a href="../">Back</a></p>
 
-    <ul class="list-group">
-      <li class="list-group-item"><a href="search_event/">イベント検索</a></li>
-      <li class="list-group-item"><a href="search_address/">郵便番号検索</a></li>
-      <li class="list-group-item"><a href="covid19">covid19</a></li>
-    </ul>
+    <h2 class="h2">APIの制限</h2>
+    <p class="text-danger">
+      各サービスによって回数制限をかけられるため、攻撃的なアクセスをしないよう注意が必要
+    </p>
+
+    <h2 class="h2">イベント検索</h2>
+    <div>
+      <h3 class="h3">サンプル</h3>
+      <p><a href="search_event/">イベント検索</a></p>
+      <h3 class="h3">ZipCloud</h3>
+      <a href="https://www.doorkeeper.jp/" target="_blank">https://www.doorkeeper.jp/</a>
+      <h3 class="h3">API</h3>
+      <ul>
+        <li>
+          https://api.doorkeeper.jp/events
+        </li>
+        <li>
+          https://connpass.com/api/v1/event/
+        </li>
+      </ul>
+    </div>
+
+    <h2 class="h2">郵便番号検索</h2>
+    <div>
+      <h3 class="h3">サンプル</h3>
+      <p><a href="search_address/">郵便番号検索</a></p>
+      <h3 class="h3">ZipCloud</h3>
+      <a href="https://zipcloud.ibsnet.co.jp/doc/api" target="_blank">https://zipcloud.ibsnet.co.jp/doc/api</a>
+      <h3 class="h3">API</h3>
+      <ul>
+        <li>
+          https://zipcloud.ibsnet.co.jp/api/search
+        </li>
+      </ul>
+    </div>
+
+    <h2 class="h2">covid19</h2>
+    <div>
+      <h3 class="h3">サンプル</h3>
+      <p><a href="covid19">covid19</a></p>
+      <h3 class="h3">COVID-19 Japan Web API</h3>
+      <a href="https://documenter.getpostman.com/view/9215231/SzYaWe6h?version=latest" target="_blank">COVID-19 Japan Web API</a>
+      <h3 class="h3">API</h3>
+      <ul>
+        <li>
+          https://covid19-japan-web-api.now.sh/api/v1/prefectures
+        </li>
+        <li>
+          https://covid19-japan-web-api.now.sh/api/v1/positives
+        </li>
+      </ul>
+    </div>
 
   </div>
 </body>
