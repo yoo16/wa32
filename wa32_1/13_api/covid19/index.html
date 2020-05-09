@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="stylesheet" href="css/style.css">
+
   <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="../css/prism.css">
   <link rel="stylesheet" href="../css/default.css">
@@ -13,28 +15,33 @@
 </head>
 
 <body>
-
   <div class="container">
     <h1 class="h1">covid19</h1>
     <p><a href="../">Back</a></p>
 
-    <div id="positivesList" class="row"></div>
+    <button id="search" class="btn btn-block btn-primary">検索</button>
 
-    <h2 class="h2">コロナの都道府県別データ</h2>
     <div id="prefectureList" class="row"></div>
 
-    <button id="search" class="btn btn-block btn-primary">検索</button>
+    <div id="positivesList" class="row"></div>
 
     <h2>JSON</h2>
     <textarea id="resultJson" class="form-control" rows="10"></textarea>
+
   </div>
 
-  <script src="../../js/jquery-3.5.0.min.js"></script>
+  <div id="loading">
+    <div id="loading_image">
+      Loading...
+    </div>
+  </div>
+
+  <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="../js/jquery-ui.min.js"></script>
   <script src="js/prefecture.js"></script>
   <script src="js/api.js"></script>
 
-  <script src="../../js/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="../../js/prism.js"></script>
+  <script src="../js/bootstrap/bootstrap.min.js"></script>
 </body>
 
 </html>
