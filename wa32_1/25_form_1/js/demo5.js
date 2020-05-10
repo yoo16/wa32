@@ -6,17 +6,14 @@ $(function () {
 
         // チェック
         let check = function () {
-            // 名前のチェック
             checkEmptyText(items[0], '名前を入力してください');
-            // ふりがなのチェック
-            checkEmptyText(items[1], 'ふりがなを入力してください');
         }
 
         // エラーメッセージを表示
         let addErrorMessage = function (selector, msg) {
             removeErrorMessage(selector);
             selector.before('<span class="errorMsg">' + msg + '</span>');
-            selector.addClass('errorInput');
+            selector.addClass('errorInput')
         }
 
         // エラーメッセージを非表示
@@ -44,7 +41,8 @@ $(function () {
         // 初期設定
         let init = function () {
             // submitイベントの設定
-            target.on({ 'submit': function () {
+            target.on({
+                'submit': function () {
                     check(); // チェック
                     return false;
                 }
@@ -52,7 +50,6 @@ $(function () {
 
             items = [
                 target.find('input[name=forName]'),
-                target.find('input[name=forFurigana]')
             ];
 
             $.each(items, function (index) {
