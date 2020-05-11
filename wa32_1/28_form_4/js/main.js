@@ -8,17 +8,22 @@ $(function () {
         let check = function () {
             // エラーカウント
             let errorCount = 0;
-            for (let i = 0; i < items.length; i++) {
-                if (items[i].prop('isSuccess') == false) {
-                    errorCount++;
-                }
-            }
+            // for (let i = 0; i < items.length; i++) {
+            //     if (items[i].prop('isSuccess') == false) {
+            //         errorCount++;
+            //     }
+            // }
+            $.each(items, function(index, item) {
+                if (item.prop('isSuccess') == false) errorCount++;
+            });
+
             // submitの制御
-            if (errorCount > 0) {
-                target.find('input[type=submit]').attr('disabled', true);
-            } else {
-                target.find('input[type=submit]').attr('disabled', false);
-            }
+            // if (errorCount > 0) {
+            //     target.find('input[type=submit]').attr('disabled', true);
+            // } else {
+            //     target.find('input[type=submit]').attr('disabled', false);
+            // }
+            target.find('input[type=submit]').attr('disabled', (errorCount > 0));
         }
 
         // エラーメッセージを表示
