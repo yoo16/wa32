@@ -4,7 +4,7 @@ $(function () {
 
         let items = []; // チェック対象となるテキスト入力要素
 
-        // チェック
+        // 入力チェック
         let check = function () {
             checkEmptyText(items[0], '名前を入力してください');
         }

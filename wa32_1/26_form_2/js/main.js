@@ -8,12 +8,10 @@ $(function () {
         let check = function () {
             // 名前のチェック
             checkEmptyText(items[0], '名前を入力してください');
-            if (items[0].prop('isSuccess'))
-                checkFormatText(items[0], 0, '入力フォーマットが正しくありません');
+            if (items[0].prop('isSuccess')) checkFormatText(items[0], 0, '全角で入力してください');
             // ふりがなのチェック
             checkEmptyText(items[1], 'ふりがなを入力してください');
-            if (items[1].prop('isSuccess'))
-                checkFormatText(items[1], 1, '入力フォーマットが正しくありません');
+            if (items[1].prop('isSuccess')) checkFormatText(items[1], 1, 'ひらがなで入力してください');
         }
 
         // エラーメッセージを表示

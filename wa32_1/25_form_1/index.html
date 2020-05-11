@@ -20,7 +20,7 @@
     <h1 class="h1">Form 1</h1>
 
     <form id="myForm" method="post">
-      <table class="table">
+      <table>
         <tr>
           <th><label for="forName">名前 <span class="ind">必須</span></label></th>
           <td><input type="text" name="forName"></td>
@@ -30,8 +30,170 @@
           <td><input type="text" name="forFurigana"></td>
         </tr>
       </table>
-      <p><input type="submit" value="送信内容を確認する" class="btn btn-primary"></p>
+      <p><input type="submit" value="送信内容を確認する"></p>
     </form>
+
+    <!-- code & document -->
+    <div id="code">
+      <h2 class="h2">クラスの追加・削除</h2>
+      <h3 class="h3">追加</h3>
+      <pre class="language-javascript"><code>
+      $(‘セレクタ’).addClass(‘クラス名’);
+      </code></pre>
+
+      <h3 class="h3">削除</h3>
+      <pre class="language-javascript"><code>
+      $(‘セレクタ’).removeClass(‘クラス名’);
+      </code></pre>
+
+      <h2 class="h2">サンプル</h2>
+      <h3 class="h3">HTML</h3>
+      <script type="text/plain" class="language-markup">
+      <form id="myForm" method="post">
+        <table class="table">
+          <tr>
+            <th><label for="forName">名前 <span class="ind">必須</span></label></th>
+            <td><input type="text" name="forName"></td>
+          </tr>
+          <tr>
+            <th><label for="forFurigana">ふりがな <span class="ind">必須</span></label></th>
+            <td><input type="text" name="forFurigana"></td>
+          </tr>
+        </table>
+        <p><input type="submit" value="送信内容を確認する" class="btn btn-primary"></p>
+      </form>
+      </script>
+      <h3 class="h3">CSS</h3>
+      <pre class="language-css"><code>
+      th, td {
+          border: 1px solid #ddd;
+          text-align: left;
+      }
+      
+      th .ind {
+          color: #f00;
+      }
+      
+      .errorMsg {
+          display: block;
+          color: #f00;   //エラー時の文字色
+      }
+      
+      .errorInput {
+          background: #fcf0f2;   //エラー時の input の背景色
+      }
+      </code></pre>
+
+      <h3 class="h3">関数定義</h3>
+      <pre class="language-javascript"><code>
+        $(function () {
+
+          function setMyForm(target) {
+      
+              let items = []; // チェック対象となるテキスト入力要素を配列で用意
+      
+              // 入力チェック
+              let check = function () { }
+      
+              // 未入力チェック
+              let checkEmptyText = function (selector, msg) { }
+      
+              // エラーメッセージを表示
+              let addErrorMessage = function (selector, msg) { }
+      
+              // エラーメッセージを非表示
+              let removeErrorMessage = function (selector) { }
+      
+              // 初期設定
+              let init = function () { }
+      
+              init();
+          }
+      
+          setMyForm($('#myForm'));
+      });
+      </code></pre>
+
+      <h3 class="h3">初期設定</h3>
+      <pre class="language-javascript"><code>
+      let init = function () {
+          // submitイベントの設定
+          target.on({
+              'submit': function () {  //submit が実行されたら
+                  check(); //チェック
+                  return false;
+              }
+          });
+
+          //  items 配列に要素を入れる
+          items = [
+              target.find('input[name=forName]'),  //$(‘#myForm') から input name=forName を探す
+          ];
+
+          // items を繰り返す（名前、ふりがな input）
+          $.each(items, function (index) {
+              items[index].prop('isSuccess', false);  //items のプロパティ isSuccess を false にする
+          });
+
+          // enterキーでsubmitするのを防止
+          target.find('input[type=text]').on({  //input type=text 上でキーが押されたら
+              'keypress': function (e) {
+                  if (e.keyCode == 13) return false;  enterキーだったら止める
+              }
+          });
+      }
+      </code></pre>
+
+      <h3 class="h3">入力チェック</h3>
+      <pre class="language-javascript"><code>
+      let check = function () {
+          checkEmptyText(items[0], '名前を入力してください');  //items[0] : 初期設定した名前の input要素
+          checkEmptyText(items[1], 'ふりがなを入力してください');  //items[1] : 初期設定したふりがなの input要素
+      }
+      </code></pre>
+
+      <h3 class="h3">未入力チェック</h3>
+      <pre class="language-javascript"><code>
+      if (selector.val() == '') {  //要素の値が 空欄の場合
+          addErrorMessage(selector, msg);  //エラーメッセージを表示
+          selector.prop('isSuccess', false);  //isSuccess プロパティを false
+      } else {
+          removeErrorMessage(selector);  //エラーメッセージを非表示
+          selector.prop('isSuccess', true);  //isSuccess プロパティを true
+      }
+      </code></pre>
+
+      <h3 class="h3">エラーメッセージ表示</h3>
+      <pre class="language-javascript"><code>
+      let addErrorMessage = function (selector, msg) {
+          removeErrorMessage(selector);   //エラーメッセージ非表示
+          selector.before('&lt;span class="errorMsg"&gt;' + msg + '&lt;/span&gt;'); //inputの前にメッセージを追加
+          selector.addClass('errorInput');  //class="errorInput" を追加
+      }
+      </code></pre>
+
+      <p>input は閉じタグがないため append() でなく before() を利用</p>
+      <pre class="language-javascript"><code>
+      $(‘セレクタ’).before(文字列);
+      </code></pre>
+
+      <h3 class="h3">エラーメッセージ非表示</h3>
+      <pre class="language-javascript"><code>
+      let msgSelector = selector.parent().find('.errorMsg');  //同じ階層で class=errorMsg の要素を探す
+      if (msgSelector.length != 0) {            //要素が存在すれば
+          msgSelector.remove();                 //要素を削除
+          selector.removeClass('errorInput');   //class="errorInput" を削除
+      }
+      </code></pre>
+
+      <h3 class="h3">エラー時のHTML</h3>
+      <script type="text/plain" class="language-markup">
+      <td>
+        <span class="errorMsg">名前を入力してください</span>
+        <input type="text" name="forName" class="errorInput">
+      </td>
+      </script>
+    </div>
 
     <script src="../js/jquery-3.5.0.min.js"></script>
     <script src="../js/jquery-ui.min.js"></script>
