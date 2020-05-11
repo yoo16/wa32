@@ -8,17 +8,12 @@ $(function () {
         let check = function () {
             // エラーカウント
             let errorCount = 0;
-            for (let i = 0; i < items.length; i++) {
-                if (items[i].prop('isSuccess') == false) {
-                    errorCount++;
-                }
-            }
+            $.each(items, function(index, item) {
+                if (item.prop('isSuccess') == false) errorCount++;
+            })
+
             // submitの制御
-            if (errorCount > 0) {
-                target.find('input[type=submit]').attr('disabled', true);
-            } else {
-                target.find('input[type=submit]').attr('disabled', false);
-            }
+            target.find('input[type=submit]').attr('disabled', (errorCount > 0));
         }
 
         // エラーメッセージを表示
@@ -80,9 +75,22 @@ $(function () {
         // Cookieの設定
         function setCookie() {
             Cookies.set('name', items[0].val(), { expires: 7 });
+            Cookies.set('furigana', items[1].val(), { expires: 7 });
         }
 
-        function setCookie_JSON() {
+        // Cookieを取得する
+        function getCookie() {
+            //console.log(typeof(Cookies.get('name')));
+            console.log(Cookies.get('name'));
+
+            items[0].val(Cookies.get('name'));
+            items[0].prop('isSuccess', true);
+
+            items[1].val(Cookies.get('furigana'));
+            items[1].prop('isSuccess', true);
+        }
+
+        function setCookieJSON() {
             let obj = {
                 'name': items[0].val(),
                 'furigana': items[1].val()
@@ -90,20 +98,20 @@ $(function () {
             Cookies.set('myForm', obj, { expires: 7 });
         }
 
-        // Cookieを取得する
-        function getCookie() {
-            items[0].val(Cookies.get('name'));
-            items[0].prop('isSuccess', true);
-        }
-
-        function getCookie_JSON() {
+        function getCookieJSON() {
             let obj = Cookies.getJSON('myForm');
+            console.log(obj);
             if (obj) {
                 items[0].val(obj.name);
                 items[0].prop('isSuccess', true);
                 items[1].val(obj.furigana);
                 items[1].prop('isSuccess', true);
             }
+        }
+
+        function removeCookie() {
+            Cookies.remove('name');
+            Cookies.remove('furigana');
         }
 
         // 初期設定
@@ -115,7 +123,8 @@ $(function () {
                 'submit': function () {
                     // チェック
                     check();
-                    setCookie_JSON();
+                    //setCookieJSON();
+                    setCookie();
                     return false;
                 }
             });
@@ -158,8 +167,13 @@ $(function () {
                 }
             });
 
+            $('removeCookie').on('click', function() {
+
+            });
+
             // Cookieを取得する
-            getCookie_JSON();
+            //getCookieJSON();
+            getCookie();
             check();
         }
 

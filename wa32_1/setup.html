@@ -57,30 +57,42 @@
 
       <div id="vscode_ex">
         <h3 class="h3">機能拡張インストール</h3>
-        <h4>HTML Snippets</h4>
+        <h4 class="h4">HTML Snippets</h4>
         <div>
-          <img src="../images/vscode_ex_html_snippets.png" alt="">
+          <img src="../images/vscode_ex_html_snippets.png" alt="" class="vscode_ex_image">
         </div>
 
-        <h4>CSS Formatter</h4>
+        <p class="p-3 mt-2 bg-light text-dark">ショートカットで html タグを入力できる</p>
+
+        <h4 class="h4">CSS Formatter</h4>
         <div>
-          <img src="../images/vscode_ex_css_formatter.png" alt="">
+          <img src="../images/vscode_ex_css_formatter.png" alt="" class="vscode_ex_image">
         </div>
 
-        <h4>JavaScript (ES6) code snippets</h4>
+        <p class="p-3 mt-2 bg-light text-dark">CSSを整形してくれる</p>
+
+        <h4 class="h4">JavaScript (ES6) code snippets</h4>
         <div>
-          <img src="../images/vscode_ex_js_snippets.png" alt="">
+          <img src="../images/vscode_ex_js_snippets.png" alt="" class="vscode_ex_image">
         </div>
 
-        <h4>jQuery Code Snippets</h4>
+        <h4 class="h4">jQuery Code Snippets</h4>
+        <p>
+          <img src="../images/vscode_ex_jquery_snippets.png" alt="" class="vscode_ex_image">
+        </p>
         <div>
-          <img src="../images/vscode_ex_jquery_snippets.png" alt="">
+          <p class="p-3 mt-2 bg-light text-dark">「jq」とタイプすると候補が出る</p>
+          <p>
+            <img src="../images/vscode_ex_jquery_on.png" alt="" width="300">
+            <img src="../images/vscode_ex_jquery_on2.png" alt="" width="300">
+          </p>
         </div>
 
-        <h4>Live Server</h4>
+        <h4 class="h4">Live Server</h4>
         <div>
           <img src="../images/vscode_ex_liveserver.png" alt="">
         </div>
+        <p class="p-3 mt-2 bg-light text-dark">Webサーバをたてなくても、擬似的に表示できる</p>
       </div>
 
     </div>
@@ -109,13 +121,26 @@ git version 2.21.1 (Apple Git-122.3)
       <div>
         <img src="../images/git_top.png" alt="">
       </div>
+
+      <h4 class="h4">Clone （作業コピー）</h4>
+      <pre class="language-bash"><code>
+      $ git clone https://xxxx.com/xxxx.git
+      </code></pre>
+      <p>基本的に初回に利用する</p>
+
+      <h4 class="h4">Pull （更新）</h4>
+      <pre class="language-bash"><code>
+      $ git pull
+      </code></pre>
+      <p>作業プロジェクト内に対象の git情報（.git）が存在すれば、このコマンドで最新にアップデートできる</p>
+
     </div>
 
   </div>
 
-  <script src="../js/bundle.js"></script>
-  <script src="../js/prism.js"></script>
-  <script src="../js/default.js"></script>
+  <script src="js/jquery-3.5.0.min.js"></script>
+  <script src="js/bootstrap/bootstrap.min.js"></script>
+  <script src="js/prism.js"></script>
 
 </body>
 
