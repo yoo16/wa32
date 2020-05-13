@@ -49,18 +49,18 @@ $(function () {
             }
         }
 
-        // コントロールボタンを非表示にする
-        function hideControl(btn) {
-            btn.hide();
-            btn.off('click');
-        }
-
         // コントロールボタンを表示する
         function showControl(btn) {
             btn.show();
             btn.off('click').on('click', function () {
                 clickControl($(this).parent().attr('id'));
             });
+        }
+
+        // コントロールボタンを非表示にする
+        function hideControl(btn) {
+            btn.hide();
+            btn.off('click');
         }
 
         checkControl();

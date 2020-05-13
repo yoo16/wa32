@@ -66,7 +66,7 @@ $(function () {
     }
 
     /**
-     * 初期化
+     * 初期設定
      */
     function init() {
         let img = new Image();

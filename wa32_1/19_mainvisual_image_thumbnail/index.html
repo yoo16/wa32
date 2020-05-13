@@ -94,24 +94,28 @@
               let thumbnailList = [];
               let current = 0;
       
-              // 画像のフェードイン
               function open() {
+                  // クリックしたサムネイルをアクティブ画像に設定
                   thumbnailList[current].attr('src', 'images/tn' + current + '_ac.jpg');
+
+                  // クリックした画像のフェードイン
                   $(photoList[current]).stop().fadeIn(1000, 'easeInQuad');
               }
       
-              // 画像のフェードアウト
               function close() {
+                  // クリックしたサムネイルを通常画像に設定
                   thumbnailList[current].attr('src', 'images/tn' + current + '.jpg');
+
+                  // 現在の画像のフェードイン
                   $(photoList[current]).stop().fadeOut(1000, 'easeOutQuad');
               }
       
               // サムネイル画像による画像切り替え
               function clickThumbnail(num) {
                   if (current != num) {
-                      close();
-                      current = num;
-                      open();
+                      close();  //現在の画像を非表示
+                      current = num;  //画像インデックス更新
+                      open();  //最新の画像を表示
                   }
               }
       
@@ -133,50 +137,17 @@
       });
       </code></pre>
 
-      <h2 class="h2">photoChange() 内の関数定義</h2>
+      <h2 class="h2">ready イベント内の定義</h2>
       <pre class="language-javascript"><code>
-      function photoChange(target) {
-          function open() {
-          }
-  
-          function close() {
-          }
-  
-          function clickThumbnail(num) {
-          }
-  
-          init();
-          open()
-      }
-      </code></pre>
+        $(function () {
 
-      <h2 class="h2">ready イベント内の関数定義</h2>
-      <pre class="language-javascript"><code>
-      $(function () {
           function photoChange(target) {
+              …
           }
-
+      
           photoChange($('#photoBox'));
       }
       </code></pre>
-
-      <h2 class="h2">初期化</h2>
-      <pre class="language-javascript"><code>
-      target.find('#thumbnailList li').each(function (index) {
-          thumbnailList[index] = $(this).find('img');
-          $(this).find('a').on('click', function () {
-              //$(this) = #thumbnailList li の index 番目の要素
-              clickThumbnail(index);
-          });
-      });
-      </code></pre>
-      <ul>
-        <li>サムネイルの li を個数分繰り返す</li>
-        <li>index 番号が順に返される</li>
-        <li>thumbnailList 配列に img を追加</li>
-        <li>a に click イベント登録</li>
-        <li>a をクリックすると clickThumbnail(index) を実行する</li>
-      </ul>
 
       <h2 class="h2">find()</h2>
       <p>セレクタの中にある、子要素を取得</p>
@@ -187,6 +158,66 @@
       <pre class="language-javascript"><code>
       let photoList = target.find('#photoList li');
       </code></pre>
+
+      <h2 class="h2">photoChange() 内の関数定義</h2>
+      <pre class="language-javascript"><code>
+      function photoChange(target) {
+          let photoList = target.find('#photoList li');
+          let thumbnailList = [];
+          let current = 0;
+
+          function open() {
+          }
+  
+          function close() {
+          }
+  
+          function clickThumbnail(num) {
+          }
+  
+          function init() {
+
+          }
+
+          init();
+          open()
+      }
+      </code></pre>
+
+      <h2 class="h2">初期設定</h2>
+      <pre class="language-javascript"><code>
+      function init() {
+          target.find('#thumbnailList li').each(function (index) {
+              thumbnailList[index] = $(this).find('img');
+              $(this).find('a').on('click', function () {
+                  clickThumbnail(index);
+              });
+          });
+      };
+      </code></pre>
+      <ul>
+        <li>サムネイルの li を個数分繰り返す</li>
+        <li>index 番号が順に返される</li>
+        <li>thumbnailList 配列に img を追加</li>
+        <li>a に click イベント登録</li>
+        <li>a をクリックすると clickThumbnail(index) を実行する</li>
+      </ul>
+
+      <h2 class="h2">クリック後の処理</h2>
+      <pre class="language-javascript"><code>
+      function clickThumbnail(num) {
+          if (current != num) {
+              close();
+              current = num;
+              open();
+          }
+      }
+      </code></pre>
+      <ul>
+        <li>クリックした画像インデックスを入力</li>
+        <li>現在の画像インデックスと異なれば画像切替</li>
+        <li>現在の画像インデックスを更新</li>
+      </ul>
 
       <h2 class="h2">画像の読み込み</h2>
       <p>img に src を設定</p>

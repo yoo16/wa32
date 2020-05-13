@@ -4,14 +4,14 @@ $(function () {
         let thumbnailList = [];
         let current = 0;
 
-        // 画像のフェードイン
+        // クリック画像処理
         function open() {
             thumbnailList[current].attr('src', 'images/tn' + current + '_ac.jpg');
             //$(photoList[current]).fadeIn(1000, 'easeInQuad');
             $(photoList[current]).stop().fadeIn(1000, 'easeInQuad');
         }
 
-        // 画像のフェードアウト
+        // クリック前の画像処理
         function close() {
             thumbnailList[current].attr('src', 'images/tn' + current + '.jpg');
             //$(photoList[current]).fadeOut(1000, 'easeOutQuad');
