@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <link rel="stylesheet" href="../css/default.css">
+
+  <title>WA32 メインビジュアル 05</title>
+</head>
+
+<body>
+  <div class="container">
+    <div><a href="../index.html">Back</a></div>
+    <h1 class="h1">ボタンクリック切り替え（リファクタリング）</h1>
+
+    <div>
+      <div id="photoBox">
+        <ul id="photoList">
+          <li><img src="images/sample1.jpg"></li>
+          <li><img src="images/sample2.jpg"></li>
+          <li><img src="images/sample3.jpg"></li>
+          <li><img src="images/sample4.jpg"></li>
+        </ul>
+        <div id="control">
+          <ul>
+            <li id="prev" class="control"><a class="controlBtn"><img src="images/prev.jpg"></a></li>
+            <li id="next" class="control"><a class="controlBtn"><img src="images/next.jpg"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- code -->
+    <div id="code">
+      <h2 class="h2">HTML</h2>
+      <script type="text/plain" class="language-markup">
+      <div id="photoBox">
+        <ul id="photoList">
+          <li><img src="images/sample1.jpg"></li>
+          <li><img src="images/sample2.jpg"></li>
+          <li><img src="images/sample3.jpg"></li>
+          <li><img src="images/sample4.jpg"></li>
+        </ul>
+        <div id="control">
+          <ul>
+            <li id="prev" class="control"><a class="controlBtn"><img src="images/prev.jpg"></a></li>
+            <li id="next" class="control"><a class="controlBtn"><img src="images/next.jpg"></a></li>
+          </ul>
+        </div>
+      </div>
+      </script>
+
+      <h2 class="h2">CSS</h2>
+      <pre class="language-css"><code>
+      #photoList li {
+          position: absolute;
+          left: 145px;
+          display: none;
+          list-style: none;
+      }
+      
+      #photoList img {
+          width: 500px;
+      }
+      
+      #control {
+          position: relative;
+          top: 130px;
+      }
+      
+      #control li {
+          position: absolute;
+          list-style: none;
+      }
+      
+      #control #prev {
+          display: hidden;
+          width: 30px;
+          left: -10px;
+      }
+      
+      #control #next {
+          display: hidden;
+          left: 600px;
+      }
+      
+      #control img {
+          width: 60px;
+      }
+      
+      .controlBtn {
+          display: none;
+      }
+      
+      </code></pre>
+
+      <h2 class="h2">JS</h2>
+      <pre class="language-javascript"><code>
+      $(function () {
+        function photoChange(target) {
+            let photoList = target.find('#photoList li');
+            let current = 0;
+            let prevBtn = $('#prev a');
+            let nextBtn = $('#next a');
+    
+            function checkControl() {
+                let isPrev = false;
+                let isNext = false;
+                if (current > 0) isPrev = true;
+                if (current < photoList.length - 1) isNext = true;
+    
+                (isPrev) ? prevBtn.show() : prevBtn.hide();
+                (isNext) ? nextBtn.show() : nextBtn.hide();
+            }
+    
+            function showImage() {
+                $(photoList[current]).fadeIn(1200, 'swing');
+            }
+    
+            function hideImage() {
+                $(photoList[current]).fadeOut(1200, 'swing');
+            }
+    
+            function checkIndex(type) {
+                if (type == 'prev' && current > 0) current--;
+                if (type == 'next' && current < photoList.length - 1) current++;
+            }
+    
+            $('.control').on('click', function () {
+                if ($(photoList[current]).is(':animated')) return;
+                //console.log(current);
+                hideImage();
+                checkIndex($(this).attr('id'));
+                showImage();
+                checkControl();
+            });
+    
+            showImage();
+            checkControl();
+        }
+    
+        photoChange($('#photoBox'));
+    });
+    </code></pre>
+
+  </div>
+
+  <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="../js/jquery-ui.min.js"></script>
+  <script src="js/main2.js"></script>
+
+  <script src="../js/bootstrap/bootstrap.min.js"></script>
+  <script src="../js/prism.js"></script>
+</body>
+
+</html>

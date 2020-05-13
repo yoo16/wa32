@@ -7,8 +7,8 @@ $(function () {
 
         // 画像のフェードイン
         function open() {
-            prevBtn.off('click');
-            nextBtn.off('click');
+            prevBtn.off();
+            nextBtn.off();
             $(photoList[current]).stop().fadeIn(1200, 'easeInQuad', checkControl);
         }
 
