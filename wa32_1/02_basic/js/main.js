@@ -23,4 +23,5 @@ $(function () {
         foo = 'bar';
     }
     console.log(foo);  //成功
+
 });

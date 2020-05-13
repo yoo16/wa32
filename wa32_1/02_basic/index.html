@@ -35,7 +35,7 @@
       </ul>
       </script>
 
-      <h2 class="h2">セレクタ</h2>
+      <h2 class="h2"><label for="" class="badge badge-danger">重要</label> セレクタ</h2>
       <pre class="language-javascript"><code>
       $(セレクタ).メソッド(パラメータ);
       //または
@@ -53,7 +53,13 @@
     </div>
 
     <div>
-      <h2 class="h2">DOMContentLoaded(DOM読み込み完了後)</h2>
+      <h2 class="h2"><label for="" class="badge badge-danger">重要</label> DOMContentLoaded</h2>
+      <p>
+        <ul>
+          <li>DOM読み込み完了後に、処理を実行する</li>
+          <li>DOM読み込み前にJavaScriptが実行されると、動作しない場合が多い</li>
+        </ul>
+      </p>
       <pre class="language-javascript"><code>
       $(function () {
         //DOM読み込み完了時に、実行される
