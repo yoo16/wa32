@@ -1,8 +1,7 @@
-
-$(function() {
-    alert('jQuery で実行');
+$(function () {
+    alert($('body').attr('id'));
 });
 
-document.observe("dom:loaded", function() {
-    alert('prototype.js で実行');
+document.observe("dom:loaded", function () {
+    $("myBody").addClassName("myClass");
 });

@@ -1,9 +1,9 @@
 jQuery.noConflict();
 
-jQuery(function($) {
-    alert('jQuery で実行');
+jQuery(function ($) {
+    alert($('body').attr('id'));
 });
 
 document.observe("dom:loaded", function () {
-    alert('prototype.js で実行');
+    $("myBody").addClassName("myClass");
 });

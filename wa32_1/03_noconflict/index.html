@@ -12,7 +12,7 @@
   <title>WA32 samples</title>
 </head>
 
-<body>
+<body id="myBody">
   <div class="container">
     <div><a href="../index.html">Back</a></div>
 
@@ -31,40 +31,40 @@
     <h2 class="h2">main1.js</h2>
     <h3 class="h3">prototype.js でエラー</h3>
     <pre class="language-javascript"><code>
-    $(function() {
-        alert('jQuery で実行');
+    $(function () {
+        alert($('body').attr('id'));
     });
     
-    document.observe("dom:loaded", function() {
-        alert('prototype.js で実行');
+    document.observe("dom:loaded", function () {
+        $("myBody").addClassName("myClass");
     });
     </code></pre>
 
     <h2 class="h2">main2.js</h2>
-    <h3 class="h3">jQuery でエラー</h3>
+    <h3 class="h3">noConflict() で実行可能</h3>
     <pre class="language-javascript"><code>
     jQuery.noConflict();
 
-    jQuery(function() {
-        alert('jQuery で実行');
+    jQuery(function () {
+        alert(jQuery('body').attr('id'));
     });
     
     document.observe("dom:loaded", function () {
-        alert('prototype.js で実行');
+        $("myBody").addClassName("myClass");
     });
     </code></pre>
 
     <h2 class="h2">main3.js</h2>
-    <h3 class="h3">両方実行できる</h3>
+    <h3 class="h3">$ の受け渡しが可能</h3>
     <pre class="language-javascript"><code>
     jQuery.noConflict();
 
-    jQuery(function($) {
-        alert('jQuery で実行');
+    jQuery(function ($) {
+        alert($('body').attr('id'));
     });
     
     document.observe("dom:loaded", function () {
-        alert('prototype.js で実行');
+        $("myBody").addClassName("myClass");
     });
     </code></pre>
 
@@ -73,6 +73,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.3.0/prototype.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+
   <!--
   <script src="js/main1.js"></script>
   -->
