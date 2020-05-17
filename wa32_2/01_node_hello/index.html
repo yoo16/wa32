@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <link rel="stylesheet" href="../css/default.css">
+
+  <title>WA32 samples</title>
+</head>
+
+<body>
+  <div id="content" class="container">
+    <div><a href="../index.html">Back</a></div>
+    <h1 class="h1">Node.js基本</h1>
+
+    <div>
+      <h2 class="h2">バージョン確認</h2>
+      <pre class="language-bash"><code>
+      $ node --version
+      v13.6.0
+      </code></pre>
+    </div>
+
+    <div>
+      <div>
+        <h2 class="h2">ファイル実行</h2>
+        <pre class="language-bash"><code>
+        $ node ファイル名
+        </code></pre>
+      </div>
+
+      <div>
+        <h2 class="h3">hello.js</h3>
+        <pre class="language-javascript"><code>
+        "use strict";
+
+        console.log("Hello World!");
+        </code></pre>
+
+        <pre class="language-bash"><code>
+        $ node hello
+        //または
+        $ node hello.js
+        </code></pre>
+      </div>
+    </div>
+
+
+    <div>
+      <h2 class="h2">REPL ファイル読み込み</h2>
+      <p>
+        読み込みたいファイルディレクトリに移動
+      </p>
+      <pre class="language-bash"><code>
+      $ node
+      > .load ファイル名
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">REPL ファイル保存</h2>
+      <p>
+        保存したいファイルディレクトリに移動
+      </p>
+      <pre class="language-bash"><code>
+      $ node
+      > .save ファイル名 
+      </code></pre>
+    </div>
+
+    <div><a href="../index.html">Back</a></div>
+  </div>
+
+  <script src="../js/bootstrap/bootstrap.min.js"></script>
+  <script src="../js/prism.js"></script>
+</body>
+
+</html>

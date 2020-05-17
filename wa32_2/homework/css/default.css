@@ -1,0 +1,96 @@
+@charset "UTF-8";
+body {
+    font-family: Helvetica Neue,Arial,Hiragino Sans,Hiragino Kaku Gothic ProN,BIZ UDPGothic,Meiryo,sans-serif;
+    font-size: 1.0rem;
+}
+
+a {
+    cursor: pointer;
+}
+
+a:not([href]):not([tabindex]) {
+    color: #0088cc;
+}
+
+input[type="text"],
+input[type="password"] {
+    font-size: 1.0rem;
+}
+
+.bs-navbar {
+    min-height: 4rem;
+    z-index: 1030;
+}
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6,
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 8px 0px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.h1 {
+    font-size: 2.0rem;
+    color: #0064b6;
+    padding: 15px;
+}
+
+.h2 {
+    font-size: 1.2rem;
+    border: 1px solid #0064b6;
+    color: #0064b6;
+    padding: 15px 15px;
+}
+
+.h3 {
+    font-size: 1.0rem;
+    color: #0064b6;
+    /* background: #f0f0f0; */
+    border-bottom: 1px solid #0064b6;
+    padding: 10px 10px;
+}
+
+th {
+    background-color: #546263;
+    color: #ffffff;
+}
+
+.content {
+    margin-bottom: 30px;
+}
+
+.homework ol {
+    counter-reset: my-counter;
+    list-style: none;
+    padding: 0;
+}
+
+.homework li {
+    margin-bottom: 10px;
+    padding-left: 32px;
+    position: relative;
+}
+
+.homework li:before {
+    content: counter(my-counter);
+    counter-increment: my-counter;
+    background-color: #0036aadc;
+    color: rgb(255, 255, 255);
+    display: block;
+    float: left;
+    line-height: 25px;
+    margin-left: -32px;
+    text-align: center;
+    height: 25px;
+    width: 25px;
+}

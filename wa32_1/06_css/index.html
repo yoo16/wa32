@@ -18,32 +18,96 @@
     <div><a href="../index.html">Back</a></div>
 
     <div>
-      <p id="txt1">Hello World 1</p>
-    </div>
-    <div>
-      <p id="txt2">Hello World 2</p>
-    </div>
-    <div>
-      <p id="txt3">Hello World 3</p>
-    </div>
-    <div>
-      <p id="txt4">Hello World 4</p>
-    </div>
+      <h1 class="h1">css() メソッド</h1>
 
-    <div id="box1">こんにちは世界1</div>
-    <div id="box2">こんにちは世界2</div>
-    <div id="div5">
-      <p id="txt5">立入禁止</p>
-    </div>
-    <div id="div6">
-      <p id="txt6">危険</p>
+      <div>
+        <h2 class="h2">CSSの設定</h2>
+        <pre class="language-javascript"><code>
+      $(セレクタ).css(‘プロパティ’, ‘値’)
+      </code></pre>
+
+        <h3 class="h3">HTML</h3>
+        <script type="text/plain" class="language-markup">
+      <input type="text" value=“初期値">
+      </script>
+
+        <h3 class="h3">JS</h3>
+        <pre class="language-javascript"><code>
+      $(‘input’).css('background', ‘#ff000’);
+      </code></pre>
+
+        <h3 class="h3">変更されたCSS</h3>
+        <p>
+          デバッグで確認するとCSSが変更されている
+        </p>
+        <pre class="language-css"><code>
+      input {
+          background: #ff0000;
+      }
+      </code></pre>
+      </div>
+
+      <div>
+        <h2 class="h2">CSSの取得</h2>
+        <pre class="language-javascript"><code>
+      $(セレクタ).css(‘プロパティ’)
+      </code></pre>
+
+        <h3 class="h3">HTML</h3>
+        <script type="text/plain" class="language-markup">
+      <div>
+        <p id="txt4">Hello World 4</p>
+      </div>
+      </script>
+
+        <h3 class="h3">JS</h3>
+        <pre class="language-javascript"><code>
+      let color = $('#txt4').css('color');
+      </code></pre>
+
+      </div>
+
+      <div>
+        <h2 class="h2">幅・高さの取得</h2>
+        <div>
+          <h3 class="h3">幅・高さの取得</h3>
+          <pre class="language-javascript"><code>
+        $(セレクタ).width();   //幅
+        $(セレクタ).height();  //高さ
+        </code></pre>
+
+          <h3 class="h3">サンプル</h3>
+          <pre class="language-javascript"><code>
+          let width = $(‘#box1').width();
+          let height = $(‘#box1').height();
+          </code></pre>
+        </div>
+
+        <h2 class="h2">幅・高さの設定</h2>
+        <div>
+          <h3 class="h3">幅・高さの設定</h3>
+          <pre class="language-javascript"><code>
+          $(セレクタ).width(‘テキスト’)
+          $(セレクタ).height(‘テキスト’)
+          </code></pre>
+          <p class="text-danger">
+            単位をつけて、文字列する
+          </p>
+
+          <h3 class="h3">サンプル</h3>
+          <pre class="language-javascript"><code>
+          $(‘#box1’).width(‘150px');
+          $(‘#box1’).height(‘100px’);
+          </code></pre>
+        </div>
+      </div>
+
     </div>
 
     <div><a href="../index.html">Back</a></div>
   </div>
 
   <script src="../js/jquery-3.5.0.min.js"></script>
-  <script src="js/main.js"></script>
 
   <script src="../js/bootstrap/bootstrap.min.js"></script>
   <script src="../js/prism.js"></script>

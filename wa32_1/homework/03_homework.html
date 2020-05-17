@@ -57,6 +57,13 @@
         <dd class="list-group-item">
           amount の要素の値をすべて 「1」 に変更
         </dd>
+        <dd class="list-group-item">
+          タイトルとして武器屋のHTMLタグを追加
+        </dd>
+        <dd class="list-group-item">
+          メッセージ欄を作り、character_name で設定した名前を利用して、メッセージを追加<br>
+          例）HALさん、何のご用でしょうか？
+        </dd>
       </dl>
     </div>
 
@@ -114,6 +121,12 @@ wa32_homework_03_出席番号
 
       <div class="col-6">
         <h2 class="h2">実行後</h2>
+        <div id="shopHeader">
+          <h2>武器屋</h2>
+          <p id="shopMessage">
+            HALさん、何のご用でしょうか？
+          </p>
+        </div>
         <input id="character_name" type="text" value="HAL">
         <ul id="item_list">
           <li>
