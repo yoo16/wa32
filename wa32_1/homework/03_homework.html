@@ -25,13 +25,37 @@
       <h2 class="h2">内容</h2>
       <h3 class="h3">HTML</h3>
       <dl class="list-group">
-        <dd class="list-group-item">input を作成(id = character_name)</dd>
-        <dd class="list-group-item">ul を作成(id = item_list)</dd>
+        <dd class="list-group-item">input id = character_name を作成</dd>
+        <dd class="list-group-item">ul id = item_list を作成</dd>
         <dd class="list-group-item">ul に li を5つ追加し、li に div を追加</dd>
-        <dd class="list-group-item">div に p を追加 (class = item_name)</dd>
-        <dd class="list-group-item">div に input を追加 (name = price)</dd>
-        <dd class="list-group-item">div に input を追加 (name = amount)</dd>
       </dl>
+      <pre class="language-markup"><code>
+      &lt;input type="text" name="character_name"&gt;
+      &lt;ul id="item_list"&gt;
+        &lt;li&gt;
+          &lt;div&gt;&lt;/div&gt;
+        &lt;/li&gt;
+        ...
+      &lt;/ul&gt;
+      </code></pre>
+
+      <h4 class="h4">divの中身</h4>
+      <p>
+        div に 以下の要素を追加
+      </p>
+      <dl class="list-gr">
+        <dd class="list-group-item">p class = item_name</dd>
+        <dd class="list-group-item">input name = price</dd>
+        <dd class="list-group-item">input name = amount</dd>
+      </dl>
+
+      <pre class="language-markup"><code>
+      &lt;div&gt;
+        &lt;p class="item_name">&lt;/p&gt;
+        &lt;input type="text" name="price"&gt;
+        &lt;input type="text" name="amount"&gt;
+      &lt;/div&gt;
+      </code></pre>
 
       <h3 class="h3">Javascript</h3>
       <dl class="list-group">
@@ -65,15 +89,6 @@
           例）HALさん、何のご用でしょうか？
         </dd>
       </dl>
-    </div>
-
-    <h2 class="h2">ファイル構成</h2>
-    <div>
-      <pre>
-wa32_homework_03_出席番号
-  |- index.html
-  |- js/main.js
-      </pre>
     </div>
 
     <div class="row">
@@ -171,6 +186,16 @@ wa32_homework_03_出席番号
         </ul>
       </div>
     </div>
+
+      <h2 class="h2">ファイル構成</h2>
+      <div>
+        <pre>
+wa32_homework_03_出席番号
+  |- index.html
+  |- js/main.js
+      </pre>
+      </div>
+
 
   </div>
 
