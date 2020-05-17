@@ -23,6 +23,106 @@
 
     <div>
       <h2 class="h2">内容</h2>
+      <p>
+        jQuery でHTMLを操作する
+      </p>
+
+      <div class="row">
+        <div class="col-6">
+          <h2 class="h2">実行前</h2>
+          <input id="character_name" type="text">
+          <ul id="item_list">
+            <li>
+              <div>
+                <p class="item_name"></p>
+                <input type="text" name="price">
+                <input type="text" name="amount">
+              </div>
+            </li>
+            <li>
+              <div>
+                <p class="item_name"></p>
+                <input type="text" name="price">
+                <input type="text" name="amount">
+              </div>
+            </li>
+            <li>
+              <div>
+                <p class="item_name"></p>
+                <input type="text" name="price">
+                <input type="text" name="amount">
+              </div>
+            </li>
+            <li>
+              <div>
+                <p class="item_name"></p>
+                <input type="text" name="price">
+                <input type="text" name="amount">
+              </div>
+            </li>
+            <li>
+              <div>
+                <p class="item_name"></p>
+                <input type="text" name="price">
+                <input type="text" name="amount">
+              </div>
+            </li>
+          </ul>
+        </div>
+  
+        <div class="col-6">
+          <h2 class="h2">実行後</h2>
+          <div id="shopHeader">
+            <h2>武器屋</h2>
+            <p id="shopMessage">
+              HALさん、何のご用でしょうか？
+            </p>
+          </div>
+          <input id="character_name" type="text" value="HAL">
+          <ul id="item_list">
+            <li>
+              <div class="item">
+                <p class="item_name">銅のつるぎ</p>
+                <input type="text" value="150">
+                <input type="text" value="1">
+              </div>
+            </li>
+  
+            <li>
+              <div class="item">
+                <p class="item_name">アイテム名</p>
+                <input type="text" value="0">
+                <input type="text" value="1">
+              </div>
+            </li>
+  
+            <li>
+              <div class="item">
+                <p class="item_name">皮のたて</p>
+                <input type="text" value="90">
+                <input type="text" value="1">
+              </div>
+            </li>
+  
+            <li>
+              <div>
+                <p class="item_name">アイテム名</p>
+                <input type="text" value="0">
+                <input type="text" value="1">
+              </div>
+            </li>
+  
+            <li>
+              <div>
+                <p class="item_name">皮のぼうし</p>
+                <input type="text" value="50">
+                <input type="text" value="1">
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
       <h3 class="h3">HTML</h3>
       <dl class="list-group">
         <dd class="list-group-item">input id = character_name を作成</dd>
@@ -94,110 +194,14 @@
       </dl>
     </div>
 
-    <div class="row">
-      <div class="col-6">
-        <h2 class="h2">実行前</h2>
-        <input id="character_name" type="text">
-        <ul id="item_list">
-          <li>
-            <div>
-              <p class="item_name"></p>
-              <input type="text" name="price">
-              <input type="text" name="amount">
-            </div>
-          </li>
-          <li>
-            <div>
-              <p class="item_name"></p>
-              <input type="text" name="price">
-              <input type="text" name="amount">
-            </div>
-          </li>
-          <li>
-            <div>
-              <p class="item_name"></p>
-              <input type="text" name="price">
-              <input type="text" name="amount">
-            </div>
-          </li>
-          <li>
-            <div>
-              <p class="item_name"></p>
-              <input type="text" name="price">
-              <input type="text" name="amount">
-            </div>
-          </li>
-          <li>
-            <div>
-              <p class="item_name"></p>
-              <input type="text" name="price">
-              <input type="text" name="amount">
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="col-6">
-        <h2 class="h2">実行後</h2>
-        <div id="shopHeader">
-          <h2>武器屋</h2>
-          <p id="shopMessage">
-            HALさん、何のご用でしょうか？
-          </p>
-        </div>
-        <input id="character_name" type="text" value="HAL">
-        <ul id="item_list">
-          <li>
-            <div class="item">
-              <p class="item_name">銅のつるぎ</p>
-              <input type="text" value="150">
-              <input type="text" value="1">
-            </div>
-          </li>
-
-          <li>
-            <div class="item">
-              <p class="item_name">アイテム名</p>
-              <input type="text" value="0">
-              <input type="text" value="1">
-            </div>
-          </li>
-
-          <li>
-            <div class="item">
-              <p class="item_name">皮のたて</p>
-              <input type="text" value="90">
-              <input type="text" value="1">
-            </div>
-          </li>
-
-          <li>
-            <div>
-              <p class="item_name">アイテム名</p>
-              <input type="text" value="0">
-              <input type="text" value="1">
-            </div>
-          </li>
-
-          <li>
-            <div>
-              <p class="item_name">皮のぼうし</p>
-              <input type="text" value="50">
-              <input type="text" value="1">
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-      <h2 class="h2">ファイル構成</h2>
-      <div>
-        <pre>
+    <h2 class="h2">ファイル構成</h2>
+    <div>
+      <pre>
 wa32_homework_03_出席番号
   |- index.html
   |- js/main.js
       </pre>
-      </div>
+    </div>
 
 
   </div>
