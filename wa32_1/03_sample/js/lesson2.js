@@ -1,8 +1,8 @@
 
 $(function () {
-    // $('li:eq(0) input[name="item"]').val('銅のつるぎ');
-    // $('li:eq(1) input[name="item"]').val('皮のたて');
-    // $('li:eq(2) input[name="item"]').val('皮のぼうし');
+    $('li:eq(0) input[name="item"]').val('銅のつるぎ');
+    $('li:eq(1) input[name="item"]').val('皮のたて');
+    $('li:eq(2) input[name="item"]').val('皮のぼうし');
 
     // $('ul li:nth-child(1) input').val('銅のつるぎ');
     // $('ul li:nth-child(2) input').val('皮のたて');
