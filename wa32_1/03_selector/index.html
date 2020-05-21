@@ -95,9 +95,10 @@
       $('親要素 > 子要素')
       </code></pre>
 
-      <h3 class="h3">ex) div > input</h3>
-      div 内の input 要素全て選択
-
+      <h3 class="h3">div 直下の input 要素全て選択</h3>
+      <pre class="language-javascript"><code>
+      div > input
+      </code></pre>
       <h3 class="h3">HTML</h3>
       <script type="text/plain" class="language-markup">
       <div>
@@ -123,11 +124,13 @@
         親以降のすべての要素を選択
       </div>
       <pre class="language-javascript"><code>
-    $('親要素 子孫要素')
-    </code></pre>
+      $('親要素 子孫要素')
+      </code></pre>
 
-      <h3 class="h3">ex) div input</h3>
-      div 内の input 要素全て選択
+      <h3 class="h3">div 内の input 要素全て選択</p>
+      <pre class="language-javascript"><code>
+      div input
+      </code></pre>
 
       <h3 class="h3">HTML</h3>
       <script type="text/plain" class="language-markup">
@@ -162,11 +165,7 @@
         $('セレクタ[属性名=属性値]');
         </code></pre>
 
-      <h3 class="h3">ex) input[name=price]</h3>
-      <div>
-        input name="price" の要素を全て書き換え
-      </div>
-
+      <h3 class="h3">input[name=price]</h3>
       <h3 class="h3">HTML</h3>
       <script type="text/plain" class="language-markup">
       <input type="text" name="price" value="100">
@@ -174,6 +173,9 @@
       <input type="text" name="price" value="300">
       <input type="text" name="price" value="400">
       </script>
+      <div>
+        input name="price" の要素を全て書き換え
+      </div>
 
       <h3 class="h3">JS</h3>
       <pre class="language-javascript"><code>
