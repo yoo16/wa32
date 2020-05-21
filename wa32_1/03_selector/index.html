@@ -19,18 +19,37 @@
 
     <h1 class="h1">セレクタ</h1>
 
-    <section class="content">
-      <h2 class="h2">基本</h2>
+    <h2 class="h2">jQuery API Reference</h2>
+    <a href="https://api.jquery.com/category/selectors/" target="_blank">https://api.jquery.com/category/selectors/</a>
+
+    <h2 class="h2">目次</h2>
+    <ul class="list-group">
+      <li class="list-group-item"><a href="#section_val">値の設定・取得</a></li>
+      <li class="list-group-item"><a href="#section_id">ID</a></li>
+      <li class="list-group-item"><a href="#section_class">Class</a></li>
+      <li class="list-group-item"><a href="#section_hierarchy">階層</a></li>
+      <li class="list-group-item"><a href="#section_multiple">複数</a></li>
+      <li class="list-group-item"><a href="#section_property">属性（プロパティ）</a></li>
+      <li class="list-group-item"><a href="#section_form_selector">フォームセレクタ</a></li>
+      <li class="list-group-item"><a href="#section_filter">フィルタ</a></li>
+      <li class="list-group-item"><a href="#section_contents_filter">コンテンツフィルタ</a></li>
+    </ul>
+
+    <section id="section_val" class="content">
+      <h2 class="h2">値の設定・取得</h2>
       <div>
         要素の value プロパティ（属性）を入力
       </div>
-      <pre class="language-javascript"><code>
-      $(セレクタ).val(値);
-    </code></pre>
-    </section>
+      <h3 class="h3">値の設定</h3>
+      <script type="text/plain" class="language-markup">
+      $(セレクタ).val(値)
+      </script>
 
-    <section class="content">
-      <h2 class="h2">HTML要素</h2>
+      <h3 class="h3">値の取得</h3>
+      <script type="text/plain" class="language-markup">
+      $(セレクタ).val()
+      </script>
+
       <div>
         HTML上の全ての input の value を「初期値」に書き換える
       </div>
@@ -48,7 +67,7 @@
       <input type="text" value="名前">
     </section>
 
-    <section class="content">
+    <section id="section_id" class="content">
       <h2 class="h2">ID</h2>
       <p>例）id="title" の値を設定する</p>
       <h3 class="h3">HTML</h3>
@@ -64,7 +83,7 @@
       <input type="text" id="title">
     </section>
 
-    <section class="content">
+    <section id="section_class" class="content">
       <h2 class="h2">Class</h2>
 
       <h3 class="h3">JS</h3>
@@ -84,7 +103,7 @@
       <input type="text" class="memo">
     </section>
 
-    <section class="content">
+    <section id="section_hierarchy" class="content">
       <h2 class="h2">階層</h2>
       <h3 class="h3">親要素 > 子要素</h3>
       <div>
@@ -158,14 +177,41 @@
 
     </section>
 
-    <section class="content">
+    <section id="section_multiple" class="content">
+      <h2 class="h2">複数選択</h2>
+
+      <h3 class="h3">JS</h3>
+      <pre class="language-javascript"><code>
+      $('.weapon, #shop input').val('複数');
+      </code></pre>
+
+      <h3 class="h3">HTML</h3>
+      <script type="text/plain" class="language-markup">
+      <div id="shop">
+        <input class="message" type="text" name="初期値">
+      </div>
+      <input class="weapon" type="text" name="初期値">
+      </script>
+
+      <div id="shop">
+        <input class="message" type="text" name="初期値">
+      </div>
+      <input class="weapon" type="text" name="初期値">
+
+    </section>
+
+    <section id="section_property" class="content">
       <h2 class="h2">属性（プロパティ）セレクタ</h2>
       <pre class="language-javascript"><code>
         $('セレクタ[属性名]');
         $('セレクタ[属性名=属性値]');
         </code></pre>
 
-      <h3 class="h3">input[name=price]</h3>
+      <h3 class="h3">name = price の場合</h3>
+      <script type="text/plain" class="language-markup">
+      input[name=price]
+      </script>
+
       <h3 class="h3">HTML</h3>
       <script type="text/plain" class="language-markup">
       <input type="text" name="price" value="100">
@@ -188,7 +234,7 @@
       <input type="text" name="price" value="400">
     </section>
 
-    <section class="content">
+    <section id="section_form_selector" class="content">
       <h2 class="h2">フォームセレクタ</h2>
       <pre class="language-javascript"><code>
       $('セレクタ:type属性]')
@@ -216,7 +262,7 @@
       <input type="hidden" name="user_id" value="0">
     </section>
 
-    <section class="content">
+    <section id="section_filter" class="content">
       <h2 class="h2">フィルタ</h2>
 
       <pre class="language-javascript"><code>
@@ -249,7 +295,6 @@
         $('li:last input').val(1000);
       </code></pre>
 
-
       <ul>
         <li><input type="text" value="100"></li>
         <li><input type="text" value="200"></li>
@@ -259,30 +304,7 @@
 
     </section>
 
-    <section class="content">
-      <h2 class="h2">複数選択</h2>
-
-      <h3 class="h3">JS</h3>
-      <pre class="language-javascript"><code>
-      $('.weapon, #shop input').val('複数');
-      </code></pre>
-
-      <h3 class="h3">HTML</h3>
-      <script type="text/plain" class="language-markup">
-      <div id="shop">
-        <input class="message" type="text" name="初期値">
-      </div>
-      <input class="weapon" type="text" name="初期値">
-      </script>
-
-      <div id="shop">
-        <input class="message" type="text" name="初期値">
-      </div>
-      <input class="weapon" type="text" name="初期値">
-
-    </section>
-
-    <section class="content">
+    <section id="section_contents_filter" class="content">
       <h2 class="h2">コンテンツフィルタ</h2>
       <pre class="language-javascript"><code>
         $('要素1:has(要素2)')
@@ -295,6 +317,11 @@
       <script type="text/plain" class="language-markup">
       <div>
         <h5>タイトル</h5>
+        <div>本文</div>
+      </div>
+
+      <div>
+        <h5>タイトル</h5>
         <p>本文</p>
       </div>
       </script>
@@ -304,6 +331,11 @@
       <pre class="language-javascript"><code>
         $('div:has(p)').css('border: 1px solid #ff0000;');
       </code></pre>
+
+      <div>
+        <h5>タイトル</h5>
+        <div>本文</div>
+      </div>
 
       <div>
         <h5>タイトル</h5>
