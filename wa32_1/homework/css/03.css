@@ -1,0 +1,23 @@
+
+#shop_message {
+    border: solid 2px #34608f;
+    color: #34608f;
+    padding: 10px;
+}
+
+#item_list {
+    padding: 10px;
+    background: #445a71;
+}
+
+.item {
+    padding: 10px;
+}
+
+.item_name {
+    color: #ffffff;
+}
+
+#item_list li {
+    list-style: none;
+}

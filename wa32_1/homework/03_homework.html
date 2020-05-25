@@ -5,9 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="../../css/prism.css">
-  <link rel="stylesheet" href="../../css/default.css">
+  <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="css/prism.css">
+  <link rel="stylesheet" href="css/default.css">
+  <link rel="stylesheet" href="css/03.css">
 
   <title>WA32 課題03</title>
 </head>
@@ -30,8 +31,7 @@
       <div class="row">
         <div class="col-6">
           <h2 class="h2">実行前</h2>
-          <input id="character_name" type="text">
-          <ul id="item_list">
+          <ul>
             <li>
               <div>
                 <p class="item_name"></p>
@@ -68,58 +68,64 @@
               </div>
             </li>
           </ul>
+
+          <label for="character_name">キャラクタ名：</label>
+          <input id="character_name" type="text">
         </div>
-  
+
         <div class="col-6">
           <h2 class="h2">実行後</h2>
           <div id="shopHeader">
-            <h2>武器屋</h2>
-            <p id="shopMessage">
+            <h2 class="h3">武器屋</h2>
+            <p id="shop_message">
               HALさん、何のご用でしょうか？
             </p>
           </div>
-          <input id="character_name" type="text" value="HAL">
           <ul id="item_list">
             <li>
               <div class="item">
                 <p class="item_name">銅のつるぎ</p>
-                <input type="text" value="150">
-                <input type="text" value="1">
+                <input type="text" name="price" value="150" class="col-3 text-right" disabled="disabled">
+                <input type="text" name="amount" value="1" class="col-2 text-right">
               </div>
             </li>
-  
+
             <li>
               <div class="item">
                 <p class="item_name">アイテム名</p>
-                <input type="text" value="0">
-                <input type="text" value="1">
+                <input type="text" name="price" value="0" class="col-3 text-right" disabled="disabled">
+                <input type="text" name="amount" value="1" class="col-2 text-right">
               </div>
             </li>
-  
+
             <li>
               <div class="item">
                 <p class="item_name">皮のたて</p>
-                <input type="text" value="90">
-                <input type="text" value="1">
+                <input type="text" name="price" value="90" class="col-3 text-right" disabled="disabled">
+                <input type="text" name="amount" value="1" class="col-2 text-right">
               </div>
             </li>
-  
+
             <li>
-              <div>
+              <div class="item">
                 <p class="item_name">アイテム名</p>
-                <input type="text" value="0">
-                <input type="text" value="1">
+                <input type="text" name="price" value="0" class="col-3 text-right" disabled="disabled">
+                <input type="text" name="amount" value="1" class="col-2 text-right">
               </div>
             </li>
-  
+
             <li>
-              <div>
+              <div class="item">
                 <p class="item_name">皮のぼうし</p>
-                <input type="text" value="50">
-                <input type="text" value="1">
+                <input type="text" name="price" value="50" class="col-3 text-right" disabled="disabled">
+                <input type="text" name="amount" value="1" class="col-2 text-right">
               </div>
             </li>
+
           </ul>
+
+          <label for="character_name">キャラクタ名：</label>
+          <input id="character_name" type="text" value="HAL">
         </div>
       </div>
 
@@ -130,16 +136,16 @@
         <dd class="list-group-item">ul に li を5つ追加し、li に div を追加</dd>
       </dl>
       <pre class="language-markup"><code>
-      &lt;input type="text" name="character_name"&gt;
       &lt;ul id="item_list"&gt;
         &lt;li&gt;
           &lt;div&gt;&lt;/div&gt;
         &lt;/li&gt;
         ...
       &lt;/ul&gt;
+      &lt;input type="text" name="character_name"&gt;
       </code></pre>
 
-      <h4 class="h4">divの中身</h4>
+      <h4 class="h4">li divの中身</h4>
       <p>
         div に 以下の要素を追加
       </p>
@@ -159,7 +165,7 @@
 
       <h3 class="h3">Javascript</h3>
       <dl class="list-group">
-        <dd class="list-group-item">character_name の要素の値を「HAL」 に設定</dd>
+        <dd class="list-group-item">character_name の要素の値を任意の名前に設定</dd>
         <dd class="list-group-item">item_name の要素のテキストをすべて「アイテム名」を設定</dd>
         <dd class="list-group-item">price, amount の要素の値をすべて 「0」 に設定</dd>
         <dd class="list-group-item">
@@ -191,6 +197,15 @@
           メッセージ欄を作り、「character_name」で設定した名前を利用して、メッセージを表示<br>
           例）HALさん、何のご用でしょうか？
         </dd>
+        <dd class="list-group-item">
+          css() 関数を利用して装飾してみる。
+        </dd>
+        <dd class="list-group-item">
+          name=item を入力不可にしてみる
+        </dd>
+        <dd class="list-group-item">
+          メソッドチェーンを利用して、要素を動作させてみる。
+        </dd>
       </dl>
     </div>
 
@@ -206,11 +221,11 @@ wa32_homework_03_出席番号
 
   </div>
 
-  <script src="../../js/jquery-3.5.0.min.js"></script>
-  <script src="../../js/bootstrap/bootstrap.min.js"></script>
+  <script src="js/jquery-3.5.0.min.js"></script>
+  <script src="js/bootstrap/bootstrap.min.js"></script>
 
-  <script src="../../js/prism.js"></script>
-  <script src="../../js/default.js"></script>
+  <script src="js/prism.js"></script>
+  <script src="js/03.js"></script>
 </body>
 
 </html>
