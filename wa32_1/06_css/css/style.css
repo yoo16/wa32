@@ -1,7 +1,13 @@
 #box1 {
     border: solid;
+    padding: 10px;
 }
 
 #box2 {
     border: solid;
+    padding: 10px;
+}
+
+#txt4 {
+    color: #0000ff;
 }

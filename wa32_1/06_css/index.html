@@ -23,48 +23,69 @@
       <div>
         <h2 class="h2">CSSの設定</h2>
         <pre class="language-javascript"><code>
-      $(セレクタ).css(‘プロパティ’, ‘値’)
-      </code></pre>
+        $(セレクタ).css('プロパティ', '値')
+        </code></pre>
+
+        <input type="text" name="item" value="初期値">
 
         <h3 class="h3">HTML</h3>
         <script type="text/plain" class="language-markup">
-      <input type="text" value=“初期値">
-      </script>
+        <input type="text" name="item" value="初期値">
+        </script>
 
         <h3 class="h3">JS</h3>
         <pre class="language-javascript"><code>
-      $(‘input’).css('background', ‘#ff000’);
-      </code></pre>
+        $('input[name=item]').css('background', '#ff0000');
+        //$('input[name=item]').css('background', 'rgb(255, 0, 0)');
+        //$('input[name=item]').css('background', 'rgba(255, 0, 0, 1.0)');
+        </code></pre>
 
         <h3 class="h3">変更されたCSS</h3>
         <p>
           デバッグで確認するとCSSが変更されている
         </p>
         <pre class="language-css"><code>
-      input {
-          background: #ff0000;
-      }
-      </code></pre>
+        input {
+            background: #ff0000;
+        }
+        </code></pre>
       </div>
 
       <div>
         <h2 class="h2">CSSの取得</h2>
         <pre class="language-javascript"><code>
-      $(セレクタ).css(‘プロパティ’)
-      </code></pre>
+        $(セレクタ).css('プロパティ')
+        </code></pre>
+
+        <div>
+          <p id="txt4">Hello World 4</p>
+        </div>
 
         <h3 class="h3">HTML</h3>
         <script type="text/plain" class="language-markup">
-      <div>
-        <p id="txt4">Hello World 4</p>
-      </div>
-      </script>
+        <div>
+          <p id="txt4">Hello World 4</p>
+        </div>
+        </script>
 
         <h3 class="h3">JS</h3>
         <pre class="language-javascript"><code>
-      let color = $('#txt4').css('color');
-      </code></pre>
+        let color = $('#txt4').css('color');
+        </code></pre>
 
+        <h3 class="h3">結果</h3>
+        <div id="color_result"></div>
+      </div>
+
+      <div>
+        <h2 class="h2">CSSリファレンス</h2>
+        <p>
+          <a href="https://www.w3.org/Style/CSS/Overview.en.html" target="_blank">Cascading Style Sheets
+            home page</a>
+        </p>
+        <p>
+          <a href="https://www.w3schools.com/cssref/default.asp" target="_blank">CSS Reference</a>
+        </p>
       </div>
 
       <div>
@@ -72,32 +93,58 @@
         <div>
           <h3 class="h3">幅・高さの取得</h3>
           <pre class="language-javascript"><code>
-        $(セレクタ).width();   //幅
-        $(セレクタ).height();  //高さ
-        </code></pre>
-
-          <h3 class="h3">サンプル</h3>
-          <pre class="language-javascript"><code>
-          let width = $(‘#box1').width();
-          let height = $(‘#box1').height();
+          $(セレクタ).width();   //幅
+          $(セレクタ).height();  //高さ
           </code></pre>
+
+          <div>
+            <p id="box1">Box1</p>
+          </div>
+
+          <h3 class="h3">HTML</h3>
+          <script type="text/plain" class="language-markup">
+          <div>
+            <p id="box1">Box1</p>
+          </div>
+          </script>
+
+          <h3 class="h3">JS</h3>
+          <pre class="language-javascript"><code>
+          let width = $('#box1').width();
+          let height = $('#box1').height();
+          </code></pre>
+
+          <h3 class="h3">結果</h3>
+          <div id="window_size_result"></div>
         </div>
 
-        <h2 class="h2">幅・高さの設定</h2>
         <div>
+          <h2 class="h2">幅・高さの設定</h2>
+
+          <div>
+            <p id="box2">Box2</p>
+          </div>
+
+          <h3 class="h3">HTML</h3>
+          <script type="text/plain" class="language-markup">
+          <div>
+            <p id="box2">Box2</p>
+          </div>
+          </script>
+
           <h3 class="h3">幅・高さの設定</h3>
           <pre class="language-javascript"><code>
-          $(セレクタ).width(‘テキスト’)
-          $(セレクタ).height(‘テキスト’)
+          $(セレクタ).width('テキスト')
+          $(セレクタ).height('テキスト')
           </code></pre>
           <p class="text-danger">
             単位をつけて、文字列する
           </p>
 
-          <h3 class="h3">サンプル</h3>
+          <h3 class="h3">JS</h3>
           <pre class="language-javascript"><code>
-          $(‘#box1’).width(‘150px');
-          $(‘#box1’).height(‘100px’);
+          $('#box2').width('150px');
+          $('#box2').height('100px');
           </code></pre>
         </div>
       </div>
@@ -108,6 +155,7 @@
   </div>
 
   <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="js/main.js"></script>
 
   <script src="../js/bootstrap/bootstrap.min.js"></script>
   <script src="../js/prism.js"></script>
