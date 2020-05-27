@@ -35,9 +35,14 @@
 
         <h3 class="h3">JS</h3>
         <pre class="language-javascript"><code>
+        //背景
         $('input[name=item]').css('background', '#ff0000');
-        //$('input[name=item]').css('background', 'rgb(255, 0, 0)');
-        //$('input[name=item]').css('background', 'rgba(255, 0, 0, 1.0)');
+        $('input[name=item]').css('background', 'rgb(255, 0, 0)');
+        $('input[name=item]').css('background', 'rgba(255, 0, 0, 1.0)');
+
+        //フォントサイズ
+        $('input[name=item]').css('font-size', '14pt');
+        $('input[name=item]').css('fontSize', '2.0rem')
         </code></pre>
 
         <h3 class="h3">変更されたCSS</h3>
@@ -49,6 +54,51 @@
             background: #ff0000;
         }
         </code></pre>
+      </div>
+
+      <div>
+        <h2 class="h2">CSSの設定（オブジェクト)</h2>
+        <p>
+          複数指定する場合、オブジェクトを利用すると便利
+        </p>
+        <pre class="language-javascript"><code>
+        $(セレクタ).css({
+                        プロパティ: 値,
+                        プロパティ: 値,
+                        ...
+                      })
+        </code></pre>
+
+        <input type="text" name="price" value="100">
+
+        <h3 class="h3">HTML</h3>
+        <script type="text/plain" class="language-markup">
+        <input type="text" name="price" value="100">
+        </script>
+
+        <h3 class="h3">JS</h3>
+        <pre class="language-javascript"><code>
+        $('input[name=price]').css(
+            { 
+                width: '150px',
+                border: '1px solid rgba(255, 0, 0, 1.0)',
+                background: 'rgba(200, 0, 0, 0.2)',
+                fontSize: '1.2rem',
+                padding: '5px 20px',
+                textAlign: 'right',
+                borderRadius: '50px',
+            }
+        );
+        </code></pre>
+
+        <h3 class="h3">addClass(), removeClass() でclassを操作</h3>
+        <p>
+          上記は、Javascript 常に記載されるため、ハードコーディングなってしまう。<br>
+          別途cssファイルにスタイルを分離し、addClass(), removeClass(), toggleClass() などで class を操作することもできる。
+        </p>
+        <p>
+          <a href="../25_form1/index.html">Form 1: addClass()</a>
+        </p>
       </div>
 
       <div>
@@ -78,10 +128,13 @@
       </div>
 
       <div>
-        <h2 class="h2">CSSリファレンス</h2>
+        <h2 class="h2">参考）CSSリファレンス</h2>
         <p>
           <a href="https://www.w3.org/Style/CSS/Overview.en.html" target="_blank">Cascading Style Sheets
             home page</a>
+        </p>
+        <p>
+          <a href="https://www.tagindex.com/stylesheet/properties/" target="_blank">HTML&CSS Web制作リファレンス</a>
         </p>
         <p>
           <a href="https://www.w3schools.com/cssref/default.asp" target="_blank">CSS Reference</a>
@@ -155,7 +208,7 @@
   </div>
 
   <script src="../js/jquery-3.5.0.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20200526"></script>
 
   <script src="../js/bootstrap/bootstrap.min.js"></script>
   <script src="../js/prism.js"></script>

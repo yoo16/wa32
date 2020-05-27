@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     $('#txt1').css('color', '#090000');
 
     $('#txt2').css('font-size', '24px');
@@ -13,7 +13,7 @@ $(function() {
     });
 
     let color = $('#txt4').css('color');
-    
+
     $('#txt1').css('color', color);
     $('#box1').width('40px');
     $('#box2').width('70px').height('100px');
