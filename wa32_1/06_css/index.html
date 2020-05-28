@@ -78,17 +78,16 @@
 
         <h3 class="h3">JS</h3>
         <pre class="language-javascript"><code>
-        $('input[name=price]').css(
-            { 
-                width: '150px',
-                border: '1px solid rgba(255, 0, 0, 1.0)',
-                background: 'rgba(200, 0, 0, 0.2)',
-                fontSize: '1.2rem',
-                padding: '5px 20px',
-                textAlign: 'right',
-                borderRadius: '50px',
-            }
-        );
+        let css = { 
+            width: '150px',
+            border: '1px solid rgba(255, 0, 0, 1.0)',
+            background: 'rgba(200, 0, 0, 0.2)',
+            fontSize: '1.2rem',
+            padding: '5px 20px',
+            textAlign: 'right',
+            borderRadius: '50px',
+        };
+        $('input[name=price]').css(css);
         </code></pre>
 
         <h3 class="h3">addClass(), removeClass() でclassを操作</h3>
@@ -111,7 +110,7 @@
 
         <pre class="language-javascript"><code>
         $(セレクタ).css(プロパティ, function() {
-                    ...
+            ...
         })
         </code></pre>
 
@@ -149,6 +148,7 @@
         <h3 class="h3">JS</h3>
         <pre class="language-javascript"><code>
         let color = $('#txt').css('color');
+        let font_size = $('#txt').css('font-size');
         </code></pre>
 
         <h3 class="h3">結果</h3>

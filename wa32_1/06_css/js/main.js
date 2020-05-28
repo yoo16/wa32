@@ -10,22 +10,25 @@ $(function() {
     //$('input[name=item]').css('fontSize', '2.0rem');
 
     let color = $('#txt').css('color');
-    $('#color_result').html(color);
+    let font_size = $('#txt').css('font-size');
+
+    $('#color_result').append(color);
+    $('#color_result').append('<br>');
+    $('#color_result').append(font_size);
 
     /**
      * css() : set object
      */
-    $('input[name=price]').css(
-        { 
-            width: '150px',
-            border: '1px solid rgba(255, 0, 0, 1.0)',
-            background: 'rgba(200, 0, 0, 0.2)',
-            fontSize: '1.2rem',
-            padding: '5px 20px',
-            textAlign: 'right',
-            borderRadius: '50px',
-        }
-    );
+    let css = { 
+        width: '150px',
+        border: '1px solid rgba(255, 0, 0, 1.0)',
+        background: 'rgba(200, 0, 0, 0.2)',
+        fontSize: '1.2rem',
+        padding: '5px 20px',
+        textAlign: 'right',
+        borderRadius: '50px',
+    }
+    $('input[name=price]').css(css);
 
     $('#callback').css('width', function(index, value) {
         let width = parseInt(value);
