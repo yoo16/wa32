@@ -1,6 +1,6 @@
 $(function() {
     /**
-     * css()
+     * css() : set key & value
      */
     $('input[name=item]').css('background', '#ff0000');
     // $('input[name=item]').css('background', 'rgb(255, 0, 0)');
@@ -9,13 +9,12 @@ $(function() {
     $('input[name=item]').css('font-size', '14pt');
     //$('input[name=item]').css('fontSize', '2.0rem');
 
-    let color = $('#txt4').css('color');
+    let color = $('#txt').css('color');
     $('#color_result').html(color);
 
     /**
-     * css()
+     * css() : set object
      */
-
     $('input[name=price]').css(
         { 
             width: '150px',
@@ -28,8 +27,16 @@ $(function() {
         }
     );
 
+    $('#callback').css('width', function(index, value) {
+        let width = parseInt(value);
+        console.log(index);
+        console.log(value);
+        console.log(width);
+        return width * 0.5;
+    });
+
     /**
-     * box1
+     * get window size
      */
     // console.log($('#box1'));
     let width = $('#box1').width();
@@ -38,7 +45,7 @@ $(function() {
     $('#window_size_result').html(result);
 
     /**
-     * box2
+     * set window size
      */
     $('#box2').width('150px');
     $('#box2').height('100px');

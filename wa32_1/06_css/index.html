@@ -102,25 +102,53 @@
       </div>
 
       <div>
+        <h2 class="h2">CSSの設定（callback)</h2>
+        <p>
+          指定したプロパティを、callback で操作
+        </p>
+
+        <div id="callback">Message</div>
+
+        <pre class="language-javascript"><code>
+        $(セレクタ).css(プロパティ, function() {
+                    ...
+        })
+        </code></pre>
+
+        <h3 class="h3">HTML</h3>
+        <script type="text/plain" class="language-markup">
+        <div id="callback">Message</div>
+        </script>
+
+        <h3 class="h3">JS</h3>
+        <pre class="language-javascript"><code>
+        $('#callback').css('width', function(index, value) {
+            let width = parseInt(value);
+            return width * 0.5;
+        });
+        </code></pre>
+      </div>
+
+      <div>
         <h2 class="h2">CSSの取得</h2>
         <pre class="language-javascript"><code>
         $(セレクタ).css('プロパティ')
         </code></pre>
 
         <div>
-          <p id="txt4">Hello World 4</p>
+          <p id="txt">Hello World 4</p>
         </div>
 
         <h3 class="h3">HTML</h3>
         <script type="text/plain" class="language-markup">
         <div>
-          <p id="txt4">Hello World 4</p>
+          <p id="txt">Hello World 4</p>
         </div>
         </script>
 
         <h3 class="h3">JS</h3>
         <pre class="language-javascript"><code>
-        let color = $('#txt4').css('color');
+        let color = $('#txt').css('color');
         </code></pre>
 
         <h3 class="h3">結果</h3>
@@ -165,6 +193,9 @@
           <pre class="language-javascript"><code>
           let width = $('#box1').width();
           let height = $('#box1').height();
+
+          let result = `width: ${Math.round(width)} height: ${Math.round(height)}`;
+          $('#window_size_result').html(result);
           </code></pre>
 
           <h3 class="h3">結果</h3>

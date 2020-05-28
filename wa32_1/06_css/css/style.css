@@ -8,6 +8,13 @@
     padding: 10px;
 }
 
-#txt4 {
+#txt {
     color: #0000ff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#callback {
+    background: #ff0000;
+    padding: 10px;
 }
