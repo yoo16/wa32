@@ -29,8 +29,8 @@
       <button id="btn2" class="btn btn-outline-primary">ボタン2</button>
       <button id="btn3" class="btn btn-outline-primary">ボタン3</button>
       <button id="btn4" class="btn btn-outline-primary">ボタン4</button>
-      <button id="btn5" class="btn btn-outline-primary">江畑ボタン</button>
-      <button id="btn6" class="btn btn-outline-primary">清水ボタン</button>
+      <button id="btn5" class="btn btn-outline-primary">User1</button>
+      <button id="btn6" class="btn btn-outline-primary">User2</button>
     </div>
 
     <div>
@@ -95,8 +95,8 @@
   
       $('#btn5').on('click',
           {
-              name: '江畑',
-              mail: 'ebata@aaa.bbb',
+              name: 'User1',
+              mail: 'user1@aaa.bbb',
               tel: '1234567890'
           },
           eventFunc
@@ -104,8 +104,8 @@
   
       $('#btn6').on('click',
           {
-              name: '清水',
-              mail: 'simiz@aaa.bbb',
+              name: 'User2',
+              mail: 'user2@aaa.bbb',
               tel: '01234567890'
           },
           eventFunc
@@ -147,11 +147,11 @@
       <h3 class="h3">Window Size</h3>
       <pre class="language-javascript"><code>
       $(window).on('resize', function () {
-        $('#window_size').text(
-            '(width, height) = (' 
-            + $(window).width() + ', '
-            + $(window).height() + ')'
-        );
+          $('#window_size').text(
+              '(width, height) = (' 
+              + $(window).width() + ', '
+              + $(window).height() + ')'
+          );
       });
       </code></pre>
 

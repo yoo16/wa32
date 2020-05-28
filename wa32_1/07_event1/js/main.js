@@ -76,8 +76,8 @@ $(function () {
      */
     $('#btn5').on('click',
         {
-            name: '江畑',
-            mail: 'ebata@aaa.bbb',
+            name: 'User1',
+            mail: 'user1@aaa.bbb',
             tel: '1234567890'
         },
         eventFunc
@@ -85,8 +85,8 @@ $(function () {
 
     $('#btn6').on('click',
         {
-            name: '清水',
-            mail: 'simiz@aaa.bbb',
+            name: 'User2',
+            mail: 'user2@aaa.bbb',
             tel: '01234567890'
         },
         eventFunc
