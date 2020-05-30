@@ -15,21 +15,54 @@
 <body>
   <div class="container">
     <div><a href="../index.html">Back</a></div>
-    <h1 class="h1">繰り返し</h1>
+    <h1 class="h1">each</h1>
 
     <div id="each">
       <h2 class="h2">$.each</h2>
-        <p class="alert alert-info">
-          繰り返し処理
-        </p>
-        <pre class="language-javascript"><code>
-        $.each(items, function(key, value) {
-            //処理
-        }
-        </code></pre>
+      <p class="alert alert-info">
+        繰り返し処理
+      </p>
 
-        <h3 class="h3">配列をループ</h3>
-        <pre class="language-javascript"><code>
+      <h3 class="h3">セレクタの繰り返し</h3>
+      <pre class="language-javascript"><code>
+      $(セレクタ).each(function(index, value) {
+          //処理
+      }
+      </code></pre>
+
+      <h3 class="h3">li をループ</h3>
+
+      <ul id="city">
+        <li>Tokyo</li>
+        <li>Osaka</li>
+        <li>Nagoya</li>
+      </ul>
+
+      <pre class="language-javascript"><code>
+      $('#city li').each(function(index, element){
+          console.log(index);
+          console.log(element);
+          console.log(this);
+          console.log($(this).text());
+      });
+
+      // 0
+      // &lt;li&gt;Tokyo&lt;/li&gt;
+      // &lt;li&gt;Tokyo&lt;/li&gt;
+      // Tokyo
+      //...
+      </code></pre>
+
+
+      <h3 class="h3">オブジェクトの繰り返し</h3>
+      <pre class="language-javascript"><code>
+      $.each(オブジェクト, function(index, value) {
+          //処理
+      }
+      </code></pre>
+
+      <h3 class="h3">Array オブジェクトをループ</h3>
+      <pre class="language-javascript"><code>
           let items = [
             { index:0, name: '銅のつるぎ', price: 150, amount: 1},
             { index:1, name: '鉄のやり', price: 550, amount: 1},
@@ -38,18 +71,22 @@
             { index:4, name: '皮のぼうし', price: 50, amount: 1},
           ];
 
-          $.each(items, function(key, value) {
-              console.log(key);
-              console.log(value);
+          $.each(items, function(index, value) {
+            console.log(index);
+            console.log(value);
+            console.log(value.name);
+            console.log(this.name);
           });
 
           // 0
           // {index: 0, name: "銅のつるぎ", price: 150, amount: 1}
+          // 銅のつるぎ
+          // 銅のつるぎ
           // ...
         </code></pre>
-      </div>
-
     </div>
+
+  </div>
 
   </div>
 
