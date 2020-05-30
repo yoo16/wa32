@@ -53,8 +53,8 @@ $(function() {
         //character
         $('input[name=character_name]').val(character_name);
 
-        //message_box
-        $('#message_box').css(style.message);
+        //shop_message
+        $('#shop_message').css(style.message);
 
         //shop
         $('#shop_name').html(shop_name)
@@ -84,10 +84,10 @@ $(function() {
 
         //message
         let message = character_name + 'さん、何のご用でしょうか？';
-        $('#message_box').html(message);
+        $('#shop_message').html(message);
 
         //animation
-        $('#message_box').animate({ 'left': 0 }, 1000).animate({ 'top': 0 }, 500);
+        $('#shop_message').animate({ 'left': 0 }, 1000).animate({ 'top': 0 }, 500);
     }
 
     init();

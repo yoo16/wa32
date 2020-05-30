@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../../css/prism.css">
+  <link rel="stylesheet" href="../../css/default.css">
+
+  <title>WA32 課題04</title>
+</head>
+
+<body>
+  <div id="homework" class="container">
+    <p><a href="../index.html">Back</a></p>
+
+    <h1 class="h1">課題04</h1>
+
+    <h2 class="h2">課題</h2>
+    <div>イベントを使ってCSS設定</div>
+
+    <h2 class="h2">内容</h2>
+    <div>ボタンクリック等のイベントを使用して、画面の文字を装飾する。</div>
+
+    <h2 class="h2">ファイル構成</h2>
+    <div>
+      <pre>
+wa32_homework04_出席番号
+  |- index.html
+  |- js/main.js
+    </pre>
+    </div>
+
+    <h2 class="h2">実行イメージ</h2>
+    <div class="row">
+      <div class="col-6">
+        <h3 class="h3">初期画面</h3>
+        <h4 class="h4">文字サイズ</h4>
+        <input type="text">
+
+        <h4 class="h4">文字色</h4>
+        <input type="text" value="">
+        <span class="">■</span>
+
+        <div class="mt-4 mb-4">
+          掘っても
+        </div>
+
+        <div>
+          <button class="btn btn-sm btn-primary">文字追加</button>
+          <button class="btn btn-sm btn-outline-primary">クリア</button>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <h3 class="h3">実行後</h3>
+        <h4 class="h4">文字サイズ</h4>
+        <input type="text" value="18px">
+
+        <h4 class="h4">文字色</h4>
+        <input type="text" value="#ff0000">
+        <span class="text-danger">■</span>
+
+        <div class="mt-4 mb-4" style="color: #ff0000; font-size: 18px;">
+          掘っても
+        </div>
+
+        <div>
+          <button class="btn btn-sm btn-primary">文字追加</button>
+          <button class="btn btn-sm btn-outline-primary">クリア</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <h2 class="h2">標準機能</h2>
+        <dl class="list-group">
+          <dd class="list-group-item">文字サイズの変更</dd>
+          <dd class="list-group-item">文字色の変更</dd>
+          <dd class="list-group-item">文字列を増やす</dd>
+          <dd class="list-group-item">変更を戻す</dd>
+        </dl>
+      </div>
+
+      <div class="col-6">
+        <h2 class="h2">オプション</h2>
+        <dl class="list-group">
+          <dd class="list-group-item">拡大・縮小</dd>
+          <dd class="list-group-item">オリジナル機能の追加</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="../../js/jquery-3.5.0.min.js"></script>
+  <script src="../../js/bootstrap/bootstrap.min.js"></script>
+
+  <script src="../../js/prism.js"></script>
+  <script src="../../js/default.js"></script>
+</body>
+
+</html>

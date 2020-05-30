@@ -5,11 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="../../css/prism.css">
-  <link rel="stylesheet" href="../../css/default.css">
+  <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="css/prism.css">
+  <link rel="stylesheet" href="css/default.css">
+  <link rel="stylesheet" href="css/04.css">
 
-  <title>WA32 課題04</title>
+  <title>WA32 04 homework</title>
 </head>
 
 <body>
@@ -33,74 +34,395 @@ wa32_homework04_出席番号
     </pre>
     </div>
 
-    <h2 class="h2">実行イメージ</h2>
-    <div class="row">
-      <div class="col-6">
-        <h3 class="h3">初期画面</h3>
-        <h4 class="h4">文字サイズ</h4>
-        <input type="text">
-
-        <h4 class="h4">文字色</h4>
-        <input type="text" value="">
-        <span class="">■</span>
-
-        <div class="mt-4 mb-4">
-          掘っても
+  <h2 class="h2">サンプル</h2>
+    <!-- row -->
+    <div class="row mt-4">
+      <!-- sample1 -->
+      <div id="sample1" class="col-6">
+        <p class="alert alert-info">
+          アイテム一覧を作成する。
+          <br>
+          余裕があれば、アイテムデータ（名前、値段、個数）をJSで扱えるようにする。
+        </p>
+        <h3 class="h3">武器屋</h3>
+        <div id="shop_message">
+          HALさん、何のご用でしょうか？
         </div>
 
-        <div>
-          <button class="btn btn-sm btn-primary">文字追加</button>
-          <button class="btn btn-sm btn-outline-primary">クリア</button>
+        <ul id="item_list">
+          <li index="0">
+            <div>
+              <p class="item_name">銅のつるぎ</p>
+              <input type="text" name="price" class="number" value="150">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info">＋</button>
+              <button class="minus btn btn-sm btn-info">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary">買う</button>
+            </div>
+          </li>
+          <li index="1">
+            <div>
+              <p class="item_name">鉄のやり</p>
+              <input type="text" name="price" class="number" value="550">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info">＋</button>
+              <button class="minus minus btn btn-sm btn-info">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary">買う</button>
+              <span class="buy_amount"></span>
+            </div>
+          </li>
+          <li index="2">
+            <div>
+              <p class="item_name">皮のたて</p>
+              <input type="text" name="price" class="number" value="90">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info">＋</button>
+              <button class="minus btn btn-sm btn-info">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary">買う</button>
+              <span class="buy_amount"></span>
+            </div>
+          </li>
+          <li index="3">
+            <div>
+              <p class="item_name">鉄のかぶと</p>
+              <input type="text" name="price" class="number" value="850">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info" index="3">＋</button>
+              <button class="minus btn btn-sm btn-info" index="3">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary" index="3">買う</button>
+              <span class="buy_amount"></span>
+            </div>
+          </li>
+          <li index="4">
+            <div>
+              <p class="item_name">皮のぼうし</p>
+              <input type="text" name="price" class="number" value="50">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info">＋</button>
+              <button class="minus btn btn-sm btn-info">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary">買う</button>
+              <span class="buy_amount"></span>
+            </div>
+          </li>
+        </ul>
+
+        <div id="character_action" class="text-center">
+          <button id="buy" class="btn btn-primary">はい</button>
+          <button id="clear" class="btn btn-outline-primary">やめる</button>
+        </div>
+
+        <div class="mt-4">
+          <div>
+            <input type="text" name="character_name" value="HAL">
+            <input type="text" name="character_money" value="1000">G
+          </div>
+          <button id="update_character" class="btn btn-primary">キャラクター更新</button>
         </div>
       </div>
 
-      <div class="col-6">
-        <h3 class="h3">実行後</h3>
-        <h4 class="h4">文字サイズ</h4>
-        <input type="text" value="18px">
 
-        <h4 class="h4">文字色</h4>
-        <input type="text" value="#ff0000">
-        <span class="text-danger">■</span>
-
-        <div class="mt-4 mb-4" style="color: #ff0000; font-size: 18px;">
-          掘っても
+      <!-- sample2 -->
+      <div id="sample2" class="col-6">
+        <p class="alert alert-info">
+          アイテム一覧の「買う」をクリックしたら、メッセージを変更する。
+          <br>
+          「+」「-」ボタンをクリックしたら数字を増減させる。
+          <br>
+          余裕があれば、値段を計算する。
+        </p>
+        <h3 class="h3">武器屋</h3>
+        <div id="shop_message">
+          銅のつるぎ 2個で、300Gになります。
+          <br>
+          よろしいですか？？
         </div>
 
-        <div>
-          <button class="btn btn-sm btn-primary">文字追加</button>
-          <button class="btn btn-sm btn-outline-primary">クリア</button>
+        <ul id="item_list">
+          <li index="0">
+            <div>
+              <p class="item_name">銅のつるぎ</p>
+              <input type="text" name="price" class="number" value="150">
+              G
+              <input type="text" name="amount" class="number" value="2">
+              個
+              <button class="plus btn btn-sm btn-info">＋</button>
+              <button class="minus btn btn-sm btn-info">ー</button>
+              <button class="buy btn btn-sm btn-danger">買う</button>
+            </div>
+          </li>
+          <li index="1">
+            <div>
+              <p class="item_name">鉄のやり</p>
+              <input type="text" name="price" class="number" value="550">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info">＋</button>
+              <button class="minus minus btn btn-sm btn-info">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary">買う</button>
+              <span class="buy_amount"></span>
+            </div>
+          </li>
+          <li index="2">
+            <div>
+              <p class="item_name">皮のたて</p>
+              <input type="text" name="price" class="number" value="90">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info">＋</button>
+              <button class="minus btn btn-sm btn-info">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary">買う</button>
+              <span class="buy_amount"></span>
+            </div>
+          </li>
+          <li index="3">
+            <div>
+              <p class="item_name">鉄のかぶと</p>
+              <input type="text" name="price" class="number" value="850">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info" index="3">＋</button>
+              <button class="minus btn btn-sm btn-info" index="3">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary" index="3">買う</button>
+              <span class="buy_amount"></span>
+            </div>
+          </li>
+          <li index="4">
+            <div>
+              <p class="item_name">皮のぼうし</p>
+              <input type="text" name="price" class="number" value="50">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info">＋</button>
+              <button class="minus btn btn-sm btn-info">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary">買う</button>
+              <span class="buy_amount"></span>
+            </div>
+          </li>
+        </ul>
+
+        <div id="character_action" class="text-center">
+          <button id="buy" class="btn btn-primary">はい</button>
+          <button id="clear" class="btn btn-outline-primary">やめる</button>
+        </div>
+
+        <div class="mt-4">
+          <div>
+            <input type="text" name="character_name" value="HAL">
+            <input type="text" name="character_money" value="1000">G
+          </div>
+          <button id="update_character" class="btn btn-primary">キャラクター更新</button>
         </div>
       </div>
+
     </div>
 
-    <div class="row">
-      <div class="col-6">
-        <h2 class="h2">標準機能</h2>
-        <dl class="list-group">
-          <dd class="list-group-item">文字サイズの変更</dd>
-          <dd class="list-group-item">文字色の変更</dd>
-          <dd class="list-group-item">文字列を増やす</dd>
-          <dd class="list-group-item">変更を戻す</dd>
-        </dl>
+    <!-- row -->
+    <div class="row mt-4">
+      <!-- sample3 -->
+      <div id="sample3" class="col-6">
+        <p class="alert alert-info">
+          「はい」をクリックしたら、メッセージを変更する。
+          <br>
+          余裕があれば、キャラクターの所持金を減らす。
+        </p>
+        <h3 class="h3">武器屋</h3>
+        <div id="shop_message">
+          HALさん。お買い上げありがとうございました。
+        </div>
+
+        <ul id="item_list">
+          <li index="0">
+            <div>
+              <p class="item_name">銅のつるぎ</p>
+              <input type="text" name="price" class="number" value="150">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info">＋</button>
+              <button class="minus btn btn-sm btn-info">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary">買う</button>
+            </div>
+          </li>
+          <li index="1">
+            <div>
+              <p class="item_name">鉄のやり</p>
+              <input type="text" name="price" class="number" value="550">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info">＋</button>
+              <button class="minus minus btn btn-sm btn-info">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary">買う</button>
+              <span class="buy_amount"></span>
+            </div>
+          </li>
+          <li index="2">
+            <div>
+              <p class="item_name">皮のたて</p>
+              <input type="text" name="price" class="number" value="90">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info">＋</button>
+              <button class="minus btn btn-sm btn-info">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary">買う</button>
+              <span class="buy_amount"></span>
+            </div>
+          </li>
+          <li index="3">
+            <div>
+              <p class="item_name">鉄のかぶと</p>
+              <input type="text" name="price" class="number" value="850">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info" index="3">＋</button>
+              <button class="minus btn btn-sm btn-info" index="3">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary" index="3">買う</button>
+              <span class="buy_amount"></span>
+            </div>
+          </li>
+          <li index="4">
+            <div>
+              <p class="item_name">皮のぼうし</p>
+              <input type="text" name="price" class="number" value="50">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info">＋</button>
+              <button class="minus btn btn-sm btn-info">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary">買う</button>
+              <span class="buy_amount"></span>
+            </div>
+          </li>
+        </ul>
+
+        <div id="character_action" class="text-center">
+          <button id="buy" class="btn btn-danger">はい</button>
+          <button id="clear" class="btn btn-outline-primary">やめる</button>
+        </div>
+
+        <div class="mt-4">
+          <div>
+            <input type="text" name="character_name" value="HAL">
+            <input type="text" name="character_money" value="700">G
+          </div>
+          <button id="update_character" class="btn btn-primary">キャラクター更新</button>
+        </div>
       </div>
 
-      <div class="col-6">
-        <h2 class="h2">オプション</h2>
-        <dl class="list-group">
-          <dd class="list-group-item">拡大・縮小</dd>
-          <dd class="list-group-item">オリジナル機能の追加</dd>
-        </dl>
+
+      <!-- sample4 -->
+      <div id="sample4" class="col-6">
+        <p class="alert alert-info">
+          余裕があれば、所持金が足りない場合は購入させない。
+          <br>
+          その他、色々な機能をつけてみる
+        </p>
+        <h3 class="h3">武器屋</h3>
+        <div id="shop_message">
+          HALさん。お金が足りないようです。
+        </div>
+
+        <ul id="item_list">
+          <li index="0">
+            <div>
+              <p class="item_name">銅のつるぎ</p>
+              <input type="text" name="price" class="number" value="150">
+              G
+              <input type="text" name="amount" class="number" value="2">
+              個
+              <button class="plus btn btn-sm btn-info">＋</button>
+              <button class="minus btn btn-sm btn-info">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary">買う</button>
+            </div>
+          </li>
+          <li index="1">
+            <div>
+              <p class="item_name">鉄のやり</p>
+              <input type="text" name="price" class="number" value="550">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info">＋</button>
+              <button class="minus minus btn btn-sm btn-info">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary">買う</button>
+              <span class="buy_amount"></span>
+            </div>
+          </li>
+          <li index="2">
+            <div>
+              <p class="item_name">皮のたて</p>
+              <input type="text" name="price" class="number" value="90">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info">＋</button>
+              <button class="minus btn btn-sm btn-info">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary">買う</button>
+              <span class="buy_amount"></span>
+            </div>
+          </li>
+          <li index="3">
+            <div>
+              <p class="item_name">鉄のかぶと</p>
+              <input type="text" name="price" class="number" value="850">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info" index="3">＋</button>
+              <button class="minus btn btn-sm btn-info" index="3">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary" index="3">買う</button>
+              <span class="buy_amount"></span>
+            </div>
+          </li>
+          <li index="4">
+            <div>
+              <p class="item_name">皮のぼうし</p>
+              <input type="text" name="price" class="number" value="50">
+              G
+              <input type="text" name="amount" class="number">
+              個
+              <button class="plus btn btn-sm btn-info">＋</button>
+              <button class="minus btn btn-sm btn-info">ー</button>
+              <button class="buy btn btn-sm btn-outline-primary">買う</button>
+              <span class="buy_amount"></span>
+            </div>
+          </li>
+        </ul>
+
+        <div id="character_action" class="text-center">
+          <button id="buy" class="btn btn-primary">はい</button>
+          <button id="clear" class="btn btn-outline-primary">やめる</button>
+        </div>
+
+        <div class="mt-4">
+          <div>
+            <input type="text" name="character_name" value="HAL">
+            <input type="text" name="character_money" value="0" class="bg-danger text-white">G
+          </div>
+          <button id="update_character" class="btn btn-primary">キャラクター更新</button>
+        </div>
       </div>
+
     </div>
-
   </div>
 
-  <script src="../../js/jquery-3.5.0.min.js"></script>
-  <script src="../../js/bootstrap/bootstrap.min.js"></script>
-
-  <script src="../../js/prism.js"></script>
-  <script src="../../js/default.js"></script>
+  <script src="js/jquery-3.5.0.min.js"></script>
 </body>
 
 </html>

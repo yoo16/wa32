@@ -1,0 +1,30 @@
+
+#shop_message {
+    padding: 20px;
+    border: solid 5px #c8d0d8;
+    background: #20221e;
+    color: #ffffff;
+    font-size: 1.3rem;
+}
+
+#item_list {
+    padding: 10px;
+    border: 1px solid #c8d0d8;
+}
+
+.number {
+    text-align: right;
+    width: 100px;
+}
+
+.item {
+    padding: 10px;
+}
+
+#item_list li {
+    list-style: none;
+}
+
+#basket li {
+    list-style: none;
+}
