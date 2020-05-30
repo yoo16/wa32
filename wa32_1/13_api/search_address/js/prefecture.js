@@ -1,4 +1,4 @@
-var prefectures = [
+let prefectures = [
     { code: "", label: "-- 都道府県 --" },
     { code: "1", label: "北海道" },
     { code: "2", label: "青森県" },

@@ -16,43 +16,200 @@
     <div><a href="../index.html">Back</a></div>
     <h1 class="h1">イベント1</h1>
 
-    <div>
-      <h2 class="h2">結果</h2>
-      <div id="result" class="p-4"></div>
-      <div id="mouse" class="p-4"></div>
-      <div id="window_size" class="p-4"></div>
+    <div id="event_method">
+      <h2 class="h2">イベントメソッド</h2>
+      <p class="alert alert-info">
+        jQueryでは2種類の方法がある
+      </p>
+      <h3 class="h3">
+        on イベント
+        <span class="badge badge-danger">推奨</span>
+      </h3>
+      <pre class="language-javascript"><code>
+      $(セレクタ).on(‘イベント名’, イベントハンドラ)
+      </code></pre>
+
+      <h3 class="h3">イベントメソッド</h3>
+      <pre class="language-javascript"><code>
+      $(セレクタ).イベント名(イベントハンドラ)
+      </code></pre>
     </div>
 
-    <h2 class="h2">操作</h2>
-    <div>
-      <button id="btn1" class="btn btn-outline-primary">ボタン1</button>
-      <button id="btn2" class="btn btn-outline-primary">ボタン2</button>
-      <button id="btn3" class="btn btn-outline-primary">ボタン3</button>
-      <button id="btn4" class="btn btn-outline-primary">ボタン4</button>
-      <button id="btn5" class="btn btn-outline-primary">User1</button>
-      <button id="btn6" class="btn btn-outline-primary">User2</button>
-    </div>
+    <div id="example_click_event">
+      <h2 class="h2">Ex. Click Event</h2>
 
-    <div>
-      <button id="btn7" class="btn btn-outline-primary">ボタン7</button>
-      <button id="btn8" class="btn btn-outline-primary">ボタン8</button>
-      <button id="btn9" class="btn btn-outline-primary">ボタン9</button>
-    </div>
-
-    <div>
-      <h3 class="h3">メッセージ表示：showMessage()</h3>
-      <div>
-        #result に与えられたテキストを表示する共通関数を作成
+      <div id="example_click_event_native">
+        <h3 class="h3">addEventListener (Native)</h3>
+        <p class="alert alert-info">
+          JavaScript ネイティブの方法
+        </p>
+        <pre class="language-javascript"><code>
+        document.getElementById('id_name').addEventListener('click', function(event) {
+            //クリック後の処理
+        });
+        </code></pre>
       </div>
+
+      <div id="example_click_event_on">
+        <h3 class="h3">onイベント(jQuery)</h3>
+        <p class="alert alert-info">
+          イベントタイプを文字列で指定して、イベントを発火させる(addEventListener と同様)
+          <br>
+          jQuery公式で推奨
+        </p>
+        <pre class="language-javascript"><code>
+        $('#id_name').on('click', function(event) {
+            //クリック後の処理
+        });
+        </code></pre>
+      </div>
+
+      <div id="example_click_event_method">
+        <h3 class="h3">clickイベント(jQuery)</h3>
+        <p class="alert alert-info">
+          jQyeryで用意されたイベントメソッドを利用
+        </p>
+
+        <h3 class="h3">click イベント(jQuery)</h3>
+        <pre class="language-javascript"><code>
+        $('#id_name').click(function(event) {
+            //クリック後の処理
+        });;
+        </code></pre>
+      </div>
+    </div>
+
+    <div id="event_type">
+      <h2 class="h2">イベントタイプ</h2>
+      <h3 class="h3">イベントタイプリファレンス</h3>
+      <ul class="list-group">
+        <li class="list-group-item"><a href="https://developer.mozilla.org/ja/docs/Web/Events"
+            target="_blank">JavaScript Event</a></li>
+        <li class="list-group-item"><a href="https://api.jquery.com/category/events/" target="_blank">jQuery Category:
+            Events</a></li>
+      </ul>
+
+      <h3 class="h3">イベントタイプの一例</h3>
+      <table class="table table-responsive">
+        <tr>
+          <th>load</th>
+          <td>読み込みが完了</td>
+        </tr>
+        <tr>
+          <th>scroll</th>
+          <td>スクロール位置が変更されたとき</td>
+        </tr>
+        <tr>
+          <th>resize</th>
+          <td>ターゲットのサイズが変更されたとき</td>
+        </tr>
+        <tr>
+          <th>click</th>
+          <td>クリックしたとき（mousedown と mouseup）</td>
+        </tr>
+        <tr>
+          <th>mousedown</th>
+          <td>ターゲット内でマウスをダウンしたとき</td>
+        </tr>
+        <tr>
+          <th>mouseup</th>
+          <td>ターゲット内でマウスをアップしたとき</td>
+        </tr>
+        <tr>
+          <th>mousemove</th>
+          <td>マウスカーソルがターゲットの中に移動したとき</td>
+        </tr>
+        <tr>
+          <th>mouseout</th>
+          <td>マウスカーソルがターゲットの外に移動したとき</td>
+        </tr>
+        <tr>
+          <th>submit</th>
+          <td>submit ボタンが押されたとき</td>
+        </tr>
+        <tr>
+          <th>select</th>
+          <td>フィールドで文字が選択されたとき</td>
+        </tr>
+        <tr>
+          <th>focus</th>
+          <td>ターゲット内でマウスをアップしたとき</td>
+        </tr>
+        <tr>
+          <th>blur</th>
+          <td>ターゲットがフォーカスを失ったとき</td>
+        </tr>
+      </table>
+
+    </div>
+
+    <div id="lesson2">
+      <h2 class="h2">サンプル</h2>
+      <div>
+        <div id="result"></div>
+        <div id="user_info">
+          <dl>
+            <dt>Name</dt>
+            <dd class="name"></dd>
+            <dt>Mail</dt>
+            <dd class="mail"></dd>
+            <dt>Tel</dt>
+            <dd class="tel"></dd>
+          </dl>
+        </div>
+        <div id="mouse"></div>
+        <div id="window_size"></div>
+      </div>
+
+      <div class="m-2">
+        <button id="btn1" class="btn btn-outline-primary">ボタン1</button>
+        <button id="btn2" class="btn btn-outline-primary">ボタン2</button>
+        <button id="btn3" class="btn btn-outline-primary">ボタン3</button>
+        <button id="btn4" class="btn btn-outline-primary">ボタン4</button>
+      </div>
+
+      <div class="m-2">
+        <button id="btn5" class="btn btn-outline-primary">User1</button>
+        <button id="btn6" class="btn btn-outline-primary">User2</button>
+      </div>
+
+      <div class="m-2">
+        <button id="btn7" class="btn btn-outline-primary">ボタン7</button>
+        <button id="btn8" class="btn btn-outline-primary">ボタン8</button>
+        <button id="btn9" class="btn btn-outline-primary">ボタン9</button>
+      </div>
+
+    </div>
+
+    <div id="html_result">
+      <h3 class="h3">メッセージ表示：showMessage()</h3>
+      <p class="alert alert-info">id=result にテキスト表示する関数を作成</p>
+
+      <h4 class="h4">HTML</h4>
+      <script type="text/plain" class="language-markup">
+      <div id="result"></div>
+      </script>
+
+      <h4 class="h4">JS</h4>
       <pre class="language-javascript"><code>
       let result = $('#result');
 
       function showMessage(message) {
-          result.text(message);
+          result.html(message);
       }
       </code></pre>
+    </div>
 
-      <h3 class="h3">click: ボタン1, 2, 3</h3>
+    <div id="sample_button1_2">
+      <h3 class="h3">ボタン1 ボタン2</h3>
+      <p class="alert alert-info">ボタンをクリックして、それぞれのメッセージを表示</p>
+      <h4 class="h4">HTML</h4>
+      <script type="text/plain" class="language-markup">
+      <button id="btn1">ボタン1</button>
+      <button id="btn2">ボタン2</button>
+      </script>
+
+      <h4 class="h4">JS</h4>
       <pre class="language-javascript"><code>
       $('#btn1').on('click', function () {
           showMessage('ボタン1がクリックされました。');
@@ -61,13 +218,39 @@
       $('#btn2').on('click', function () {
           showMessage('ボタン2がクリックされました。');
       });
-
-      $('#btn3').on('click', function () {
-          showMessage('ボタン3がクリックされました。');
-      });
       </code></pre>
+    </div>
 
-      <h3 class="h3">click: ボタン4</h3>
+    <div id="sample_button3">
+      <h3 class="h3">ボタン3: イベントデータ1</h3>
+      <p class="alert alert-info">ボタンをクリックして、イベントデータを表示</p>
+      <h4 class="h4">HTML</h4>
+      <script type="text/plain" class="language-markup">
+      <button id="btn3">ボタン3</button>
+      </script>
+
+      <h4 class="h4">JS</h4>
+      <pre class="language-javascript"><code>
+      $('#btn3').on('click',
+          { 
+              message: 'ボタン3がクリックされました。' 
+          },
+          function (event) { 
+              showMessage(event.data.message)
+          }
+      );
+      </code></pre>
+    </div>
+
+    <div id="sample_button4">
+      <h3 class="h3">ボタン4: イベントデータ2</h3>
+      <p class="alert alert-info">ボタンをクリックして、イベントデータを文字を連結させて表示</p>
+      <h4 class="h4">HTML</h4>
+      <script type="text/plain" class="language-markup">
+      <button id="btn4">ボタン4</button>
+      </script>
+
+      <h4 class="h4">JS</h4>
       <pre class="language-javascript"><code>
       $('#btn4').on('click',
           {
@@ -75,88 +258,202 @@
               msg2: 'こんにちは',
               msg3: 'さようなら'
           },
-          function (e) {
-              let message = e.data.msg1 + ' ' + e.data.msg2  + ' ' +  e.data.msg3;
+          function (event) {
+              let message = event.data.msg1 + ' ' + event.data.msg2  + ' ' +  event.data.msg3;
+              //let message = `${event.data.msg1} ${event.data.msg2} ${event.data.msg3}`;
               showMessage(message);
           }
       );
       </code></pre>
+    </div>
 
-      <h2 class="h2">JS</h2>
-      <h3 class="h3">click: #btn5, #btn6</h3>
+    <div id="sample_user_info1">
+      <h3 class="h3">User1、User2: イベントハンドラ</h3>
+      <p class="alert alert-info">ボタンをクリックして、name, email, tel を表示</p>
+      <h4 class="h4">HTML</h4>
+      <script type="text/plain" class="language-markup">
+        <button id="btn5">User1</button>
+        <button id="btn6">User2</button>
+        </script>
+
+      <p class="alert alert-info">name, email, tel 表示HTML</p>
+      <script type="text/plain" class="language-markup">
+        <div id="user_info">
+          <dl>
+            <dt>Name</dt>
+            <dd class="name"></dd>
+            <dt>Mail</dt>
+            <dd class="mail"></dd>
+            <dt>Tel</dt>
+            <dd class="tel"></dd>
+          </dl>
+        </div>
+        </script>
+
+      <h4 class="h4">JS</h4>
+      <p class="alert alert-info">name, email, tel 表示関数</p>
       <pre class="language-javascript"><code>
-      function eventFunc(e) {
-          let message = '';
-          message+= 'name:' + e.data.name;
-          message+= ',mail:' + e.data.mail;
-          message+= ',tel:' + e.data.tel;
-          showMessage(message);
-      }
-  
-      $('#btn5').on('click',
-          {
-              name: 'User1',
-              mail: 'user1@aaa.bbb',
-              tel: '1234567890'
-          },
-          eventFunc
-      );
-  
-      $('#btn6').on('click',
-          {
-              name: 'User2',
-              mail: 'user2@aaa.bbb',
-              tel: '01234567890'
-          },
-          eventFunc
-      );
+        function showUserInfo(event) {
+            let user = event.data;
+    
+            $('#user_info .name').html(user.name);
+            $('#user_info .mail').html(user.mail);
+            $('#user_info .tel').html(user.tel);
+        }
+        </code></pre>
+    </div>
+
+    <div id="sample_user_info2">
+      <p class="alert alert-info">ユーザデータを showUserInfo() に渡す</p>
+      <pre class="language-javascript"><code>
+        $('#btn5').on('click',
+            {
+                name: 'User1',
+                mail: 'user1@aaa.bbb',
+                tel: '1234567890'
+            },
+            showUserInfo
+        );
+
+        $('#btn6').on('click',
+            {
+                name: 'User2',
+                mail: 'user2@aaa.bbb',
+                tel: '01234567890'
+            },
+            showUserInfo
+        );
       </code></pre>
+    </div>
 
-      <h3 class="h3">click, mouseover, mouseout</h3>
+    <div id="sample_button7">
+      <h3 class="h3">ボタン7: click, mouseover, mouseout イベント</h3>
+      <p class="alert alert-info">click, mouseover, mouseout イベントをそれぞれ実装</p>
+
+      <h4 class="h4">HTML</h4>
+      <script type="text/plain" class="language-markup">
+      <button id="btn7" class="btn btn-outline-primary">ボタン7</button>
+      </script>
+
+      <h4 class="h4">JS</h4>
       <pre class="language-javascript"><code>
-      $('#btn7').on('click', function () {
-          showMessage('click');
-      });
+        $('#btn7').on('click', function () {
+            showMessage('Click!');
+        });
 
-      $('#btn7').on('mouseover', function () {
-          showMessage('mouseover');
-      });
+        $('#btn7').on('mouseover', function () {
+            showMessage('Mouse Over!');
+        });
 
-      $('#btn7').on('mouseout', function () {
-          showMessage('mouseout');
-      });
+        $('#btn7').on('mouseout', function () {
+            showMessage('Mouse Out!');
+        });
+        </code></pre>
+    </div>
 
-      $('#btn8').on({
-          'click': function () {
-              showMessage('click');
-          },
-          'mouseover': function () {
-              showMessage('mouseover');
-          },
-          'mouseout': function () {
-              showMessage('mouseout');
-          }
-      });
+    <div id="sample_button8">
+      <h3 class="h3">ボタン8: click, mouseover, mouseout イベント</h3>
 
+      <h4 class="h4">HTML</h4>
+      <script type="text/plain" class="language-markup">
+        <button id="btn8" class="btn btn-outline-primary">ボタン8</button>
+        </script>
+
+      <h4 class="h4">JS</h4>
+      <p class="alert alert-info">click, mouseover, mouseout イベントをまとめて実装</p>
+      <pre class="language-javascript"><code>
+        $('#btn8').on({
+            'click': function () {
+                showMessage('Click!');
+            },
+            'mouseover': function () {
+                showMessage('Mouse Over!');
+            },
+            'mouseout': function () {
+                showMessage('Mouse Out!');
+            }
+        });
+        </code></pre>
+    </div>
+
+    <div id="sample_button9">
+      <h3 class="h3">ボタン9: イベントタイプ</h3>
+      <p class="alert alert-info">click, mouseover, mouseout イベントのタイプを表示</p>
+
+      <h4 class="h4">HTML</h4>
+      <script type="text/plain" class="language-markup">
+      <button id="btn9">ボタン9</button>
+      </script>
+
+      <h4 class="h4">JS</h4>
+      <pre class="language-javascript"><code>
       $('#btn9').on(
           'click mouseover mouseout',
-          function (e) { showMessage(e.type); }
+          function (event) { 
+              showMessage(event.type);
+          }
       );
       </code></pre>
+    </div>
 
-      <h3 class="h3">Window Size</h3>
+    <div id="sample_window_object">
+      <h3 class="h3">イベントオブジェクト</h3>
+      <p class="alert alert-info">イベントで発生した event オブジェクトを利用</p>
+
+      <h4 class="h4">イベントオブジェクト座標</h4>
+      <pre class="language-javascript"><code>
+      $(セレクタ).on(イベントタイプ, function (event) {
+          event.pageX //イベント発生したオブジェクトの X座標
+          event.pageY //イベント発生したオブジェクトの Y座標
+      }
+      </code></pre>
+
+      <h3 class="h3">画面全体のマウス移動座標</h3>
+      <h4 class="h4">HTML</h4>
+      <script type="text/plain" class="language-markup">
+      <div id="mouse"></div>
+      </script>
+
+      <h4 class="h4">JS</h4>
+      <pre class="language-javascript"><code>
+      $(document).on('mousemove', function (event) {
+          let message = '(x, y) = (' + event.pageX + ', ' + event.pageY + ')';
+          //let message = `(x, y) = (${event.pageX} ${event.pageY})`;
+          $('#mouse').text(message);
+      });
+      </code></pre>
+    </div>
+
+    <div id="sample_window_size">
+      <h3 class="h3">リサイズイベント</h3>
+      <p class="alert alert-info">ウィンドウをリサイズしたときに発生するイベント
+        <br>
+        ※ウィンドウのみの対応
+      </p>
       <pre class="language-javascript"><code>
       $(window).on('resize', function () {
-          $('#window_size').text(
-              '(width, height) = (' 
-              + $(window).width() + ', '
-              + $(window).height() + ')'
-          );
+          //処理
       });
       </code></pre>
 
+      <h3 class="h3">ウィンドウリサイズによるサイズ取得</h3>
+      <h4 class="h4">HTML</h4>
+      <script type="text/plain" class="language-markup">
+      <div id="window_size"></div>
+      </script>
+
+      <h4 class="h4">JS</h4>
+      <pre class="language-javascript"><code>
+      $(window).on('resize', function () {
+          //let message = '(x, y) = (' + event.pageX + ', ' + event.pageY + ')';
+          let message = `(width, height) = (${$(window).width()} ${$(window).height()})`;
+          $('#window_size').text(message);
+      });
+      </code></pre>
     </div>
-    <div><a href="../index.html">Back</a></div>
+
+  </div>
+  <div><a href="../index.html">Back</a></div>
   </div>
 
   <script src="../js/jquery-3.5.0.min.js"></script>
