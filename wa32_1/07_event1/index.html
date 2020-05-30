@@ -44,7 +44,7 @@
           JavaScript ネイティブの方法
         </p>
         <pre class="language-javascript"><code>
-        document.getElementById('id_name').addEventListener('click', function(event) {
+        document.getElementById(ID).addEventListener('click', function(event) {
             //クリック後の処理
         });
         </code></pre>
@@ -58,7 +58,7 @@
           jQuery公式で推奨
         </p>
         <pre class="language-javascript"><code>
-        $('#id_name').on('click', function(event) {
+        $(セレクタ).on('click', function(event) {
             //クリック後の処理
         });
         </code></pre>
@@ -72,7 +72,7 @@
 
         <h3 class="h3">click イベント(jQuery)</h3>
         <pre class="language-javascript"><code>
-        $('#id_name').click(function(event) {
+        $(セレクタ).click(function(event) {
             //クリック後の処理
         });;
         </code></pre>
@@ -434,6 +434,12 @@
       $(window).on('resize', function () {
           //処理
       });
+      </code></pre>
+
+      <h4 class="h4">ウィンドウサイズ取得</h4>
+      <pre class="language-javascript"><code>
+      $(window).width();
+      $(window).height();
       </code></pre>
 
       <h3 class="h3">ウィンドウリサイズによるサイズ取得</h3>
