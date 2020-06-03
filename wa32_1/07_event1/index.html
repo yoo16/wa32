@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="../css/prism.css">
   <link rel="stylesheet" href="../css/default.css">
+  <link rel="stylesheet" href="css/main.css">
 
   <title>WA32 event1</title>
 </head>
@@ -116,12 +117,36 @@
           <td>ターゲット内でマウスをアップしたとき</td>
         </tr>
         <tr>
+          <th>mouseover</th>
+          <td>マウスカーソルがターゲットの中に入ったとき</td>
+        </tr>
+        <tr>
           <th>mousemove</th>
           <td>マウスカーソルがターゲットの中に移動したとき</td>
         </tr>
         <tr>
           <th>mouseout</th>
           <td>マウスカーソルがターゲットの外に移動したとき</td>
+        </tr>
+        <tr>
+          <th>input</th>
+          <td>値が入力されたとき</td>
+        </tr>
+        <tr>
+          <th>change</th>
+          <td>
+            値が変更されたとき
+            <br>
+            フォーカスが外れたときに発生
+          </td>
+        </tr>
+        <tr>
+          <th>keypdown</th>
+          <td>キーが押されたときに発生</td>
+        </tr>
+        <tr>
+          <th>keyup</th>
+          <td>キーが離されたときに発生</td>
         </tr>
         <tr>
           <th>submit</th>
@@ -141,6 +166,69 @@
         </tr>
       </table>
 
+    </div>
+
+    <div id="event_handler">
+      <h2 class="h2">イベントハンドラ</h2>
+      <pre class="language-javascript"><code>
+      $(セレクタ).on(‘イベント名’, function() {
+          //処理
+      });
+      </code></pre>
+
+      <pre class="language-javascript"><code>
+      $(セレクタ).on(‘イベント名’, myFunction);
+
+      function myFunction() {
+          //処理
+      }
+      </code></pre>
+
+      <h3 class="h3">変更されたときに発生: change</h3>
+      <input type="text" id="message" value="">
+      <div id="result_message" class="result"></div>
+
+      <h4 class="h4">HTML</h4>
+
+      <script type="text/plain" class="language-markup">
+      <input type="text" id="message" value="">
+      <div id="result_message" class="result"></div>
+      </script>
+
+      <h4 class="h4">JS</h4>
+      <pre class="language-javascript"><code>
+      $('#message').on('change', function() {
+          let text = $(this).val();
+          $('#result_message').html(text);
+      })
+      </code></pre>
+
+      <h3 class="h3">$(this)</h3>
+      <p class="alert alert-info">
+        ハンドラー内で自分自身のオブジェクトを利用する場合、$(this) を利用する
+      </p>
+      <pre class="language-javascript"><code>
+      $(this)
+      </code></pre>
+
+      <h3 class="h3">値を入力したときに発生: input</h3>
+      <input type="text" id="type_text" value="">
+      <div id="result_type_text" class="result"></div>
+
+      <h4 class="h4">HTML</h4>
+
+      <script type="text/plain" class="language-markup">
+      <input type="text" id="type_text" value="">
+      <div id="result_type_text" class="result"></div>
+      </script>
+
+      <h4 class="h4">JS</h4>
+      <pre class="language-javascript"><code>
+      $('#type_text').on('input', function() {
+          let text = $(this).val();
+          $('#result_type_text').html(text);
+      })
+      </code></pre>
     </div>
 
     <div id="lesson2">
@@ -463,7 +551,7 @@
   </div>
 
   <script src="../js/jquery-3.5.0.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20200604"></script>
 
   <script src="../js/bootstrap/bootstrap.min.js"></script>
   <script src="../js/prism.js"></script>

@@ -1,17 +1,6 @@
 $(function () {
-
-    $('#message').on('change', function(event) {
-        console.log(event);
-        let text = $(this).val();
-        $('#result_message').html(text);
-    })
-
-    $('#type_text').on('input', function(event) {
-        let text = $(this).val();
-        $('#result_type_text').html(text);
-    })
-
     let result = $('#result');
+
     /**
      * showMessage
      * 

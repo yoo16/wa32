@@ -64,18 +64,18 @@
       <h3 class="h3">Array オブジェクトをループ</h3>
       <pre class="language-javascript"><code>
           let items = [
-            { index:0, name: '銅のつるぎ', price: 150, amount: 1},
-            { index:1, name: '鉄のやり', price: 550, amount: 1},
-            { index:2, name: '皮のたて', price: 90, amount: 1},
-            { index:3, name: '鉄のかぶと', price: 850, amount: 1},
-            { index:4, name: '皮のぼうし', price: 50, amount: 1},
+              { index:0, name: '銅のつるぎ', price: 150, amount: 1},
+              { index:1, name: '鉄のやり', price: 550, amount: 1},
+              { index:2, name: '皮のたて', price: 90, amount: 1},
+              { index:3, name: '鉄のかぶと', price: 850, amount: 1},
+              { index:4, name: '皮のぼうし', price: 50, amount: 1},
           ];
 
           $.each(items, function(index, value) {
-            console.log(index);
-            console.log(value);
-            console.log(value.name);
-            console.log(this.name);
+              console.log(index);
+              console.log(value);
+              console.log(value.name);
+              console.log(this.name);
           });
 
           // 0
