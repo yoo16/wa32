@@ -6,6 +6,7 @@ $(function() {
         item_name: $('#item_list .item_name'),
         item_price: $('#item_list input[name=price]'),
         item_amount: $('#item_list input[name=amount]'),
+        item_total_price: $('#item_list .item_total_price'),
         character_name: $('input[name=character_name]'),
         character_money: $('input[name=character_money]'),
         number: $('.number'),
@@ -67,9 +68,28 @@ $(function() {
                 el.item_price.eq(item.index).val(item.price);
             });
         },
+        getAmount: () => {
+            return parseInt(el.item_amount.eq(item.selected).val());
+        },
         message: () => {
             let message = character.name + shop.message_base;
             el.message.html(message);
+        },
+        calculateItemsPrice: () => {
+            const selected_item = item.get();
+            const amount = shop.getAmount();
+            item.selected_total_price = selected_item.price * amount;
+            // console.log(total_price);
+            return item.selected_total_price;
+        },
+        updateItemsTotalPrice: () => {
+            //console.log(item.selected);
+            //console.log(item.selected_total_price);
+            let total_price = '';
+            if (item.selected_total_price > 0) {
+                total_price = item.selected_total_price + 'G';
+            }
+            el.item_total_price.eq(item.selected).html(total_price);
         },
         calculate() {
             shop.is_item_selected = true;
@@ -80,7 +100,8 @@ $(function() {
 
             // let item_name = el.item_name.eq(item.selected).text();
             // let price = el.item_price.eq(item.selected).val();
-            let amount = el.item_amount.eq(item.selected).val();
+            // let amount = el.item_amount.eq(item.selected).val();
+            let amount = shop.getAmount();
 
             item.total_price = price * amount;
             let message = '';
@@ -115,6 +136,7 @@ $(function() {
         default_price: 0,
         default_amount: 1,
         selected: 0,
+        selected_total_price: 0,
         total_price: 0,
         items: [
             { index:0, name: '銅のつるぎ', price: 150, amount: 1},
@@ -148,6 +170,8 @@ $(function() {
         let amount = item.getAmount();
         amount++;
         el.item_amount.eq(item.selected).val(amount);
+        shop.calculateItemsPrice();
+        shop.updateItemsTotalPrice();
     });
 
     $('.minus').on('click', function() {
@@ -155,6 +179,8 @@ $(function() {
         amount--;
         if (amount < 0) amount = 0;
         el.item_amount.eq(item.selected).val(amount);
+        shop.calculateItemsPrice();
+        shop.updateItemsTotalPrice();
     });
 
     $('.buy').on('click', function() {
