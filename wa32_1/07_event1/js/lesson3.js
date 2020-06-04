@@ -1,4 +1,12 @@
 $(function () {
+    $('#city_button').on('click', function(event) {
+        let city_code = $(this).attr('code');
+        $('#result_city_code').html(city_code);
+
+        let city_name = $(this).data('name');
+        $('#result_city_name').html(city_name);
+    });
+
     let result = $('#result');
 
     /**
@@ -128,20 +136,22 @@ $(function () {
     /**
      * click,mouseover,mouseout event btn8
      */
-    $('#btn8').on({
-        'click': function () {
-            showMessage('Click!');
-            // console.log('click');
-        },
-        'mouseover': function () {
-            showMessage('Mouse Over!');
-            // console.log('mouseover');
-        },
-        'mouseout': function () {
-            showMessage('Mouse Out!');
-            // console.log('mouseout');
+    $('#btn8').on(
+        {
+            'click': function () {
+                showMessage('Click!');
+                // console.log('click');
+            },
+            'mouseover': function () {
+                showMessage('Mouse Over!');
+                // console.log('mouseover');
+            },
+            'mouseout': function () {
+                showMessage('Mouse Out!');
+                // console.log('mouseout');
+            }
         }
-    });
+    );
 
     /**
      * click,mouseover,mouseout event btn9
@@ -150,7 +160,7 @@ $(function () {
         'click mouseover mouseout',
         function (event) { 
             showMessage(event.type);
-            // console.log(event.type);
+            console.log(event.type);
         }
     );
 
