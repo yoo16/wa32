@@ -30,38 +30,56 @@
       }
       </code></pre>
 
-      <h3 class="h3">li をループ</h3>
-
+      <p class="alert alert-info">
+        each を利用して、HTMLの要素を調べてみる
+      </p>
+      <h3 class="h3">HTML</h3>
+      <script type="text/plain" class="language-markup">
       <ul id="city">
-        <li>Tokyo</li>
-        <li>Osaka</li>
-        <li>Nagoya</li>
+        <li><span>Tokyo</span></li>
+        <li><span>Osaka</span></li>
+        <li><span>Nagoya</span></li>
       </ul>
+      </script>
 
+      <h3 class="h3">JS</h3>
       <pre class="language-javascript"><code>
       $('#city li').each(function(index, element){
           console.log(index);
           console.log(element);
           console.log(this);
+          console.log($(this));
           console.log($(this).text());
+          console.log($(this).html())
       });
 
       // 0
+      //
       // &lt;li&gt;Tokyo&lt;/li&gt;
       // &lt;li&gt;Tokyo&lt;/li&gt;
+      //
+      // S.fn.init [li]
+      // S.fn.init [li]
+      //
       // Tokyo
+      // &lt;span&gt;Tokyo&lt;/span&gt;
       //...
       </code></pre>
 
+      <ul id="city">
+        <li><span>Tokyo</span></li>
+        <li><span>Osaka</span></li>
+        <li><span>Nagoya</span></li>
+      </ul>
 
-      <h3 class="h3">オブジェクトの繰り返し</h3>
+      <h3 class="h3">オブジェクトの配列繰り返し</h3>
       <pre class="language-javascript"><code>
       $.each(オブジェクト, function(index, value) {
           //処理
       }
       </code></pre>
 
-      <h3 class="h3">Array オブジェクトをループ</h3>
+      <h3 class="h3">JS</h3>
       <pre class="language-javascript"><code>
           let items = [
               { index:0, name: '銅のつるぎ', price: 150, amount: 1},
@@ -71,10 +89,10 @@
               { index:4, name: '皮のぼうし', price: 50, amount: 1},
           ];
 
-          $.each(items, function(index, value) {
+          $.each(items, function(index, item) {
               console.log(index);
-              console.log(value);
-              console.log(value.name);
+              console.log(item);
+              console.log(item.name);
               console.log(this.name);
           });
 
@@ -91,7 +109,7 @@
   </div>
 
   <script src="../js/jquery-3.5.0.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20200610"></script>
 
   <script src="../js/bootstrap/bootstrap.min.js"></script>
   <script src="../js/prism.js"></script>

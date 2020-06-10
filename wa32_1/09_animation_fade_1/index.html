@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="../css/prism.css">
   <link rel="stylesheet" href="../css/default.css">
 
-  <title>WA32 animation2</title>
+  <title>WA32 animation 1</title>
 </head>
 
 <body>
@@ -41,28 +41,40 @@
       $(セレクタ).fadeOut(duration, easing, complete);
       </code></pre>
 
-      <dl>
-        <dt>duration</dt>
-        <dd>アニメーションの実行時間（ms:ミリ秒)</dd>
-        <dt>easing</dt>
-        <dd>アニメーションの加速/減速させるための関数</dd>
-        <dt>complete</dt>
-        <dd>アニメーション完了後に実行される関数</dd>
-      </dl>
+      <table class="table table-responsive">
+        <tr>
+          <th>duration</th>
+          <td>アニメーションの実行時間（ms:ミリ秒)</td>
+        </tr>
+        <tr>
+          <th>easing</th>
+          <td>アニメーションの加速/減速させるための関数</td>
+        </tr>
+        <tr>
+          <th>complete</th>
+          <td>アニメーション完了後に実行される関数</td>
+        </tr>
+      </table>
 
       <h3 class="h3">setTimeout()</h3>
       <pre class="language-javascript"><code>
       setTimeout(function, delay, param1, param2, ...)
       </code></pre>
 
-      <dl>
-        <dt>function</dt>
-        <dd>delay 時間(ms)後に実行される関数</dd>
-        <dt>delay</dt>
-        <dd>遅延時間(ms)</dd>
-        <dt>param1, param2...</dt>
-        <dd>関数の引数</dd>
-      </dl>
+      <table class="table table-responsive">
+        <tr>
+          <th>function</th>
+          <td>delay 時間(ms)後に実行される関数</td>
+        </tr>
+        <tr>
+          <th>delay</th>
+          <td>遅延時間(ms)</td>
+        </tr>
+        <tr>
+          <th>param1, param2...</th>
+          <td>関数の引数</td>
+        </tr>
+      </table>
 
       <h3 class="h3">Sample</h3>
       <pre class="language-javascript"><code>
@@ -92,6 +104,22 @@
           <li class="list-group-item">linear</li>
           <li class="list-group-item">swing</li>
         </ul>
+
+        <h3 class="h3">jQuery easing の拡張</h3>
+        <p class="alert alert-info">
+          最近は更新されなくなっている
+        </p>
+        <h4 class="h4">jQuery UI</h4>
+        <a href="https://jqueryui.com/download/all/" target="_blank">jQuery UI Download</a>
+
+        <h4 class="h4">jQuery UI</h4>
+        <a href="http://gsgd.co.uk/sandbox/jquery/easing/" target="_blank">jQuery Easing Plugin</a>
+
+        <h5 class="h5">CDN</h5>
+        <pre class="language-javascript"><code>
+          &lt;script src="http://gsgd.co.uk/sandbox/jquery/easing/jquery.easing.1.3.js"&gt;&lt/script&gt
+        </code></pre>
+
       </div>
 
     </div>

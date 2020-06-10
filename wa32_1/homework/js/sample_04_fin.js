@@ -134,7 +134,7 @@ $(function() {
     let item = {
         default_name: 'アイテム名',
         default_price: 0,
-        default_amount: 1,
+        default_amount: 0,
         selected: 0,
         selected_total_price: 0,
         total_price: 0,

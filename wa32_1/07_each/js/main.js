@@ -1,9 +1,19 @@
 $(function () {
     $('#city li').each(function(index, element){
+        console.log('---- index ----');
         console.log(index);
+
+        console.log('---- element ----');
         console.log(element);
         console.log(this);
+
+        console.log('---- selector ----');
+        console.log($(element));
+        console.log($(this));
+
+        console.log('---- text html ----');
         console.log($(this).text());
+        console.log($(this).html());
     });
 
 
@@ -15,11 +25,14 @@ $(function () {
         { index:4, name: '皮のぼうし', price: 50, amount: 1},
     ];
 
-    $.each(items, function(index, value) {
+    $.each(items, function(index, item) {
         console.log(index);
-        console.log(value);
-        console.log(value.name);
+        console.log(item);
+        console.log(item.name);
         console.log(this.name);
     });
 
+    // $.each(collection, function (indexInArray, valueOfElement) { 
+         
+    // });
 });
