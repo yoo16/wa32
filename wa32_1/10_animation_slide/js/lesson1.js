@@ -8,7 +8,7 @@ $(function () {
 
     let current = 0;
     let duration = 500;
-    let easing = 'linear'
+    let easing = 'easeInOutBack'
 
     $('#reset_btn').on('click', function () {
         girl.animate({ 'left': 0, 'top': 0 }, duration, easing);
