@@ -39,28 +39,25 @@ $(function () {
     });
 
     $('.plus').on('click', function(event) {
-        index = $('.plus').index(this);
+        index = $(this).attr('index');
+        // index = $(this).closest('li').attr('index');
+        // index = $('.minus').index(this);
 
-        item_name = $('.item_name').eq(index).text();
-        price = $('input[name=price]').eq(index).val();
-        amount = $('input[name=amount]').eq(index).val();
+        amount++;
 
-        amount--;
-        if (amount < 0) amount = 0;
-
+        //グローバルになってしまう
         $('input[name=amount]').eq(index).val(amount);
     });
 
     $('.minus').on('click', function(event) {
-        index = $('.minus').index(this);
-
-        item_name = $('.item_name').eq(index).text();
-        price = $('input[name=price]').eq(index).val();
-        amount = $('input[name=amount]').eq(index).val();
+        index = $(this).attr('index');
+        // index = $(this).closest('li').attr('index');
+        // index = $('.minus').index(this);
 
         amount--;
-        if (amount > 0) amount--;
+        if (amount < 0) amount = 0;
 
+        //グローバルになってしまう
         $('input[name=amount]').eq(index).val(amount);
     });
 

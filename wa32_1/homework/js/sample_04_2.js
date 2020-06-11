@@ -36,17 +36,17 @@ $(function () {
     });
 
     $('.plus').on('click', function(event) {
-        //let index = $(this).attr('index');
-        //let index = $(this).closest('li').attr('index');
-        index = $('.plus').index(this);
+        index = $(this).attr('index');
+        // index = $(this).closest('li').attr('index');
+        // index = $('.plus').index(this);
 
         console.log(index);
     });
 
     $('.minus').on('click', function(event) {
-        //let index = $(this).attr('index');
-        //let index = $(this).closest('li').attr('index');
-        index = $('.minus').index(this);
+        index = $(this).attr('index');
+        // index = $(this).closest('li').attr('index');
+        // index = $('.minus').index(this);
 
         console.log(index);
     });

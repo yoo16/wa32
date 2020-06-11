@@ -56,7 +56,9 @@ $(function () {
     });
 
     $('.plus').on('click', function(event) {
-        index = $('.plus').index(this);
+        index = $(this).attr('index');
+        // index = $(this).closest('li').attr('index');
+        // index = $('.minus').index(this);
 
         item_name = $('.item_name').eq(index).text();
         price = $('input[name=price]').eq(index).val();
@@ -70,7 +72,9 @@ $(function () {
     });
 
     $('.minus').on('click', function(event) {
-        index = $('.minus').index(this);
+        index = $(this).attr('index');
+        // index = $(this).closest('li').attr('index');
+        // index = $('.minus').index(this);
 
         item_name = $('.item_name').eq(index).text();
         price = $('input[name=price]').eq(index).val();
