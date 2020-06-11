@@ -52,116 +52,128 @@
         </script>
 
           <h2 class="h2">CSS</h2>
+          <p class="alert alert-info">
+            作品によって、絶対座標か相対座標か考えてアニメーションする
+          </p>
+          <h3 class="h3">絶対座標</h3>
           <pre class="language-css"><code>
-        p {
-            margin: 24px;
-        }
-        
-        #photo {
-            position: absolute;
-        }
-        </code></pre>
+          #photo {
+              position: absolute;
+          }
+          </code></pre>
+
+          <h3 class="h3">相対座標</h3>
+          <pre class="language-css"><code>
+          #photo {
+              position: relative;
+          }
+          </code></pre>
 
           <h2 class="h2">JS</h2>
           <pre class="language-javascript"><code>
-      $(function () {
-        let photo = $('#photo');
-        slideToRight();
-    
-        //slide right
-        function slideToRight() {
-            photo.animate(
-                { 'left': 300 },
-                1000,
-                'linear',
-                function () {
-                    setTimeout(slideToDown, 1000);
-                });
-        };
-    
-        //slide left
-        function slideToLeft() {
-            photo.animate({ 'left': 0 }, 1000,
-                'linear',
-                function () {
-                    setTimeout(slideToUp, 1000)
-                });
-        };
-    
-        //slide down
-        function slideToDown() {
-            photo.animate({ 'top': 100 }, 1000,
-                'linear',
-                function () {
-                    setTimeout(slideToLeftUp, 1000);
-                });
-        };
-    
-        //slide left up
-        function slideToLeftUp() {
-            photo.animate({ 'left': 0, 'top': 0 }, 1000,
-                'linear',
-                function () {
-                    setTimeout(slideToRight, 1000);
-                });
-        };
-    
-        //slide up
-        function slideToUp() {
-            photo.animate({ 'top': 0 }, 1000,
-                'linear',
-                function () {
-                    setTimeout(slideToLeft, 1000);
-                });
-        };
-    });
-    </code></pre>
+          $(function () {
+            let photo = $('#photo');
+            slideToRight();
+        
+            //slide right
+            function slideToRight() {
+                photo.animate(
+                    { 'left': 300 },
+                    1000,
+                    'linear',
+                    function () {
+                        setTimeout(slideToDown, 1000);
+                    });
+            };
+        
+            //slide left
+            function slideToLeft() {
+                photo.animate({ 'left': 0 }, 1000,
+                    'linear',
+                    function () {
+                        setTimeout(slideToUp, 1000)
+                    });
+            };
+        
+            //slide down
+            function slideToDown() {
+                photo.animate({ 'top': 100 }, 1000,
+                    'linear',
+                    function () {
+                        setTimeout(slideToLeftUp, 1000);
+                    });
+            };
+        
+            //slide left up
+            function slideToLeftUp() {
+                photo.animate({ 'left': 0, 'top': 0 }, 1000,
+                    'linear',
+                    function () {
+                        setTimeout(slideToRight, 1000);
+                    });
+            };
+        
+            //slide up
+            function slideToUp() {
+                photo.animate({ 'top': 0 }, 1000,
+                    'linear',
+                    function () {
+                        setTimeout(slideToLeft, 1000);
+                    });
+            };
+        });
+        </code></pre>
         </div>
       </div>
 
       <div>
-        <h3 class="h3">Easing</h3>
-        <p class="alert alert-info">
-          時間の経過に伴うパラメーターの変化率を指定
-        </p>
+        <h3 class="h2">Easing</h2>
+          <p class="alert alert-info">
+            時間の経過に伴うパラメーターの変化率を指定
+          </p>
 
-        <a href="https://easings.net/ja" target="_blank">https://easings.net/ja</a>
+          <h3 class="h3">easing の種類</h3>
 
-        <ul class="list-group">
-          <li class="list-group-item">linear</li>
-          <li class="list-group-item">swing</li>
-          <li class="list-group-item">jswing</li>
-          <li class="list-group-item">easeInQuad</li>
-          <li class="list-group-item">easeOutQuad</li>
-          <li class="list-group-item">easeInOutQuad</li>
-          <li class="list-group-item">easeInCubic</li>
-          <li class="list-group-item">easeOutCubic</li>
-          <li class="list-group-item">easeInOutCubic</li>
-          <li class="list-group-item">easeInQuart</li>
-          <li class="list-group-item">easeOutQuart</li>
-          <li class="list-group-item">easeInOutQuart</li>
-          <li class="list-group-item">easeInQuint</li>
-          <li class="list-group-item">easeOutQuint</li>
-          <li class="list-group-item">easeInOutQuint</li>
-          <li class="list-group-item">easeInSine</li>
-          <li class="list-group-item">easeOutSine</li>
-          <li class="list-group-item">easeInOutSine</li>
-          <li class="list-group-item">easeInExpo</li>
-          <li class="list-group-item">easeOutExpo</li>
-          <li class="list-group-item">easeInOutExpo</li>
-          <li class="list-group-item">easeInCirc</li>
-          <li class="list-group-item">easeOutCirc</li>
-          <li class="list-group-item">easeInOutCirc</li>
-          <li class="list-group-item">easeInElastic</li>
-          <li class="list-group-item">easeOutElastic</li>
-          <li class="list-group-item">easeInOutElastic</li>
-          <li class="list-group-item">easeInBack</li>
-          <li class="list-group-item">easeOutBack</li>
-          <li class="list-group-item">easeInOutBack</li>
-          <li class="list-group-item">easeInBounce</li>
-          <li class="list-group-item">easeOutBounce</li>
-          <li class="list-group-item">easeInOutBounce</li>
-        </ul>
+          <h4 class="h4">参考</h4>
+          <p>
+            <a href="https://easings.net/ja" target="_blank">https://easings.net/ja</a>
+          </p>
+
+          <ul class="list-group mt-4">
+            <li class="list-group-item">linear</li>
+            <li class="list-group-item">swing</li>
+            <li class="list-group-item">jswing</li>
+            <li class="list-group-item">easeInQuad</li>
+            <li class="list-group-item">easeOutQuad</li>
+            <li class="list-group-item">easeInOutQuad</li>
+            <li class="list-group-item">easeInCubic</li>
+            <li class="list-group-item">easeOutCubic</li>
+            <li class="list-group-item">easeInOutCubic</li>
+            <li class="list-group-item">easeInQuart</li>
+            <li class="list-group-item">easeOutQuart</li>
+            <li class="list-group-item">easeInOutQuart</li>
+            <li class="list-group-item">easeInQuint</li>
+            <li class="list-group-item">easeOutQuint</li>
+            <li class="list-group-item">easeInOutQuint</li>
+            <li class="list-group-item">easeInSine</li>
+            <li class="list-group-item">easeOutSine</li>
+            <li class="list-group-item">easeInOutSine</li>
+            <li class="list-group-item">easeInExpo</li>
+            <li class="list-group-item">easeOutExpo</li>
+            <li class="list-group-item">easeInOutExpo</li>
+            <li class="list-group-item">easeInCirc</li>
+            <li class="list-group-item">easeOutCirc</li>
+            <li class="list-group-item">easeInOutCirc</li>
+            <li class="list-group-item">easeInElastic</li>
+            <li class="list-group-item">easeOutElastic</li>
+            <li class="list-group-item">easeInOutElastic</li>
+            <li class="list-group-item">easeInBack</li>
+            <li class="list-group-item">easeOutBack</li>
+            <li class="list-group-item">easeInOutBack</li>
+            <li class="list-group-item">easeInBounce</li>
+            <li class="list-group-item">easeOutBounce</li>
+            <li class="list-group-item">easeInOutBounce</li>
+          </ul>
       </div>
 
     </div>
