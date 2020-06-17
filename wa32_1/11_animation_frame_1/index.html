@@ -24,8 +24,17 @@
     </p>
 
     <div>
+      <div>
+        <h2 class="h2">Image</h2>
+        <img src="images/top.gif">
+      </div>
+
       <div id="code">
         <h2 class="h2">HTML</h2>
+        <pre class="language-markup"><code>
+        &lt;link rel="stylesheet" href=“css/style.css"&gt;
+        </code></pre>
+
         <pre class="language-markup"><code>
           &lt;p id="pic-box"&gt;
             &lt;img src="images/top.gif" id="pic"&gt;
@@ -33,6 +42,13 @@
         </code></pre>
 
         <h2 class="h2">CSS</h2>
+        <ul class="list-group">
+          <li class="list-group-item">overflow, width, height で１コマ分を表示</li>
+          <li class="list-group-item">width, height は一コマ分の領域</li>
+          <li class="list-group-item">overflow: hidden ではみ出た部分を非表示</li>
+          <li class="list-group-item">img は絶対座標で設定</li>
+        </p>
+
         <pre class="language-css"><code>
         #pic-box {
             position: relative;
@@ -42,21 +58,105 @@
             margin: 24px auto 0;
         }
 
-        #pic{
+        #pic {
             position: absolute;
         }
         </code></pre>
-        <ul>
-          <li>overflow: hidden</li>
-        </ul>
 
-        <h2 class="h2">JS</h2>
+        <h2 class="h2">prop()</h2>
+        <p class="alert alert-info">
+          要素のプロパティを設定
+        </p>
+        <h3 class="h3">key-value</h3>
         <pre class="language-javascript"><code>
-        pic.prop({});
+        要素.prop(key, value)
         </code></pre>
 
+        <h3 class="h3">key-value オブジェクト</h3>
         <pre class="language-javascript"><code>
-          $(function () {
+        要素.prop({
+          key: value,
+          ...
+        })
+        </code></pre>
+
+        <h3 class="h3"></h3>
+        <pre class="language-javascript"><code>
+        pic.prop({
+            w: $('#pic-box').width(),   // 1コマ分の横幅
+            h: $('#pic-box').height(),  // 1コマ分の高さ
+            col: 6,                     // コマ画像の横コマ数
+            max: 12,                    // 全コマ数
+            num: 0                      // 現在のコマ数のインデックス
+        })
+        </code></pre>
+
+        <h2 class="h2">setInterval()</h2>
+        <p class="alert alert-info">
+          指定した時間間隔（ms)で関数を実行
+        </p>
+        <pre class="language-javascript"><code>
+        setInterval(function, duration, param1, ...)
+        </code></pre>
+        <p>
+          function: 関数
+          <br>
+          duration: 時間間隔(ms)
+        </p>
+
+        <h3 class="h3">JS</h3>
+        <pre class="language-javascript"><code>
+        let intervalID = setInterval(function() {}, duration)
+        </code></pre>
+
+        <h2 class="h2">clearInterval()</h2>
+        <p class="alert alert-info">
+          setInterval() で作成したオブジェクトを削除
+        </p>
+        <pre class="language-javascript"><code>
+        setInterval(オブジェクト)
+        </code></pre>
+
+        <h3 class="h3">JS</h3>
+        <pre class="language-javascript"><code>
+        clearInterval(intervalID)
+        </code></pre>
+
+        <h2 class="h2">Interval サンプル</h2>
+        <p class="alert alert-info">
+          loaded() が実行されたら、100ms 間隔で change() を実行<br>
+          change() が、max回以上実行したら止める
+        </p>
+        <pre class="language-javascript"><code>
+        let pic = $('#pic')
+        pic.prop({
+            w: $('#pic-box').width(),   // 1コマ分の横幅
+            h: $('#pic-box').height(),  // 1コマ分の高さ
+            col: 6,                     // コマ画像の横コマ数
+            max: 12,                    // 全コマ数
+            num: 0                      // 現在のコマ数のインデックス
+        })
+      
+        let intervalID
+
+        function loaded() {
+            intervalID = setInterval(function() {
+                change(pic)
+            }, 100)
+        }
+    
+        function change(target) {
+            target.prop('num', target.prop('num') + 1);
+            console.log(target.prop('num'))
+            if (target.prop('num') >= target.prop('max')) {
+                clearInterval(intervalID);
+            }
+        }
+        </code></pre>
+
+        <h2 class="h2">コマアニメーションサンプル</h2>
+        <pre class="language-javascript"><code>
+        $(function () {
             let pic = $('#pic');
             let intervalID;
         
@@ -90,7 +190,7 @@
             /**
             * 画像読み込み完了
             * 100ms(0.1秒)ごとに change関数を実行
-            *//
+            */
             function loaded() {
                 intervalID = setInterval(function () {
                     change(pic);
@@ -108,11 +208,6 @@
             init();
         });
       </code></pre>
-      </div>
-
-      <div>
-        <h2 class="h2">Image</h2>
-        <img src="images/top.gif">
       </div>
 
       <h2 class="h2">リファクタリング</h2>

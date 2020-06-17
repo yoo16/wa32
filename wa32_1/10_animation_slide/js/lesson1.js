@@ -1,7 +1,7 @@
 $(function () {
     let girl = $('#girl');
     girl.css({
-        position: 'absolute',
+        position: 'relative',
         top: 0,
         left: 0,
     });
@@ -9,6 +9,9 @@ $(function () {
     let current = 0;
     let duration = 500;
     let easing = 'easeInOutBack'
+    // easing = 'easeInOutBounce'
+    easing = 'easeInExpo'
+    // easing = 'linear'
 
     $('#reset_btn').on('click', function () {
         girl.animate({ 'left': 0, 'top': 0 }, duration, easing);
@@ -34,6 +37,8 @@ $(function () {
         girl.animate({ 'left': 500, 'top': 300 }, duration, easing);
     })
 
+
+    //test
     $('#sqrt_btn').on('click', function () {
         // console.log(current)
         current = 0
