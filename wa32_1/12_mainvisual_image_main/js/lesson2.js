@@ -5,21 +5,16 @@ $(function () {
         let easing = 'swing'
 
         function open() {
-            $(items[current]).fadeIn(
-                1200,
-                easing,
-                function () { setTimeout(change, 1500) }
-            );
+            console.log(target)
+            console.log(items)
+            console.log(current)
+            console.log(easing)
         }
 
         function close() {
-            $(items[current]).fadeOut(1200, easing)
         }
 
         function change() {
-            close()
-            current = ++current % items.length
-            open()
         }
 
         open()

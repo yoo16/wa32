@@ -21,12 +21,20 @@ $(function () {
         console.log(target.prop('num'))
         if (target.prop('num') >= target.prop('max')) {
             clearInterval(intervalID)
+        } else {
+            target.css({
+                'top':
+                    Math.floor(target.prop('num') / target.prop('col'))
+                    * target.prop('h') * -1 + 'px',
+                'left': (target.prop('num') % target.prop('col'))
+                    * target.prop('w') * -1 + 'px'
+            });
         }
     }
 
     function init() {
         let img = new Image()
-        $(img).on('load', loaded).attr('src', pic.attr('src'))
+        $(img).attr('src', pic.attr('src')).on('load', loaded)
     }
 
     init()

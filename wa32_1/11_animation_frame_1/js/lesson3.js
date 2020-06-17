@@ -26,7 +26,7 @@ $(function () {
 
     function init() {
         let img = new Image()
-        $(img).on('load', loaded).attr('src', pic.attr('src'))
+        $(img).attr('src', pic.attr('src')).on('load', loaded)
     }
 
     init()

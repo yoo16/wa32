@@ -91,6 +91,33 @@
         })
         </code></pre>
 
+        <h2 class="h2">Image オブジェクト</h2>
+        <p class="alert alert-info">
+          画像オブジェクトを作成
+        </p>
+        <pre class="language-javascript"><code>
+        let img = new Image()
+        </code></pre>
+
+        <h3 class="h3">load イベント</h3>
+        <p class="alert alert-info">
+          画像が読み込まれたら、src に画像URLを設定する
+          <br>
+          HTMLのimg src と JavaScript 実行のタイミングで動作しないため
+        </p>
+        <pre class="language-javascript"><code>
+        function loaded() {
+            console.log('loaded!')
+        }
+    
+        function init() {
+            let img = new Image()
+            $(img).attr('src', pic.attr('src')).on('load', loaded)
+            //$(img).on('load', loaded).attr('src', pic.attr('src'))
+            //$(img).on('load', loaded) //イベントが発生しない
+        }
+        </code></pre>
+
         <h2 class="h2">setInterval()</h2>
         <p class="alert alert-info">
           指定した時間間隔（ms)で関数を実行
