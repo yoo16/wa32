@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <link rel="stylesheet" href="../css/default.css">
+
+  <title>WA32 メインビジュアル 01</title>
+</head>
+
+<body>
+  <div class="container">
+    <div><a href="../index.html">Back</a></div>
+    <h1 class="h1">サムネイル画像のクリック切り替え</h1>
+
+    <div>
+      <div id="photoBox">
+        <ul id="photoList">
+          <li><img src="images/sample0.jpg"></li>
+          <li><img src="images/sample1.jpg"></li>
+          <li><img src="images/sample2.jpg"></li>
+          <li><img src="images/sample3.jpg"></li>
+          <li><img src="images/sample4.jpg"></li>
+        </ul>
+
+        <div id="thumbnailList">
+          <ul>
+            <li><a class="thumbnail"><img src="images/th_sample0.jpg"></a></li>
+            <li><a class="thumbnail"><img src="images/th_sample1.jpg"></a></li>
+            <li><a class="thumbnail"><img src="images/th_sample2.jpg"></a></li>
+            <li><a class="thumbnail"><img src="images/th_sample3.jpg"></a></li>
+            <li><a class="thumbnail"><img src="images/th_sample4.jpg"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="code">
+      <h2 class="h2">HTML</h2>
+      <script type="text/plain" class="language-markup">
+      <div id="photoBox">
+        <ul id="photoList">
+          <li><img src="images/sample0.jpg"></li>
+          <li><img src="images/sample1.jpg"></li>
+          <li><img src="images/sample2.jpg"></li>
+          <li><img src="images/sample3.jpg"></li>
+          <li><img src="images/sample4.jpg"></li>
+        </ul>
+
+        <div id="thumbnailList">
+          <ul>
+            <li><a class="thumbnail"><img src="images/th_sample0.jpg"></a></li>
+            <li><a class="thumbnail"><img src="images/th_sample1.jpg"></a></li>
+            <li><a class="thumbnail"><img src="images/th_sample2.jpg"></a></li>
+            <li><a class="thumbnail"><img src="images/th_sample3.jpg"></a></li>
+            <li><a class="thumbnail"><img src="images/th_sample4.jpg"></a></li>
+          </ul>
+        </div>
+      </div>
+      </script>
+
+      <h2 class="h2">CSS</h2>
+      <pre class="language-css"><code>
+      #photoList img {
+          width: 500px;
+      }
+      
+      #photoList li {
+          position: absolute;
+          display: none;
+          list-style: none;
+      }
+      
+      #thumbnailList {
+          position: relative;
+          top: 400px;
+          width: 600px;
+      }
+      
+      #thumbnailList li {
+          float: left;
+          width: 100px;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+      }
+      
+      </code></pre>
+
+      <h2 class="h2">ready イベント内の定義</h2>
+      <pre class="language-javascript"><code>
+        $(function () {
+
+          function photoChange(target) {
+              …
+          }
+      
+          photoChange($('#photoBox'));
+      }
+      </code></pre>
+
+      <h2 class="h2">find()</h2>
+      <p>セレクタの中にある、子要素を取得</p>
+      <pre class="language-javascript"><code>
+      $(セレクタ).find(子要素)
+      </code></pre>
+
+      <pre class="language-javascript"><code>
+      let photoList = target.find('#photoList li');
+      </code></pre>
+
+      <h2 class="h2">photoChange() 内の関数定義</h2>
+      <pre class="language-javascript"><code>
+      function photoChange(target) {
+          let photoList = target.find('#photoList li');
+          let thumbnailList = [];
+          let current = 0;
+
+          function open() {
+          }
+  
+          function close() {
+          }
+  
+          function clickThumbnail(index) {
+          }
+  
+          function init() {
+
+          }
+
+          init();
+          open()
+      }
+      </code></pre>
+
+      <h2 class="h2">初期設定</h2>
+      <pre class="language-javascript"><code>
+      function init() {
+          target.find('#thumbnailList li').each(function (index) {
+              thumbnailList[index] = $(this).find('img');
+              $(this).find('a').on('click', function () {
+                  clickThumbnail(index);
+              });
+          });
+      };
+      </code></pre>
+      <ul class="list-group">
+        <li class="list-group-item">サムネイルの li を個数分繰り返す</li>
+        <li class="list-group-item">index が順に返される</li>
+        <li class="list-group-item">thumbnailList 配列に img を追加</li>
+        <li class="list-group-item">a に click イベント登録</li>
+        <li class="list-group-item">a をクリックすると clickThumbnail(index) を実行する</li>
+      </ul>
+
+      <h2 class="h2">クリック後の処理</h2>
+      <pre class="language-javascript"><code>
+      function clickThumbnail(index) {
+          if (current != index) {
+              close();
+              current = index;
+              open();
+          }
+      }
+      </code></pre>
+      <ul class="list-group">
+        <li class="list-group-item">クリックした画像インデックスを入力</li>
+        <li class="list-group-item">現在の画像インデックスと異なれば画像切替</li>
+        <li class="list-group-item">現在の画像インデックスを更新</li>
+      </ul>
+
+      <h2 class="h2">画像の読み込み</h2>
+      <p>img に src を設定</p>
+      <pre class="language-javascript"><code>
+      $('img').attr('src', '画像パス');
+      </code></pre>
+
+      <pre class="language-javascript"><code>
+      thumbnailList[current].attr('src', 'images/tn' + current + '_ac.jpg');
+      </code></pre>
+
+
+      <h2 class="h2">画像切り替えサンプル</h2>
+      <pre class="language-javascript"><code>
+      $(function () {
+          function photoChange(target) {
+              let photoList = target.find('#photoList li');
+              let thumbnailList = [];
+              let current = 0;
+              let easing = 'swing'
+      
+              function open() {
+                  //メイン画像フェードイン
+                  $(photoList[current]).stop().fadeIn(1000, easing)
+
+                  //サムネイル画像切り替え
+                  let src = 'images/th_sample' + current + '_active.jpg'
+                  thumbnailList[current].attr('src', src)
+              }
+      
+              function close() {
+                  //メイン画像アウト
+                  $(photoList[current]).stop().fadeOut(1000, easing);
+
+                  //サムネイル画像切り替え
+                  let src = 'images/th_sample' + current + '.jpg'
+                  thumbnailList[current].attr('src', src);
+              }
+      
+              // サムネイル画像による画像切り替え
+              function clickThumbnail(index) {
+                  if (current != index) {
+                      close();  //現在の画像を非表示
+                      current = index;  //画像インデックス更新
+                      open();  //最新の画像を表示
+                  }
+              }
+      
+              // 初期設定
+              function init() {
+                  target.find('#thumbnailList li').each(function (index) {
+                      thumbnailList[index] = $(this).find('img');
+                      $(this).find('a').on('click', function () {
+                          clickThumbnail(index);
+                      });
+                  });
+              }
+      
+              init();
+              open();
+          }
+      
+          photoChange($('#photoBox'));
+      });
+      </code></pre>
+
+      <h2 class="h2">リファクタリング</h2>
+      <pre class="language-javascript"><code>
+      function init() {
+          target.find('#thumbnailList li').each(function (index) {
+              thumbnailList[index] = $(this).find('img');
+          });
+      }
+
+      $('.thumbnail').on('click', function () {
+          clickThumbnail($('.thumbnail').index(this));
+      });
+      </code></pre>
+    </div>
+
+  </div>
+
+  <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="../js/jquery-ui.min.js"></script>
+  <script src="js/main.js"></script>
+
+
+  <script src="../js/bootstrap/bootstrap.min.js"></script>
+  <script src="../js/prism.js"></script>
+</body>
+
+</html>

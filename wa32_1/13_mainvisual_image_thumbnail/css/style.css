@@ -1,5 +1,5 @@
 #photoList img {
-    width: 200px;
+    width: 500px;
 }
 
 #photoList li {
@@ -10,8 +10,8 @@
 
 #thumbnailList {
     position: relative;
-    top: 300px;
-    width: 480px;
+    top: 400px;
+    width: 600px;
 }
 
 #thumbnailList li {
