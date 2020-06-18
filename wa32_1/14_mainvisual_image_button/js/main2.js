@@ -7,21 +7,28 @@ $(function () {
         let nextBtn = $('#next a');
 
         function checkControl() {
-            let isPrev = false;
-            let isNext = false;
-            if (current > 0) isPrev = true;
-            if (current < photoList.length - 1) isNext = true;
+            checkNext();
+            checkPrev();
+        }
 
-            (isPrev) ? prevBtn.show() : prevBtn.hide();
-            (isNext) ? nextBtn.show() : nextBtn.hide();
+        function checkNext() {
+            let hasPrev = false;
+            if (current > 0) hasPrev = true;
+            (hasPrev) ? prevBtn.show() : prevBtn.hide();
+        }
+
+        function checkPrev() {
+            let hasNext = false;
+            if (current < photoList.length - 1) hasNext = true;
+            (hasNext) ? nextBtn.show() : nextBtn.hide();
         }
 
         function showImage() {
-            $(photoList[current]).fadeIn(1200, 'swing');
+            $(photoList[current]).stop().fadeIn(1200, 'swing');
         }
 
         function hideImage() {
-            $(photoList[current]).fadeOut(1200, 'swing');
+            $(photoList[current]).stop().fadeOut(1200, 'swing');
         }
 
         function checkIndex(type) {
@@ -31,7 +38,6 @@ $(function () {
 
         $('.control').on('click', function () {
             if ($(photoList[current]).is(':animated')) return;
-            //console.log(current);
             hideImage();
             checkIndex($(this).attr('id'));
             showImage();

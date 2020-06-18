@@ -1,6 +1,6 @@
 #photoList li {
     position: absolute;
-    left: 145px;
+    left: 90px;
     display: none;
     list-style: none;
 }
@@ -22,7 +22,7 @@
 #control #prev {
     display: hidden;
     width: 30px;
-    left: -10px;
+    left: 10px;
 }
 
 #control #next {
@@ -41,6 +41,6 @@
 /* code */
 #code {
     position: absolute;
-    top: 500px;
+    top: 400px;
     width: 100%;
 }
