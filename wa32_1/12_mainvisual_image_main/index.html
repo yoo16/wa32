@@ -113,8 +113,11 @@
       </code></pre>
 
       <h2 class="h2">配列とインデックス</h2>
+      <p class="alert alert-info">
+        要素が持つ全子孫要素から、条件に一致するものを選択
+      </p>
       <pre class="language-javascript"><code>
-      let items = target.find('li');
+      let items = target.find('li')
       </code></pre>
 
       <pre class="language-javascript"><code>
@@ -134,7 +137,8 @@
       <div>
         <ol>
           <li>current を1増加</li>
-          <li>items（li 要素配列）の個数の余り</li>
+          <li>items（li 要素配列）の個数を取得</li>
+          <li>余りを求め、current に代入する</li>
         </ol>
       </div>
 
@@ -147,7 +151,6 @@
         <dt class="list-group-item">current = 1 : <strong class="text-danger">4 % 5</strong></li>
         <dt class="list-group-item">current = 0 : <strong class="text-danger">5 % 5</strong></li>
       </dl>
-
 
       <h2 class="h2">メインビジュアル：サンプル</h2>
       <pre class="language-javascript"><code>
