@@ -174,7 +174,6 @@
     
         function change(target) {
             target.prop('num', target.prop('num') + 1);
-            console.log(target.prop('num'))
             if (target.prop('num') >= target.prop('max')) {
                 clearInterval(intervalID);
             }
@@ -244,8 +243,9 @@
       let maxNo = target.prop('max');
       let width = target.prop('w');
       let height = target.prop('h');
-      let col = currentNo % 6;
-      let row = Math.floor(currentNo / 6);
+      let colCount = target.prop('col');
+      let col = currentNo % colCount;
+      let row = Math.floor(currentNo / colCount);
       let x = width * col;
       let y = height * row;
 
@@ -265,7 +265,7 @@
   </div>
 
   <script src="../js/jquery-3.5.0.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20200618"></script>
 
   <script src="../js/bootstrap/bootstrap.min.js"></script>
   <script src="../js/prism.js"></script>
