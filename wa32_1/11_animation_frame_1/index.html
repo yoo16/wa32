@@ -191,6 +191,38 @@
         }
         </code></pre>
 
+        <h2 class="h2">X,Y座標の計算</h2>
+        <h3 class="h3">X座標（横にずらす）</h3>
+        <p class="alert alert-info">
+          (現在のコマ番号 % 1行のコマ数) * 1コマの幅
+        </p>
+        <pre class="language-javascript"><code>
+        (target.prop('num') % target.prop('col')) * target.prop('w') * -1 + 'px'
+        </code></pre>
+
+        <h4 class="h4">計算</h4>
+        <pre class="language-javascript"><code>
+          0 * 6 * 133 * -1 px => 0px
+          1 * 6 * 133 * -1 px => -133px
+          2 * 6 * 133 * -1 px => -266px 
+          3 * 6 * 133 * -1 px => -399px
+          4 * 6 * 133 * -1 px => -532px
+        </code></pre>
+
+        <h3 class="h3">Y座標（縦にずらす）</h3>
+        <p class="alert alert-info">
+          (現在のコマ番号 / 1行のコマ数) * 1コマの高さ
+        </p>
+        <pre class="language-javascript"><code>
+        Math.floor(target.prop('num') / target.prop('col')) * target.prop('h') * -1 + 'px'
+        </code></pre>
+
+        <h4 class="h4">計算</h4>
+        <pre class="language-javascript"><code>
+          0 * 6 * 300 * -1 px => 0px
+          1 * 6 * 300 * -1 px => -300px
+        </code></pre>
+
         <h2 class="h2">コマアニメーションサンプル</h2>
         <pre class="language-javascript"><code>
         $(function () {

@@ -7,6 +7,7 @@ $(function () {
         max: 12,                    // 全コマ数
         num: 0,                     // 現在のコマ数のインデックス
     })
+    console.log(pic)
 
     function loaded() {
         console.log('loaded!')
@@ -14,9 +15,10 @@ $(function () {
 
     function init() {
         let img = new Image()
-        $(img).attr('src', pic.attr('src')).on('load', loaded)
-        //$(img).on('load', loaded).attr('src', pic.attr('src'))
+        //$(img).attr('src', pic.attr('src')).on('load', loaded)
+        $(img).on('load', loaded).attr('src', pic.attr('src'))
         //$(img).on('load', loaded) //イベントが発生しない
+        //$('#pic').on('load', loaded) //
     }
 
     init()
