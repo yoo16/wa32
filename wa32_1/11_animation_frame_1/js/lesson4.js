@@ -22,13 +22,21 @@ $(function () {
         if (target.prop('num') >= target.prop('max')) {
             clearInterval(intervalID)
         } else {
+            let num = target.prop('num');
+            let col = target.prop('col');
+            let width = target.prop('w');
+            let height = target.prop('h');
             target.css({
-                'top':
-                    Math.floor(target.prop('num') / target.prop('col'))
-                    * target.prop('h') * -1 + 'px',
-                'left': (target.prop('num') % target.prop('col'))
-                    * target.prop('w') * -1 + 'px'
+                'top': Math.floor(num / col) * height * -1 + 'px',
+                'left': (num % col) * width * -1 + 'px',
             });
+            // target.css({
+            //     'top':
+            //         Math.floor(target.prop('num') / target.prop('col'))
+            //         * target.prop('h') * -1 + 'px',
+            //     'left': (target.prop('num') % target.prop('col'))
+            //         * target.prop('w') * -1 + 'px'
+            // });
         }
     }
 
