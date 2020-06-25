@@ -31,10 +31,12 @@
 
       <div id="code">
         <h2 class="h2">HTML</h2>
+        <h3 class="h3">style.css</h3>
         <pre class="language-markup"><code>
         &lt;link rel="stylesheet" href=“css/style.css"&gt;
         </code></pre>
 
+        <h3 class="h3">画像設定</h3>
         <pre class="language-markup"><code>
           &lt;p id="pic-box"&gt;
             &lt;img src="images/top.gif" id="pic"&gt;
@@ -43,10 +45,11 @@
 
         <h2 class="h2">CSS</h2>
         <ul class="list-group">
+          <li class="list-group-item">表示領域を相対座標にする※作成するコンテンツによる</li>
+          <li class="list-group-item">img は絶対座標で設定</li>
           <li class="list-group-item">overflow, width, height で１コマ分を表示</li>
           <li class="list-group-item">width, height は一コマ分の領域</li>
           <li class="list-group-item">overflow: hidden ではみ出た部分を非表示</li>
-          <li class="list-group-item">img は絶対座標で設定</li>
         </p>
 
         <pre class="language-css"><code>
@@ -62,6 +65,14 @@
             position: absolute;
         }
         </code></pre>
+
+        <h3 class="h3">コマアニメーションの仕組み</h3>
+        <p class="alert alert-info">
+          img を絶対座標で移動させ、表示領域と非表示領域で再現する
+        </p>
+        <p>
+          <img src="images/frame_animation.png" alt="" width="350">
+        </p>
 
         <h2 class="h2">prop()</h2>
         <p class="alert alert-info">

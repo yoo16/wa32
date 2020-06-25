@@ -41,6 +41,7 @@
         &lt;script src="js/jquery.easing.1.3.js"&gt;&lt;/script&gt;
       </code></pre>
 
+      <h2 class="h2">画像の設定</h2>
       <script type="text/plain" class="language-markup">
         <ul id="photoList">
           <li><img src="images/sample1.jpg"></li>
@@ -82,7 +83,7 @@
           function change() {
           }
   
-        open()
+          open()
       }
       </code></pre>
 
@@ -92,9 +93,11 @@
       <pre class="language-javascript"><code>
       $(function () {
           function photoChange(target) {
-              let items = target.find('li')
-              let current = 0
-              let easing = 'swing'
+              let items = target.find('li');
+              let current = 0;
+              let easing = 'swing';
+              let duration = 1200;  //フェードイン・フェードアウトの時間
+              let showTime = 2000;  //画像の表示時間
       
               function open() {
               }
@@ -122,16 +125,18 @@
 
       <pre class="language-javascript"><code>
       //インデックス n = 0, 1, 2,…
-      items[0] = 1番目の li 要素
-      items[1] = 2番目の li 要素
-      items[2] = 3番目の li 要素
-      ...
-      items[n] = n番目の li 要素
+      //items[0] : 1番目の li 要素
+      //items[1] : 2番目の li 要素
+      //items[2] : 3番目の li 要素
+      //...
+      //items[n] / n番目の li 要素
+
+      items[インデックス].処理
       </code></pre>
 
       <h2 class="h2">次の画像インデックス番号を取得</h2>
       <pre class="language-javascript"><code>
-        current = ++current % items.length;
+        current = ++current % items.length
       </code></pre>
 
       <div>
@@ -144,32 +149,34 @@
 
       <h3 class="h3">画像が5個の場合</h3>
       <dl class="list-group">
-        <dt class="list-group-item">current = 0 : <strong class="text-danger">0 % 5</strong></li>
-        <dt class="list-group-item">current = 4 : <strong class="text-danger">1 % 5</strong></li>
-        <dt class="list-group-item">current = 3 : <strong class="text-danger">2 % 5</strong></li>
-        <dt class="list-group-item">current = 2 : <strong class="text-danger">3 % 5</strong></li>
-        <dt class="list-group-item">current = 1 : <strong class="text-danger">4 % 5</strong></li>
-        <dt class="list-group-item">current = 0 : <strong class="text-danger">5 % 5</strong></li>
+        <dd class="list-group-item">current = 0 <span class="text-danger">( 0 % 5 )</span></dd>
+        <dd class="list-group-item">current = 4 <span class="text-danger">( 1 % 5 )</span></dd>
+        <dd class="list-group-item">current = 3 <span class="text-danger">( 2 % 5 )</span></dd>
+        <dd class="list-group-item">current = 2 <span class="text-danger">( 3 % 5 )</span></dd>
+        <dd class="list-group-item">current = 1 <span class="text-danger">( 4 % 5 )</span></dd>
+        <dd class="list-group-item">current = 0 <span class="text-danger">( 5 % 5 )</span></dd>
       </dl>
 
       <h2 class="h2">メインビジュアル：サンプル</h2>
       <pre class="language-javascript"><code>
     $(function () {
         function photoChange(target) {
-            let items = target.find('li')  // li要素のセレクタを格納した配列
-            let current = 0                // 現在表示されているインデックス
-            let easing = 'swing'
+            let items = target.find('li');  // li要素のセレクタを格納した配列
+            let current = 0;                // 現在表示されているインデックス
+            let easing = 'swing';
+            let duration = 1200;
+            let showTime = 2000
     
             function open() {
                 $(items[current]).fadeIn(
-                    1200,
+                    duration,
                     easing,
-                    function () { setTimeout(change, 1500); }
+                    function () { setTimeout(change, showTime); }
                 );
             }
     
             function close() {
-                $(items[current]).fadeOut(1200, easing);
+                $(items[current]).fadeOut(duration, easing);
             }
     
             function change() {

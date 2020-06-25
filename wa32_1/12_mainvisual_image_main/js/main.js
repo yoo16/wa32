@@ -1,19 +1,21 @@
 $(function () {
     function photoChange(target) {
-        let items = target.find('li')
-        let current = 0
-        let easing = 'swing'
+        let items = target.find('li');
+        let current = 0;
+        let easing = 'swing';
+        let duration = 1200;
+        let showTime = 2000
 
         function open() {
             $(items[current]).fadeIn(
-                1200,
+                duration,
                 easing,
-                function () { setTimeout(change, 1500) }
+                function () { setTimeout(change, showTime) }
             );
         }
 
         function close() {
-            $(items[current]).fadeOut(1200, easing)
+            $(items[current]).fadeOut(duration, easing)
         }
 
         function change() {
