@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="../css/prism.css">
   <link rel="stylesheet" href="../css/default.css">
 
-  <title>WA32 メインビジュアル 01</title>
+  <title>WA32 サムネイル画像</title>
 </head>
 
 <body>
@@ -42,6 +42,19 @@
     </div>
 
     <div id="code">
+      <h2 class="h2">サムネイル画像</h2>
+      <p>
+        中身を開かなくても確認できる縮小画像
+      </p>
+
+      <h2 class="h2">画像一覧</h2>
+      <p>
+        <a href="images/thumbnail_images.zip">素材ダウンロード</a>
+      </p>
+      <p>
+        <img src="images/images.png" width="200">
+      </p>
+
       <h2 class="h2">HTML</h2>
       <script type="text/plain" class="language-markup">
       <div id="photoBox">
@@ -95,50 +108,61 @@
 
       <h2 class="h2">ready イベント内の定義</h2>
       <pre class="language-javascript"><code>
-        $(function () {
+      $(function () {
 
           function photoChange(target) {
-              …
           }
       
           photoChange($('#photoBox'));
       }
       </code></pre>
 
-      <h2 class="h2">find()</h2>
-      <p>セレクタの中にある、子要素を取得</p>
-      <pre class="language-javascript"><code>
-      $(セレクタ).find(子要素)
-      </code></pre>
-
-      <pre class="language-javascript"><code>
-      let photoList = target.find('#photoList li');
-      </code></pre>
-
-      <h2 class="h2">photoChange() 内の関数定義</h2>
+      <h2 class="h2">関数と変数の定義</h2>
+      <p>
+        photoChange() 内に関数を定義
+      </p>
       <pre class="language-javascript"><code>
       function photoChange(target) {
-          let photoList = target.find('#photoList li');
-          let thumbnailList = [];
-          let current = 0;
-
+          let photoList = target.find('#photoList li')
+          let thumbnailList = []
+          let current = 0
+          let easing = 'swing'
+  
+          // クリック画像処理
           function open() {
           }
   
+          // クリック前の画像処理
           function close() {
           }
   
+          // サムネイル画像による画像切り替え
           function clickThumbnail(index) {
           }
   
+          // 初期設定
           function init() {
-
           }
-
+  
           init();
-          open()
+          open();
       }
       </code></pre>
+
+      <div>
+        <h2 class="h2">find()</h2>
+        <p>セレクタの中にある、子要素を取得</p>
+        <pre class="language-javascript"><code>
+        $(セレクタ).find(子要素)
+        </code></pre>
+
+        <p class="alert alert-info">
+          id = photoList の li を選択
+        </p>
+        <pre class="language-javascript"><code>
+        let photoList = target.find('#photoList li');
+        </code></pre>
+      </div>
 
       <h2 class="h2">初期設定</h2>
       <pre class="language-javascript"><code>
@@ -155,8 +179,8 @@
         <li class="list-group-item">サムネイルの li を個数分繰り返す</li>
         <li class="list-group-item">index が順に返される</li>
         <li class="list-group-item">thumbnailList 配列に img を追加</li>
-        <li class="list-group-item">a に click イベント登録</li>
-        <li class="list-group-item">a をクリックすると clickThumbnail(index) を実行する</li>
+        <li class="list-group-item">li 内の aリンク に click イベントを登録</li>
+        <li class="list-group-item">aリンクをクリックすると clickThumbnail(index) を実行する</li>
       </ul>
 
       <h2 class="h2">クリック後の処理</h2>
@@ -176,11 +200,14 @@
       </ul>
 
       <h2 class="h2">画像の読み込み</h2>
-      <p>img に src を設定</p>
+      <p>img に src を設定（画像を読み込む）</p>
       <pre class="language-javascript"><code>
       $('img').attr('src', '画像パス');
       </code></pre>
 
+      <p class="alert alert-info">
+        thumbnailList[current] に画像を設定
+      </p>
       <pre class="language-javascript"><code>
       thumbnailList[current].attr('src', 'images/tn' + current + '_ac.jpg');
       </code></pre>
@@ -251,6 +278,16 @@
       $('.thumbnail').on('click', function () {
           clickThumbnail($('.thumbnail').index(this));
       });
+      </code></pre>
+
+      <h3 class="h3">クリックした aリンクを選択</h3>
+      <p>
+        aリンク一覧から、index() を利用して クリックした aリンクを選択
+        <br>
+        this はクリックした要素
+      </p>
+      <pre class="language-javascript"><code>
+      $('.thumbnail').index(this)
       </code></pre>
     </div>
 

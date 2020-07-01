@@ -37,6 +37,7 @@ $(function () {
             })
         }
 
+        // クリックイベント
         $('.thumbnail').on('click', function () {
             clickThumbnail($('.thumbnail').index(this))
         })

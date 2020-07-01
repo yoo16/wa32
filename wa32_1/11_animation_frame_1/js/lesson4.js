@@ -21,6 +21,7 @@ $(function () {
         console.log(target.prop('num'))
         if (target.prop('num') >= target.prop('max')) {
             clearInterval(intervalID)
+            //target.prop('num', 0)
         } else {
             let num = target.prop('num');
             let col = target.prop('col');
