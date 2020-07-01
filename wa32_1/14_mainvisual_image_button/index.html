@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?20200701">
 
   <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="../css/prism.css">
@@ -15,6 +15,10 @@
 </head>
 
 <body>
+  <div class="container">
+    <div><a href="../index.html">Back</a></div>
+    <h1 class="h1">ボタンクリック切り替え</h1>
+  </div>
 
   <div id="photoBox">
     <ul id="photoList">
@@ -32,33 +36,32 @@
   </div>
 
   <!-- code -->
-  <div id="code" class="container">
-    <div><a href="../index.html">Back</a></div>
-    <h1 class="h1">ボタンクリック切り替え</h1>
-    <div>
-      <h2 class="h2">リファクタリング版</h2>
-      <a href="index2.html">ボタンクリック切り替え（リファクタリング）</a> 
+  <div class="container">
+    <div id="code">
+      <div>
+        <h2 class="h2">リファクタリング版</h2>
+        <a href="index2.html">ボタンクリック切り替え（リファクタリング）</a>
 
-      <h2 class="h2">HTML</h2>
-      <script type="text/plain" class="language-markup">
-      <div id="photoBox">
-        <ul id="photoList">
-          <li><img src="images/sample1.jpg"></li>
-          <li><img src="images/sample2.jpg"></li>
-          <li><img src="images/sample3.jpg"></li>
-          <li><img src="images/sample4.jpg"></li>
-        </ul>
-        <div id="control">
-          <ul>
-            <li id="prev"><a><img src="images/prev.jpg"></a></li>
-            <li id="next"><a><img src="images/next.jpg"></a></li>
+        <h2 class="h2">HTML</h2>
+        <script type="text/plain" class="language-markup">
+        <div id="photoBox">
+          <ul id="photoList">
+            <li><img src="images/sample1.jpg"></li>
+            <li><img src="images/sample2.jpg"></li>
+            <li><img src="images/sample3.jpg"></li>
+            <li><img src="images/sample4.jpg"></li>
           </ul>
+          <div id="control">
+            <ul>
+              <li id="prev"><a><img src="images/prev.jpg"></a></li>
+              <li id="next"><a><img src="images/next.jpg"></a></li>
+            </ul>
+          </div>
         </div>
-      </div>
-      </script>
+        </script>
 
-      <h2 class="h2">CSS</h2>
-      <pre class="language-css"><code>
+        <h2 class="h2">CSS</h2>
+        <pre class="language-css"><code>
       #photoList li {
           position: absolute;
           left: 200px;
@@ -96,8 +99,8 @@
       }
       </code></pre>
 
-      <h2 class="h2">ready イベント内の関数定義</h2>
-      <pre class="language-javascript"><code>
+        <h2 class="h2">ready イベント内の関数定義</h2>
+        <pre class="language-javascript"><code>
       $(function () {
 
           function photoChange(target) {
@@ -108,14 +111,15 @@
       }
       </code></pre>
 
-      <h2 class="h2">photoChange() 内の関数定義</h2>
-      <pre class="language-javascript"><code>
+        <h2 class="h2">photoChange() 内の関数定義</h2>
+        <pre class="language-javascript"><code>
       function photoChange(target) {
           let photoList = target.find('#photoList li');
           let current = 0;
           let prevBtn = $('#prev a');
           let nextBtn = $('#next a'); 
-          let easing = 'swing'
+          let easing = 'swing';
+          let duration = 1200;
 
           function open() { }  //画像表示
   
@@ -129,109 +133,145 @@
 
           function hideControl(btn) { }  //コントロールボタンを非表示
 
-          checkControl();
           open();
      }
      </code></pre>
 
-      <h2 class="h2">コントロールボタンの設定</h2>
-      <pre class="language-javascript"><code>
-      function checkControl() {
-          switch (current) {
-              case 0:  //最初の画像インデックス
-                  hideControl(prevBtn);
-                  showControl(nextBtn);
-                  break;
-              case photoList.length - 1:  //最後の画像インデックス
-                  showControl(prevBtn);
-                  hideControl(nextBtn);
-                  break;
-              default:  //それ以外
-                  showControl(prevBtn);
-                  showControl(nextBtn);
-                  break;
-          }
-      }
-      </code></pre>
-      <div>
-        <ul class="list-group">
-          <li class="list-group-item">最初の画像の場合、prev ボタンを非表示</li>
-          <li class="list-group-item">最後の画像の場合、next ボタンを非表示</li>
-          <li class="list-group-item">それ以外の場合は、全表示</li>
-        </ul>
-      </div>
+        <h2 class="h2">コントロールボタンの設定</h2>
+        <pre class="language-javascript"><code>
+        function checkControl() {
+            switch (current) {
+                case 0:  //最初の画像インデックス
+                    hideControl(prevBtn);
+                    showControl(nextBtn);
+                    break;
+                case photoList.length - 1:  //最後の画像インデックス
+                    showControl(prevBtn);
+                    hideControl(nextBtn);
+                    break;
+                default:  //それ以外
+                    showControl(prevBtn);
+                    showControl(nextBtn);
+                    break;
+            }
+        }
+        </code></pre>
+        <div>
+          <ul class="list-group">
+            <li class="list-group-item">最初の画像時は prev ボタンを非表示</li>
+            <li class="list-group-item">最後の画像時は next ボタンを非表示</li>
+            <li class="list-group-item">それ以外は prev, next ボタンを表示</li>
+          </ul>
+        </div>
 
-      <div>
-        <ul>
-          <li>イベントを重複登録しないよう、一度 off() にする</li>
-        </ul>
-      </div>
-      <h2 class="h2">セレクタ表示/非表示</h2>
-      <h3 class="h3">表示</h3>
-      <pre class="language-javascript"><code>
+        <div>
+          <ul>
+          </ul>
+        </div>
+        <h2 class="h2">セレクタ表示/非表示</h2>
+        <h3 class="h3">表示</h3>
+        <pre class="language-javascript"><code>
       $(セレクタ).show();
       </code></pre>
 
-      <h3 class="h3">非表示</h3>
-      <pre class="language-javascript"><code>
-      $(セレクタ).hide();
-      </code></pre>
+        <h3 class="h3">非表示</h3>
+        <pre class="language-javascript"><code>
+        $(セレクタ).hide();
+        </code></pre>
 
-      <h2 class="h2">アニメーションを止める</h2>
-      <pre class="language-javascript"><code>
-      $(セレクタ).stop();
-      </code></pre>
+        <h2 class="h2">アニメーションを止める</h2>
+        <pre class="language-javascript"><code>
+        $(セレクタ).stop();
+        </code></pre>
 
-      <p>アニメーションを止めないと、現在実行中の途中で重なって実行される</p>
-      <pre class="language-javascript"><code>
-      $(photoList[current]).stop().fadeIn(1200, easing, checkControl);
-      </code></pre>
+        <p class="alert alert-info">アニメーションを止めないと、現在実行中の途中で重なって実行される</p>
+        <pre class="language-javascript"><code>
+        $(photoList[current]).stop().fadeIn(duration, easing, checkControl);
+        </code></pre>
 
-      <h2 class="h2">イベント削除</h2>
-      <pre class="language-javascript"><code>
-      $(セレクタ).off(イベント名);
-      </code></pre>
-      <ul class="list-group">
-        <li class="list-group-item">セレクタに on() を実行した分、イベント登録される</li>
-        <li class="list-group-item">登録されているイベントの分、イベントハンドラが実行さる</li>
-      </ul>
-      <p class="alert alert-danger">重複登録しないように注意</p>
-
-      <h2 class="h2">コントロールボタンを表示する</h2>
-      <pre class="language-javascript"><code>
-      function showControl(btn) {
-          btn.show();
-          btn.off('click').on('click', function () {  //ベントを重複登録対応
-              clickControl($(this).parent().attr('id'));
-          });
-      }
-      </code></pre>
-
-      <h2 class="h2">コントロールボタンによる画像の切り替え</h2>
-      <pre class="language-javascript"><code>
-      function clickControl(type) {
-          close();
-          switch (type) {
-              case 'prev':
-                  current--;
-                  break;
-              case 'next':
-                  current++;
-                  break;
-          }
-          open();
-      }
-      </code></pre>
-      <div>
+        <h2 class="h2">イベント削除</h2>
+        <pre class="language-javascript"><code>
+        $(セレクタ).off(イベント名);
+        </code></pre>
+        
         <ul class="list-group">
-          <li class="list-group-item">ボタンの id を取得し、処理を振り分ける</li>
-          <li class="list-group-item">prev の場合、画像インデックスを +1</li>
-          <li class="list-group-item">next の場合、画像インデックスを -1</li>
+          <li class="list-group-item">セレクタに on() を実行しただけイベント登録される</li>
+          <li class="list-group-item">1回のイベント実行で、登録分イベントハンドラが実行</li>
+          <li class="list-group-item text-danger">重複登録しないように注意</li>
         </ul>
-      </div>
 
-      <h2 class="h2">ナビゲーション画像：サンプル</h2>
-      <pre class="language-javascript"><code>
+        <h2 class="h2">コントロールボタンを表示する</h2>
+        <pre class="language-javascript"><code>
+        function showControl(btn) {
+            btn.show();
+            btn.off('click').on('click', function () {  //ベントを重複登録対応
+                clickControl($(this).parent().attr('id'));
+            });
+        }
+        </code></pre>
+        <p>
+          ボタンを表示し、一度クリックイベントを off() にしてからクリックイベントを登録
+        </p>
+
+        <h3 class="h3">親セレクタを選択</h3>
+        <pre class="language-javascript"><code>
+        $(セレクタ).parent()
+        </code></pre>
+
+        <p class="alert alert-info">
+          クリックした要素の親を選択し、id を取得
+        </p>
+        <pre class="language-javascript"><code>
+        $(this).parent().attr('id')
+        </code></pre>
+        <p class="">
+          $(this) は $('#prev a’), $('#next a’) にあたり、その親は $('#prev’), $('#next’)
+        </p>
+
+        <h2 class="h2">フェードイン・フェードアウト</h2>
+        <h3 class="h3">フェードイン</h3>
+        <pre class="language-javascript"><code>
+        function open() {
+            prevBtn.off('click');  //連打防止
+            nextBtn.off('click');  //連打防止
+            $(photoList[current]).stop().fadeIn(duration, easing, checkControl);
+        }
+        </code></pre>
+
+        <h3 class="h3">フェードアウト</h3>
+        <pre class="language-javascript"><code>
+        function close() {
+            $(photoList[current]).stop().fadeOut(duration, easing);
+        }
+        </code></pre>
+
+
+        <h2 class="h2">コントロールボタンによる画像の切り替え</h2>
+        <pre class="language-javascript"><code>
+        function clickControl(type) {
+            close();
+            //type は ボタンの id
+            switch (type) {
+                case 'prev':
+                    current--;
+                    break;
+                case 'next':
+                    current++;
+                    break;
+            }
+            open();
+        }
+        </code></pre>
+        <div>
+          <ul class="list-group">
+            <li class="list-group-item">ボタンの id で処理を振り分ける</li>
+            <li class="list-group-item">prev の場合、画像インデックスを -1</li>
+            <li class="list-group-item">next の場合、画像インデックスを +1</li>
+          </ul>
+        </div>
+
+        <h2 class="h2">ナビゲーション画像：サンプル</h2>
+        <pre class="language-javascript"><code>
       $(function () {
           function photoChange(target) {
               let photoList = target.find('#photoList li');
@@ -239,17 +279,18 @@
               let prevBtn = $('#prev a');
               let nextBtn = $('#next a');
               let easing = 'swing';
-      
+              let duration = 1200;
+
               // 画像のフェードイン
               function open() {
                   prevBtn.off('click');  //連打防止
                   nextBtn.off('click');  //連打防止
-                  $(photoList[current]).stop().fadeIn(1200, easing, checkControl);
+                  $(photoList[current]).stop().fadeIn(duration, easing, checkControl);
               }
       
               // 画像のフェードアウト
               function close() {
-                  $(photoList[current]).stop().fadeOut(1200, easing);
+                  $(photoList[current]).stop().fadeOut(duration, easing);
               }
       
               // コントロールボタンによる画像の切り替え
@@ -298,13 +339,13 @@
                   });
               }
       
-              checkControl();
               open();
           }
       
           photoChange($('#photoBox'));
       });
       </code></pre>
+      </div>
     </div>
   </div>
 

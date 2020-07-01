@@ -5,17 +5,18 @@ $(function () {
         let prevBtn = $('#prev a');
         let nextBtn = $('#next a');
         let easing = 'swing';
+        let duration = 1200;
 
         // 画像のフェードイン
         function open() {
             prevBtn.off('click');  //連打防止
             nextBtn.off('click');  //連打防止
-            $(photoList[current]).stop().fadeIn(1200, easing, checkControl);
+            $(photoList[current]).stop().fadeIn(duration, easing, checkControl);
         }
 
         // 画像のフェードアウト
         function close() {
-            $(photoList[current]).stop().fadeOut(1200, easing);
+            $(photoList[current]).stop().fadeOut(duration, easing);
         }
 
         // コントロールボタンによる画像の切り替え
@@ -24,6 +25,8 @@ $(function () {
 
         // コントロールボタンの設定
         function checkControl() {
+            console.log('checkControl')
+            console.log(current)
             switch (current) {
                 case 0:
                     hideControl(prevBtn);
@@ -50,7 +53,6 @@ $(function () {
             console.log(btn)
         }
 
-        checkControl();
         open();
     }
 

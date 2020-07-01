@@ -5,6 +5,8 @@ $(function () {
         let current = 0;
         let prevBtn = $('#prev a');
         let nextBtn = $('#next a');
+        let easing = 'swing';
+        let duration = 1200;
 
         function checkControl() {
             checkNext();
@@ -24,11 +26,11 @@ $(function () {
         }
 
         function showImage() {
-            $(photoList[current]).stop().fadeIn(1200, 'swing');
+            $(photoList[current]).stop().fadeIn(duration, easing);
         }
 
         function hideImage() {
-            $(photoList[current]).stop().fadeOut(1200, 'swing');
+            $(photoList[current]).stop().fadeOut(duration, easing);
         }
 
         function checkIndex(type) {

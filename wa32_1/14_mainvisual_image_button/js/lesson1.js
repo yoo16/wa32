@@ -5,6 +5,7 @@ $(function () {
         let prevBtn = $('#prev a');
         let nextBtn = $('#next a');
         let easing = 'swing';
+        let duration = 1200;
 
         // 画像のフェードイン
         function open() {
@@ -32,7 +33,6 @@ $(function () {
         function hideControl(btn) {
         }
 
-        checkControl();
         open();
     }
 
