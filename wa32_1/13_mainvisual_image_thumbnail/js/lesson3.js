@@ -4,10 +4,11 @@ $(function () {
         let thumbnailList = []
         let current = 0
         let easing = 'swing'
+        let duration = 1200
 
         // クリック画像処理
         function open() {
-            $(photoList[current]).stop().fadeIn(1000, easing)
+            $(photoList[current]).stop().fadeIn(duration, easing)
 
             let src = 'images/th_sample' + current + '_active.jpg'
             thumbnailList[current].attr('src', src)
@@ -15,7 +16,7 @@ $(function () {
 
         // クリック前の画像処理
         function close() {
-            $(photoList[current]).stop().fadeOut(1000, easing)
+            $(photoList[current]).stop().fadeOut(duration, easing)
 
             let src = 'images/th_sample' + current + '.jpg'
             thumbnailList[current].attr('src', src)

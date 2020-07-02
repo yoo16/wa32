@@ -4,12 +4,13 @@ $(function () {
         let thumbnailList = []
         let current = 0
         let easing = 'swing'
+        let duration = 1200
 
-        // クリック画像処理
+        // 画像表示
         function open() {
         }
 
-        // クリック前の画像処理
+        // 画像非表示
         function close() {
         }
 
@@ -21,9 +22,9 @@ $(function () {
         function init() {
         }
 
-        init();
-        open();
+        init()
+        open()
     }
 
-    photoChange($('#photoBox'));
+    photoChange($('#photoBox'))
 });

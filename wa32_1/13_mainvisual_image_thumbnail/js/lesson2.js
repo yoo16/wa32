@@ -28,6 +28,8 @@ $(function () {
         // 初期設定
         function init() {
             target.find('#thumbnailList li').each(function (index) {
+                //$(this) は target のこと
+                //target は $('#photoBox')
                 thumbnailList[index] = $(this).find('img')
                 $(this).find('a').on('click', function () {
                     clickThumbnail(index)
