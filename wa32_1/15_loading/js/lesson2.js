@@ -7,6 +7,17 @@ $(function () {
 
         //初期設定
         function init() {
+            $('#main').find('img').each(function (index) {
+                $(this).addClass('photo');
+                srcList[index] = $(this).attr('src');
+            });
+        
+            let img = $('<img>').attr('src', 'images/loading.gif');
+            let p = $('<p>').addClass('loading').append(img);
+            let li = $('#main').find('li');
+            p.appendTo(li)
+        
+            load();
         };
 
         //画像の読み込み

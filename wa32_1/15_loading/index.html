@@ -35,6 +35,11 @@
     </div>
 
     <div>
+      <h2 class="h2">画像</h2>
+      <p>
+        <img src="images/images.png" width="300">
+      </p>
+
       <h2 class="h2">HTML</h2>
       <script type="text/plain" class="language-markup">
         <div id="main" class="row">
@@ -86,6 +91,156 @@
       </code></pre>
     </div>
 
+    <h2 class="h2">ready イベント内の関数定義</h2>
+    <pre class="language-javascript"><code>
+    $(function () {
+        function loadImages() {
+        }
+
+        loadImages();
+    }
+    </code></pre>
+
+    <h2 class="h2">関数と変数の定義</h2>
+    <pre class="language-javascript"><code>
+      $(function () {
+
+        function loadImages() {
+            let srcList = []; //画像の参照先を格納する配列
+            let index = 0; //読み込み画像インデックス
+            let duration = 800;
+    
+            //初期設定
+            function init() {
+            };
+    
+            //画像の読み込み
+            function load() {
+            };
+    
+            //画像の読み込み完了
+            function loaded() {
+            };
+    
+            //すべての画像の読み込み完了
+            function complete() {
+            };
+            init();
+        };
+    
+        loadImages();
+    });
+    </code></pre>
+
+    <h2 class="h2">DOM の操作</h2>
+    <h3 class="h3">DOM の作成</h3>
+    <p>セレクタに HTML タグを記述すると 新しいDOM を作成して操作できる。</p>
+    <pre class="language-javascript"><code>
+      $(HTMLタグ)
+    </code></pre>
+
+    <h4 class="h4">p タグ、img タグの作成と操作</h4>
+    <pre class="language-javascript"><code>
+      $('&lt;img&gt;').html(文字列)
+
+      $('&lt;p&gt;').attr(‘src’, 画像パス)
+    </code></pre>
+
+    <h3 class="h3">DOM の追加</h3>
+    <h4 class="h4">親要素に子要素を最後に追加</h4>
+    <pre class="language-javascript"><code>
+      $(親要素).append(子要素)
+    </code></pre>
+
+    <pre class="language-javascript"><code>
+      $(子要素).appendTo(親要素)
+    </code></pre>
+
+    <h4 class="h4">親要素に子要素を最初に追加</h4>
+    <pre class="language-javascript"><code>
+      $(親要素).prepend(子要素)
+    </code></pre>
+
+    <pre class="language-javascript"><code>
+      $(子要素).prependTo(親要素)
+    </code></pre>
+
+    <h4 class="h4">要素を削除</h4>
+    <pre class="language-javascript"><code>
+      $(要素).remoev()
+    </code></pre>
+
+    <h3 class="h3">class の追加・削除</h3>
+    <h4 class="h4">追加</h4>
+    <pre class="language-javascript"><code>
+      $(セレクタ).addClass(クラス名)
+    </code></pre>
+
+    <h4 class="h4">削除</h4>
+    <pre class="language-javascript"><code>
+      $(セレクタ).removeClass(クラス名)
+    </code></pre>
+
+    <div>
+      <h2 class="h2">初期設定の実装</h2>
+      <pre class="language-javascript"><code>
+      function init() {
+          $('#main').find('img').each(function (index) {
+              $(this).addClass('photo');
+              srcList[index] = $(this).attr('src');
+          });
+    
+          let img = $('&lt;img&gt;').attr('src', 'images/loading.gif');
+          let p = $('&lt;p&gt;').addClass('loading').append(img);
+          let li = $('#main').find('li');
+          p.appendTo(li)
+    
+          load();
+      };
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">画像読み込みの実装</h2>
+      <pre class="language-javascript"><code>
+      function load() {
+          let img = new Image();
+          $(img).on('load', loaded).attr('src', srcList[index]);
+      };
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">画像読み込み完了の実装</h2>
+      <pre class="language-javascript"><code>
+      function loaded() {
+          let loading = $($('#main').find('.loading')[index]);
+          let img = $($('#main').find('.photo')[index]);
+          loading.fadeOut(200);
+          img.css({
+              'display': 'block',
+              'opacity': 0
+          }).animate({ 'opacity': 1 }, duration, function () {
+              index++;
+              if (index >= srcList.length) {
+                  complete();
+              } else {
+                  load();
+              };
+          });
+      };
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">すべての画像読み込み完了の実装</h2>
+      <pre class="language-javascript"><code>
+      function complete() {
+          $('#main').find('.loading').remove();
+      }
+      </code></pre>
+    </div>
+    
   </div>
 
   <script src="../js/jquery-3.5.0.min.js"></script>

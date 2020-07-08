@@ -1,9 +1,9 @@
 $(function () {
 
     function loadImages() {
-
         let srcList = []; //画像の参照先を格納する配列
         let index = 0; //読み込み画像インデックス
+        let duration = 800;
 
         //初期設定
         function init() {
@@ -11,12 +11,12 @@ $(function () {
                 $(this).addClass('photo');
                 srcList[index] = $(this).attr('src');
             });
-
+        
             let img = $('<img>').attr('src', 'images/loading.gif');
             let p = $('<p>').addClass('loading').append(img);
             let li = $('#main').find('li');
             p.appendTo(li)
-
+        
             load();
         };
 
@@ -34,7 +34,7 @@ $(function () {
             img.css({
                 'display': 'block',
                 'opacity': 0
-            }).animate({ 'opacity': 1 }, 800, function () {
+            }).animate({ 'opacity': 1 }, duration, function () {
                 index++;
                 if (index >= srcList.length) {
                     complete();
@@ -53,5 +53,4 @@ $(function () {
     };
 
     loadImages();
-
 });

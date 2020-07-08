@@ -1,8 +1,17 @@
 @charset "UTF-8";
 
+.frame {
+    margin: 0;
+    border: 5px solid #cccccc;
+}
+
+.frame.active {
+    border: 5px solid red;
+}
+
 .fade_image {
     position: relative;
-    width: 300px;
+    width: 500px;
 }
 
 #fade_image1 {
@@ -15,7 +24,7 @@
 }
 
 #click_main_image {
-    width: 500px;
+    width: 450px;
 }
 
 .click_thumbnail {
@@ -37,5 +46,5 @@ img.click_current {
 }
 
 .navigation_image {
-    width: 100px;
+    width: 50px;
 }

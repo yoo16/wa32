@@ -1,0 +1,17 @@
+#photoList li {
+    display: none;
+    position: absolute;
+    list-style: none;
+}
+
+#photoList img {
+    width: 500px;
+}
+
+
+/* code */
+.code {
+    position: absolute;
+    top: 500px;
+    width: 100%;
+}
