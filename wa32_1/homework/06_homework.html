@@ -4,9 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="stylesheet" href="css/homework_6.css">
-
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="../../css/prism.css">
@@ -22,132 +19,78 @@
     <h1 class="h1">課題06</h1>
 
     <h2 class="h2">課題</h2>
-    <div>メインビジュアル</div>
+    <div></div>
 
     <h2 class="h2">内容</h2>
-    <div>メインビジュアルの画像切り替えプログラムを作成する。</div>
-
+    <div>オリジナルAPIの作成</div>
     <div>
-      <h2 class="h2">1. 画像の自動切り替え</h2>
-      <div class="text-center">
-        <img id="fade_image1" class="fade_image" src="images/sample2.jpg" alt="">
-        <img id="fade_image2" class="fade_image" src="images/sample3.jpg" alt="">
-      </div>
-
-      <h3 class="h3">ファイル構成</h3>
-      <div>
-        <pre>
-wa32_homework06_1_出席番号
-  |- index.html
-  |- js/main.js
-  |- css/style.css
-  |- images/sample1.jpg
-            sample2.jpg
-            sample3.jpg
-            sample4.jpg
-        </pre>
-      </div>
-
+      以下の3つから1つ選んで、Web API を利用したファイルを作成する
+      <ul>
+        <li><a href="#search_event">イベント検索</a></li>
+        <li><a href="#search_address">郵便番号検索</a></li>
+        <li><a href="#covid19">covid19</a></li>
+      </ul>
     </div>
 
+    <h2 class="h2">ファイル構成</h2>
     <div>
-      <h3 class="h2">2. サムネイルによる画像切り替え</h2>
-        <div class="text-center">
-          <img id="click_main_image" class="" src="images/sample3.jpg" alt="">
-          <div>
-            <div class="click_thumbnail">
-              <img id="" class="" src="images/thumbnail_sample1.jpg" alt="">
-            </div>
-            <div class="click_thumbnail">
-              <img id="" class="" src="images/thumbnail_sample2.jpg" alt="">
-            </div>
-            <div class="click_thumbnail">
-              <img id="" class="click_current" src="images/thumbnail_sample3.jpg" alt="">
-            </div>
-            <div class="click_thumbnail">
-              <img id="" class="" src="images/thumbnail_sample4.jpg" alt="">
-            </div>
-          </div>
+      <pre>
+wa32_homework05_出席番号
+  |- index.html
+  |- js/xxxx.js
+  |- css/xxxx.js
+    </pre>
+
+      <div>
+        <div id="search_event">
+          <h2 class="h2">イベント検索</h2>
+          <h3 class="h3">ZipCloud</h3>
+          <a href="https://www.doorkeeper.jp/" target="_blank">https://www.doorkeeper.jp/</a>
+          <h3 class="h3">API</h3>
+          <ul>
+            <li>
+              https://api.doorkeeper.jp/events
+            </li>
+            <li>
+              https://connpass.com/api/v1/event/
+            </li>
+          </ul>
         </div>
-        <h3 class="h3">ファイル構成</h3>
-        <div>
-          <pre>
-wa32_homework06_2_出席番号
-  |- index.html
-  |- js/main.js
-  |- css/style.css
-  |- images/sample1.jpg
-            sample2.jpg
-            sample3.jpg
-            sample4.jpg
-            thumbnail_sample1.jpg
-            thumbnail_sample2.jpg
-            thumbnail_sample3.jpg
-            thumbnail_sample4.jpg
-          </pre>
+
+        <div id="search_address">
+          <h2 class="h2">郵便番号検索</h2>
+          <h3 class="h3">ZipCloud</h3>
+          <a href="https://zipcloud.ibsnet.co.jp/doc/api" target="_blank">https://zipcloud.ibsnet.co.jp/doc/api</a>
+          <h3 class="h3">API</h3>
+          <ul>
+            <li>
+              https://zipcloud.ibsnet.co.jp/api/search
+            </li>
+          </ul>
         </div>
-    </div>
 
-    <div>
-      <h2 class="h2">3. ボタンクリックによる画像切り替え</h2>
-      <div class="text-center">
-        <img id="" class="navigation_image" src="images/prev.jpg" alt="">
-        <img id="button_click_image_main" class="" src="images/sample2.jpg" alt="">
-        <img id="" class="navigation_image" src="images/next.jpg" alt="">
-      </div>
-
-      <h3 class="h3">ファイル構成</h3>
-      <div>
-        <pre>
-wa32_homework06_3_出席番号
-  |- index.html
-  |- js/main.js
-  |- css/style.css
-  |- images/sample1.jpg
-            sample2.jpg
-            sample3.jpg
-            sample4.jpg
-            next.jpg
-            prev.jpg
-        </pre>
-      </div>
-
-    <div>
-      <h2 class="h2">4. 1 - 3 の組み合わせ</h2>
-      <div class="text-center">
-        <img id="" class="navigation_image" src="images/prev.jpg" alt="">
-        <img id="button_click_image_main" class="" src="images/sample2.jpg" alt="">
-        <img id="" class="navigation_image" src="images/next.jpg" alt="">
-      </div>
-
-      <h3 class="h3">ファイル構成</h3>
-      <div>
-        <pre>
-wa32_homework06_4_出席番号
-  |- index.html
-  |- js/main.js
-  |- css/style.css
-  |- images/sample1.jpg
-            sample2.jpg
-            sample3.jpg
-            sample4.jpg
-            thumbnail_sample1.jpg
-            thumbnail_sample2.jpg
-            thumbnail_sample3.jpg
-            thumbnail_sample4.jpg
-            next.jpg
-            prev.jpg
-        </pre>
+        <div id="covid19">
+          <h2 class="h2">covid19</h2>
+          <h3 class="h3">COVID-19 Japan Web API</h3>
+          <a href="https://documenter.getpostman.com/view/9215231/SzYaWe6h?version=latest" target="_blank">COVID-19
+            Japan
+            Web API</a>
+          <h3 class="h3">API</h3>
+          <ul>
+            <li>
+              https://covid19-japan-web-api.now.sh/api/v1/prefectures
+            </li>
+            <li>
+              https://covid19-japan-web-api.now.sh/api/v1/positives
+            </li>
+          </ul>
+        </div>
       </div>
 
     </div>
+
   </div>
 
-  <script src="../../js/jquery-3.5.0.min.js"></script>
-  <script src="../../js/bootstrap/bootstrap.min.js"></script>
-
-  <script src="../../js/prism.js"></script>
-  <script src="../../js/default.js"></script>
 </body>
 
 </html>

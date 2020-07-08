@@ -1,3 +1,4 @@
+
 #main li {
     position: relative;
     float: left;
@@ -9,12 +10,14 @@
 }
 
 #main li img {
-    display: none;
+    /* デフォルト画像非表示 */
+    display: none; 
     width: 228px;
     height: 165px;
 }
 
 .loading {
+    /* ローディングは中央揃え */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -27,4 +30,9 @@
     display: block !important;
     width: 48px !important;
     height: 32px !important;
+}
+
+/* code */
+#code {
+    top: 600px;
 }

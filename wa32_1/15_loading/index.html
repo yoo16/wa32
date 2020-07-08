@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css?20200701">
+
+  <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <link rel="stylesheet" href="../css/default.css?20200709">
+
+  <title>WA32 画像ローディング</title>
+</head>
+
+<body>
+  <div class="container">
+    <p><a href="../">Back</a></p>
+    <h1 class="h1">画像ローディング</h1>
+
+    <h2 class="h2">サンプル</h2>
+
+    <div id="main" class="row">
+      <ul>
+        <li><img src="images/sample_1.jpg"></li>
+        <li><img src="images/sample_2.jpg"></li>
+        <li><img src="images/sample_3.jpg"></li>
+        <li><img src="images/sample_4.jpg"></li>
+        <li><img src="images/sample_5.jpg"></li>
+        <li><img src="images/sample_6.jpg"></li>
+        <li><img src="images/sample_7.jpg"></li>
+        <li><img src="images/sample_8.jpg"></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="h2">HTML</h2>
+      <script type="text/plain" class="language-markup">
+        <div id="main" class="row">
+          <ul>
+            <li><img src="images/sample_1.jpg"></li>
+            <li><img src="images/sample_2.jpg"></li>
+            <li><img src="images/sample_3.jpg"></li>
+            <li><img src="images/sample_4.jpg"></li>
+            <li><img src="images/sample_5.jpg"></li>
+            <li><img src="images/sample_6.jpg"></li>
+            <li><img src="images/sample_7.jpg"></li>
+            <li><img src="images/sample_8.jpg"></li>
+          </ul>
+        </div>
+      </script>
+
+      <h2 class="h2">CSS</h2>
+      <pre class="language-css"><code>
+      #main li {
+          position: relative;
+          float: left;
+          margin: 5px;
+          border: 1px solid #ccc;
+          list-style: none;
+      }
+      
+      #main li img {
+          /* デフォルト画像非表示 */
+          display: none;
+          width: 228px;
+          height: 165px;
+      }
+      
+      .loading {
+          /* ローディングは中央揃え */
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 32px;
+          height: 32px;
+          margin: -16px 0 0 -16px;
+      }
+      
+      .loading img {
+          display: block !important;
+          width: 48px !important;
+          height: 32px !important;
+      }
+      </code></pre>
+    </div>
+
+  </div>
+
+  <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="../js/jquery-ui.min.js"></script>
+  <script src="../js/bootstrap/bootstrap.min.js"></script>
+
+  <script src="js/main.js"></script>
+
+  <script src="../js/prism.js"></script>
+</body>
+
+</html>
