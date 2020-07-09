@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+@media print{
+    .no_print{
+        display: none;
+    }
+}
+
 .frame {
     margin: 0;
     border: 5px solid #cccccc;
