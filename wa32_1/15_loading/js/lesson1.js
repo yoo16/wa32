@@ -5,19 +5,16 @@ $(function () {
         let index = 0; //読み込み画像インデックス
         let duration = 800;
 
-        //初期設定
         function init() {
+            console.log('初期化');
         };
 
-        //画像の読み込み
         function load() {
         };
 
-        //画像の読み込み完了
         function loaded() {
         };
 
-        //すべての画像の読み込み完了
         function complete() {
         };
         init();
