@@ -17,7 +17,7 @@
 
 .fade_image {
     position: relative;
-    width: 500px;
+    width: 600px;
 }
 
 #fade_image1 {
@@ -30,7 +30,7 @@
 }
 
 #click_main_image {
-    width: 450px;
+    width: 567px;
 }
 
 .click_thumbnail {
@@ -48,7 +48,7 @@ img.click_current {
 }
 
 #button_click_image_main {
-    width: 500px;
+    width: 600px;
 }
 
 .navigation_image {

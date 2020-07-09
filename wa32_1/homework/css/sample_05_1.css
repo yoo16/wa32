@@ -5,13 +5,13 @@
 }
 
 #photoList img {
-    width: 500px;
+    width: 600px;
 }
 
 
 /* code */
 .code {
     position: absolute;
-    top: 500px;
+    top: 600px;
     width: 100%;
 }

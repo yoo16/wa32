@@ -4,6 +4,8 @@ $(function () {
         let srcList = []; //画像の参照先を格納する配列
         let index = 0; //読み込み画像インデックス
         let duration = 800;
+        const hideCss = { display: 'block', opacity: 0 };
+        const showCss = { opacity: 1 };
 
         //初期設定
         function init() {
@@ -28,13 +30,13 @@ $(function () {
 
         //画像の読み込み完了
         function loaded() {
-            let loading = $($('#main').find('.loading')[index]);
-            let img = $($('#main').find('.photo')[index]);
-            loading.fadeOut(200);
-            img.css({
-                'display': 'block',
-                'opacity': 0
-            }).animate({ 'opacity': 1 }, duration, function () {
+            let loading = $('#main').find('.loading')[index];
+            $(loading).fadeOut(200);
+            console.log(loading);
+
+            let img = $('#main').find('.photo')[index];
+            console.log(img);
+            $(img).css(hideCss).animate(showCss, duration, function () {
                 index++;
                 if (index >= srcList.length) {
                     complete();
