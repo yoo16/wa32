@@ -6,44 +6,41 @@ $(function () {
 
         // チェック
         let check = function () {
-            console.log('check');
+        }
+
+        // 未入力チェック
+        let checkEmptyText = function (selector, message) {
         }
 
         // エラーメッセージを表示
-        let addErrorMessage = function (selector, msg) {
+        let addErrorMessage = function (selector, message) {
         }
 
         // エラーメッセージを非表示
         let removeErrorMessage = function (selector) {
         }
 
-        // 未入力チェック
-        let checkEmptyText = function (selector, msg) {
-        }
-
         // 初期設定
         let init = function () {
             // submitイベントの設定
-            target.on({
-                'submit': function () {
-                    check(); // チェック
-                    return false;
-                }
+            target.on('submit', function () {
+                check();
+                return false;
             });
 
+            // enterキーで submit 防止
+            target.find('input[type=text]').on('keypress', function (e) {
+                if (e.keyCode == 13) return false;
+            });
+
+            // チェックするテキストボックスの追加
             items = [
-                target.find('input[name=forName]'),
+                target.find('input[name=name]'),
+                target.find('input[name=furigana]')
             ];
 
             $.each(items, function (index) {
                 items[index].prop('isSuccess', false);
-            });
-
-            // enterキーでsubmitするのを防止
-            target.find('input[type=text]').on({
-                'keypress': function (e) {
-                    if (e.keyCode == 13) return false;
-                }
             });
         }
 

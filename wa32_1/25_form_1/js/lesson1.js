@@ -6,23 +6,23 @@ $(function () {
 
         // チェック
         let check = function () {
-            console.log('check');
+        }
+
+        // 未入力チェック
+        let checkEmptyText = function (selector, message) {
         }
 
         // エラーメッセージを表示
-        let addErrorMessage = function (selector, msg) {
+        let addErrorMessage = function (selector, message) {
         }
 
         // エラーメッセージを非表示
         let removeErrorMessage = function (selector) {
         }
 
-        // 未入力チェック
-        let checkEmptyText = function (selector, msg) {
-        }
-
         // 初期設定
         let init = function () {
+            console.log('init');
         }
 
         init();
