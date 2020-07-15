@@ -2,15 +2,21 @@ $(function () {
 
     function setMyForm(target) {
 
-        let items = []; // チェック対象となるテキスト入力要素
-        let messages = [];
+        // チェックするテキストボックスの追加
+        let items = [
+            $('input[name=name]'),
+            $('input[name=furigana]'),
+        ];
+        let messages = [
+            '名前を入力してください',
+            'ふりがなを入力してください',
+        ];
 
         // チェック
         let check = function () {
-            // 名前のチェック
-            checkEmptyText(0);
-            // ふりがなのチェック
-            checkEmptyText(1);
+            $.each(items, function(index, item) {
+                checkEmptyText(index);
+            })
         }
 
         // 未入力チェック
@@ -57,12 +63,6 @@ $(function () {
             target.find('input[type=text]').on('keypress', function (e) {
                 if (e.keyCode == 13) return false;
             });
-
-            // チェックするテキストボックスの追加
-            items = [
-                target.find('input[name=name]'),
-                target.find('input[name=furigana]')
-            ];
 
             $.each(items, function (index) {
                 items[index].prop('isSuccess', false);

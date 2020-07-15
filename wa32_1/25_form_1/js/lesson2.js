@@ -2,8 +2,15 @@ $(function () {
 
     function setMyForm(target) {
 
-        let items = []; // チェック対象となるテキスト入力要素
-        let messages = [];
+        // チェックするテキストボックスの追加
+        let items = [
+            $('input[name=name]'),
+            $('input[name=furigana]'),
+        ];
+        let messages = [
+            '名前を入力してください',
+            'ふりがなを入力してください',
+        ];
 
         // チェック
         let check = function () {
@@ -33,17 +40,6 @@ $(function () {
             target.find('input[type=text]').on('keypress', function (e) {
                 if (e.keyCode == 13) return false;
             });
-
-            // チェックするテキストボックスの追加
-            items = [
-                target.find('input[name=name]'),
-                target.find('input[name=furigana]')
-            ];
-
-            messages = [
-                '名前を入力してください',
-                'ふりがなを入力してください',
-            ];
 
             $.each(items, function (index) {
                 items[index].prop('isSuccess', false);

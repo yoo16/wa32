@@ -14,6 +14,12 @@ $(function () {
      * init
      */
     function init() {
+        patterns = [
+            { label: '半角', pattern: /[\x01-\x7E]/ },
+            { label: '全角', pattern: /[^\x01-\x7E]/ },
+            { label: '半角のみ', pattern: /^[\x01-\x7E]+$/ },
+            { label: '全角のみ', pattern: /^[^\x01-\x7E]+$/ },
+        ];
         $.each(patterns, function (index, value) {
             selectReg.append($('<option>').html(value.label).val(index));
         });

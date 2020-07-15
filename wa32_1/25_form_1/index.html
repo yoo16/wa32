@@ -79,10 +79,16 @@
         $(function () {
 
           function setMyForm(target) {
+              // チェックするテキストボックスの追加
+              let items = [
+                  $('input[name=name]'),
+                  $('input[name=furigana]'),
+              ];
+              let messages = [
+                  '名前を入力してください',
+                  'ふりがなを入力してください',
+              ];
       
-              let items = []; // チェック対象となるテキスト入力要素を配列で用意
-              let messages = []; 
-
               // 入力チェック
               let check = function () {
               }
@@ -154,34 +160,19 @@
       <h2 class="h2">初期設定の実装</h2>
       <pre class="language-javascript"><code>
       let init = function () {
-          // submit イベントの登録
+          // submitイベントの設定
           target.on('submit', function () {
               check();
               return false;
           });
 
-          // items 配列にエラー対象の要素を入れる
-          items = [
-              target.find('input[name=name]'),  //$(‘#myForm') から input name=name を探す
-              target.find('input[name=furigana]'),  //$(‘#myForm') から input name=furigana を探す
-          ];
-
-          //エラーメッセージを items の index にあわせる
-          messages = [
-              '名前を入力してください',
-              'ふりがなを入力してください',
-          ];
-
-          // items を繰り返す（input の 名前、ふりがな）
-          $.each(items, function (index) {
-              items[index].prop('isSuccess', false);  //items のプロパティ isSuccess を false にする
+          // enterキーで submit 防止
+          target.find('input[type=text]').on('keypress', function (e) {
+              if (e.keyCode == 13) return false;
           });
 
-          // enterキーでsubmit 防止
-          target.find('input[type=text]').on({  //input type=text 上でキーが押されたら
-              'keypress': function (e) {
-                  if (e.keyCode == 13) return false;  enterキーだったら止める
-              }
+          $.each(items, function (index) {
+              items[index].prop('isSuccess', false);
           });
       }
       </code></pre>
@@ -191,10 +182,9 @@
       <pre class="language-javascript"><code>
       // チェック
       let check = function () {
-          // 名前のチェック
-          checkEmptyText(0);
-          // ふりがなのチェック
-          checkEmptyText(1);
+          $.each(items, function(index, item) {
+              checkEmptyText(index);
+          })
       }
       </code></pre>
 
