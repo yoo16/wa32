@@ -81,21 +81,27 @@
           function setMyForm(target) {
       
               let items = []; // チェック対象となるテキスト入力要素を配列で用意
-      
+              let messages = []; 
+
               // 入力チェック
-              let check = function () { }
+              let check = function () {
+              }
       
               // 未入力チェック
-              let checkEmptyText = function (selector, message) { }
+              let checkEmptyText = function (index) {
+              }
       
               // エラーメッセージを表示
-              let addErrorMessage = function (selector, message) { }
+              let addErrorMessage = function (selector, message) {
+              }
       
               // エラーメッセージを非表示
-              let removeErrorMessage = function (selector) { }
+              let removeErrorMessage = function (selector) {
+              }
       
               // 初期設定
-              let init = function () { }
+              let init = function () {
+              }
       
               init();
           }
@@ -154,9 +160,16 @@
               return false;
           });
 
-          // items 配列に要素を入れる
+          // items 配列にエラー対象の要素を入れる
           items = [
-              target.find('input[name=forName]'),  //$(‘#myForm') から input name=forName を探す
+              target.find('input[name=name]'),  //$(‘#myForm') から input name=name を探す
+              target.find('input[name=furigana]'),  //$(‘#myForm') から input name=furigana を探す
+          ];
+
+          //エラーメッセージを items の index にあわせる
+          messages = [
+              '名前を入力してください',
+              'ふりがなを入力してください',
           ];
 
           // items を繰り返す（input の 名前、ふりがな）
@@ -176,23 +189,28 @@
       <h2 class="h2">入力チェック</h2>
       <h3 class="h3">入力チェック</h3>
       <pre class="language-javascript"><code>
+      // チェック
       let check = function () {
-          checkEmptyText(items[0], '名前を入力してください');  //items[0] : 初期設定した名前の input要素
-          checkEmptyText(items[1], 'ふりがなを入力してください');  //items[1] : 初期設定したふりがなの input要素
+          // 名前のチェック
+          checkEmptyText(0);
+          // ふりがなのチェック
+          checkEmptyText(1);
       }
       </code></pre>
 
       <h3 class="h3">未入力チェック</h3>
       <pre class="language-javascript"><code>
-      let checkEmptyText = function (selector, message) {
+      let checkEmptyText = function (index) {
+          let selector = items[index];
+          let message = messages[index];
           if (selector.val() == '') {
               // エラーメッセージを表示
               addErrorMessage(selector, message);
-              selector.prop('isSuccess', false);  //isSuccess = false
+              selector.prop('isSuccess', false);
           } else {
               // エラーメッセージを非表示
               removeErrorMessage(selector);
-              selector.prop('isSuccess', true);  //isSuccess = true
+              selector.prop('isSuccess', true);
           }
       }
       </code></pre>
@@ -203,14 +221,14 @@
       $(‘セレクタ’).before(文字列);
       </code></pre>
 
-      <p>input は閉じタグがないため append() でなく before() を利用</p>
+      <p class="alert alert-info">input は閉じタグがないため append() でなく before() を利用</p>
       <h2 class="h2">エラーメッセージ</h2>
       <h3 class="h3">エラーメッセージ表示</h3>
       <pre class="language-javascript"><code>
       let addErrorMessage = function (selector, message) {
           removeErrorMessage(selector);
-          let span = $('<span>').addClass('error').html(message);
-          selector.before(span);
+          let span = $('&lt;span&gt;').addClass('error').html(message);  //span タグを作成
+          selector.before(span);    //input の前に span を追加
           selector.addClass('errorInput');
       }
       </code></pre>
@@ -223,14 +241,6 @@
           selector.removeClass('errorInput');   //class="error" を削除
       }
       </code></pre>
-
-      <h2 class="h2">エラー時のHTML</h2>
-      <script type="text/plain" class="language-markup">
-      <td>
-        <span class="error">名前を入力してください</span>
-        <input type="text" name="name" class="error">
-      </td>
-      </script>
     </div>
 
     <script src="../js/jquery-3.5.0.min.js"></script>

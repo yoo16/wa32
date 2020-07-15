@@ -3,13 +3,14 @@ $(function () {
     function setMyForm(target) {
 
         let items = []; // チェック対象となるテキスト入力要素
+        let messages = [];
 
         // チェック
         let check = function () {
         }
 
         // 未入力チェック
-        let checkEmptyText = function (selector, message) {
+        let checkEmptyText = function (index) {
         }
 
         // エラーメッセージを表示

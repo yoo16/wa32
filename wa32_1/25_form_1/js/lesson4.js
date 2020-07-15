@@ -3,17 +3,18 @@ $(function () {
     function setMyForm(target) {
 
         let items = []; // チェック対象となるテキスト入力要素
-        let messages = [
-            '名前を入力してください',
-            'ふりがなを入力してください',
-        ];
-        
+        let messages = [];
+
         // チェック
         let check = function () {
             // 名前のチェック
             checkEmptyText(0);
             // ふりがなのチェック
             checkEmptyText(1);
+
+            checkEmptyText(2);
+            checkEmptyText(3);
+            checkEmptyText(4);
         }
 
         // 未入力チェック
@@ -64,7 +65,17 @@ $(function () {
             // チェックするテキストボックスの追加
             items = [
                 target.find('input[name=name]'),
-                target.find('input[name=furigana]')
+                target.find('input[name=furigana]'),
+                target.find('input[name=tel]'),
+                target.find('input[name=mail]'),
+                target.find('textarea[name=body]'),
+            ];
+            messages = [
+                '名前を入力してください',
+                'ふりがなを入力してください',
+                '電話番号を入力してください',
+                'メールアドレスを入力してください',
+                'お問い合わせ内容を入力してください',
             ];
 
             $.each(items, function (index) {

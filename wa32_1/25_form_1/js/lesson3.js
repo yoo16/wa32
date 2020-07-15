@@ -3,17 +3,20 @@ $(function () {
     function setMyForm(target) {
 
         let items = []; // チェック対象となるテキスト入力要素
+        let messages = [];
 
         // チェック
         let check = function () {
             // 名前のチェック
-            checkEmptyText(items[0], '名前を入力してください');
+            checkEmptyText(0);
             // ふりがなのチェック
-            checkEmptyText(items[1], 'ふりがなを入力してください');
+            checkEmptyText(1);
         }
 
         // 未入力チェック
-        let checkEmptyText = function (selector, message) {
+        let checkEmptyText = function (index) {
+            let selector = items[index];
+            let message = messages[index];
             if (selector.val() == '') {
                 // エラーメッセージを表示
                 addErrorMessage(selector, message);

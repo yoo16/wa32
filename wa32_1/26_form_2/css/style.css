@@ -3,11 +3,11 @@ th, td {
     text-align: left;
 }
 
-th .ind {
+th .required {
     color: #f00;
 }
 
-.errorMsg {
+.error {
     display: block;
     color: #f00;
 }

@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-    <link rel="stylesheet" href="css/style.css">
-  
-    <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/prism.css">
-    <link rel="stylesheet" href="../css/default.css">
-  
-    <title>WA32 form 2</title>
-  </head>
 
-  <body>
-    <div class="container">
-      <div><a href="../index.html">Back</a></div>
-      <h1 class="h1">Form 2</h1>
-  
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <link rel="stylesheet" href="../css/default.css">
+
+  <title>WA32 form 2</title>
+</head>
+
+<body>
+  <div class="container">
+    <div><a href="../index.html">Back</a></div>
+    <h1 class="h1">Form 2</h1>
+
     <form id="myForm" method="post">
       <table class="table">
         <tr>
-          <th><label for="forName">名前 <span class="ind">必須</span></label></th>
-          <td><input type="text" name="forName"></td>
+          <th><label for="name">名前 <span class="required">必須</span></label></th>
+          <td><input type="text" name="name"></td>
         </tr>
         <tr>
-          <th><label for="forFurigana">ふりがな <span class="ind">必須</span></label></th>
-          <td><input type="text" name="forFurigana"></td>
+          <th><label for="furigana">ふりがな <span class="required">必須</span></label></th>
+          <td><input type="text" name="furigana"></td>
         </tr>
       </table>
       <p><input type="submit" value="送信内容を確認する" class="btn btn-primary"></p>
@@ -34,70 +35,220 @@
 
     <!-- code & document -->
     <div id="code">
-      <h2 class="h2">文字検索（正規表現）</h2>
-      <pre class="language-javascript"><code>
-      文字オブジェクト.match(パターン)
-      </code></pre>
+      <h2 class="h2">正規表現とは</h3>
+        <p>
+          「文字列を一つの形式で表現するための方法」で、文字列を特殊文字パターンで検索するのに利用
+          例えば、メールアドレスに @ や ドメインがはいっているか、文章に特定の文字が含まれているかなどをのチェックなどです。
+        </p>
+        <p>
+          文章だけでは説明が難しいため例をあげて説明します。
+        </p>
 
-      <h2 class="h2">正規表現</h2>
-      <div>
-        <p>私は<span class="text-danger">xxxx</span>が<span class="text-danger">xxxx</span>です</p>
-      </div>
+        <h3 class="h3">検索する文字列の例</h3>
+        <div>
+          <p>私は<span class="text-danger">うどん</span>が<span class="text-danger">好き</span>です</p>
+          <p>私は<span class="text-danger">走るの</span>が<span class="text-danger">速い</span>です</p>
+        </div>
 
-      <h3 class="h3">検索できる文字列の例</h3>
-      <div>
-        <p>私は<span class="text-danger">うどん</span>が<span class="text-danger">好き</span>です</p>
-        <p>私は<span class="text-danger">走るの</span>が<span class="text-danger">速い</span>です</p>
-      </div>
+        <p>
+          上記の文章は、以下のパターンにあてはまります。
+        </p>
+        <div>
+          <p>私は<span class="text-danger">xxxx</span>が<span class="text-danger">xxxx</span>です</p>
+        </div>
+        <p>
+          このようにパターン化した曖昧な検索ができ、マッチしたか判別して、処理をふりわけることができます。
+        </p>
 
-      <h3 class="h3">チェック</h3>
-      <pre class="language-javascript"><code>
-      let check = function () {
-          // 名前のチェック
-          checkEmptyText(items[0], '名前を入力してください');
-          if (items[0].prop('isSuccess')) checkFormatText(items[0], 0, '入力フォーマットが正しくありません');
+        <h2 class="h2">正規表現のパターン</h2>
+        <p>
+          正規表現のパターンは「半角英数」と「特殊文字」を組み合わせて表現します。
+          特殊文字やパターンはすべて暗記するのは難しいのですが、ある程度法則は知る必要はあります。
+        </p>
+        <h3 class="h3">特殊文字</h3>
+        <pre class="language-markup"><code>
+        .   ^   $   [   ]   *   +   ?   |   (   ) \ /
+        </code></pre>
+        <div>
+          <h3 class="h3">正規表現の基本一覧</h3>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>文字</th>
+                <th>説明</th>
+              </tr>
+              <tr>
+                <td class="">/ ~ /</td>
+                <td class="">デリミタ、両端に記述することで条件範囲指定</td>
+              </tr>
+              <tr>
+                <td class="">.</td>
+                <td class="">任意の１文字にマッチ</td>
+              </tr>
+              <tr>
+                <td class="">+</td>
+                <td class="">最長一致: 直前の文字が 1回以上繰り返す場合にマッチ</td>
+              </tr>
+              <tr>
+                <td class="">*</td>
+                <td class="">最長一致: 直前の文字が 0回以上繰り返す場合にマッチ</td>
+              </tr>
+              <tr>
+                <td class="">?</td>
+                <td class="">最短一致: 直前の文字が 0 か 1個の場合にマッチ</td>
+              </tr>
+              <tr>
+                <td class="">^</td>
+                <td class="">直後の文字が行の先頭にある場合にマッチ</td>
+              </tr>
+              <tr>
+                <td class="">$</td>
+                <td class="">直前の文字が行の末尾にある場合にマッチ</td>
+              </tr>
+              <tr>
+                <td class="">[...]</td>
+                <td class="">角括弧に含まれるいずれか１文字にマッチ</td>
+              </tr>
+              <tr>
+                <td class="">[^...]</td>
+                <td class="">角括弧に含まれる文字以外にマッチ</td>
+              </tr>
+              <tr>
+                <td class="">(...)</td>
+                <td class="">文字を 1つのグループにまとめる</td>
+              </tr>
+              <tr>
+                <td class="">{n}</td>
+                <td class="">直前の文字の n回繰り返し</td>
+              </tr>
+              <tr>
+                <td class="">{n,m}</td>
+                <td class="">直前の文字の n回以上、m回以下の繰り返し</td>
+              </tr>
+              <tr>
+                <td class="">\d または [0-9]</td>
+                <td class="">すべての数字</td>
+              </tr>
+              <tr>
+                <td class="">\D または [^0-9]</td>
+                <td class="">すべての数字以外の文字</td>
+              </tr>
+              <tr>
+                <td class="">\w または [a-zA-Z_0-9]</td>
+                <td class="">アルファベット、アンダーバー、数字</td>
+              </tr>
+              <tr>
+                <td class="">\W または [^a-zA-Z_0-9]</td>
+                <td class="">アルファベット、アンダーバー、数字以外の文字</td>
+              </tr>
+            </tbody>
+          </table>
 
-          // ふりがなのチェック
-          checkEmptyText(items[1], 'ふりがなを入力してください');
-          if (items[1].prop('isSuccess')) checkFormatText(items[1], 1, '入力フォーマットが正しくありません');
-      }
-      </code></pre>
+          <h4 class="h4">参考サイト</h4>
+          <p>
+            <ul>
+              <li><a href="https://qiita.com/grrrr/items/0b35b5c1c98eebfa5128" target="_blank">正規表現を可視化してまとめたチートシート</a></li>
+              <li><a href="https://algorithm.joho.info/computer/wildcard-regular-expression/" target="_blank">基本的な正規表現一覧</a></li>
+              <li><a href="https://murashun.jp/blog/20190215-01.html" target="_blank">基本的な正規表現一覧</a></li>
+            </ul>
+          </p>
+        </div>
 
-      <h3 class="h3">文字列のフォーマットチェック</h3>
-      <pre class="language-javascript"><code>
-      function checkFormatText(selector, checkmode, msg) {
-          let value = selector.val();
-          switch (checkmode) {
-              // 全角のみ
-              case 0:
-                  if (value.match(/^[^\x01-\x7E]+$/)) {
-                      selector.prop('isSuccess', true);
-                      removeErrorMessage(selector);
-                  } else {
-                      selector.prop('isSuccess', false);
-                      addErrorMessage(selector, msg);
-                  }
-                  break;
-              // ひらがなのみ
-              case 1:
-                  if (value.match(/^[\u3040-\u309F]+$/)) {
-                      selector.prop('isSuccess', true);
-                      removeErrorMessage(selector);
-                  } else {
-                      selector.prop('isSuccess', false);
-                      addErrorMessage(selector, msg);
-                  }
-                  break;
-          }
-      }
+        <div>
+          <h3 class="h3">正規表現のパターン例</h3>
+          <h4 class="h4">半角数字のみ</h4>
+          <pre class="language-markup"><code>
+          /^[0-9]*$/
+          </code></pre>
+
+          <h4 class="h4">ふりがなのみ</h4>
+          <pre class="language-markup"><code>
+          /^[\u3040-\309F]+$/
+          </code></pre>
+
+          <h4 class="h4">URL</h4>
+          <pre class="language-markup"><code>
+          /^https?://([\w-]+\.)+[\w-]+(/[\w-./?%&=]*)?$/
+          </code></pre>
+
+          <h4 class="h4">メールアドレス</h4>
+          <pre class="language-markup"><code>
+          /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+          </code></pre>
+
+          <h4 class="h4">日付</h4>
+          <pre class="language-markup"><code>
+          /^\d{4}-\d\d-\d\d$/
+          </code></pre>
+        </div>
+
+        <h2 class="h2">文字検索（正規表現）</h2>
+        <pre class="language-javascript"><code>
+        文字オブジェクト.match(パターン)
+        </code></pre>
+
+        <h3 class="h3">パターンの設定</h3>
+        <pre class="language-javascript"><code>
+        let patterns = [];
+        ...
+        let init = function () {
+            ...
+            patterns = [
+                {
+                    label: '全角のみ',
+                    pattern: /^[^\x01-\x7E]+$/,
+                    message: '全角で入力してください',
+                },
+                {
+                    label: 'ふりがなのみ',
+                    pattern: /^[\u3040-\u309F]+$/,
+                    message: 'ひらがなで入力してください',
+                },
+            ];
+            ...
+        });
+        </code></pre>
+
+        <h3 class="h3">チェック</h3>
+        <pre class="language-javascript"><code>
+        let check = function () {
+            // 名前のチェック
+            checkEmptyText(0);
+            checkFormatText(0);
+
+            // ふりがなのチェック
+            checkEmptyText(1);
+            checkFormatText(1);
+        }
+        </code></pre>
+
+        <h3 class="h3">文字列のフォーマットチェック</h3>
+        <pre class="language-javascript"><code>
+        function checkFormatText(index) {
+            let selector = items[index];
+            if (!selector.prop('isSuccess')) return;
+
+            let pattern = patterns[index].pattern;
+            let message = patterns[index].message;
+            let match = selector.val().match(pattern);
+            if (match) {
+                selector.prop('isSuccess', true);
+                removeErrorMessage(selector);
+            } else {
+                selector.prop('isSuccess', false);
+                addErrorMessage(selector, message);
+            }
+        }
+
       </code></pre>
     </div>
 
     <script src="../js/jquery-3.5.0.min.js"></script>
     <script src="../js/jquery-ui.min.js"></script>
     <script src="js/main.js"></script>
-  
+
     <script src="../js/bootstrap/bootstrap.min.js"></script>
     <script src="../js/prism.js"></script>
-  </body>
+</body>
+
 </html>
