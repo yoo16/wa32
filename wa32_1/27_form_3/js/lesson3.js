@@ -6,15 +6,17 @@ $(function () {
         let items = [
             $('input[name=name]'),
             $('input[name=furigana]'),
-            // $('input[name=tel]'),
-            // $('input[name=mail]'),
-            // $('textarea[name=body]'),
+            $('input[name=tel]'),
+            $('input[name=mail]'),
+            $('textarea[name=body]'),
         ];
+
         let messages = [
             '名前を入力してください',
+            'ふりがなを入力してください',
             '電話番号を入力してください',
-            // 'メールアドレスを入力してください',
-            // 'お問い合わせ内容を入力してください'
+            'メールアドレスを入力してください',
+            'お問い合わせ内容を入力してください'
         ];
 
         let patterns = [
@@ -28,19 +30,19 @@ $(function () {
                 pattern: /^[\u3040-\u309F]+$/,
                 message: 'ひらがなで入力してください',
             },
-            // {
-            //     label: '電話番号',
-            //     pattern: /^\d*$/,
-            //     // pattern: /^0\d{9,10}$/,
-            //     // pattern: /^0\d{2,4}-\d{1,4}-\d{4}$/,
-            //     message: '電話番号が正しくありません',
-            // },
-            // {
-            //     label: 'メールアドレス',
-            //     pattern: /^[a-zA-Z0-9-_\.]+@[a-zA-Z0-9-_\.]+$/,
-            //     // pattern: /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-            //     message: 'メールアドレスが正しくありません',
-            // },
+            {
+                label: '電話番号',
+                pattern: /^\d*$/,
+                // pattern: /^0\d{9,10}$/,
+                // pattern: /^0\d{2,4}-\d{1,4}-\d{4}$/,
+                message: '電話番号が正しくありません',
+            },
+            {
+                label: 'メールアドレス',
+                pattern: /^[a-zA-Z0-9-_\.]+@[a-zA-Z0-9-_\.]+$/,
+                // pattern: /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                message: 'メールアドレスが正しくありません',
+            },
         ];
 
         // チェック
@@ -112,10 +114,10 @@ $(function () {
                 if (e.keyCode == 13) return false;
             });
 
-            $.each(items, function (index, item) {
-                item.prop('isSuccess', false);
+            $.each(items, function (index) {
+                items[index].prop('isSuccess', false);
 
-                item.on({
+                items[index].on({
                     'blur': function () {
                         checkEmptyText(index);
                         if (patterns[index]) {

@@ -4,50 +4,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="../../css/prism.css">
   <link rel="stylesheet" href="../../css/default.css">
 
-  <title>WA32 課題07</title>
+  <title>WA32 課題06</title>
 </head>
 
 <body>
   <div id="homework" class="container">
     <p><a href="../index.html">Back</a></p>
 
-    <h1 class="h1">課題07</h1>
-    <div>フォーム</div>
+    <h1 class="h1">課題06</h1>
+
+    <h2 class="h2">課題</h2>
+    <div></div>
 
     <h2 class="h2">内容</h2>
-    <h3 class="h3"></h3>
+    <div>オリジナルAPIの作成</div>
     <div>
-    <p>
-    </p> 
-    <p>
-    </p>
+      以下の3つから1つ選んで、Web API を利用したファイルを作成する
+      <ul>
+        <li><a href="#search_event">イベント検索</a></li>
+        <li><a href="#search_address">郵便番号検索</a></li>
+        <li><a href="#covid19">covid19</a></li>
+      </ul>
     </div>
+
+    <h2 class="h2">ファイル構成</h2>
     <div>
-      <h3 class="h3">ファイル構成</h3>
-      <div>
-        <pre>
-wa32_homework07_出席番号
+      <pre>
+wa32_homework05_学籍番号
   |- index.html
-  |- js/main.js
-  |- css/style.css
-  |- images/xxxx
-        </pre>
+  |- js/xxxx.js
+  |- css/xxxx.js
+    </pre>
+
+      <div>
+        <div id="search_event">
+          <h2 class="h2">イベント検索</h2>
+          <h3 class="h3">ZipCloud</h3>
+          <a href="https://www.doorkeeper.jp/" target="_blank">https://www.doorkeeper.jp/</a>
+          <h3 class="h3">API</h3>
+          <ul>
+            <li>
+              https://api.doorkeeper.jp/events
+            </li>
+            <li>
+              https://connpass.com/api/v1/event/
+            </li>
+          </ul>
+        </div>
+
+        <div id="search_address">
+          <h2 class="h2">郵便番号検索</h2>
+          <h3 class="h3">ZipCloud</h3>
+          <a href="https://zipcloud.ibsnet.co.jp/doc/api" target="_blank">https://zipcloud.ibsnet.co.jp/doc/api</a>
+          <h3 class="h3">API</h3>
+          <ul>
+            <li>
+              https://zipcloud.ibsnet.co.jp/api/search
+            </li>
+          </ul>
+        </div>
+
+        <div id="covid19">
+          <h2 class="h2">covid19</h2>
+          <h3 class="h3">COVID-19 Japan Web API</h3>
+          <a href="https://documenter.getpostman.com/view/9215231/SzYaWe6h?version=latest" target="_blank">COVID-19
+            Japan
+            Web API</a>
+          <h3 class="h3">API</h3>
+          <ul>
+            <li>
+              https://covid19-japan-web-api.now.sh/api/v1/prefectures
+            </li>
+            <li>
+              https://covid19-japan-web-api.now.sh/api/v1/positives
+            </li>
+          </ul>
+        </div>
       </div>
 
     </div>
+
   </div>
 
-  <script src="../../js/jquery-3.5.0.min.js"></script>
-  <script src="../../js/bootstrap/bootstrap.min.js"></script>
-
-  <script src="../../js/prism.js"></script>
-  <script src="../../js/default.js"></script>
 </body>
 
 </html>

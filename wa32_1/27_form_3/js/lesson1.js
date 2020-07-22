@@ -10,9 +10,11 @@ $(function () {
             // $('input[name=mail]'),
             // $('textarea[name=body]'),
         ];
+
         let messages = [
             '名前を入力してください',
-            '電話番号を入力してください',
+            'ふりがなを入力してください',
+            // '電話番号を入力してください',
             // 'メールアドレスを入力してください',
             // 'お問い合わせ内容を入力してください'
         ];
@@ -46,8 +48,12 @@ $(function () {
         // チェック
         let check = function () {
             $.each(items, function(index, item) {
-                item.blur();
+                checkEmptyText(index);
             })
+            checkFormatText(0);
+            checkFormatText(1);
+            checkFormatText(2);
+            checkFormatText(3);
         }
 
         // 未入力チェック
@@ -112,10 +118,10 @@ $(function () {
                 if (e.keyCode == 13) return false;
             });
 
-            $.each(items, function (index, item) {
-                item.prop('isSuccess', false);
+            $.each(items, function (index) {
+                items[index].prop('isSuccess', false);
 
-                item.on({
+                items[index].on({
                     'blur': function () {
                         checkEmptyText(index);
                         if (patterns[index]) {
