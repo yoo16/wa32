@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <div>
+    <a href="lesson4.html">Prev</a>
+    <a href="lesson6.html">Next</a>
+  </div>
+  <form id="myForm" method="post">
+    <table>
+      <tr>
+        <th><label for="name">名前 <span class="required">必須</span></label></th>
+        <td><input type="text" name="name"></td>
+      </tr>
+      <tr>
+        <th><label for="furigana">ふりがな <span class="required">必須</span></label></th>
+        <td><input type="text" name="furigana"></td>
+      </tr>
+      <tr>
+        <th><label for="tel">電話番号 <span class="required">必須</span></label></th>
+        <td><input type="text" name="tel"></td>
+      </tr>
+      <tr>
+        <th><label for="mail">メールアドレス <span class="required">必須</span></label></th>
+        <td><input type="text" name="mail"></td>
+      </tr>
+      <tr>
+        <th><label for="body">お問い合わせ内容 <span class="required">必須</span></label></th>
+        <td><textarea name="body" cols="50" rows="5"></textarea></td>
+      </tr>
+    </table>
+    <p><input type="submit" value="送信内容を確認する"></p>
+  </form>
+
+  <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="js/lesson5.js"></script>
+</body>
+</html>

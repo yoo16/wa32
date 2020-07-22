@@ -38,12 +38,15 @@ $(function () {
 
             // enterキーで submit 防止
             target.find('input[type=text]').on('keypress', function (e) {
-                if (e.keyCode == 13) return false;
+                if (e.keyCode == 13) {
+                    return false;
+                }
             });
 
             $.each(items, function (index) {
                 items[index].prop('isSuccess', false);
             });
+            console.log(items);
         }
 
         init();

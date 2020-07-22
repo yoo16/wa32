@@ -34,32 +34,35 @@
     </form>
 
     <!-- code & document -->
-    <div id="code">
-      <h2 class="h2">正規表現とは</h3>
-        <p>
-          「文字列を一つの形式で表現するための方法」で、文字列を特殊文字パターンで検索するのに利用
-          例えば、メールアドレスに @ や ドメインがはいっているか、文章に特定の文字が含まれているかなどをのチェックなどです。
-        </p>
-        <p>
-          文章だけでは説明が難しいため例をあげて説明します。
-        </p>
+    <div>
+      <div>
+        <h2 class="h2">正規表現とは</h3>
+          <p>
+            「文字列を一つの形式で表現するための方法」で、文字列を特殊文字パターンで検索するのに利用
+            例えば、メールアドレスに @ や ドメインがはいっているか、文章に特定の文字が含まれているかなどをのチェックなどです。
+          </p>
+          <p>
+            文章だけでは説明が難しいため例をあげて説明します。
+          </p>
 
-        <h3 class="h3">検索する文字列の例</h3>
-        <div>
-          <p>私は<span class="text-danger">うどん</span>が<span class="text-danger">好き</span>です</p>
-          <p>私は<span class="text-danger">走るの</span>が<span class="text-danger">速い</span>です</p>
-        </div>
+          <h3 class="h3">検索する文字列の例</h3>
+          <div>
+            <p>私は<span class="text-danger">うどん</span>が<span class="text-danger">好き</span>です</p>
+            <p>私は<span class="text-danger">走るの</span>が<span class="text-danger">速い</span>です</p>
+          </div>
 
-        <p>
-          上記の文章は、以下のパターンにあてはまります。
-        </p>
-        <div>
-          <p>私は<span class="text-danger">xxxx</span>が<span class="text-danger">xxxx</span>です</p>
-        </div>
-        <p>
-          このようにパターン化した曖昧な検索ができ、マッチしたか判別して、処理をふりわけることができます。
-        </p>
+          <p>
+            上記の文章は、以下のパターンにあてはまります。
+          </p>
+          <div>
+            <p>私は<span class="text-danger">xxxx</span>が<span class="text-danger">xxxx</span>です</p>
+          </div>
+          <p>
+            このようにパターン化した曖昧な検索ができ、マッチしたか判別して、処理をふりわけることができます。
+          </p>
+      </div>
 
+      <div>
         <h2 class="h2">正規表現のパターン</h2>
         <p>
           正規表現のパターンは「半角英数」と「特殊文字」を組み合わせて表現します。
@@ -146,11 +149,13 @@
 
           <h4 class="h4">参考サイト</h4>
           <p>
-            <ul>
-              <li><a href="https://qiita.com/grrrr/items/0b35b5c1c98eebfa5128" target="_blank">正規表現を可視化してまとめたチートシート</a></li>
-              <li><a href="https://algorithm.joho.info/computer/wildcard-regular-expression/" target="_blank">基本的な正規表現一覧</a></li>
-              <li><a href="https://murashun.jp/blog/20190215-01.html" target="_blank">基本的な正規表現一覧</a></li>
-            </ul>
+          <ul>
+            <li><a href="https://qiita.com/grrrr/items/0b35b5c1c98eebfa5128" target="_blank">正規表現を可視化してまとめたチートシート</a>
+            </li>
+            <li><a href="https://algorithm.joho.info/computer/wildcard-regular-expression/"
+                target="_blank">基本的な正規表現一覧</a></li>
+            <li><a href="https://murashun.jp/blog/20190215-01.html" target="_blank">基本的な正規表現一覧</a></li>
+          </ul>
           </p>
         </div>
 
@@ -168,7 +173,7 @@
 
           <h4 class="h4">URL</h4>
           <pre class="language-markup"><code>
-          /^https?://([\w-]+\.)+[\w-]+(/[\w-./?%&=]*)?$/
+          /^https?:\/\/([\w-]+\.)+[\w-]+(/[\w-./?%&=]*)?$/
           </code></pre>
 
           <h4 class="h4">メールアドレス</h4>
@@ -178,69 +183,85 @@
 
           <h4 class="h4">日付</h4>
           <pre class="language-markup"><code>
-          /^\d{4}-\d\d-\d\d$/
+          /^\d{4}[-\/]\d\d[-\/]\d\d$/
+          </code></pre>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="h2">文字検索（正規表現）</h2>
+        <div>
+          <pre class="language-javascript"><code>
+          文字オブジェクト.match(パターン)
+          </code></pre>
+
+          <h3 class="h3">パターンの設定</h3>
+          <p>
+            正規表現の配列 patterns を追加
+          </p>
+          <pre class="language-javascript"><code>
+          let patterns = [
+              {
+                  label: '全角のみ',
+                  pattern: /^[^\x01-\x7E]+$/,
+                  message: '全角で入力してください',
+              },
+              {
+                  label: 'ふりがなのみ',
+                  pattern: /^[\u3040-\u309F]+$/,
+                  message: 'ひらがなで入力してください',
+              },
+          ];
           </code></pre>
         </div>
 
-        <h2 class="h2">文字検索（正規表現）</h2>
-        <pre class="language-javascript"><code>
-        文字オブジェクト.match(パターン)
-        </code></pre>
+        <div>
+          <h3 class="h3">文字列フォーマットチェック関数の実装</h3>
+          <p>
+            patterns から設定を取得し、match() で正規表現チェック
+          </p>
+          <pre class="language-javascript"><code>
+          function checkFormatText(index) {
+              let selector = items[index];  //input, textarea
+              if (!selector.prop('isSuccess')) return;  //既にエラーの場合リターン
 
-        <h3 class="h3">パターンの設定</h3>
-        <pre class="language-javascript"><code>
-        let patterns = [];
-        ...
-        let init = function () {
-            ...
-            patterns = [
-                {
-                    label: '全角のみ',
-                    pattern: /^[^\x01-\x7E]+$/,
-                    message: '全角で入力してください',
-                },
-                {
-                    label: 'ふりがなのみ',
-                    pattern: /^[\u3040-\u309F]+$/,
-                    message: 'ひらがなで入力してください',
-                },
-            ];
-            ...
-        });
-        </code></pre>
+              let pattern = patterns[index].pattern;
+              let message = patterns[index].message;
+              let match = selector.val().match(pattern);  //正規表現チェック
+              if (match) {
+                  selector.prop('isSuccess', true);
+                  removeErrorMessage(selector);
+              } else {
+                  selector.prop('isSuccess', false);
+                  addErrorMessage(selector, message);
+              }
+          }
+          </code></pre>
+        </div>
 
-        <h3 class="h3">チェック</h3>
-        <pre class="language-javascript"><code>
-        let check = function () {
-            // 名前のチェック
-            checkEmptyText(0);
-            checkFormatText(0);
+        <div>
+          <h3 class="h3">正規表現チェック関数追加</h3>
+          <p>
+            items のインデックスを指定してチェック
+          </p>
+          <pre class="language-javascript"><code>
+          let items = [
+              $('input[name=name]'),
+              $('input[name=furigana]'),
+          ];
 
-            // ふりがなのチェック
-            checkEmptyText(1);
-            checkFormatText(1);
-        }
-        </code></pre>
+          let check = function () {
+              $.each(items, function(index, item) {
+                  checkEmptyText(index);
+              })
+              //items のインデックスを引数に利用
+              checkFormatText(0);
+              checkFormatText(1);
+          }
+          </code></pre>
+        </div>
 
-        <h3 class="h3">文字列のフォーマットチェック</h3>
-        <pre class="language-javascript"><code>
-        function checkFormatText(index) {
-            let selector = items[index];
-            if (!selector.prop('isSuccess')) return;
-
-            let pattern = patterns[index].pattern;
-            let message = patterns[index].message;
-            let match = selector.val().match(pattern);
-            if (match) {
-                selector.prop('isSuccess', true);
-                removeErrorMessage(selector);
-            } else {
-                selector.prop('isSuccess', false);
-                addErrorMessage(selector, message);
-            }
-        }
-
-      </code></pre>
+      </div>
     </div>
 
     <script src="../js/jquery-3.5.0.min.js"></script>

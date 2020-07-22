@@ -15,6 +15,7 @@ $(function () {
      */
     function init() {
         $.each(patterns, function (index, value) {
+            //selectReg <select></select>
             selectReg.append($('<option>').html(value.label).val(index));
         });
     }
