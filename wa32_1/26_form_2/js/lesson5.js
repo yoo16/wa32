@@ -1,5 +1,9 @@
 $(function () {
 
+    // (1) 変数 patterns の設定
+    // (2) 無名関数 check で checkFormatText() の呼び出し
+    // (3) checkFormatText() の実装
+
     function setMyForm(target) {
 
         // チェックするテキストボックスの追加

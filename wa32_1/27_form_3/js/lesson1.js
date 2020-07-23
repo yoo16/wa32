@@ -121,6 +121,7 @@ $(function () {
             $.each(items, function (index) {
                 items[index].prop('isSuccess', false);
 
+                // (1) init の each の中に blur のイベント登録処理を追加
                 items[index].on({
                     'blur': function () {
                         checkEmptyText(index);
