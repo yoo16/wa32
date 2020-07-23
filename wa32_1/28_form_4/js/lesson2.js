@@ -30,28 +30,23 @@ $(function () {
                 pattern: /^[\u3040-\u309F]+$/,
                 message: 'ひらがなで入力してください',
             },
-            // {
-            //     label: '電話番号',
-            //     pattern: /^\d*$/,
-            //     // pattern: /^0\d{9,10}$/,
-            //     // pattern: /^0\d{2,4}-\d{1,4}-\d{4}$/,
-            //     message: '電話番号が正しくありません',
-            // },
-            // {
-            //     label: 'メールアドレス',
-            //     pattern: /^[a-zA-Z0-9-_\.]+@[a-zA-Z0-9-_\.]+$/,
-            //     // pattern: /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-            //     message: 'メールアドレスが正しくありません',
-            // },
+            {
+                label: '電話番号',
+                pattern: /^\d*$/,
+                // pattern: /^0\d{9,10}$/,
+                // pattern: /^0\d{2,4}-\d{1,4}-\d{4}$/,
+                message: '電話番号が正しくありません',
+            },
+            {
+                label: 'メールアドレス',
+                pattern: /^[a-zA-Z0-9-_\.]+@[a-zA-Z0-9-_\.]+$/,
+                // pattern: /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                message: 'メールアドレスが正しくありません',
+            },
         ];
 
         // チェック
         let check = function () {
-            // 削除
-            // $.each(items, function(index, item) {
-            //     item.blur();
-            // })
-
             //追加
             let errorCount = 0;
             $.each(items, function(index, item) {
