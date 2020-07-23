@@ -56,6 +56,31 @@
       }
       </code></pre>
 
+      <div>
+        <h3 class="h3">check() を追加</h3>
+        <pre class="language-javascript"><code>
+        let init = function() {
+          ...
+  
+          $.each(items, function (index, item) {
+            item.prop('isSuccess', false);
+  
+            item.on({
+                'blur': function () {
+                    checkEmptyText(index);
+                    if (patterns[index]) {
+                        checkFormatText(index);
+                    }
+                    check();
+                },
+            });
+          });
+          
+          ...
+        }
+        </code></pre>
+      </div>
+
       <h3 class="h3">エラーを判別してボタン制御</h3>
       <p>
         エラーカウントを利用して判別する場合
@@ -70,6 +95,7 @@
       }
       </code></pre>
     </div>
+
   </div>
   <script src="../js/jquery-3.5.0.min.js"></script>
   <script src="../js/jquery-ui.min.js"></script>

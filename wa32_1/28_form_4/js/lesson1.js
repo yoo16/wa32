@@ -1,5 +1,9 @@
 $(function () {
 
+    // (1) init で submit ボタンを無効化する
+    // (2) init の blur ハンドラに check() を追加する
+    // (3) check をエラーカウント処理に書き換える
+
     function setMyForm(target) {
 
         // チェックするテキストボックスの追加
