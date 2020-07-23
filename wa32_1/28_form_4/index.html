@@ -1,42 +1,82 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-    <link rel="stylesheet" href="css/style.css">
-  
-    <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/prism.css">
-    <link rel="stylesheet" href="../css/default.css">
-  
-    <title>WA32 form 4</title>
-  </head>
 
-  <body>
-    <div class="container">
-      <div><a href="../index.html">Back</a></div>
-      <h1 class="h1">Form 4</h1>
-  
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <link rel="stylesheet" href="../css/default.css">
+
+  <title>WA32 form 4</title>
+</head>
+
+<body>
+  <div class="container">
+    <div><a href="../index.html">Back</a></div>
+    <h1 class="h1">Form 4</h1>
+
     <form id="myForm" method="post">
       <table class="table">
         <tr>
-          <th><label for="forName">名前 <span class="ind">必須</span></label></th>
-          <td><input type="text" name="forName"></td>
+          <th><label for="name">名前 <span class="required">必須</span></label></th>
+          <td><input type="text" name="name"></td>
         </tr>
         <tr>
-          <th><label for="forFurigana">ふりがな <span class="ind">必須</span></label></th>
-          <td><input type="text" name="forFurigana"></td>
+          <th><label for="furigana">ふりがな <span class="required">必須</span></label></th>
+          <td><input type="text" name="furigana"></td>
         </tr>
       </table>
       <p><input type="submit" value="送信内容を確認する" class="btn btn-primary"></p>
     </form>
 
-    <script src="../js/jquery-3.5.0.min.js"></script>
-    <script src="../js/jquery-ui.min.js"></script>
-    <script src="js/main.js"></script>
-  
-    <script src="../js/bootstrap/bootstrap.min.js"></script>
-    <script src="../js/prism.js"></script>
-  </body>
+    <div>
+      <h2 class="h2">disabled属性</h2>
+      <p>
+        ボタンなどを有効・無効にして制御する
+      </p>
+      <h3 class="h3">無効</h3>
+      <pre class="language-javascript"><code>
+      $(セレクタ).attr(‘disabled’, true)
+      </code></pre>
+      <h3 class="h3">有効</h3>
+      <pre class="language-javascript"><code>
+      $(セレクタ).attr(‘disabled’, true)
+      </code></pre>
+
+      <h3 class="h3">submit ボタンの無効</h3>
+      <pre class="language-javascript"><code>
+      let init = function () {
+        ...
+        target.find('input[type=submit]').attr('disabled', true);
+        ...
+      }
+      </code></pre>
+
+      <h3 class="h3">エラーを判別してボタン制御</h3>
+      <p>
+        エラーカウントを利用して判別する場合
+      </p>
+      <pre class="language-javascript"><code>
+      let check = function() {
+          let errorCount = 0;
+          $.each(items, function(index, item) {
+              if (item.prop('isSuccess') == false) errorCount++;
+          });
+          target.find(‘input[type=submit]').attr(‘disabled’, (errorCount > 0));
+      }
+      </code></pre>
+    </div>
+  </div>
+  <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="../js/jquery-ui.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script src="../js/bootstrap/bootstrap.min.js"></script>
+  <script src="../js/prism.js"></script>
+</body>
+
 </html>

@@ -10,9 +10,11 @@ $(function () {
             // $('input[name=mail]'),
             // $('textarea[name=body]'),
         ];
+
         let messages = [
             '名前を入力してください',
-            '電話番号を入力してください',
+            'ふりがなを入力してください',
+            // '電話番号を入力してください',
             // 'メールアドレスを入力してください',
             // 'お問い合わせ内容を入力してください'
         ];
@@ -45,12 +47,17 @@ $(function () {
 
         // チェック
         let check = function () {
+            // 削除
+            // $.each(items, function(index, item) {
+            //     item.blur();
+            // })
+
+            //追加
             let errorCount = 0;
             $.each(items, function(index, item) {
                 if (item.prop('isSuccess') == false) errorCount++;
             });
-            target.find('input[type=submit]')
-                  .attr('disabled', (errorCount > 0));
+            target.find('input[type=submit]').attr('disabled', (errorCount > 0));
         }
 
         // 未入力チェック
@@ -127,6 +134,7 @@ $(function () {
                         if (patterns[index]) {
                             checkFormatText(index);
                         }
+                        //追加
                         check();
                     },
                 });
