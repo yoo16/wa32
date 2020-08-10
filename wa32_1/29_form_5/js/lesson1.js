@@ -46,7 +46,7 @@ $(function () {
             // },
         ];
 
-        // 入力チェック
+        // チェック
         let check = function () {
             let errorCount = 0;
             $.each(items, function (index, item) {
@@ -55,7 +55,6 @@ $(function () {
             target.find('input[type=submit]').attr('disabled', (errorCount > 0));
         }
 
-        //入力チェック
         let checkInput = function (index) {
             checkEmptyText(index);
             if (patterns[index]) {

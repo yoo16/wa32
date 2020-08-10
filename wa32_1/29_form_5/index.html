@@ -1,43 +1,315 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-    <link rel="stylesheet" href="css/style.css">
-  
-    <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/prism.css">
-    <link rel="stylesheet" href="../css/default.css">
-  
-    <title>WA32 form 5</title>
-  </head>
 
-  <body>
-    <div class="container">
-      <div><a href="../index.html">Back</a></div>
-      <h1 class="h1">Form Cookie</h1>
-  
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <link rel="stylesheet" href="../css/default.css">
+
+  <title>WA32 form 5</title>
+</head>
+
+<body>
+  <div class="container">
+    <div><a href="../index.html">Back</a></div>
+    <h1 class="h1">Cookie</h1>
+
     <form id="myForm" method="post">
       <table class="table">
         <tr>
-          <th><label for="forName">名前 <span class="ind">必須</span></label></th>
-          <td><input type="text" name="forName"></td>
+          <th><label for="name">名前 <span class="required">必須</span></label></th>
+          <td><input type="text" name="name"></td>
         </tr>
         <tr>
-          <th><label for="forFurigana">ふりがな <span class="ind">必須</span></label></th>
-          <td><input type="text" name="forFurigana"></td>
+          <th><label for="furigana">ふりがな <span class="required">必須</span></label></th>
+          <td><input type="text" name="furigana"></td>
         </tr>
       </table>
-      <p><input type="submit" value="送信内容を確認する" class="btn btn-primary"></p>
+      <p>
+        <label for="isSaveCookie">
+        <input type="checkbox" id="isSaveCookie">
+        記憶する
+        </label>
+      </p>
+      <p>
+        <input type="submit" value="送信内容を確認する" class="btn btn-primary">
+      </p>
     </form>
+
+    <div>
+      <h2 class="h2">Cookie とは</h2>
+      <p class="alert alert-info">
+        Cookie はブラウザ上にデータを一時的に保存する仕組みのひとつです。
+      </p>
+      <p>
+        例えば、ショッピングサイトや SNS などの ログインID やパスワードを入力したときにそのデータをブラウザに記憶し、次回以降ログインで入力する手間が省けます。
+      </p>
+      <h3 class="h3">セッション（Session）</h3>
+      <p>
+        データの一時記憶の仕組みで「セッション（Session）」がありますが、データをサーバに一時保存する点が異なります。
+        ログイン状態やショッピングカートのデータを他の画面で引き継く処理でよく利用されます。
+      </p>
+      <p>
+        セキュリティ的にはセッションの方が比較的安全です。
+        またセッションを利用するにもユーザやブラウザを識別する Session ID が必要なため Cookie に登録したりします。
+      </p>
+
+      <h2 class="h2">JavaScript ネイティブ</h2>
+      <p>jQuery の前に JavaScript ネイティブでの Cookie の利用法は以下の通りです。</p>
+      <h3 class="h3">Cookie の設定</h3>
+      <pre class="language-javascript"><code>
+        document.cookie = "name=Tokyo; expires=365";
+      </code></pre>
+
+      <h3 class="h3">Cookie の取得</h3>
+      <pre class="language-javascript"><code>
+        let values = document.cookie;
+      </code></pre>
+
+      <h3 class="h3">Cookie の削除</h3>
+      <pre class="language-javascript"><code>
+        document.cookie = "name=; expires=0";
+      </code></pre>
+
+      <h3 class="h3">jQuery ではライブライが必要</h3>
+      <p class="alert alert-info">
+        jQuery で Cookie を利用するにはライブラリが必要です。
+      </p>
+      <p>
+        今回は「<a href="https://github.com/carhartl/jquery-cookie" target="_blank"> jquery.cookie.js</a>」を利用します。
+      </p>
+
+      <h2 class="h2">jquery.cookie.js</h2>
+        <h3 class="h3">Github</h3>
+        <p>
+          以下の Github から「jquery.cookie.js」ファイルをダウンロードできます。
+        </p>
+        <p>
+          <a href="https://github.com/carhartl/jquery-cookie" target="_blank">carhartl / jquery-cookie </a>
+        </p>
+        <h3 class="h3">CDN</h3>
+        <p>
+          CDN は以下の URL です。
+        </p>
+        <pre class="language-javascript"><code>
+        &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js&quot;&gt;&lt;/script&gt;
+      </code></pre>
+
+      <h3 class="h3">Cookie の設定</h3>
+      <p>キーと値の他に、期限やパスなどを指定できます。</p>
+      <pre class="language-javascript"><code>
+      $.cookie(キー, 値, オプション);
+      </code></pre>
+
+      <h4 class="h4">例</h4>
+      <pre class="language-javascript"><code>
+      $.cookie('name', 'Tokyo');
+      </code></pre>
+
+      <p>もし同じキーが存在する場合はパスを指定します。</p>
+      <pre class="language-javascript"><code>
+      $.cookie(キー, 値, { path: '/' })
+      </code></pre>
+
+      <p>期限は日数で設定します。</p>
+      <pre class="language-javascript"><code>
+      $.cookie(キー, 値, { expires: 365 })
+      </code></pre>
+
+      <table class="table">
+        <tr>
+          <th>expires</th>
+          <td>日数（期限）の設定。 省略時はブラウザ終了まで有効</td>
+        </tr>
+        <tr>
+          <th>path</th>
+          <td>パスの設定。サイト全体で使う場合は「/」を設定</td>
+        </tr>
+        <tr>
+          <th>domain</th>
+          <td>ドメインの設定。デフォルトは現在利用のドメイン</td>
+        </tr>
+        <tr>
+          <th>secure</th>
+          <td>https プロトコルを要求</td>
+        </tr>
+      </table>
+
+      <h3 class="h3">Cookie の取得</h3>
+      <p>キーを指定して値を取得します。</p>
+      <pre class="language-javascript"><code>
+      $.cookie(キー)
+      </code></pre>
+
+      <h4 class="h4">例</h4>
+      <pre class="language-javascript"><code>
+      let name = $.cookie('name');
+      </code></pre>
+      
+      <h3 class="h3">Cookie を全取得</h3>
+      <p>クッキーを全取得し、オブジェクトを返します。</p>
+      <pre class="language-javascript"><code>
+      $.cookie()
+      </code></pre>
+      
+      <h4 class="h4">例</h4>
+      <pre class="language-javascript"><code>
+      let values = $.cookie();
+      let name = values.name;
+      </code></pre>
+
+      <h3 class="h3">Cookie の削除</h3>
+      <p>Cookie を削除します。</p>
+      <pre class="language-javascript"><code>
+      $.cookie(キー)
+      </code></pre>
+
+      <p>もし同じキーが存在する場合はパスを指定します。</p>
+      <pre class="language-javascript"><code>
+      $.cookie(キー, { path: '/' })
+      </code></pre>
+
+
+      <h2 class="h2">サンプル</h2>
+      <p>
+        まず、<a href="../28_form_4/index.html"> Form4</a> を修正します。
+      </p>
+      <p>
+        「jquery.cookie.js」をダウンロードするか CDN で読み込みましょう。
+      </p>
+      <h3 class="h3">HTML</h3>
+      <p>「記憶する」チェックボックスを追加します。</p>
+      <pre class="language-javascript"><code>
+      &lt;p&gt;
+        &lt;label for=&quot;isSaveCookie&quot;&gt;
+        &lt;input type=&quot;checkbox&quot; id=&quot;isSaveCookie&quot;&gt;
+        記憶する
+        &lt;/label&gt;
+      &lt;/p&gt;
+      </code></pre>
+
+      <h3 class="h3">初期値</h3>
+      <pre class="language-javascript"><code>
+      //Cookie 保存日数
+      let sessionExpires = 7;
+      </code></pre>
+
+      <h3 class="h3">submit ボタンイベントの修正</h3>
+      <p>
+        「記憶する」にチェックした場合に Cookie 保存、そうでない場合は削除します。
+      </p>
+      <pre class="language-javascript"><code>
+      target.on('submit', function () {
+          if ($('#isSaveCookie').prop('checked')) {
+              setCookie();
+          } else {
+              removeCookie();
+          }
+          check();
+          return false;
+      });
+      </code></pre>
+
+      <h3 class="h3">入力チェックを外部関数にする</h3>
+      <p>
+        blur に記載した入力チェック処理を外部関数にします。
+      </p>
+      <pre class="language-javascript"><code>
+      let checkInput = function (index) {
+          checkEmptyText(index);
+          if (patterns[index]) {
+              checkFormatText(index);
+          }
+          check();
+      }
+      </code></pre>
+
+      <pre class="language-javascript"><code>
+      let init = function () {
+          ...
+
+          $.each(items, function (index, item) {
+              item.prop('isSuccess', false);
+              item.on({
+                  'blur': function () {
+                      //ここを外部関数にした
+                      checkInput(index);
+                  },
+              });
+          });
+
+          ...
+      </code></pre>
+
+      <h3 class="h3">Cookie設定</h3>
+      <p>
+        データの他に「記憶する」チェックも保存して、次回ページ読み込み時に利用します。
+      </p>
+      <pre class="language-javascript"><code>
+      function setCookie() {
+          $.cookie('isSaveCookie', true, { expires: sessionExpires });
+          $.cookie('name', items[0].val(), { expires: sessionExpires });
+          $.cookie('furigana', items[1].val(), { expires: sessionExpires });
+      }
+      </code></pre>
+
+      <h3 class="h3">Cookie取得</h3>
+      <pre class="language-javascript"><code>
+      function getCookie() {
+          // Cookie全取得
+          let cookie = $.cookie();
+          if (cookie) {
+              // 記憶するチェック
+              $('#isSaveCookie').prop('checked', cookie.isSaveCookie);
+
+              items[0].val(cookie.name);
+              items[1].val(cookie.furigana);
+
+              // 入力チェック
+              $.each(items, function (index, item) {
+                  checkInput(index);
+              });
+          }
+      }
+      </code></pre>
+
+      
+      <h2 class="h2">js.cookie.js</h2>
+      <p>その他、js.cookie.js というライブラリもあります。</p>
+      <h3 class="h3">Github</h3>
+      <p>
+        <a href="https://github.com/js-cookie/js-cookie" target="_blank">js-cookie / js-cookie</a>
+      </p>
+      <h3 class="h3">CDN</h3>
+      <p>
+        <a href="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js">js.cookie.min.js</a>
+      </p>
+
+      <h3 class="h3">Cookie の設定</h3>
+      <pre class="language-javascript"><code>
+      Cookies.set(キー, 値, オプション);
+      </code></pre>
+
+      <h3 class="h3">Cookie の取得</h3>
+      <pre class="language-javascript"><code>
+      Cookies.get(キー);
+      </code></pre>
+
+    </div>
 
     <script src="../js/jquery-3.5.0.min.js"></script>
     <script src="../js/jquery-ui.min.js"></script>
-    <script src="../js/js.cookie.js"></script>
+    <!-- <script src="../js/js.cookie.js"></script> -->
+    <script src="../js/jquery.cookie.js"></script>
     <script src="js/main.js"></script>
-  
+
     <script src="../js/bootstrap/bootstrap.min.js"></script>
     <script src="../js/prism.js"></script>
-  </body>
+</body>
+
 </html>
