@@ -143,15 +143,14 @@ $(function () {
             target.find('input[type=submit]').attr('disabled', true);
 
             // submitイベントの設定
-            target.on('submit', function (event) {
+            target.on('submit', function () {
                 if ($('#isSaveCookie').prop('checked')) {
                     setCookie();
                 } else {
                     removeCookie();
                 }
                 check();
-                // return false;
-                event.preventDefault();
+                return false;
             });
 
             // enterキーで submit 防止

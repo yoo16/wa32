@@ -17,60 +17,194 @@
     <h1 class="h1">API</h1>
     <p><a href="../">Back</a></p>
 
-    <h2 class="h2">APIの制限</h2>
-    <p class="text-danger">
-      各サービスによって回数制限をかけられるため、攻撃的なアクセスをしないよう注意が必要
+    <div>
+      <h2 class="h2">API とは</h2>
+      <p>
+        Web を利用していると「API」という文字を目にしたり、現場でもよく飛び交う言葉ではないでしょうか。
+      </p>
+      <p>
+        API（Application Programming Interface）は直訳すると、アプリケーションをプログラミングするためのインターフェースです。
+      </p>
+
+      <h3 class="h3">インターフェイスとは</h3>
+      <p>
+        インターフェイス（Interface）はプログラミングだけに限らず利用される言葉で「操作をする手順・規則」といった意味があります。
+      </p>
+      <ul>
+        <li>ユーザインターフェイス</li>
+        <li>デバイスのインターフェイス</li>
+        <li>プログラミングのインターフェイス</li>
+      </ul>
+
+      <p>
+        などありますが、ソフトウェアの場合 API は外部アプリからアクセスできるよう設計された窓口です。
+      </p>
+
+      <h3 class="h3">Web API</h3>
+      <p class="alert alert-info">
+        Web API は SNS、天気情報、交通情報といった無数のデータを、各会社や個人がインターネットを介してサービス提供しています。
+      </p>
+      <p>
+        例えば、Google Map の API は地図の経路や位置を取得するなど、Google が許す限り様々な処理ができます。
+      </p>
+      <p>
+        <a href="https://cloud.google.com/maps-platform/?hl=ja" target="_blank">Google Maps Platform</a>
+      </p>
+      <p>
+        Google Map Platform だけでも多種多様な API が存在するのがわかるでしょう。
+      </p>
+
+      <h2 class="h2">API の利用制限を調べる</h2>
+      <p class="alert alert-info">
+        API を利用するには各サービスごとに、有料・無料や利用制限を確認する必要があります。
+      </p>
+      <p>
+        一般的な API は、サイトにアカウント登録して制限をかけるものが多いでが、中にはアカウント登録なしで無料で利用できるものもあります。
+        ただし、
+      </p>
+      <p class="alert alert-danger">
+        各サービスによって回数制限をかけられるため、攻撃的なアクセスをしないよう注意が必要です。
+      </p>
+    </div>
+
+    <h2 class="h2">Ajax</h2>
+    <p>
+      Ajax は「Asynchronous JavaScript XML」の略で、JavaScript と XML を使ってサーバと非同期通信する技術です。
     </p>
 
-    <h2 class="h2">イベント検索</h2>
+    <h3 class="h3">非同期通信とは</h3>
+    <p>
+      クライアントとサーバのデータ通信において「同期」と「非同期通信」に分けられます。
+    </p>
+    <p>
+      「同期通信」はクライアントからリクエストしたらサーバからレスポンスがくるまで待ちます。
+      つまりレスポンスがくるまで、ユーザが操作できません。
+    </p>
+    <p class="alert alert-info">
+      「非同期通信」を利用すると、サーバからレスポンスがなくてもユーザ操作がすることができます。
+    </p>
+
+    <h3 class="h3">XMLHttpRequest とは</h3>
+    <p>
+      JavaScript で Ajax を利用すると非同期通信でデータ送受信ができますが、そのリクエストに XMLHttpRequest を基本的に利用します。
+    </p>
+    <p>
+      XMLHttpRequest は、クライアントとサーバーと HTTP通信するためにブラウザに用意された API です。
+    </p>
+
     <div>
-      <h3 class="h3">サンプル</h3>
-      <p><a href="search_event/">イベント検索</a></p>
-      <h3 class="h3">ZipCloud</h3>
-      <a href="https://www.doorkeeper.jp/" target="_blank">https://www.doorkeeper.jp/</a>
-      <h3 class="h3">API</h3>
-      <ul>
-        <li>
-          https://api.doorkeeper.jp/events
-        </li>
-        <li>
-          https://connpass.com/api/v1/event/
-        </li>
-      </ul>
+      <h2 class="h2">Ajax のデータフォーマット</h2>
+      <p>
+        Ajax では XMLHttpRequest を利用してデータ通信しますが、クライアントとサーバーのデータ通信には決められたテキストデータフォーマットが必要です。
+      </p>
+      <h3 class="h3">XML</h3>
+      <p>
+        そのデータフォーマットで利用されるのが「XML」というもので、 HTML 同様の DOM（Document Object Model）のツリー構造の言語です。
+      </p>
+
+      <pre class="language-markup"><code>
+    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+    &lt;foods&gt;
+      &lt;food&gt;
+        &lt;name&gt;Apple&lt;/name&gt;
+        &lt;price&gt;180&lt;/price&gt;
+      &lt;/food&gt;
+
+      &lt;food&gt;
+        &lt;name&gt;Banana&lt;/name&gt;
+        &lt;price&gt;200&lt;/price&gt;
+      &lt;/food&gt;
+    &lt;/foods&gt;
+    </code></pre>
+
+      <h3 class="h3">JSON</h3>
+      <p>
+        JSONは JavaScript Object Notation の略で、<a href="https://www.ietf.org/rfc/rfc4627" target="_blank">RFC 4627</a>
+        に準拠した
+        XML に代わるテキストデータフォーマットです。
+      </p>
+      <p class="alert alert-info">
+        Ajax のデータフォーマットは XML がデータ構造上大きく負荷がかかる傾向にあるため、「JSON」が多く利用されます。
+      </p>
+      <pre class="language-javascript"><code>
+      {
+        "foods": [
+          {"name":"apple","price":180},
+          {"name":"banana","price":150}
+        ]
+      }
+      </code></pre>
+    <p>
+      また、JavaScript で利用できるデータフォーマットで開発されているため、ライブラリは必要ありません。
+      他の言語では JSON を扱うためのライブラリが必要です。
+    </p>
     </div>
 
-    <h2 class="h2">郵便番号検索</h2>
     <div>
-      <h3 class="h3">サンプル</h3>
-      <p><a href="search_address/">郵便番号検索</a></p>
-      <h3 class="h3">ZipCloud</h3>
-      <a href="https://zipcloud.ibsnet.co.jp/doc/api" target="_blank">https://zipcloud.ibsnet.co.jp/doc/api</a>
-      <h3 class="h3">API</h3>
-      <ul>
-        <li>
-          https://zipcloud.ibsnet.co.jp/api/search
-        </li>
-      </ul>
+      <h2 class="h2">jQuery で Ajax を利用する</h2>
+      <p>jQuery で Ajax 処理は色々ありますが古くからは $.ajax() を利用します。</p>
+      <pre class="language-javascript"><code>
+      $.ajax({
+      });
+      </code></pre>
+
+      <p>ちなみに、JavaScript ネイティブでは XMLHttpRequest クラスを利用します。</p>
+      <pre class="language-javascript"><code>
+      let request = new XMLHttpRequest();
+      </code></pre>
+
+      <p>
+        $.ajax() のパラメータはオブジェクトで指定します。
+        パラメータはいくつかありますが、よく利用するのは以下の通りです。
+      </p>
+      <pre class="language-javascript"><code>
+      $.ajax({	
+        url: 通信先のURL
+        type: HTTPメソッド(post, get)
+        data: 送信するデータ
+        dataType: データタイプ（text, json, jsonp ...）
+      }
+      </code></pre>
     </div>
 
-    <h2 class="h2">covid19</h2>
     <div>
-      <h3 class="h3">サンプル</h3>
-      <p><a href="covid19">covid19</a></p>
-      <h3 class="h3">COVID-19 Japan Web API</h3>
-      <a href="https://documenter.getpostman.com/view/9215231/SzYaWe6h?version=latest" target="_blank">COVID-19 Japan Web API</a>
-      <h3 class="h3">API</h3>
-      <ul>
-        <li>
-          https://covid19-japan-web-api.now.sh/api/v1/prefectures
-        </li>
-        <li>
-          https://covid19-japan-web-api.now.sh/api/v1/positives
-        </li>
-      </ul>
+      <h2 class="h2">CORS</h2>
+      <p>
+        CORS (Cross-Origin Resource Sharing) は、クロスドメイン（異なるドメイン）間で通信を共有する仕組みです。
+      </p>
+      <p>
+        クロスドメイン間の通信を安易に許可してしまうと、悪意のあるプログラムから攻撃対象となるためデフォルトでは Ajax通信はできません。
+      </p>
+      <h3 class="h3">Origin とは</h3>
+      <p>
+        Origin は ドメインに「プロトコル」「ポート番号」を追加したものです。
+      </p>
+      <pre class="language-javascript"><code>
+        Origin: http://yahoo.co.jp:80
+      </code></pre>
+      <p class="alert alert-info">
+        ある Origin サーバーアプリから、別の Origin サーバーへのリクエストを許可することで、クロスドメイン間での Ajax 通信が実現できます。
+      </p>
     </div>
 
+    <div>
+      <h2 class="h2">JSONP</h2>
+      <p>
+        クロスドメイン間の通信が確立されても、JavaScript（jQuery）ではそもままデータ通信ができません。
+      </p>
+      <p class="alert alert-info">
+        JSONP（JSON with Padding）は、JavaScript 上でクロスドメイン制限を超えたデータ通信を実現します。
+      </p>
+      <p>
+        実際には別ドメインに対して JavaScript の実行権限をあたえる行為なので、信頼できるドメインに対して利用する必要があります。
+      </p>
+    </div>
   </div>
+
+
+  <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="../js/bootstrap/bootstrap.min.js"></script>
+  <script src="../js/prism.js"></script>
 </body>
 
 </html>

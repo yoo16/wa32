@@ -1,5 +1,9 @@
-//$.support.cors = true;
 let eventList = $('#eventList');
+
+//$.support.cors = true;
+// $.ajaxSetup({xhrFields:{
+//     withCredentials:true
+// }});
 
 $('#eventSearchBtn').on('click', function () {
     let events = {
@@ -13,13 +17,15 @@ $('#eventSearchBtn').on('click', function () {
     url+= $('#word').val();
 
     eventList.text('データを検索中...');
+
+    alert('3');
     $.ajax({
         url: url,
         type: 'get',
         dataType: 'jsonp',
-        xhrFields: {
-            withCredentials: true
-        },
+        // xhrFields: {
+        //     withCredentials: true
+        // },
         success: function(result, textStatus, xhr) {
             eventList.html('');
             event.callback(result);
