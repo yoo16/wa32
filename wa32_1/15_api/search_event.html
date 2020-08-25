@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="css/prism.css">
+  <link rel="stylesheet" href="css/default.css">
+
+  <title>WA32_1</title>
+</head>
+
+<body>
+  <div id="content" class="container">
+    <p><a href="../">Back</a></p>
+    <h1 class="h1">イベント検索</h1>
+
+    <p>
+      セミナー・イベント管理サイト Doorkeeper と Connpass のイベントを API検索してみます。
+    </p>
+    <p class="alert alert-warning">
+      API は無償公開されていますが、予期せぬ理由で利用できなるなる可能性があります。
+    </p>
+    <div>
+      <h2 class="h2">ファイル構成</h2>
+      <pre class="language-text"><code>
+        index.html
+        js / main.js
+           / jquery-3.5.0.min.js
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">HTML</h2>
+      <pre class="language-markup"><code>
+        &lt;h2 class=&quot;h2&quot;&gt;検索キーワード&lt;/h2&gt;
+        &lt;input type=&quot;text&quot; id=&quot;word&quot; class=&quot;form-control&quot; value=&quot;東京&quot;&gt;
+      
+        &lt;h2 class=&quot;h2&quot;&gt;イベント&lt;/h2&gt;
+        &lt;div&gt;
+          &lt;label for=&quot;doorkeeper&quot; class=&quot;&quot;&gt;
+            &lt;input id=&quot;doorkeeper&quot; class=&quot;&quot; name=&quot;event&quot; type=&quot;radio&quot; value=&quot;doorkeeper&quot;&gt;
+            Doorkeeper
+          &lt;/label&gt;
+      
+          &lt;label for=&quot;connpass&quot; class=&quot;&quot;&gt;
+            &lt;input id=&quot;connpass&quot; class=&quot;&quot; name=&quot;event&quot; type=&quot;radio&quot; value=&quot;connpass&quot;&gt;
+            Connpass
+          &lt;/label&gt;
+        &lt;/div&gt;
+      
+        &lt;p&gt;&lt;button id=&quot;eventSearchBtn&quot; class=&quot;btn btn-info btn-block&quot;&gt;検索&lt;/button&gt;&lt;/p&gt;
+      
+        &lt;div&gt;
+          &lt;ul id=&quot;eventList&quot;&gt;&lt;/ul&gt;
+        &lt;/div&gt;
+      
+        &lt;script src=&quot;js/jquery-3.5.0.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;js/main.js&quot;&gt;&lt;/script&gt;
+      </code></pre>
+
+      <h2 class="h2">JSON</h2>
+      <p>
+        API のデータは各サイトによって仕様が違うため、それぞれデータ整形処理をしなければいけません。
+      </p>
+      <h3 class="h3">Doorkeeper API</h3>
+      <p>
+        https://api.doorkeeper.jp/events?q=%E6%9D%B1%E4%BA%AC
+      </p>
+      <pre class="language-json"><code>
+      [
+        {
+          "event": {
+            "title": "Startup Weekend Osaka＠立命館",
+            "id": 99771,
+            "starts_at": "2020-12-11T09:30:00.000Z",
+            "ends_at": "2020-12-13T13:00:00.000Z",
+            "venue_name": "立命館いばらきフューチャープラザ　1階イベントホール",
+            "address": "大阪府茨木市 岩倉町2-150",
+            "published_at": "2019-12-20T08:18:53.496Z",
+            "updated_at": "2020-08-09T12:55:41.639Z",
+            "group": 824,
+            "banner": "https://dzpp79ucibp5a.cloudfront.net/events_banners/99771_normal_1572437174_sw2018doorkeeper.jpg",
+            "description": "..."
+      </code></pre>
+
+      <h3 class="h3">Connpass API</h3>
+      <p>
+        https://connpass.com/api/v1/event/?keyword_or=%E6%9D%B1%E4%BA%AC
+      </p>
+      <pre class="language-json"><code>
+      {
+        "results_start": 1,
+        "results_returned": 10,
+        "results_available": 10000,
+        "events": [
+          {
+            "event_id": 186727,
+            "title": "60分でランチ勉強会！インターネットを支えるオープンソースの基礎について理解しよう",
+            "catch": "オープンソースという考え方と、オープンソースを支える「コミュニティ」について学ぶことができます",
+            "description": "..."
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">イベントサイトのデータ定義</h2>
+      <p>
+        イベントサイトの URL と API が成功したときのコールバック(callback)を定義します。
+      </p>
+      <pre class="language-javascript"><code>
+      let events = {
+          doorkeeper: { 
+              url: 'https://api.doorkeeper.jp/events?q=',
+              callback: doorkeeper
+          },
+          connpass: { 
+              url: 'https://connpass.com/api/v1/event/?keyword_or=',
+              callback: connpass
+          }
+      }
+      </code></pre>
+      <h3 class="h3">コールバック（callback）とは</h3>
+      <p class="alert alert-info">
+        コールバック（callback）は、関数を変数に定義しておき、呼び出し先で実行できるようにする仕組みで、非同期処理でよく利用されます。
+      </p>
+      <p>
+        関数を変数定義しておくことで、複雑な条件でも関数が実行しやすくなります。
+      </p>
+      <pre class="language-javascript"><code>
+      let functions = {
+          hello: { 
+              callback: function(name) { alert('Hello ' + name) } 
+          },
+          bye: {
+              callback: function(name) { alert('Bye ' + name) }
+          },
+      };
+      let key = 'hello';
+      functions[key].callback('Tokyo');
+      </code></pre>
+    </div>
+
+
+    <div>
+      <h2 class="h2">Ajax のレスポンスデータ</h2>
+      <p>
+        Ajax でのレスポンスデータは、done() の無名関数の引数に返されます。
+      </p>
+      <pre class="language-javascript"><code>
+        .done(function(data)) {
+        })
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">JSON を利用する</h2>
+      <p>
+        JavaScript で JSON データを利用するには JSONクラスが便利です。
+      </p>
+      <h3 class="h3">JSON を JS オブジェクトに変換</h3>
+      <p>
+        JSON.parse() で JSON を JavaScriptオブジェクトに変換します。
+      </p>
+      <pre class="language-javascript"><code>
+        JSON.parse(JSONデータ)
+      </code></pre>
+      <h3 class="h3">JS オブジェクトを JSON に変換</h3>
+      <p>
+        JSON.stringfy() で JavaScriptオブジェクトを JSON に変換します。
+      </p>
+      <pre class="language-javascript"><code>
+        JSON.stringfy(オブジェクト)
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">location から URL を生成する</h2>
+      <p>
+        location を使って、現在の URL から API の URL を生成してみます。
+      </p>
+      <h4 class="h4">現在の URL</h4>
+      <pre class="language-javascript"><code>
+        location.href
+      </code></pre>
+
+      <p>
+        現在の URL から index.html を除いた js/foods.json の URL は以下のようになります。
+      </p>
+      <h4 class="h4">実行前</h4>
+      <pre class="language-javascript"><code>
+        http://localhost/samples/index.html
+      </code></pre>
+      <h4 class="h4">実行後</h4>
+      <pre class="language-javascript"><code>
+        http://localhost/samples/js/foods.json
+      </code></pre>
+
+      <h4 class="h4">サンプル</h4>
+      <pre class="language-javascript"><code>
+      const href = location.href;
+      const index = href.lastIndexOf('/') + 1;
+      const filename = href.substr(index);
+      const baseUrl = href.substring(0, index);
+      const apiUrl = baseUrl + 'js/foods.json'
+      </code></pre>
+
+    </div>
+
+    <div>
+      <h2 class="h2">Ajax でリクエスト</h2>
+      <p>
+        GET で 生成した apiUrl にリクエストし、成功は done()、エラーは fail() とそれぞれ処理をします。
+      </p>
+      <h3 class="h3">テキスト型でリクエスト（dataType = text）</h3>
+      <p>
+        dataType を text にすると、foods.json データを文字列で取得できます。
+      </p>
+      <pre class="language-javascript"><code>
+      $(function () {
+          $('#getText').on('click', function () {
+              $.ajax({
+                  url: apiUrl,
+                  type: 'get',
+                  dataType: 'text',
+              }).done(function(text) {
+                  $('#type').text('text');
+                  $('#result').text(text);
+                  let data = JSON.parse(text);
+                  console.log(data);
+              }).fail(function() {
+                  alert('API Error');
+              });
+          });
+      });
+      </code></pre>
+
+      <h3 class="h3">JSON型でリクエスト（dataType = json）</h3>
+      <p>
+        dataType を json にすると、foods.json データを JavaScriptオブジェクトに変換して取得できます。
+      </p>
+      <pre class="language-javascript"><code>
+      $(function () {
+          $('#getJson').on('click', function () {
+              $.ajax({
+                  url: apiUrl,
+                  type: 'get',
+                  dataType: 'json',
+              }).done(function(data) {
+                  console.log(data);
+                  $('#type').text('json');
+                  let text = JSON.stringify(data);
+                  $('#result').text(text);
+              }).fail(function() {
+                  alert('API Error');
+              });
+          });
+      });
+      </code></pre>
+
+    </div>
+
+  </div>
+
+
+  <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="../js/bootstrap/bootstrap.min.js"></script>
+  <script src="../js/prism.js"></script>
+</body>
+
+</html>

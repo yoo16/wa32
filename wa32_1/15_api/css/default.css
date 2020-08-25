@@ -54,13 +54,26 @@ h1, h2, h3, h4, h5, h6 {
 
 .h3 {
     font-size: 1.0rem;
-    background: #f0f0f0;
+    border-left: 5px solid #303030;
+    border-bottom:1px dotted #303030;
     padding: 10px 10px;
 }
 
 th {
     background-color: #546263;
     color: #ffffff;
+}
+
+ul {
+    color: #668ad8; 
+    border: dotted 3px #668ad8;/*二重線 太さ 色*/
+    background: #f1f8ff; 
+    padding: 0.5em 0.5em 0.5em 2em;
+}
+  
+ul li {
+    line-height: 1.5;
+    padding: 0.5em 0;
 }
 
 .content {

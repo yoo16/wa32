@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="css/prism.css">
+  <link rel="stylesheet" href="css/default.css">
+
+  <title>WA32_1</title>
+</head>
+
+<body>
+  <div id="content" class="container">
+    <p><a href="../">Back</a></p>
+    <h1 class="h1">Ajax サンプル</h1>
+
+    <p>
+      同じドメイン内で Ajax を使って foods.json を取得してみます。
+    </p>
+    <div>
+      <h2 class="h2">ファイル構成</h2>
+      <pre class="language-text"><code>
+        index.html
+        js / foods.js
+           / main.js
+           / jquery-3.5.0.min.js
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">HTML</h2>
+      <pre class="language-markup"><code>
+      &lt;div&gt;
+        &lt;button id=&quot;getText&quot;&gt;取得&lt;/button&gt;
+        &lt;button id=&quot;getJson&quot;&gt;取得&lt;/button&gt;
+        &lt;div id=&quot;result&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    
+      &lt;script src=&quot;js/jquery-3.5.0.min.js&quot;&gt;&lt;/script&gt;
+      &lt;script src=&quot;js/main.js&quot;&gt;&lt;/script&gt;
+      </code></pre>
+
+      <h2 class="h2">JSON</h2>
+      <pre class="language-json"><code>
+      {
+          "foods": [
+              {
+                  "name": "apple",
+                  "price": 180
+              },
+              {
+                  "name": "banana",
+                  "price": 150
+              }
+          ]
+      };
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">Ajax のレスポンスデータ</h2>
+      <p>
+        Ajax でのレスポンスデータは、done() の無名関数の引数に返されます。
+      </p>
+      <pre class="language-javascript"><code>
+        .done(function(data)) {
+        })
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">JSON を利用する</h2>
+      <p>
+        JavaScript で JSON データを利用するには JSONクラスが便利です。
+      </p>
+      <h3 class="h3">JSON を JS オブジェクトに変換</h3>
+      <p>
+        JSON.parse() で JSON を JavaScriptオブジェクトに変換します。
+      </p>
+      <pre class="language-javascript"><code>
+        JSON.parse(JSONデータ)
+      </code></pre>
+      <h3 class="h3">JS オブジェクトを JSON に変換</h3>
+      <p>
+        JSON.stringfy() で JavaScriptオブジェクトを JSON に変換します。
+      </p>
+      <pre class="language-javascript"><code>
+        JSON.stringfy(オブジェクト)
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">location から URL を生成する</h2>
+      <p>
+        location を使って、現在の URL から API の URL を生成してみます。
+      </p>
+      <h4 class="h4">現在の URL</h4>
+      <pre class="language-javascript"><code>
+        location.href
+      </code></pre>
+
+      <p>
+        現在の URL から index.html を除いた js/foods.json の URL は以下のようになります。
+      </p>
+      <h4 class="h4">実行前</h4>
+      <pre class="language-javascript"><code>
+        http://localhost/samples/index.html
+      </code></pre>
+      <h4 class="h4">実行後</h4>
+      <pre class="language-javascript"><code>
+        http://localhost/samples/js/foods.json
+      </code></pre>
+
+      <h4 class="h4">サンプル</h4>
+      <pre class="language-javascript"><code>
+      const href = location.href;
+      const index = href.lastIndexOf('/') + 1;
+      const filename = href.substr(index);
+      const baseUrl = href.substring(0, index);
+      const apiUrl = baseUrl + 'js/foods.json'
+      </code></pre>
+
+    </div>
+
+    <div>
+      <h2 class="h2">Ajax でリクエスト</h2>
+      <p>
+        GET で 生成した apiUrl にリクエストし、成功は done()、エラーは fail() とそれぞれ処理をします。
+      </p>
+      <h3 class="h3">テキスト型でリクエスト（dataType = text）</h3>
+      <p>
+        dataType を text にすると、foods.json データを文字列で取得できます。
+      </p>
+      <pre class="language-javascript"><code>
+      $(function () {
+          $('#getText').on('click', function () {
+              $.ajax({
+                  url: apiUrl,
+                  type: 'get',
+                  dataType: 'text',
+              }).done(function(text) {
+                  $('#type').text('text');
+                  $('#result').text(text);
+                  let data = JSON.parse(text);
+                  console.log(data);
+              }).fail(function() {
+                  alert('API Error');
+              });
+          });
+      });
+      </code></pre>
+
+      <h3 class="h3">JSON型でリクエスト（dataType = json）</h3>
+      <p>
+        dataType を json にすると、foods.json データを JavaScriptオブジェクトに変換して取得できます。
+      </p>
+      <pre class="language-javascript"><code>
+      $(function () {
+          $('#getJson').on('click', function () {
+              $.ajax({
+                  url: apiUrl,
+                  type: 'get',
+                  dataType: 'json',
+              }).done(function(data) {
+                  console.log(data);
+                  $('#type').text('json');
+                  let text = JSON.stringify(data);
+                  $('#result').text(text);
+              }).fail(function() {
+                  alert('API Error');
+              });
+          });
+      });
+      </code></pre>
+
+    </div>
+
+  </div>
+
+
+  <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="../js/bootstrap/bootstrap.min.js"></script>
+  <script src="../js/prism.js"></script>
+</body>
+
+</html>

@@ -23,11 +23,23 @@
       <h2 class="h2">内容</h2>
       <h3 class="h3">hello.js</h3>
       <p>
-        「Hello Node.js」をコンソール出力する
+        「Hello Node」をコンソール出力する
       </p>
       <h3 class="h3">message.js</h3>
       <p>
         messages.js に定義した文字列をインポートしてコンソール出力する<br>
+      </p>
+      <pre class="language-javascript"><code>
+      let messages = [
+        "こんにちは",
+        "おはよう",
+        "サヨナラ"
+      ];
+
+      console.log(message)
+      messages.forEach(message => console.log(message))
+      </code></pre>
+      <p>
         また、REPL を利用して outMessages.js に保存してみる
       </p>
     </div>
@@ -35,10 +47,10 @@
     <h3 class="h3">ファイル構成</h3>
     <div>
       <pre>
-    wa32_homework08_学籍番号
-    |-hello.js
-    |-messages.js
-    |-outMessages.js
+      wa32_homework08_学籍番号
+      |- hello.js
+      |- messages.js
+      |- outMessages.js
       </pre>
     </div>
   </div>

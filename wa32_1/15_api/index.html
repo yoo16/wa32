@@ -41,10 +41,8 @@
       </p>
 
       <h3 class="h3">Web API</h3>
-      <p class="alert alert-info">
-        Web API は SNS、天気情報、交通情報といった無数のデータを、各会社や個人がインターネットを介してサービス提供しています。
-      </p>
       <p>
+        Web API は SNS、天気情報、交通情報といった無数のデータを、各会社や個人がインターネットを介してサービス提供しています。
         例えば、Google Map の API は地図の経路や位置を取得するなど、Google が許す限り様々な処理ができます。
       </p>
       <p>
@@ -141,7 +139,7 @@
     </div>
 
     <div>
-      <h2 class="h2">jQuery で Ajax を利用する</h2>
+      <h2 class="h2">Ajax の基本</h2>
       <p>jQuery で Ajax 処理は色々ありますが古くからは $.ajax() を利用します。</p>
       <pre class="language-javascript"><code>
       $.ajax({
@@ -153,17 +151,32 @@
       let request = new XMLHttpRequest();
       </code></pre>
 
+      <h3 class="h3">パラメータの設定</h3>
       <p>
         $.ajax() のパラメータはオブジェクトで指定します。
         パラメータはいくつかありますが、よく利用するのは以下の通りです。
       </p>
       <pre class="language-javascript"><code>
       $.ajax({	
-        url: 通信先のURL
-        type: HTTPメソッド(post, get)
-        data: 送信するデータ
-        dataType: データタイプ（text, json, jsonp ...）
+          url: 通信先のURL
+          type: HTTPメソッド(post, get)
+          data: API に送信するデータ
+          dataType: データタイプ（text, json, jsonp ...）
       }
+      </code></pre>
+
+      <h3 class="h3">成功、失敗の処理</h3>
+      <p>
+        Ajax でリクエストした結果を、成功（done）、失敗（fail）で処理を分岐します。
+      </p>
+      <pre class="language-javascript"><code>
+      $.ajax({
+          ...
+      }).done(function(result) {
+          //成功
+      }).fail(function(result) {
+          //失敗
+      });
       </code></pre>
     </div>
 
@@ -175,15 +188,27 @@
       <p>
         クロスドメイン間の通信を安易に許可してしまうと、悪意のあるプログラムから攻撃対象となるためデフォルトでは Ajax通信はできません。
       </p>
+      <p>
+        例えば自分のサーバ（localhost）から、他のサーバ（google.com）へのリクエストは、他のサーバが許可しない限り、エラーとなります。
+      </p>
       <h3 class="h3">Origin とは</h3>
       <p>
         Origin は ドメインに「プロトコル」「ポート番号」を追加したものです。
       </p>
       <pre class="language-javascript"><code>
-        Origin: http://yahoo.co.jp:80
+        http://localhost:80
       </code></pre>
+
       <p class="alert alert-info">
         ある Origin サーバーアプリから、別の Origin サーバーへのリクエストを許可することで、クロスドメイン間での Ajax 通信が実現できます。
+      </p>
+    </div>
+
+    <div>
+      <h2 class="h2">withCredentials</h2>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials" target="_blank">XMLHttpRequest.withCredentials</a>
+      <p>
+        withCredentials は、Cookie、承認ヘッダー、TLSクライアント証明書などの資格情報を使用してクロスサイトアクセス制御要求するためのプロパティです。
       </p>
     </div>
 
@@ -198,6 +223,69 @@
       <p>
         実際には別ドメインに対して JavaScript の実行権限をあたえる行為なので、信頼できるドメインに対して利用する必要があります。
       </p>
+    </div>
+
+    <div>
+      <pre class="language-javascript"><code>
+      $.ajax({
+          url: url,
+          type: 'get',
+          dataType: 'jsonp',
+          xhrFields: {
+              withCredentials: true
+          },
+      }).done(function(result) {
+          eventList.html('');
+          event.callback(result);
+      }).fail(function(result) {
+          console.log(result);
+      });
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">ローカル環境でサーバ（API）をテストする</h2>
+      <p class="alert alert-info">
+        ローカル環境で API リクエストをテストしたいとき、原則 Webサーバが必要になります。
+      </p>
+      <p>
+        リクエストする側と APIサーバ側を同じドメイン（localhost など）に配置するのがシンプルです。
+      </p>
+      <h3 class="h3">直接 HTMLファイルを実行すると CORSエラー</h3>
+      <p>
+        HTML ファイルを直接開いて JavaScript を実行する場合は CORSエラーとなります。
+      </p>
+      <pre class="language-javascript"><code>
+        Access to XMLHttpRequest at 'file:///Users/...' from origin 'null' 
+        has been blocked by CORS policy: Cross origin requests are 
+        only supported for protocol schemes: http, data, chrome, chrome-extension, https.
+      </code></pre>
+      <p>
+        Chrome や FireFox などのブラウザが、file プロトコルを原則許可しないのが原因です。
+      </p>
+      <h3 class="h3">ローカル環境に Webサーバがない場合</h3>
+      <p>
+        ローカル環境に Webサーバがない場合、VSCode でも一時的にサーバをたてることができます。
+      </p>
+      <p>
+        <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank">Live Server</a>
+      </p>
+      <p>
+        ただし色々な問題が出る可能性があるので、Web サーバは用意しておきましょう。
+      </p>
+    </div>
+
+    <div>
+      <h2 class="h2">Ajax を利用する</h2>
+
+      <h3 class="h3">URL を取得する</h3>
+      <pre class="language-javascript"><code>
+      const href = location.href;
+      const index = href.lastIndexOf('/') + 1;
+      const filename = href.substr(index);
+      const baseUrl = href.substring(0, index);
+      const apiUrl = baseUrl + 'js/foods.json'
+      </code></pre>
     </div>
   </div>
 
