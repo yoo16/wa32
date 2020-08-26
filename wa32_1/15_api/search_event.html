@@ -16,6 +16,29 @@
   <div id="content" class="container">
     <p><a href="../">Back</a></p>
     <h1 class="h1">イベント検索</h1>
+    <div>
+      <h2>検索キーワード</h2>
+      <input type="text" id="word" class="form-control" value="東京">
+    
+      <h2>イベント</h2>
+      <div>
+        <label for="doorkeeper" class="">
+          <input id="doorkeeper" class="" name="event" type="radio" value="doorkeeper">
+          Doorkeeper
+        </label>
+    
+        <label for="connpass" class="">
+          <input id="connpass" class="" name="event" type="radio" value="connpass">
+          Connpass
+        </label>
+      </div>
+    
+      <p><button id="eventSearchBtn" class="btn btn-info">検索</button></p>
+    
+      <div>
+        <ul id="eventList"></ul>
+      </div>
+    </div>
 
     <div>
       <h2 class="h2">コールバック（callback）</h2>
@@ -96,24 +119,6 @@
         &lt;script src=&quot;js/jquery-3.5.0.min.js&quot;&gt;&lt;/script&gt;
         &lt;script src=&quot;js/main.js&quot;&gt;&lt;/script&gt;
       </code></pre>
-
-      <h2>検索キーワード</h2>
-      <input type="text" id="word" class="" value="東京">
-
-      <h2>イベント</h2>
-      <div>
-        <label for="doorkeeper" class="">
-          <input id="doorkeeper" class="" name="event" type="radio" value="doorkeeper">
-          Doorkeeper
-        </label>
-
-        <label for="connpass" class="">
-          <input id="connpass" class="" name="event" type="radio" value="connpass">
-          Connpass
-        </label>
-      </div>
-
-      <p><button id="eventSearchBtn" class="">検索</button></p>
 
     </div>
 
@@ -296,6 +301,7 @@
   <script src="../js/jquery-3.5.0.min.js"></script>
   <script src="../js/bootstrap/bootstrap.min.js"></script>
   <script src="../js/prism.js"></script>
+  <script src="search_event/js/main.js"></script>
 </body>
 
 </html>

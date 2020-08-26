@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="css/prism.css">
+  <link rel="stylesheet" href="css/default.css">
+
+  <title>COVID19</title>
+</head>
+
+<body>
+  <div id="content" class="container">
+    <p><a href="../">Back</a></p>
+    <h1 class="h1">COVID19</h1>
+
+    <div>
+      <button id="search" class="btn btn-block btn-primary">検索</button>
+
+      <div id="totalList"></div>
+    </div>
+
+    <div>
+      <h2 class="h2">$.getJSON()</h2>
+      <p>
+        $.getJSON() は JSON データを取得するシンプルなメソッドです。
+      </p>
+      <pre class="language-javascript"><code>
+        $.getJSON(url, data, callback)
+      </code></pre>
+
+      <h2 class="h2">$.when()</h2>
+      <p>
+        $.when() は非同期処理を複数処理するのに便利なメッソドです。
+        $.ajax 同様 done(), fail() が利用できます。
+      </p>
+      <pre class="language-javascript"><code>
+        $.when(
+            $.getJSON(URL1),
+            $.getJSON(URL2),
+        ).done(function(response1, response2) {
+            //成功
+        }).fail(function() {
+            //失敗
+        });
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">Bootstrap 4</h2>
+      <p>
+        CSSフレームワーク「Bootstrap 4」を CDN で利用します。
+        JavaScript は今回は必要ありません。
+      </p>
+      <pre class="language-markup"><code>
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;&gt;
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">COVID19 API</h2>
+      <p>
+        COVID19 の API で日本のデータが取得できます。
+      </p>
+      <p>
+        <a href="https://documenter.getpostman.com/view/9215231/SzYaWe6h?version=latest">COVID-19 Japan Web API</a>
+      </p>
+      <p>
+        COVID19 API でリクエストできる URL は以下のようなものがあります。
+      </p>
+
+      <h3 class="h3">全国集計データ</h3>
+      <p>
+        全国の集計データを取得します。
+        デフォルトは最新日のデータを取得します。
+      </p>
+      <pre class="language-markup"><code>
+        https://covid19-japan-web-api.now.sh/api/v1/total
+      </code></pre>
+
+      <h3 class="h3">都道府県集計一覧データ</h3>
+      <p>
+        都道府県の集計一覧データを取得します。
+      </p>
+      <pre class="language-markup"><code>
+        https://covid19-japan-web-api.now.sh/api/v1/prefectures
+      </code></pre>
+
+      <h3 class="h3">都道府県別データ</h3>
+      <p>
+        prefecture をパラメータとして、都道府県別のデータを取得します。
+      </p>
+      <pre class="language-markup"><code>
+        https://covid19-japan-web-api.now.sh/api/v1/positives
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">COVID19 データ取得</h2>
+      <h3 class="h3">API URL（合計）の設定</h3>
+      <p>
+        合計を取得する URL を設定します。
+      </p>
+      <pre class="language-javascript"><code>
+        const totalUrl = 'https://covid19-japan-web-api.now.sh/api/v1/total';
+      </code></pre>
+
+      <h3 class="h3">データ定義</h3>
+      <p>
+        API でレスポンスされるデータをもとに、合計データの定義をします。
+      </p>
+      <p class="alert alert-info">
+        date, pcr などのキーが、API で定義されたプロパティです。
+      </p>
+      <pre class="language-javascript"><code>
+      let columns = {
+          total: {
+              date: {label: '日付'},
+              pcr: {label: '累積PCR検査数'},
+              positive: {label: '累積PCR検査陽性者数'},
+              hospitalize: {label: '現在入院患者数'},
+              death: {label: '死亡者数'},
+          },
+      }
+      </code></pre>
+
+      <h3 class="h3">HTML 表示処理</h3>
+      <p>
+        データを元に、HTML を生成します。
+      </p>
+      <pre class="language-javascript"><code>
+      let totalList = $('#totalList');
+
+      function showTotal(values) {
+          totalList.html('');
+
+          //table
+          let table = $('&lt;table&gt;').addClass('table');
+          let tr = $('&lt;tr&gt;');
+
+          //header
+          $.each(columns.total, function(key, column) {
+              tr.append($('&lt;th&gt;').html(column.label));
+          })
+          table.append(tr);
+
+          //body
+          tr = $('&lt;tr&gt;');
+          $.each(columns.total, function(key, column) {
+              tr.append($('&lt;td&gt;').html(values[key]));
+          })
+          table.append(tr);
+          totalList.append(table);
+      }
+      </code></pre>
+
+      <h3 class="h3">API リクエスト＆レスポンス</h3>
+      <p>
+        $.getJSON() でデータを取得し、showTotal() を実行します。
+      </p>
+      <pre class="language-javascript"><code>
+      $('#search').on('click', function () {
+          $.when(
+              $.getJSON(totalUrl),
+          ).done(function(response) {
+              showTotal(response);
+          }).fail(function() {
+              console.log('error');
+          });
+      });
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">サンプル</h2>
+      <h3 class="h3">HTML</h3>
+      <pre class="language-markup"><code>
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang=&quot;ja&quot;&gt;
+        
+        &lt;head&gt;
+          &lt;meta charset=&quot;UTF-8&quot;&gt;
+          &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+          &lt;link rel=&quot;stylesheet&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;&gt;
+          &lt;title&gt;COVID19&lt;/title&gt;
+        &lt;/head&gt;
+        
+        &lt;body&gt;
+          &lt;div class=&quot;container&quot;&gt;
+            &lt;h1 class=&quot;h1&quot;&gt;COVID19&lt;/h1&gt;
+        
+            &lt;button id=&quot;search&quot; class=&quot;btn btn-block btn-primary&quot;&gt;検索&lt;/button&gt;
+        
+            &lt;div id=&quot;totalList&quot;&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        
+          &lt;script src=&quot;js/jquery-3.5.0.min.js&quot;&gt;&lt;/script&gt;
+          &lt;script src=&quot;js/main.js&quot;&gt;&lt;/script&gt;
+        &lt;/body&gt;
+        
+      &lt;/html&gt;
+      </code></pre>
+
+      <h3 class="h3">JS</h3>
+      <pre class="language-javascript"><code>
+        const totalUrl = 'https://covid19-japan-web-api.now.sh/api/v1/total';
+
+        $(function () {
+            let totalList = $('#totalList');
+            let columns = {
+                total: {
+                    date: {label: '日付'},
+                    pcr: {label: '累積PCR検査数'},
+                    positive: {label: '累積PCR検査陽性者数'},
+                    hospitalize: {label: '現在入院患者数'},
+                    death: {label: '死亡者数'},
+                },
+            }
+        
+            $('#search').on('click', function () {
+                $.when(
+                    $.getJSON(totalUrl),
+                ).done(function(response) {
+                    showTotal(response);
+                }).fail(function() {
+                    console.log('error');
+                });
+            });
+        
+            function showTotal(values) {
+                totalList.html('');
+        
+                //table
+                let table = $('&lt;table&gt;').addClass('table');
+                let tr = $('&lt;tr&gt;');
+        
+                //header
+                $.each(columns.total, function(key, column) {
+                    tr.append($('&lt;th&gt;').html(column.label));
+                })
+                table.append(tr);
+        
+                //body
+                tr = $('&lt;tr&gt;');
+                $.each(columns.total, function(key, column) {
+                    tr.append($('&lt;td&gt;').html(values[key]));
+                })
+                table.append(tr);
+                totalList.append(table);
+            }
+        
+        });
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">都道府県一覧 API</h2>
+      <p>
+        API リクエストで取得したデータを元に、都道府県一覧 HTML を表示してみます。
+      </p>
+
+      <h3 class="h3">都道府県一覧 HTML表示の領域</h3>
+      <p>
+        都道府県一覧データの領域を追加します。
+      </p>
+      <pre class="language-markup"><code>
+        &lt;h2 class=&quot;h2&quot;&gt;都道府県別&lt;/h2&gt;
+        &lt;div id=&quot;prefectureList&quot;&gt;&lt;/div&gt;
+      </code></pre>
+
+      <h3 class="h3">データ定義</h3>
+      <p>都道府県一覧データ用のデータを定義します。</p>
+      <pre class="language-javascript"><code>
+      let columns = {
+          ...
+          prefecture: {
+              name_ja: {label: '都道府県'},
+              pcr: {label: 'PCR検査数'},
+              cases: {label: '発症者数'},
+              deaths: {label: '死者数'},
+          },
+      }
+      </code></pre>
+
+      <h3 class="h3">都道府県一覧 HTML 表示</h3>
+      <p>
+        都道府県一覧データを表示する HTML を記述します。
+      </p>
+      <pre class="language-javascript"><code>
+      let prefectureList = $('#prefectureList');
+
+      function showList(values) {
+          prefectureList.html(&#39;&#39;);
+  
+          //table
+          let table = $(&#39;&lt;table&gt;&#39;).addClass(&#39;table&#39;);
+          let tr = $(&#39;&lt;tr&gt;&#39;);
+  
+          //header
+          $.each(columns.prefecture, function (key, column) {
+              tr.append($(&#39;&lt;th&gt;&#39;).html(column.label));
+          });
+          tr.append($(&#39;&lt;th&gt;&#39;));
+          table.append(tr);
+  
+          //body
+          $.each(values, function (index, value) {
+              tr = $(&#39;&lt;tr&gt;&#39;);
+              $.each(columns.prefecture, function(key, column) {
+                  tr.append($(&#39;&lt;td&gt;&#39;).html(value[key]));
+              });
+              table.append(tr);
+          });
+          prefectureList.append(table);
+      }
+      </code></pre>
+
+      <h3 class="h3">API リクエスト追加</h3>
+      <p>
+        URL を設定して、$.getJSON() でリクエストを追加します。
+      </p>
+      <pre class="language-javascript"><code>
+        const prefecturesUrl = 'https://covid19-japan-web-api.now.sh/api/v1/prefectures';
+      </code></pre>
+      <p>
+        done() のレスポンスデータは「totalResponse」「prefectureResponse」の 2つに修正します。
+      </p>
+      <p class="alert alert-warning">
+        レスポンスデータが複数になると、totalResponse[0], prefectureResponse[0] にデータ構造が変わります。
+      </p>
+      <pre class="language-javascript"><code>
+      $('#search').on('click', function () {
+          $.when(
+              $.getJSON(totalUrl),
+              $.getJSON(prefecturesUrl),
+          ).done(function(totalResponse, prefectureResponse) {
+              showTotal(totalResponse[0]);
+              showList(prefectureResponse[0]);
+          }).fail(function() {
+              console.log('error');
+          });
+      });
+      </code></pre>
+    </div>
+
+  </div>
+
+  <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="../js/bootstrap/bootstrap.min.js"></script>
+  <script src="../js/prism.js"></script>
+  <script src="covid19/js/main.js"></script>
+  <script src="covid19/js/prefecture.js"></script>
+</body>
+
+</html>
