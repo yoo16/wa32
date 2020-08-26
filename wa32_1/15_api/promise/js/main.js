@@ -23,18 +23,15 @@ $('#eventSearchBtn').on('click', function () {
         url: url,
         type: 'get',
         dataType: 'jsonp',
-        // xhrFields: {
-        //     withCredentials: true
-        // },
-    }).done(function (data, status, xhr) {
-        console.log(data);
-        console.log(status);
-        console.log(xhr);
-
+        xhrFields: {
+            withCredentials: true
+        },
+    }).done(function (result) {
+        console.log(result);
         eventList.html('');
-        event.callback(data);
-    }).fail(function (xhr) {
-        console.log(xhr);
+        event.callback(result);
+    }).fail(function (result) {
+        console.log(result);
     });
 
     function doorkeeper(values) {

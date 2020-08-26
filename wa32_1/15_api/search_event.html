@@ -17,19 +17,55 @@
     <p><a href="../">Back</a></p>
     <h1 class="h1">イベント検索</h1>
 
-    <p>
-      セミナー・イベント管理サイト Doorkeeper と Connpass のイベントを API検索してみます。
-    </p>
-    <p class="alert alert-warning">
-      API は無償公開されていますが、予期せぬ理由で利用できなるなる可能性があります。
-    </p>
     <div>
-      <h2 class="h2">ファイル構成</h2>
-      <pre class="language-text"><code>
+      <h2 class="h2">コールバック（callback）</h2>
+      <p class="alert alert-info">
+        コールバック（callback）は関数を変数定義し、他の関数で実行できるようにする仕組みです。
+      </p>
+      <p>
+        関数を変数定義すると構造的で複雑な条件でも関数が実行しやすくなり、非同期処理でよく利用されます。
+      </p>
+      <p>
+        if 文で条件分岐しないで、変数を指定して関数を実行する例です。
+      </p>
+      <pre class="language-javascript"><code>
+        let methods = {
+          hello: {
+              callback: function (name) {
+                  $('#result').text('callback:' + name)
+              }
+          },
+          bye: {
+              callback: function (name) {
+                  $('#result').text('callback:' + name)
+              }
+          },
+      };
+      
+      function main(key) {
+          methods[key].callback(key);
+      }
+      
+      main('hello');
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">セミナー・イベント検索</h2>
+      <p>
+        セミナー・イベント管理サイト Doorkeeper と Connpass のイベントを API検索してみます。
+      </p>
+      <p class="alert alert-warning">
+        API は無償公開されていますが、予期せぬ理由で利用できなるなる可能性があります。
+      </p>
+      <div>
+        <h3 class="h2">ファイル構成</h3>
+        <pre class="language-text"><code>
         index.html
         js / main.js
            / jquery-3.5.0.min.js
       </code></pre>
+      </div>
     </div>
 
     <div>
@@ -61,6 +97,27 @@
         &lt;script src=&quot;js/main.js&quot;&gt;&lt;/script&gt;
       </code></pre>
 
+      <h2>検索キーワード</h2>
+      <input type="text" id="word" class="" value="東京">
+
+      <h2>イベント</h2>
+      <div>
+        <label for="doorkeeper" class="">
+          <input id="doorkeeper" class="" name="event" type="radio" value="doorkeeper">
+          Doorkeeper
+        </label>
+
+        <label for="connpass" class="">
+          <input id="connpass" class="" name="event" type="radio" value="connpass">
+          Connpass
+        </label>
+      </div>
+
+      <p><button id="eventSearchBtn" class="">検索</button></p>
+
+    </div>
+
+    <div>
       <h2 class="h2">JSON</h2>
       <p>
         API のデータは各サイトによって仕様が違うため、それぞれデータ整形処理をしなければいけません。
@@ -121,118 +178,90 @@
           }
       }
       </code></pre>
-      <h3 class="h3">コールバック（callback）とは</h3>
-      <p class="alert alert-info">
-        コールバック（callback）は、関数を変数に定義しておき、呼び出し先で実行できるようにする仕組みで、非同期処理でよく利用されます。
-      </p>
-      <p>
-        関数を変数定義しておくことで、複雑な条件でも関数が実行しやすくなります。
-      </p>
-      <pre class="language-javascript"><code>
-      let functions = {
-          hello: { 
-              callback: function(name) { alert('Hello ' + name) } 
-          },
-          bye: {
-              callback: function(name) { alert('Bye ' + name) }
-          },
-      };
-      let key = 'hello';
-      functions[key].callback('Tokyo');
-      </code></pre>
-    </div>
-
-
-    <div>
-      <h2 class="h2">Ajax のレスポンスデータ</h2>
-      <p>
-        Ajax でのレスポンスデータは、done() の無名関数の引数に返されます。
-      </p>
-      <pre class="language-javascript"><code>
-        .done(function(data)) {
-        })
-      </code></pre>
     </div>
 
     <div>
-      <h2 class="h2">JSON を利用する</h2>
+      <h2 class="h2">リクエストの準備</h2>
       <p>
-        JavaScript で JSON データを利用するには JSONクラスが便利です。
+        ラジオボタンを取得してイベントの種類を取得し、検索キーワードから API の URL を生成します。
       </p>
-      <h3 class="h3">JSON を JS オブジェクトに変換</h3>
-      <p>
-        JSON.parse() で JSON を JavaScriptオブジェクトに変換します。
-      </p>
+
       <pre class="language-javascript"><code>
-        JSON.parse(JSONデータ)
+      let eventKey = $('input[name=event]:checked').val();
+      let event = events[eventKey];
+      let url = event.url;
+      url += $('#word').val();
+  
+      eventList.text('データを検索中...');
       </code></pre>
-      <h3 class="h3">JS オブジェクトを JSON に変換</h3>
       <p>
-        JSON.stringfy() で JavaScriptオブジェクトを JSON に変換します。
+        API 接続中は、結果欄に「データを検索中...」と表示するようにしています。
       </p>
-      <pre class="language-javascript"><code>
-        JSON.stringfy(オブジェクト)
-      </code></pre>
     </div>
 
     <div>
-      <h2 class="h2">location から URL を生成する</h2>
+      <h2 class="h2">イベントごとのコールバック関数</h2>
       <p>
-        location を使って、現在の URL から API の URL を生成してみます。
+        イベントごとのコールバック関数を実装します。
+        JSON データの構造が違うため、それにあわせた HTML を作成します。
       </p>
-      <h4 class="h4">現在の URL</h4>
+      <h3 class="h3">Doorkeeper</h3>
       <pre class="language-javascript"><code>
-        location.href
+      function doorkeeper(values) {
+          $.each(values, function (key, value) {
+              let li = $('&lt;li&gt;&lt;/li&gt;').addClass('list-group-item');
+              let a = $('&lt;a&gt;&lt;/a&gt;',
+                  {
+                      href: value.event.public_url,
+                      text: value.event.title,
+                      target: '_blank'
+                  });
+              li.append(a);
+              eventList.append(li);
+          });
+      }
       </code></pre>
 
-      <p>
-        現在の URL から index.html を除いた js/foods.json の URL は以下のようになります。
-      </p>
-      <h4 class="h4">実行前</h4>
+      <h3 class="h3">Connpass</h3>
       <pre class="language-javascript"><code>
-        http://localhost/samples/index.html
+      function connpass(values) {
+          $.each(values.events, function (index, value) {
+              let li = $('&lt;li&gt;&lt;/li&gt;').addClass('list-group-item');
+              let a = $('&lt;a&gt;&lt;/a&gt;',
+                  {
+                      href: value.event_url,
+                      text: value.title,
+                      target: '_blank'
+                  });
+              li.append(a);
+              eventList.append(li);
+          });
+      }
       </code></pre>
-      <h4 class="h4">実行後</h4>
-      <pre class="language-javascript"><code>
-        http://localhost/samples/js/foods.json
-      </code></pre>
-
-      <h4 class="h4">サンプル</h4>
-      <pre class="language-javascript"><code>
-      const href = location.href;
-      const index = href.lastIndexOf('/') + 1;
-      const filename = href.substr(index);
-      const baseUrl = href.substring(0, index);
-      const apiUrl = baseUrl + 'js/foods.json'
-      </code></pre>
-
     </div>
 
     <div>
       <h2 class="h2">Ajax でリクエスト</h2>
       <p>
-        GET で 生成した apiUrl にリクエストし、成功は done()、エラーは fail() とそれぞれ処理をします。
-      </p>
-      <h3 class="h3">テキスト型でリクエスト（dataType = text）</h3>
-      <p>
-        dataType を text にすると、foods.json データを文字列で取得できます。
+        <ul>
+          <li>JSONP</li>
+          <li>GET</li>
+        </ul>
+        でリクエストをし、done() で取得したデータをコールバック関数で実行します。
       </p>
       <pre class="language-javascript"><code>
-      $(function () {
-          $('#getText').on('click', function () {
-              $.ajax({
-                  url: apiUrl,
-                  type: 'get',
-                  dataType: 'text',
-              }).done(function(text) {
-                  $('#type').text('text');
-                  $('#result').text(text);
-                  let data = JSON.parse(text);
-                  console.log(data);
-              }).fail(function() {
-                  alert('API Error');
-              });
-          });
+      $.ajax({
+          url: url,
+          type: 'get',
+          dataType: 'jsonp',
+      }).done(function (data, status, xhr) {
+          console.log(status);
+          console.log(xhr);
+  
+          eventList.html('');
+          event.callback(data);
+      }).fail(function (xhr) {
+          console.log(xhr);
       });
       </code></pre>
 
