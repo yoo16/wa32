@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API 郵便番号検索</title>
+</head>
+
+<body>
+
+  <p>
+    <a href="lesson1.html">Prev</a>
+  </p>
+  <h2>住所</h2>
+  <form>
+    <label for="zip">郵便番号</label>
+    <div>
+      <input id="zip" ype="text" class="address">
+      <input id="search" type="button" value="検索">
+      <input id="clear" type="button" value="クリア">
+    </div>
+    <label for="prefecture">住所</label>
+    <div>
+      <select id="prefecture" class="address"></select>
+    </div>
+
+    <div>
+      <label for="city">市区町村群</label>
+      <input id="city" class="address" type="text">
+
+      <label for="town">番地など</label>
+      <input id="town" class="address" type="text">
+
+      <label for="building">建物名</label>
+      <input id="building" type="text" class="address" type="text">
+    </div>
+  </form>
+
+  <script src="../../js/jquery-3.5.0.min.js"></script>
+  <script src="js/prefecture.js"></script>
+  <script src="js/lesson2.js"></script>
+</body>
+
+</html>

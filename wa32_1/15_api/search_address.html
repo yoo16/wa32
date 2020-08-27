@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="css/prism.css">
+  <link rel="stylesheet" href="css/default.css">
+
+  <title>WA32_1</title>
+</head>
+
+<body>
+  <div id="content" class="container">
+    <p><a href="../">Back</a></p>
+    <h1 class="h1">郵便番号検索</h1>
+    <div>
+      <h2 class="h2">サンプル</h2>
+      <p>
+        <a href="search_address/" target="_blank">郵便番号検索</a>
+      </p>
+    </div>
+
+    <div>
+      <h2 class="h2">API</h2>
+      <p>
+        <a href="https://zipcloud.ibsnet.co.jp/api/search" target="_blank">https://zipcloud.ibsnet.co.jp/api/search</a>
+      </p>
+      <p class="alert alert-warning">
+        API は無償公開されていますが、予期せぬ理由で利用できなるなる可能性があります。
+      </p>
+
+      <div>
+        <h2 class="h2">$.getJSON()</h2>
+        <p>
+          $.getJSON() は JSON データを取得するシンプルなメソッドです。
+        </p>
+        <pre class="language-javascript"><code>
+        $.getJSON(url, data, callback)
+        </code></pre>
+      </div>
+
+      <div>
+        <h2 class="h2">JSON</h2>
+        <p>
+          API に zipcode パラメータを追加してリクエストします。
+        </p>
+        <p>
+          <a href="https://zipcloud.ibsnet.co.jp/api/search?zipcode=1500001"
+            target="_blank">https://zipcloud.ibsnet.co.jp/api/search?zipcode=1500001</a>
+        </p>
+        <pre class="language-json"><code>
+          // 20200827142527
+          // https://zipcloud.ibsnet.co.jp/api/search?zipcode=1500001
+          
+          {
+            "message": null,
+            "results": [
+              {
+                "address1": "東京都",
+                "address2": "渋谷区",
+                "address3": "神宮前",
+                "kana1": "ﾄｳｷｮｳﾄ",
+                "kana2": "ｼﾌﾞﾔｸ",
+                "kana3": "ｼﾞﾝｸﾞｳﾏｴ",
+                "prefcode": "13",
+                "zipcode": "1500001"
+              }
+            ],
+            "status": 200
+          }
+        </code></pre>
+      </div>
+
+    </div>
+
+    <div>
+      <h2 class="h2">ファイル構成</h2>
+      <pre class="language-text"><code>
+      index.html
+      js / main.js
+          / prefecture.js
+          / jquery-3.5.0.min.js
+      </code></pre>
+    </div>
+    <div>
+      <h2 class="h2">HTML</h2>
+      <pre class="language-markup"><code>
+        &lt;h2&gt;住所&lt;/h2&gt;
+        &lt;form&gt;
+          &lt;label for=&quot;zip&quot;&gt;郵便番号&lt;/label&gt;
+          &lt;div&gt;
+            &lt;input id=&quot;zip&quot; type=&quot;text&quot; class=&quot;address&quot;&gt;
+            &lt;input id=&quot;search&quot; type=&quot;button&quot; value=&quot;検索&quot;&gt;
+            &lt;input id=&quot;clear&quot; type=&quot;button&quot; value=&quot;クリア&quot;&gt;
+          &lt;/div&gt;
+          &lt;label for=&quot;prefecture&quot;&gt;住所&lt;/label&gt;
+          &lt;div&gt;
+            &lt;select id=&quot;prefecture&quot; class=&quot;address&quot;&gt;&lt;/select&gt;
+          &lt;/div&gt;
+      
+          &lt;div&gt;
+            &lt;label for=&quot;city&quot;&gt;市区町村群&lt;/label&gt;
+            &lt;input id=&quot;city&quot; class=&quot;address&quot; type=&quot;text&quot;&gt;
+      
+            &lt;label for=&quot;town&quot;&gt;番地など&lt;/label&gt;
+            &lt;input id=&quot;town&quot; class=&quot;address&quot; type=&quot;text&quot;&gt;
+      
+            &lt;label for=&quot;building&quot;&gt;建物名&lt;/label&gt;
+            &lt;input id=&quot;building&quot; type=&quot;text&quot; class=&quot;address&quot; type=&quot;text&quot;&gt;
+          &lt;/div&gt;
+        &lt;/form&gt
+      </code></pre>
+
+    </div>
+
+
+    <div>
+      <h2 class="h2">都道府県プルダウン</h2>
+      <p>
+        都道府県データを JavaScript で用意して HTML から読み込みます。
+      </p>
+      <h3 class="h3">prefecture.js</h3>
+      <p>
+        <a href="js/prefecture.js" target="_blank">prefecture.js</a>
+      </p>
+
+      <pre class="language-javascript"><code>
+        &lt;script src=&quot;js/prefecture.js&quot;&gt;&lt;/script&gt;
+      </code></pre>
+
+      <h3 class="h3">プルダウン</h3>
+      <p>
+        都道府県のプルダウン HTML を作成します。
+      </p>
+      <pre class="language-javascript"><code>
+      $(function () {
+          function loadPrefecture() {
+              $.each(prefectures, function (key, value) {
+                  option = $('&lt;option&gt;').val(value.code).text(value.label)
+                  $('#prefecture').append(option)
+              });
+          }
+          loadPrefecture()
+      });
+      </code></pre>
+
+    </div>
+
+    <div>
+      <h2 class="h2">検索ボタンで APIリクエスト</h2>
+      <h3 class="h3">API URL設定</h3>
+      <p>
+        郵便番号検索用の API URL を設定します
+      </p>
+      <pre class="language-javascript"><code>
+      const api_url = 'https://zipcloud.ibsnet.co.jp/api/search?callback=?'
+      </code></pre>
+
+      <h3 class="h3">$.getJSON() でリクエスト</h3>
+      <p>
+        入力した郵便番号を zipcode パラメータでリクエストし、 done() でレスポンスされた data から住所情報を設定します。
+      </p>
+      <pre class="language-javascript"><code>
+      $('#search').on('click', function () {
+          $.getJSON(api_url, { 
+              zipcode: $('#zip').val()
+          }).done(function (data) {
+              if (data.results) {
+                  let result = data.results[0];
+                  $('#prefecture').val(result.prefcode)
+                  $('#city').val(result.address2)
+                  $('#town').val(result.address3)
+              } else {
+                  alert('郵便番号が正しくありません')
+              }
+          });
+      });
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">入力のクリア処理</h2>
+      <p>
+        class = address の要素の value を空欄にします。
+      </p>
+      <pre class="language-javascript"><code>
+      $('#clear').on('click', function () {
+          $('.address').val('');
+      });
+      </code></pre>
+    </div>
+
+  </div>
+
+
+  <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="../js/bootstrap/bootstrap.min.js"></script>
+  <script src="../js/prism.js"></script>
+  <script src="search_event/js/main.js"></script>
+</body>
+
+</html>

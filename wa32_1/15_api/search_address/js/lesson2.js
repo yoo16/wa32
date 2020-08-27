@@ -1,4 +1,3 @@
-let address = {}
 const api_url = 'https://zipcloud.ibsnet.co.jp/api/search?callback=?'
 
 $(function () {
@@ -22,23 +21,6 @@ $(function () {
         });
     });
 
-    $('#regist').on('click', function () {
-        address.zip = $('#zip').val()
-        address.prefcode = $('#prefecture').val()
-        address.city = $('#city').val()
-        address.town = $('#town').val()
-        address.building = $('#building').val()
-        console.log(address)
-
-        let json = JSON.stringify(address)
-
-        //TODO Ajax Post
-        post(json);
-    });
-
-    /**
-     * loadPrefecture
-     */
     function loadPrefecture() {
         $.each(prefectures, function (key, value) {
             option = $('<option>').val(value.code).text(value.label)
@@ -46,12 +28,5 @@ $(function () {
         });
     }
 
-    /**
-     * post json
-     */
-    function post(json) {
-        //TODO post JSON
-        $('#postJson').val(json)
-    }
     loadPrefecture()
 });

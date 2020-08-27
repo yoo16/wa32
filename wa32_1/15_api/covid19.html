@@ -24,15 +24,39 @@
     </div>
 
     <div>
-      <h2 class="h2">$.getJSON()</h2>
+      <h2 class="h2">COVID19 API</h2>
       <p>
-        $.getJSON() は JSON データを取得するシンプルなメソッドです。
+        COVID19 の API で日本のデータが取得できます。
       </p>
-      <pre class="language-javascript"><code>
-        $.getJSON(url, data, callback)
+      <p>
+        <a href="https://documenter.getpostman.com/view/9215231/SzYaWe6h?version=latest">COVID-19 Japan Web API</a>
+      </p>
+
+      <h3 class="h3">全国集計データ</h3>
+      <p>
+        全国の集計データを取得します。
+        デフォルトは最新日のデータを取得します。
+      </p>
+      <pre class="language-markup"><code>
+        https://covid19-japan-web-api.now.sh/api/v1/total
+      </code></pre>
+
+      <h3 class="h3">都道府県集計一覧データ</h3>
+      <p>
+        都道府県の集計一覧データを取得します。
+      </p>
+      <pre class="language-markup"><code>
+        https://covid19-japan-web-api.now.sh/api/v1/prefectures
+      </code></pre>
+
+      <h3 class="h3">都道府県別データ</h3>
+      <p>
+        prefecture をパラメータとして、都道府県別のデータを取得します。
+      </p>
+      <pre class="language-markup"><code>
+        https://covid19-japan-web-api.now.sh/api/v1/positives
       </code></pre>
     </div>
-
 
     <div>
       <h2 class="h2">Deferred と Promise</h2>
@@ -48,7 +72,7 @@
       <h3 class="h3">done(), fail() の利用</h3>
       <pre class="language-javascript"><code>
         $.when(
-            //Ajax処理
+            //複数のリクエスト
         ).done(function(response1, response2) {
             //成功
         }).fail(function() {
@@ -59,7 +83,7 @@
       <h3 class="h3">then() の利用</h3>
       <pre class="language-javascript"><code>
       $.when({
-          //Ajax処理
+          //複数のリクエスト
       }).then(
           function(data) {
             //成功
@@ -89,44 +113,6 @@
       </p>
       <pre class="language-markup"><code>
         &lt;link rel=&quot;stylesheet&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;&gt;
-      </code></pre>
-    </div>
-
-    <div>
-      <h2 class="h2">COVID19 API</h2>
-      <p>
-        COVID19 の API で日本のデータが取得できます。
-      </p>
-      <p>
-        <a href="https://documenter.getpostman.com/view/9215231/SzYaWe6h?version=latest">COVID-19 Japan Web API</a>
-      </p>
-      <p>
-        COVID19 API でリクエストできる URL は以下のようなものがあります。
-      </p>
-
-      <h3 class="h3">全国集計データ</h3>
-      <p>
-        全国の集計データを取得します。
-        デフォルトは最新日のデータを取得します。
-      </p>
-      <pre class="language-markup"><code>
-        https://covid19-japan-web-api.now.sh/api/v1/total
-      </code></pre>
-
-      <h3 class="h3">都道府県集計一覧データ</h3>
-      <p>
-        都道府県の集計一覧データを取得します。
-      </p>
-      <pre class="language-markup"><code>
-        https://covid19-japan-web-api.now.sh/api/v1/prefectures
-      </code></pre>
-
-      <h3 class="h3">都道府県別データ</h3>
-      <p>
-        prefecture をパラメータとして、都道府県別のデータを取得します。
-      </p>
-      <pre class="language-markup"><code>
-        https://covid19-japan-web-api.now.sh/api/v1/positives
       </code></pre>
     </div>
 

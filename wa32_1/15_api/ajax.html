@@ -87,46 +87,6 @@
     </p>
 
     <div>
-      <h2 class="h2">サンプル</h2>
-      <pre class="language-text"><code>
-        index.html
-        js/foods.js
-          /main.js
-          /jquery-3.5.0.min.js
-      </code></pre>
-    </div>
-
-    <div>
-      <h2 class="h2">HTML</h2>
-      <pre class="language-markup"><code>
-      &lt;div&gt;
-        &lt;button id=&quot;getText&quot;&gt;取得&lt;/button&gt;
-        &lt;button id=&quot;getJson&quot;&gt;取得&lt;/button&gt;
-        &lt;div id=&quot;result&quot;&gt;&lt;/div&gt;
-      &lt;/div&gt;
-    
-      &lt;script src=&quot;js/jquery-3.5.0.min.js&quot;&gt;&lt;/script&gt;
-      &lt;script src=&quot;js/main.js&quot;&gt;&lt;/script&gt;
-      </code></pre>
-
-      <h2 class="h2">JSON</h2>
-      <pre class="language-json"><code>
-      {
-          "foods": [
-              {
-                  "name": "apple",
-                  "price": 180
-              },
-              {
-                  "name": "banana",
-                  "price": 150
-              }
-          ]
-      };
-      </code></pre>
-    </div>
-
-    <div>
       <h2 class="h2">JSON を利用する</h2>
       <p>
         JavaScript で JSON データを利用するには JSONクラスが便利です。
@@ -145,6 +105,15 @@
       <pre class="language-javascript"><code>
         JSON.stringfy(オブジェクト)
       </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">withCredentials</h2>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials"
+        target="_blank">XMLHttpRequest.withCredentials</a>
+      <p>
+        withCredentials は、Cookie、承認ヘッダー、TLSクライアント証明書などの資格情報を使用してクロスサイトアクセス制御要求するためのプロパティです。
+      </p>
     </div>
 
     <div>
@@ -244,14 +213,48 @@
           });
       });
       </code></pre>
-    </div>
 
-    <div>
-      <h2 class="h2">withCredentials</h2>
-      <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials" target="_blank">XMLHttpRequest.withCredentials</a>
-      <p>
-        withCredentials は、Cookie、承認ヘッダー、TLSクライアント証明書などの資格情報を使用してクロスサイトアクセス制御要求するためのプロパティです。
-      </p>
+      <div>
+        <h2 class="h2">サンプル</h2>
+        <pre class="language-text"><code>
+        index.html
+        js/foods.js
+          /main.js
+          /jquery-3.5.0.min.js
+      </code></pre>
+      </div>
+
+      <div>
+        <h2 class="h2">HTML</h2>
+        <pre class="language-markup"><code>
+      &lt;div&gt;
+        &lt;button id=&quot;getText&quot;&gt;取得&lt;/button&gt;
+        &lt;button id=&quot;getJson&quot;&gt;取得&lt;/button&gt;
+        &lt;button id=&quot;getJsonThen&quot;&gt;取得（then）&lt;/button&gt;
+        &lt;div id=&quot;result&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    
+      &lt;script src=&quot;js/jquery-3.5.0.min.js&quot;&gt;&lt;/script&gt;
+      &lt;script src=&quot;js/main.js&quot;&gt;&lt;/script&gt;
+      </code></pre>
+
+        <h2 class="h2">foods.json</h2>
+        <pre class="language-json"><code>
+      {
+          "foods": [
+              {
+                  "name": "apple",
+                  "price": 180
+              },
+              {
+                  "name": "banana",
+                  "price": 150
+              }
+          ]
+      };
+      </code></pre>
+      </div>
+
     </div>
 
   </div>

@@ -18,23 +18,23 @@
     <h1 class="h1">イベント検索</h1>
     <div>
       <h2>検索キーワード</h2>
-      <input type="text" id="word" class="form-control" value="東京">
-    
+      <input type="text" id="keyword" class="form-control" value="東京">
+
       <h2>イベント</h2>
       <div>
-        <label for="doorkeeper" class="">
-          <input id="doorkeeper" class="" name="event" type="radio" value="doorkeeper">
+        <label for="doorkeeper">
+          <input id="doorkeeper" name="event" type="radio" value="doorkeeper">
           Doorkeeper
         </label>
-    
-        <label for="connpass" class="">
-          <input id="connpass" class="" name="event" type="radio" value="connpass">
+
+        <label for="connpass">
+          <input id="connpass" name="event" type="radio" value="connpass">
           Connpass
         </label>
       </div>
-    
+
       <p><button id="eventSearchBtn" class="btn btn-info">検索</button></p>
-    
+
       <div>
         <ul id="eventList"></ul>
       </div>
@@ -48,31 +48,78 @@
       <p class="alert alert-warning">
         API は無償公開されていますが、予期せぬ理由で利用できなるなる可能性があります。
       </p>
+
+
       <div>
-        <h3 class="h2">ファイル構成</h3>
-        <pre class="language-text"><code>
+        <h2 class="h2">JSON</h2>
+        <p>
+          API のデータは各サイトによって仕様が違うため、それぞれデータ整形処理をしなければいけません。
+        </p>
+        <h3 class="h3">Doorkeeper API</h3>
+        <p>
+          https://api.doorkeeper.jp/events?q=%E6%9D%B1%E4%BA%AC
+        </p>
+        <pre class="language-json"><code>
+        [
+          {
+            "event": {
+              "title": "Startup Weekend Osaka＠立命館",
+              "id": 99771,
+              "starts_at": "2020-12-11T09:30:00.000Z",
+              "ends_at": "2020-12-13T13:00:00.000Z",
+              "venue_name": "立命館いばらきフューチャープラザ　1階イベントホール",
+              "address": "大阪府茨木市 岩倉町2-150",
+              "published_at": "2019-12-20T08:18:53.496Z",
+              "updated_at": "2020-08-09T12:55:41.639Z",
+              "group": 824,
+              "banner": "https://dzpp79ucibp5a.cloudfront.net/events_banners/99771_normal_1572437174_sw2018doorkeeper.jpg",
+              "description": "..."
+        </code></pre>
+
+        <h3 class="h3">Connpass API</h3>
+        <p>
+          https://connpass.com/api/v1/event/?keyword_or=%E6%9D%B1%E4%BA%AC
+        </p>
+        <pre class="language-json"><code>
+        {
+          "results_start": 1,
+          "results_returned": 10,
+          "results_available": 10000,
+          "events": [
+            {
+              "event_id": 186727,
+              "title": "60分でランチ勉強会！インターネットを支えるオープンソースの基礎について理解しよう",
+              "catch": "オープンソースという考え方と、オープンソースを支える「コミュニティ」について学ぶことができます",
+              "description": "..."
+        </code></pre>
+      </div>
+    </div>
+
+
+    <div>
+      <h2 class="h2">ファイル構成</h2>
+      <pre class="language-text"><code>
         index.html
         js / main.js
            / jquery-3.5.0.min.js
       </code></pre>
-      </div>
     </div>
 
     <div>
       <h2 class="h2">HTML</h2>
       <pre class="language-markup"><code>
         &lt;h2 class=&quot;h2&quot;&gt;検索キーワード&lt;/h2&gt;
-        &lt;input type=&quot;text&quot; id=&quot;word&quot; class=&quot;form-control&quot; value=&quot;東京&quot;&gt;
+        &lt;input type=&quot;text&quot; id=&quot;keyword&quot; class=&quot;form-control&quot; value=&quot;東京&quot;&gt;
       
         &lt;h2 class=&quot;h2&quot;&gt;イベント&lt;/h2&gt;
         &lt;div&gt;
-          &lt;label for=&quot;doorkeeper&quot; class=&quot;&quot;&gt;
-            &lt;input id=&quot;doorkeeper&quot; class=&quot;&quot; name=&quot;event&quot; type=&quot;radio&quot; value=&quot;doorkeeper&quot;&gt;
+          &lt;label for=&quot;doorkeeper&quot;&gt;
+            &lt;input id=&quot;doorkeeper&quot; name=&quot;event&quot; type=&quot;radio&quot; value=&quot;doorkeeper&quot;&gt;
             Doorkeeper
           &lt;/label&gt;
       
-          &lt;label for=&quot;connpass&quot; class=&quot;&quot;&gt;
-            &lt;input id=&quot;connpass&quot; class=&quot;&quot; name=&quot;event&quot; type=&quot;radio&quot; value=&quot;connpass&quot;&gt;
+          &lt;label for=&quot;connpass&quot;&gt;
+            &lt;input id=&quot;connpass&quot; name=&quot;event&quot; type=&quot;radio&quot; value=&quot;connpass&quot;&gt;
             Connpass
           &lt;/label&gt;
         &lt;/div&gt;
@@ -87,50 +134,6 @@
         &lt;script src=&quot;js/main.js&quot;&gt;&lt;/script&gt;
       </code></pre>
 
-    </div>
-
-    <div>
-      <h2 class="h2">JSON</h2>
-      <p>
-        API のデータは各サイトによって仕様が違うため、それぞれデータ整形処理をしなければいけません。
-      </p>
-      <h3 class="h3">Doorkeeper API</h3>
-      <p>
-        https://api.doorkeeper.jp/events?q=%E6%9D%B1%E4%BA%AC
-      </p>
-      <pre class="language-json"><code>
-      [
-        {
-          "event": {
-            "title": "Startup Weekend Osaka＠立命館",
-            "id": 99771,
-            "starts_at": "2020-12-11T09:30:00.000Z",
-            "ends_at": "2020-12-13T13:00:00.000Z",
-            "venue_name": "立命館いばらきフューチャープラザ　1階イベントホール",
-            "address": "大阪府茨木市 岩倉町2-150",
-            "published_at": "2019-12-20T08:18:53.496Z",
-            "updated_at": "2020-08-09T12:55:41.639Z",
-            "group": 824,
-            "banner": "https://dzpp79ucibp5a.cloudfront.net/events_banners/99771_normal_1572437174_sw2018doorkeeper.jpg",
-            "description": "..."
-      </code></pre>
-
-      <h3 class="h3">Connpass API</h3>
-      <p>
-        https://connpass.com/api/v1/event/?keyword_or=%E6%9D%B1%E4%BA%AC
-      </p>
-      <pre class="language-json"><code>
-      {
-        "results_start": 1,
-        "results_returned": 10,
-        "results_available": 10000,
-        "events": [
-          {
-            "event_id": 186727,
-            "title": "60分でランチ勉強会！インターネットを支えるオープンソースの基礎について理解しよう",
-            "catch": "オープンソースという考え方と、オープンソースを支える「コミュニティ」について学ぶことができます",
-            "description": "..."
-      </code></pre>
     </div>
 
     <div>
@@ -181,8 +184,8 @@
       <pre class="language-javascript"><code>
       function doorkeeper(values) {
           $.each(values, function (key, value) {
-              let li = $('&lt;li&gt;&lt;/li&gt;').addClass('list-group-item');
-              let a = $('&lt;a&gt;&lt;/a&gt;',
+              let li = $('&lt;li&gt;').addClass('list-group-item');
+              let a = $('&lt;a&gt;',
                   {
                       href: value.event.public_url,
                       text: value.event.title,
@@ -198,8 +201,8 @@
       <pre class="language-javascript"><code>
       function connpass(values) {
           $.each(values.events, function (index, value) {
-              let li = $('&lt;li&gt;&lt;/li&gt;').addClass('list-group-item');
-              let a = $('&lt;a&gt;&lt;/a&gt;',
+              let li = $('&lt;li&gt;').addClass('list-group-item');
+              let a = $('&lt;a&gt;',
                   {
                       href: value.event_url,
                       text: value.title,
@@ -213,13 +216,9 @@
     </div>
 
     <div>
-      <h2 class="h2">Ajax でリクエスト</h2>
+      <h2 class="h2">Ajax で jsonp リクエスト</h2>
       <p>
-        <ul>
-          <li>JSONP</li>
-          <li>GET</li>
-        </ul>
-        でリクエストをし、done() で取得したデータをコールバック関数で実行します。
+        GET と JSONP でリクエストし、取得したデータをコールバック関数で実行します。
       </p>
       <pre class="language-javascript"><code>
       $.ajax({
@@ -227,36 +226,10 @@
           type: 'get',
           dataType: 'jsonp',
       }).done(function (data, status, xhr) {
-          console.log(status);
-          console.log(xhr);
-  
           eventList.html('');
           event.callback(data);
       }).fail(function (xhr) {
           console.log(xhr);
-      });
-      </code></pre>
-
-      <h3 class="h3">JSON型でリクエスト（dataType = json）</h3>
-      <p>
-        dataType を json にすると、foods.json データを JavaScriptオブジェクトに変換して取得できます。
-      </p>
-      <pre class="language-javascript"><code>
-      $(function () {
-          $('#getJson').on('click', function () {
-              $.ajax({
-                  url: apiUrl,
-                  type: 'get',
-                  dataType: 'json',
-              }).done(function(data) {
-                  console.log(data);
-                  $('#type').text('json');
-                  let text = JSON.stringify(data);
-                  $('#result').text(text);
-              }).fail(function() {
-                  alert('API Error');
-              });
-          });
       });
       </code></pre>
 

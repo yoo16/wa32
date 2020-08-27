@@ -15,7 +15,7 @@ $('#eventSearchBtn').on('click', function () {
     let eventKey = $('input[name=event]:checked').val();
     let event = events[eventKey];
     let url = event.url;
-    url += $('#word').val();
+    url += $('#keyword').val();
 
     eventList.text('データを検索中...');
 
@@ -27,10 +27,6 @@ $('#eventSearchBtn').on('click', function () {
         //     withCredentials: true
         // },
     }).done(function (data, status, xhr) {
-        console.log(data);
-        console.log(status);
-        console.log(xhr);
-
         eventList.html('');
         event.callback(data);
     }).fail(function (xhr) {
@@ -38,10 +34,9 @@ $('#eventSearchBtn').on('click', function () {
     });
 
     function doorkeeper(values) {
-        //console.log(values);
         $.each(values, function (key, value) {
-            let li = $('<li></li>').addClass('list-group-item');
-            let a = $('<a></a>',
+            let li = $('<li>').addClass('list-group-item');
+            let a = $('<a>',
                 {
                     href: value.event.public_url,
                     text: value.event.title,
@@ -55,8 +50,8 @@ $('#eventSearchBtn').on('click', function () {
     function connpass(values) {
         //console.log(values);
         $.each(values.events, function (index, value) {
-            let li = $('<li></li>').addClass('list-group-item');
-            let a = $('<a></a>',
+            let li = $('<li>').addClass('list-group-item');
+            let a = $('<a>',
                 {
                     href: value.event_url,
                     text: value.title,
