@@ -41,39 +41,6 @@
     </div>
 
     <div>
-      <h2 class="h2">コールバック（callback）</h2>
-      <p class="alert alert-info">
-        コールバック（callback）は関数を変数定義し、他の関数で実行できるようにする仕組みです。
-      </p>
-      <p>
-        関数を変数定義すると構造的で複雑な条件でも関数が実行しやすくなり、非同期処理でよく利用されます。
-      </p>
-      <p>
-        if 文で条件分岐しないで、変数を指定して関数を実行する例です。
-      </p>
-      <pre class="language-javascript"><code>
-        let methods = {
-          hello: {
-              callback: function (name) {
-                  $('#result').text('callback:' + name)
-              }
-          },
-          bye: {
-              callback: function (name) {
-                  $('#result').text('callback:' + name)
-              }
-          },
-      };
-      
-      function main(key) {
-          methods[key].callback(key);
-      }
-      
-      main('hello');
-      </code></pre>
-    </div>
-
-    <div>
       <h2 class="h2">セミナー・イベント検索</h2>
       <p>
         セミナー・イベント管理サイト Doorkeeper と Connpass のイベントを API検索してみます。

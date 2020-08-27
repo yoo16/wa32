@@ -43,14 +43,18 @@
       <h3 class="h3">Web API</h3>
       <p>
         Web API は SNS、天気情報、交通情報といった無数のデータを、各会社や個人がインターネットを介してサービス提供しています。
-        例えば、Google Map の API は地図の経路や位置を取得するなど、Google が許す限り様々な処理ができます。
       </p>
-      <p>
-        <a href="https://cloud.google.com/maps-platform/?hl=ja" target="_blank">Google Maps Platform</a>
-      </p>
-      <p>
-        Google Map Platform だけでも多種多様な API が存在するのがわかるでしょう。
-      </p>
+      <ul>
+        <li>
+          <a href="https://cloud.google.com/maps-platform/?hl=ja" target="_blank">Google Maps Platform</a>
+        </li>
+        <li>
+          <a href="https://api.rakuten.co.jp/ja/" target="_blank">Rakuten Rapid API</a>
+        </li>
+        <li>
+          <a href="https://zipcloud.ibsnet.co.jp/doc/api" target="_blank">郵便番号検索API</a>
+        </li>
+      </ul>
 
       <h2 class="h2">API の利用制限を調べる</h2>
       <p class="alert alert-info">
@@ -65,35 +69,35 @@
       </p>
     </div>
 
-    <h2 class="h2">Ajax</h2>
-    <p>
-      Ajax は「Asynchronous JavaScript XML」の略で、JavaScript と XML を使ってサーバと非同期通信する技術です。
-    </p>
-
-    <h3 class="h3">非同期通信とは</h3>
+    <h2 class="h2">非同期通信</h2>
     <p>
       クライアントとサーバのデータ通信において「同期」と「非同期通信」に分けられます。
     </p>
     <p>
-      「同期通信」はクライアントからリクエストしたらサーバからレスポンスがくるまで待ちます。
-      つまりレスポンスがくるまで、ユーザが操作できません。
+      「同期通信」はクライアントからサーバにリクエストするとレスポンスがくるまで待ちますが、レスポンスがくるまで他の処理ができません。
     </p>
     <p class="alert alert-info">
-      「非同期通信」を利用すると、サーバからレスポンスがなくてもユーザ操作がすることができます。
+      「非同期通信」を利用すると、サーバからレスポンスを待ちながら他の処理が実行できます。
+    </p>
+    <p>
+      サーバからレスポンスが返ってきたら、処理を続行します。
     </p>
 
-    <h3 class="h3">XMLHttpRequest とは</h3>
-    <p>
-      JavaScript で Ajax を利用すると非同期通信でデータ送受信ができますが、そのリクエストに XMLHttpRequest を基本的に利用します。
+    <h2 class="h2">XMLHttpRequest</h2>
+    <p class="alert alert-info">
+      XMLHttpRequest(XHR) は、クライアントとサーバーと HTTP通信するためにブラウザに用意された API です。
     </p>
     <p>
-      XMLHttpRequest は、クライアントとサーバーと HTTP通信するためにブラウザに用意された API です。
+      XMLHttpRequest を利用するとサーバーとデータ送受信することができ、JavaScript ネイティブでは XMLHttpRequest() 利用します。
     </p>
+    <pre class="language-javascript"><code>
+    let request = new XMLHttpRequest();
+    </code></pre>
 
     <div>
-      <h2 class="h2">Ajax のデータフォーマット</h2>
+      <h2 class="h2">データフォーマット</h2>
       <p>
-        Ajax では XMLHttpRequest を利用してデータ通信しますが、クライアントとサーバーのデータ通信には決められたテキストデータフォーマットが必要です。
+        XMLHttpRequest でデータ通信する場合、クライアントとサーバーのデータ通信には決められたテキストデータフォーマットが必要です。
       </p>
       <h3 class="h3">XML</h3>
       <p>
@@ -101,19 +105,19 @@
       </p>
 
       <pre class="language-markup"><code>
-    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
-    &lt;foods&gt;
-      &lt;food&gt;
-        &lt;name&gt;Apple&lt;/name&gt;
-        &lt;price&gt;180&lt;/price&gt;
-      &lt;/food&gt;
+      &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+      &lt;foods&gt;
+        &lt;food&gt;
+          &lt;name&gt;Apple&lt;/name&gt;
+          &lt;price&gt;180&lt;/price&gt;
+        &lt;/food&gt;
 
-      &lt;food&gt;
-        &lt;name&gt;Banana&lt;/name&gt;
-        &lt;price&gt;200&lt;/price&gt;
-      &lt;/food&gt;
-    &lt;/foods&gt;
-    </code></pre>
+        &lt;food&gt;
+          &lt;name&gt;Banana&lt;/name&gt;
+          &lt;price&gt;200&lt;/price&gt;
+        &lt;/food&gt;
+      &lt;/foods&gt;
+      </code></pre>
 
       <h3 class="h3">JSON</h3>
       <p>
@@ -122,7 +126,7 @@
         XML に代わるテキストデータフォーマットです。
       </p>
       <p class="alert alert-info">
-        Ajax のデータフォーマットは XML がデータ構造上大きく負荷がかかる傾向にあるため、「JSON」が多く利用されます。
+        データフォーマットは XML がデータ構造上大きく負荷がかかる傾向にあるため、JSON が多く利用されます。
       </p>
       <pre class="language-javascript"><code>
       {
@@ -132,61 +136,74 @@
         ]
       }
       </code></pre>
-    <p>
-      また、JavaScript で利用できるデータフォーマットで開発されているため、ライブラリは必要ありません。
-      他の言語では JSON を扱うためのライブラリが必要です。
-    </p>
+      <p>
+        また、JavaScript で利用できるデータフォーマットで開発されているため、ライブラリは必要ありません。
+        他の言語では JSON を扱うためのライブラリが必要です。
+      </p>
     </div>
 
+
     <div>
-      <h2 class="h2">Ajax の基本</h2>
-      <p>jQuery で Ajax 処理は色々ありますが古くからは $.ajax() を利用します。</p>
-      <pre class="language-javascript"><code>
-      $.ajax({
-      });
-      </code></pre>
-
-      <p>ちなみに、JavaScript ネイティブでは XMLHttpRequest クラスを利用します。</p>
-      <pre class="language-javascript"><code>
-      let request = new XMLHttpRequest();
-      </code></pre>
-
-      <h3 class="h3">パラメータの設定</h3>
-      <p>
-        $.ajax() のパラメータはオブジェクトで指定します。
-        パラメータはいくつかありますが、よく利用するのは以下の通りです。
+      <h2 class="h2">コールバック（callback）</h2>
+      <p class="alert alert-info">
+        コールバック（callback）は関数を変数定義し、他の関数で実行できるようにする仕組みです。
       </p>
+      <p>
+        サーバにリクエストして結果が返ってきたら実行する非同期処理でよく利用されます。
+      </p>
+      <h3 class="h3">変数指定で関数を実行</h3>
       <pre class="language-javascript"><code>
-      $.ajax({	
-          url: 通信先のURL
-          type: HTTPメソッド(post, get)
-          data: API に送信するデータ
-          dataType: データタイプ（text, json, jsonp ...）
+      let methods = {
+          hello: {
+              callback: function (name) {
+                  $('#result').text('callback:' + name)
+              }
+          },
+          bye: {
+              callback: function (name) {
+                  $('#result').text('callback:' + name)
+              }
+          },
+      };
+      
+      function main(key) {
+          methods[key].callback(key);
       }
+      
+      main('hello');
       </code></pre>
 
-      <h3 class="h3">成功、失敗の処理</h3>
+      <h3 class="h3">サーバ通信のコールバック</h3>
       <p>
-        Ajax でリクエストした結果を、成功（done）、失敗（fail）で処理を分岐します。
+        サーバにリクエストして通信を利用してコールバックを実行した例です。
       </p>
       <pre class="language-javascript"><code>
+      let successCallback = function() {
+          console.log('success');
+      }
+      let errorCallback = function() {
+          console.log('error');
+      }
+      let url = 'http://localhost/api/test';
       $.ajax({
-          ...
+          url: url,
+          type: 'get',
+          dataType: 'json',
       }).done(function(result) {
-          //成功
+          successCallback();
       }).fail(function(result) {
-          //失敗
+          errorCallback();
       });
       </code></pre>
     </div>
 
     <div>
       <h2 class="h2">CORS</h2>
-      <p>
+      <p class="alert alert-info">
         CORS (Cross-Origin Resource Sharing) は、クロスドメイン（異なるドメイン）間で通信を共有する仕組みです。
       </p>
       <p>
-        クロスドメイン間の通信を安易に許可してしまうと、悪意のあるプログラムから攻撃対象となるためデフォルトでは Ajax通信はできません。
+        クロスドメイン間の通信を安易に許可してしまうと、悪意のあるプログラムから攻撃対象となるためデフォルトでは通信はできません。
       </p>
       <p>
         例えば自分のサーバ（localhost）から、他のサーバ（google.com）へのリクエストは、他のサーバが許可しない限り、エラーとなります。
@@ -200,15 +217,7 @@
       </code></pre>
 
       <p class="alert alert-info">
-        ある Origin サーバーアプリから、別の Origin サーバーへのリクエストを許可することで、クロスドメイン間での Ajax 通信が実現できます。
-      </p>
-    </div>
-
-    <div>
-      <h2 class="h2">withCredentials</h2>
-      <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials" target="_blank">XMLHttpRequest.withCredentials</a>
-      <p>
-        withCredentials は、Cookie、承認ヘッダー、TLSクライアント証明書などの資格情報を使用してクロスサイトアクセス制御要求するためのプロパティです。
+        ある Origin サーバーアプリから、別の Origin サーバーへのリクエストを許可することで、クロスドメイン間での通信が実現できます。
       </p>
     </div>
 
@@ -223,9 +232,10 @@
       <p>
         実際には別ドメインに対して JavaScript の実行権限をあたえる行為なので、信頼できるドメインに対して利用する必要があります。
       </p>
-    </div>
 
-    <div>
+      <p>
+        jQuery の $.ajax() を利用した例です。
+      </p>
       <pre class="language-javascript"><code>
       $.ajax({
           url: url,

@@ -1,52 +1,66 @@
 $(function () {
+    let settings = [
+        { 'videoId': 'BR2i5nOhTXM', },
+        { 'videoId': 'kt5KflkOgHM', },
+        { 'videoId': '_CKEEfQBXZI', },
+        { 'videoId': '1F5Cuzd0ThQ', },
+        { 'videoId': '0r6O9wgBvGo', },
+    ];
+    const width = 640;
+    const height = 480;
+    const main = $('#main');
 
-    function setYouTube(target, op) {
-
-        let option = { //iframe要素の属性値とパラメータ
-            'videoId': '',
-            'width': 640,
-            'height': 480,
-        };
-        let paramStr = ''; //文字列化したパラメータ
-        let paramArr = []; //パラメーターリスト
-
-        for (let i in op) {
-            console.log(i);
-            option[i] = op[i]
-        };
-
-        $('<div>', {
-            'html': '<iframe width="' + option.width + '" height="' + option.height + '" src="//www.youtube.com/embed/' + option.videoId + '"></iframe>'
-        }).appendTo(target);
-
-    };
-
-    setYouTube($('#youtube-0'), {
-        'videoId': 'BR2i5nOhTXM',
-        'width': 400,
-        'height': 400
+    $.each(settings, function (index, setting) {
+        let src = '//www.youtube.com/embed/' + setting.videoId + '?';
+        let params = {
+            width: width,
+            height: height,
+            src: src,
+        }
+        let iframe = $('<iframe>');
+        iframe.attr(params);
+        $(main).append(iframe);
     });
 
-    setYouTube($('#youtube-1'), {
-        'videoId': 'kt5KflkOgHM',
-        'width': 420,
-        'height': 400
-    });
+    var OAUTH2_CLIENT_ID = 'AIzaSyAt2EBAy3GXCJk6-yaXjcfG78pDLs1LMf8';
+    var OAUTH2_SCOPES = [
+        'https://www.googleapis.com/auth/youtube'
+    ];
 
-    setYouTube($('#youtube-2'), {
-        'videoId': '_CKEEfQBXZI',
-        'width': 280,
-        'height': 280
-    });
+    googleApiClientReady = function () {
+        gapi.auth.init(function () {
+            window.setTimeout(checkAuth, 1);
+        });
+    }
 
-    setYouTube($('#youtube-3'), {
-        'videoId': '1F5Cuzd0ThQ',
-        'width': 200,
-        'height': 200
-    });
+    function checkAuth() {
+        gapi.auth.authorize({
+            client_id: OAUTH2_CLIENT_ID,
+            scope: OAUTH2_SCOPES,
+            immediate: true
+        }, handleAuthResult);
+    }
 
-    setYouTube($('#youtube-4'), {
-        'videoId': '0r6O9wgBvGo'
-    });
+    function handleAuthResult(authResult) {
+        if (authResult && !authResult.error) {
+            $('.pre-auth').hide();
+            $('.post-auth').show();
+            loadAPIClientInterfaces();
+        } else {
+            $('#login-link').click(function () {
+                gapi.auth.authorize({
+                    client_id: OAUTH2_CLIENT_ID,
+                    scope: OAUTH2_SCOPES,
+                    immediate: false
+                }, handleAuthResult);
+            });
+        }
+    }
+
+    function loadAPIClientInterfaces() {
+        gapi.client.load('youtube', 'v3', function () {
+            handleAPILoaded();
+        });
+    }
 
 });

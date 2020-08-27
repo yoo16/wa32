@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="css/prism.css">
+  <link rel="stylesheet" href="css/default.css">
+
+  <title>Deferred</title>
+</head>
+
+<body>
+  <div id="content" class="container">
+    <p><a href="../">Back</a></p>
+    <h1 class="h1">Deferred</h1>
+
+    <div>
+      <button id="setTimer">タイマー</button>
+      <button id="getJson">JSON取得</button>
+
+      <div id="status"></div>
+
+      <h2>Shops</h2>
+      <div id="shops"></div>
+      <h2>Foods</h2>
+      <div id="foods"></div>
+    </div>
+
+    <div>
+      <h2 class="h2">Deferred と Promise</h2>
+      <p class="alert alert-info">
+        Deferred は 非同期処理の結果である Promise オブジェクトを複数もつことができ、複雑な処理を簡略化できます。
+      </p>
+
+      <h3 class="h3">$.Deferred()</h3>
+      <p>
+        $.Deferred() で Deferred を変数に代入します。
+      </p>
+      <pre class="language-javascript"><code>
+        let defer = new $.Deferred
+      </code></pre>
+
+      <h3 class="h3">resolve()</h3>
+      <p>
+        resolve() は、Defferd オブジェクトの状態を正常終了に移行します。
+      </p>
+      <pre class="language-javascript"><code>
+        defer.resolve()
+      </code></pre>
+
+      <h3 class="h3">resolve()</h3>
+      <p>
+        promise() で、Promise オブジェクトを取得します。
+      </p>
+      <pre class="language-javascript"><code>
+        defer.promise()
+      </code></pre>
+
+     
+      <div>
+        <h2 class="h2">サンプル</h2>
+        <h3 class="h3">HTML</h3>
+        <pre class="language-markup"><code>
+        &lt;div&gt;
+          &lt;button id=&quot;setTimer&quot;&gt;タイマー&lt;/button&gt;
+          &lt;div id=&quot;status&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        </code></pre>
+
+        <h3 class="h3">JS</h3>
+        <pre class="language-javascript"><code>
+          const status = $('#status');
+          const delay = 1000;
+          
+          $(function () {
+              $('#setTimer').on('click', function () {
+                  status.append('start\n');
+          
+                  function sayHello() {
+                      let defer = new $.Deferred;
+                      setTimeout(function () {
+                          status.append('Hello!\n');
+                          defer.resolve();
+                      }, delay);
+                      return defer.promise();
+                  }
+                  
+                  function sayBye() {
+                      setTimeout(function () {
+                          status.append('Bye!\n');
+                      }, delay);
+                  }
+          
+                  sayHello()
+                  .then(sayHello)
+                  .then(sayHello)
+                  .then(sayBye)
+                  .then(sayHello);
+              });
+          });
+        </code></pre>
+        <p>
+          sayBye() ではタイマーを利用していますが、Promise オブジェクトを返していないため、Bye! Hello! がほぼ同時に表示されます。
+        </p>
+      </div>
+
+      <h2 class="h2">$.when() で複数リクエスト</h2>
+      <p>
+        $.when() を利用すると複数のリクエストをシンプルに記述できます。
+      </p>
+      <p>
+        成功と失敗は done(), fail() や then() などでレスポンスを待ちます。
+      </p>
+      <h3 class="h3">done(), fail() の利用</h3>
+      <pre class="language-javascript"><code>
+        $.when(
+            //複数リクエスト
+        ).done(function(response1, response2) {
+            //成功
+        }).fail(function() {
+            //失敗
+        });
+      </code></pre>
+
+      <h3 class="h3">then() の利用</h3>
+      <pre class="language-javascript"><code>
+      $.when({
+          //複数リクエスト
+      }).then(
+          function(data) {
+            //成功
+          },
+          function(error) {
+            //失敗
+      });
+      </code></pre>
+
+      <div>
+        <h2 class="h2">$.getJSON()</h2>
+        <p>
+          $.getJSON() は JSON データを取得するシンプルなメソッドです。
+        </p>
+        <pre class="language-javascript"><code>
+        $.getJSON(url, data, callback)
+      </code></pre>
+
+        <p>
+          $.getJSON() にコールバックを指定できますが、$.when() を利用して複数実行する方法もあります。
+        </p>
+        <pre class="language-javascript"><code>
+        $.when(
+            $.getJSON(foodsUrl),
+            $.getJSON(shopsUrl),
+        ).then(function(foods, shops) {
+            $('#foods').text(JSON.stringify(foods));
+            $('#shops').text(JSON.stringify(shops));
+            }, function(error) {
+                console.log(error);
+        });
+      </code></pre>
+      </div>
+
+      <div>
+        <h2 class="h2">サンプル</h2>
+
+        <h3 class="h3">foods.json</h3>
+        <pre class="language-json"><code>
+      {
+          "foods": [
+              {
+                  "name": "apple",
+                  "price": 180
+              },
+              {
+                  "name": "banana",
+                  "price": 150
+              }
+          ]
+      }
+      </code></pre>
+        <h3 class="h3">shops.json</h3>
+        <pre class="language-json"><code>
+      {
+          "shops": [
+              {
+                  "id": 1,
+                  "name": "Shop A"
+              },
+              {
+                  "id": 2,
+                  "name": "Shop A"
+              }
+          ]
+      }
+      </code></pre>
+
+        <h3 class="h3">HTML</h3>
+        <pre class="language-javascript"><code>
+        &lt;div&gt;
+        &lt;button id=&quot;getJson&quot;&gt;JSON取得&lt;/button&gt;
+    
+        &lt;h2&gt;Shops&lt;/h2&gt;
+        &lt;div id=&quot;shops&quot;&gt;&lt;/div&gt;
+        &lt;h2&gt;Foods&lt;/h2&gt;
+        &lt;div id=&quot;foods&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      </code></pre>
+
+        <h3 class="h3">JS</h3>
+        <pre class="language-javascript"><code>
+      const href = location.href;
+      const index = href.lastIndexOf('/') + 1;
+      const filename = href.substr(index);
+      const baseUrl = href.substring(0, index);
+      
+      const foodsUrl = baseUrl + 'js/foods.json';
+      const shopsUrl = baseUrl + 'js/shops.json';
+
+      $('#getJson').on('click', function () {
+          $.when(
+              $.getJSON(foodsUrl),
+              $.getJSON(shopsUrl),
+          ).then(function (foods, shops) {
+              $('#foods').text(JSON.stringify(foods));
+              $('#shops').text(JSON.stringify(shops));
+          }, function (error) {
+              console.log(error);
+          });
+      });
+      </code></pre>
+
+      </div>
+    </div>
+
+    <script src="../js/jquery-3.5.0.min.js"></script>
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="deferred/js/main.js"></script>
+</body>
+
+</html>

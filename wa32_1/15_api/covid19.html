@@ -31,12 +31,44 @@
       <pre class="language-javascript"><code>
         $.getJSON(url, data, callback)
       </code></pre>
+    </div>
 
-      <h2 class="h2">$.when()</h2>
-      <p>
-        $.when() は非同期処理を複数処理するのに便利なメッソドです。
-        $.ajax 同様 done(), fail() が利用できます。
+
+    <div>
+      <h2 class="h2">Deferred と Promise</h2>
+      <p class="alert alert-info">
+        Deferred は 非同期処理の結果である Promise オブジェクトを複数もつことができ、複雑な処理を簡略化できます。
       </p>
+      <pre class="language-javascript"><code>
+      let defer = $.Deferred();
+      </code></pre>
+      <p>
+        done(), fail() や then() などでレスポンスを待ちます。
+      </p>
+      <h3 class="h3">done(), fail() の利用</h3>
+      <pre class="language-javascript"><code>
+        $.when(
+            //Ajax処理
+        ).done(function(response1, response2) {
+            //成功
+        }).fail(function() {
+            //失敗
+        });
+      </code></pre>
+
+      <h3 class="h3">then() の利用</h3>
+      <pre class="language-javascript"><code>
+      $.when({
+          //Ajax処理
+      }).then(
+          function(data) {
+            //成功
+          },
+          function(error) {
+            //失敗
+      });
+      </code></pre>
+
       <pre class="language-javascript"><code>
         $.when(
             $.getJSON(URL1),

@@ -16,30 +16,40 @@ $(function () {
             url: apiUrl,
             type: 'get',
             dataType: 'text',
-        }).done(function(text) {
+        }).done(function(data) {
             $('#type').text('text');
-            $('#result').text(text);
-            let data = JSON.parse(text);
-            console.log(data);
-        }).fail(function() {
-            alert('API Error');
+            $('#result').text(data);
+            console.log(JSON.parse(data));
+        }).fail(function(error) {
+            console.log(error);
         });
     });
-});
 
-$(function () {
     $('#getJson').on('click', function () {
         $.ajax({
             url: apiUrl,
             type: 'get',
             dataType: 'json',
         }).done(function(data) {
-            console.log(data);
             $('#type').text('json');
-            let text = JSON.stringify(data);
-            $('#result').text(text);
-        }).fail(function() {
-            alert('API Error');
+            $('#result').text(JSON.stringify(data));
+        }).fail(function(error) {
+            console.log(error);
+        });
+    });
+
+    $('#getJsonThen').on('click', function () {
+        $.ajax({
+            url: apiUrl,
+            type: 'get',
+            dataType: 'json',
+        }).then(
+            function(data) {
+               $('#type').text('json(then)');
+               $('#result').text(JSON.stringify(data));
+            },
+            function (error) {
+               console.log(error);
         });
     });
 });

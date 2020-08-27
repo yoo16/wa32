@@ -17,11 +17,77 @@
     <p><a href="../">Back</a></p>
     <h1 class="h1">Ajax</h1>
 
-    <p>
-      同じドメイン内で Ajax を使って foods.json を取得してみます。
-    </p>
     <div>
-      <h2 class="h2">ファイル構成</h2>
+      <h2 class="h2">Ajax とは</h2>
+      <p class="alert alert-info">
+        Ajax は「Asynchronous JavaScript XML」の略で、JavaScript と XML を使ってサーバと非同期通信する技術です。
+      </p>
+      <p>
+        jQuery では古くから $.ajax() を利用して XMLHttpRequest 通信をします。
+      </p>
+      <pre class="language-javascript"><code>
+      $.ajax({	
+      });
+      </code></pre>
+
+    </div>
+
+    <div>
+      <h2 class="h2">パラメータの設定</h2>
+      <p>
+        $.ajax() のパラメータはオブジェクトで指定します。
+        パラメータはいくつかありますが、よく利用するのは以下の通りです。
+      </p>
+      <pre class="language-javascript"><code>
+      $.ajax({	
+          url: 通信先のURL
+          type: HTTPメソッド(post, get)
+          data: API に送信するデータ
+          dataType: データタイプ（text, json, jsonp ...）
+      }
+      </code></pre>
+      <h4 class="h4">参考</h4>
+      <p>
+        <a href="https://api.jquery.com/jquery.ajax/" target="_blank">jQuery: jQuery.ajax()</a>
+      </p>
+
+      <h2 class="h2">成功、失敗の処理</h2>
+      <p>
+        リクエストした結果は成功（done）、失敗（fail）で処理を分岐しますが、利用するメソッドによって記述方法が違います。
+      </p>
+      <h3 class="h3">done(), fail() を利用する場合</h3>
+      <pre class="language-javascript"><code>
+      $.ajax({
+          ...
+      }).done(function(data, status, xhr) {
+          //成功
+      }).fail(function(xhr, status, error) {
+          //失敗
+      });
+      </code></pre>
+
+      <h3 class="h3">then() を利用する場合</h3>
+      <p>
+        then() を利用すると、成功と失敗の処理をまとめて取得できます。
+      </p>
+      <pre class="language-javascript"><code>
+      $.ajax({
+          ...
+      }).then(
+          function(data) {
+            //成功
+          },
+          function(error) {
+            //失敗
+      });
+      </code></pre>
+    </div>
+    <p>
+      アロー関数で記述しても構いません。
+    </p>
+
+    <div>
+      <h2 class="h2">サンプル</h2>
       <pre class="language-text"><code>
         index.html
         js/foods.js
@@ -57,17 +123,6 @@
               }
           ]
       };
-      </code></pre>
-    </div>
-
-    <div>
-      <h2 class="h2">Ajax のレスポンスデータ</h2>
-      <p>
-        Ajax でのレスポンスデータは、done() の無名関数の引数に返されます。
-      </p>
-      <pre class="language-javascript"><code>
-        .done(function(data)) {
-        })
       </code></pre>
     </div>
 
@@ -135,20 +190,17 @@
         dataType を text にすると、foods.json データを文字列で取得できます。
       </p>
       <pre class="language-javascript"><code>
-      $(function () {
-          $('#getText').on('click', function () {
-              $.ajax({
-                  url: apiUrl,
-                  type: 'get',
-                  dataType: 'text',
-              }).done(function(text) {
-                  $('#type').text('text');
-                  $('#result').text(text);
-                  let data = JSON.parse(text);
-                  console.log(data);
-              }).fail(function() {
-                  alert('API Error');
-              });
+        $('#getText').on('click', function () {
+          $.ajax({
+              url: apiUrl,
+              type: 'get',
+              dataType: 'text',
+          }).done(function(data) {
+              $('#type').text('text');
+              $('#result').text(data);
+              console.log(JSON.parse(data));
+          }).fail(function(error) {
+              console.log(error);
           });
       });
       </code></pre>
@@ -158,24 +210,48 @@
         dataType を json にすると、foods.json データを JavaScriptオブジェクトに変換して取得できます。
       </p>
       <pre class="language-javascript"><code>
-      $(function () {
-          $('#getJson').on('click', function () {
-              $.ajax({
-                  url: apiUrl,
-                  type: 'get',
-                  dataType: 'json',
-              }).done(function(data) {
-                  console.log(data);
-                  $('#type').text('json');
-                  let text = JSON.stringify(data);
-                  $('#result').text(text);
-              }).fail(function() {
-                  alert('API Error');
-              });
+      $('#getJson').on('click', function () {
+          $.ajax({
+              url: apiUrl,
+              type: 'get',
+              dataType: 'json',
+          }).done(function(data) {
+              $('#type').text('json');
+              $('#result').text(JSON.stringify(data));
+          }).fail(function(error) {
+              console.log(error);
           });
       });
       </code></pre>
 
+      <h3 class="h3">JSON型でリクエスト：then() </h3>
+      <p>
+        dataType を json にすると、foods.json データを JavaScriptオブジェクトに変換して取得できます。
+      </p>
+      <pre class="language-javascript"><code>
+      $('#getJsonThen').on('click', function () {
+          $.ajax({
+              url: apiUrl,
+              type: 'get',
+              dataType: 'json',
+          }).then(
+              function(data) {
+                 $('#type').text('json(then)');
+                 $('#result').text(JSON.stringify(data));
+              },
+              function (error) {
+                 console.log(error);
+          });
+      });
+      </code></pre>
+    </div>
+
+    <div>
+      <h2 class="h2">withCredentials</h2>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials" target="_blank">XMLHttpRequest.withCredentials</a>
+      <p>
+        withCredentials は、Cookie、承認ヘッダー、TLSクライアント証明書などの資格情報を使用してクロスサイトアクセス制御要求するためのプロパティです。
+      </p>
     </div>
 
   </div>

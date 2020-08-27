@@ -20,6 +20,15 @@ $(function () {
         }).fail(function() {
             console.log('error');
         });
+        // $.when(
+        //     $.getJSON(totalUrl),
+        // ).then(
+        //     function(response) {
+        //         showTotal(response);
+        //     },
+        //     function(response) {
+        //         console.log('error');
+        // });
     });
 
     function showTotal(values) {
