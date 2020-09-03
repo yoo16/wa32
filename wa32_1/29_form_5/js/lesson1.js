@@ -11,15 +11,10 @@ $(function () {
     } 
 
     let init = function () {
-        // $('#loginForm').on('submit', function(event) {
-        //     setCookie();
-        //     // event.preventDefault();
-        // });
-        $('#loginBtn').on('click', function (event) {
+        $('#loginForm').on('submit', function(event) {
             setCookie();
             // event.preventDefault();
         });
-
         getCookie();
     }
 

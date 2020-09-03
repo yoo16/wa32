@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h2 class="h2">お問い合わせ</h2>
+
+    <form id="myForm" method="post">
+      <table class="table">
+        <tr>
+          <th>
+            <label for="name">
+              名前
+              <span class="text-danger">*</span>
+            </label>
+          </th>
+          <td><input class="form-control col-4" type="text" name="name"></td>
+        </tr>
+        <tr>
+          <th>
+            <label for="furigana">
+              ふりがな
+              <span class="text-danger">*</span>
+            </label>
+          </th>
+          <td><input class="form-control col-4" type="text" name="furigana"></td>
+        </tr>
+        <tr>
+          <th>
+            <label for="tel">
+              電話番号
+            </label>
+          </th>
+          <td><input class="form-control col-4" type="text" name="tel"></td>
+        </tr>
+        <tr>
+          <th>
+            <label for="mail">
+              メールアドレス
+              <span class="text-danger">*</span>
+            </label>
+          </th>
+          <td><input class="form-control col-12" type="text" name="mail"></td>
+        </tr>
+        <tr>
+          <th>
+            <label for="body">
+              お問い合わせ内容
+              <span class="text-danger">*</span>
+            </label>
+          </th>
+          <td><textarea  class="form-control" name="body" cols="50" rows="5"></textarea></td>
+        </tr>
+      </table>
+      <div class="text-center">
+        <label for="isSaveCookie">
+          <input type="checkbox" id="isSaveCookie">
+          記憶する
+        </label>
+        <p>
+        <input class="btn btn-success" type="submit" value="送信内容を確認する">
+        </p>
+      </div>
+    </form>
+  </div>
+
+  <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/jquery.cookie.js"></script>
+  <script src="js/lesson3.js?20200811"></script>
+</body>
+
+</html>

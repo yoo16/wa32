@@ -1,6 +1,6 @@
 let channelID = "UCMMEwnArQWFNU1VrRlbIDtg";
 let playListHref = 'http://www.youtube.com/playlist?list=';
-let table = $('<table>').addClass('table');
+let table;
 
 const columns = {
     snippet: {
@@ -30,6 +30,7 @@ function ready() {
     $('#keyword').val(channelID);
     $('#searchChannelBtn').on('click', function () {
         $('#results').html('');
+        table = $('<table>').addClass('table');
 
         channelID = $('#keyword').val();
         if (!channelID) return;
