@@ -4,11 +4,11 @@ const filename = href.substr(index);
 const baseUrl = href.substr(0, index);
 const apiUrl = baseUrl + 'js/foods.json';
 
-// console.log(href);
-// console.log(index);
-// console.log(filename);
-// console.log(baseUrl);
-// console.log(apiUrl);
+console.log(href);
+console.log(index);
+console.log(filename);
+console.log(baseUrl);
+console.log(apiUrl);
 
 $(function () {
     $('#getText').on('click', function () {
