@@ -2,29 +2,255 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>30 YouTube</title>
-  <script src="https://apis.google.com/js/client.js"></script>
-  <link href="css/style.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <link rel="stylesheet" href="../css/default.css">
+  <link rel="stylesheet" href="css/style.css?20200714">
+
+  <title>WA32_1</title>
 </head>
 
 <body>
-  <div class="container">
-    <p><a href="../">Back</a></p>
+  <div id="content" class="container">
+    <h1 class="h1">YouTube プレーヤーの埋め込み</h1>
 
-    <p>
-      一日上限値の10,000
-    </p>
-    <p>
-      https://github.com/youtube/api-samples/blob/master/javascript/auth.js
-    </p>
-
-    <div id="main">
+    <div>
+      <h2 class="h2">YouTube Data API は有料</h2>
+      <p>
+        YouTube API も用意されていますが、Google アカウントの登録と別にクレジットカードの登録が必要です。
+      </p>
+      <p><a href="https://developers.google.com/youtube/v3/getting-started?hl=ja">YouTube Data API の概要</a></p>
+      <h3 class="h3">無料枠とAPI Key</h3>
+      <p>
+        無料枠が用意されていますが、 YouTube Data API の利用制限を越えると有料となります。
+      </p>
+      <p>
+        また、API の利用には Google Cloud Platform（GCP）で、API Key を発行・管理する必要があるため別途作業が必要になります。
+      </p>
+      <p>
+        今回は手軽に Youtube Data API を利用しない YouTube プレイヤーの埋め込みを実装してみます。
+      </p>
     </div>
+
+    <div>
+      <h2 class="h2">iframe について</h2>
+      <p class="alert alert-info">
+        iframe は HTML 内に外部サイトの HTMLを表示するのに利用されます。
+      </p>
+      <p>
+        YouTube プレイヤーを iframe で埋め込むことは YouTube でも推奨される方法で、公式ドキュメントに記載されています。
+      </p>
+      <a href="https://developers.google.com/youtube/player_parameters?hl=ja" target="_blank">YouTube 埋め込みプレーヤーとプレーヤーのパラメータ</a>
+
+      <pre class="language-markup"><code>
+        &lt;iframe id=&quot;ytplayer&quot; type=&quot;text/html&quot; width=&quot;640&quot; height=&quot;360&quot;
+    src=&quot;https://www.youtube.com/embed/M7lc1UVf-VE?=autoplay=1&amp;origin=http://example.&om&quot;
+    frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+      </code></pre>
+
+      <h3 class="h3">ビデオURL</h3>
+      <p>
+        iframe で src に設定するビデオ URL は以下のようになります。
+      </p>
+      <pre class="language-markup"><code>
+        https://www.youtube.com/embed/VIDEO_ID
+      </code></pre>
+      <p>
+        VIDEO_ID は、YouTube で動画再生するときの URLパラメータ「v=」の値です。
+      </p>
+
+      <h3 class="h3">動画サイズ</h3>
+      <p>
+        動画サイズは iframe の width, height を利用して調整します。
+      </p>
+
+      <h2 class="h2">jS で 動画を切り替える</h2>
+      <p>
+        では実際に iframe で YouTube プレイヤーを埋め込んで切り替えてみます。
+      </p>
+      <h3 class="h3">CSS</h3>
+      <p>
+        CSS は <a href="css/playlist.css" target="_blank">playlist.css</a> を利用します。
+      </p>
+
+      <h3 class="h3">HTML</h3>
+      <p>
+        あらかじめ YouTube の Viedo ID を用意しておき aリンクで記述します。
+      </p>
+      <pre class="language-markup"><code>
+        &lt;div id=&quot;main&quot;&gt;
+          &lt;div id=&quot;youtube&quot;&gt;
+            &lt;div id=&quot;movie&quot;&gt;&lt;/div&gt;
+            &lt;ul id=&quot;links&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;Bv_5Zv5c-Ts&quot;&gt;1&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;Vp5ANvd88x0&quot;&gt;2&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;DLX62G4lc44&quot;&gt;3&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;RLtyhwFtXQA&quot;&gt;4&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;Ulp1Kimblg0&quot;&gt;5&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      </code></pre>
+
+      <h3 class="h3">playlist.js</h3>
+      <p>
+        setYouTube() で URL やパラメータを定義します。
+        また、init() change() createYoutubePlayer() も定義し、init() を実行します。
+      </p>
+      <pre class="language-javascript"><code>
+        $(function () {
+
+          function setYouTube(target, defaultOption) {
+      
+              const YOUTUBE_EMDEB_PATH = '//www.youtube.com/embed/';
+      
+              let option = {
+                  'videoId': '',
+                  'width': 420,
+                  'height': 315,
+                  'frameborder': 0,
+                  'allowfullscreen': true,
+                  'rel': true,
+                  'loop': false,
+                  'autoplay': false
+              };
+              let paramStr = '';
+              let paramArr = [];
+              let movie = target.find('#movie');
+              let youtube;
+              let links = target.find('#links a');
+              let videoIndex = 0;
+          };
+      
+          function change(index, videoId) {
+          };
+  
+          function createYoutubePlayer() {
+          };
+  
+          function init() {
+          };
+  
+          init();
+
+          setYouTube($('#youtube'), {});
+      
+      });
+      </code></pre>
+
+      <h3 class="h3">init() の実装</h3>
+      <p>
+        init() では、以下を実装します。
+        <ul>
+          <li>createYoutubePlayer() の実行</li>
+          <li>Click イベントの追加</li>
+          <li>change() の実行</li>
+        </ul>
+      </p>
+      <p>
+        YouTube Video ID を設定した href の値を取得して動画を切り替えるようにしています。
+      </p>
+
+      <pre class="language-javascript"><code>
+      function init() {
+          createYoutubePlayer();
+          $.each(links, function (index) {
+              console.log($(this).attr('href'));
+              $(this).on('click', function () {
+                  change(index, $(this).attr('href'));
+                  return false;
+              });
+          });
+          change(videoIndex, $(links[videoIndex]).attr('href'));
+      };
+      </code></pre>
+
+      <h3 class="h3">createYoutubePlayer() の実装</h3>
+      <p>
+        createYoutubePlayer() は、プレーヤーの情報を設定し iframe タグを生成します。
+        ここではまだ Video ID は設定していません。
+      </p>
+      <pre class="language-javascript"><code>
+      function createYoutubePlayer() {
+          //プレーヤーの情報設定
+          for (let i in setting) {
+              option[i] = setting[i]
+          };
+          option.allowfullscreen = (option.allowfullscreen) ? 'allowfullscreen' : '';
+
+          if (!option.rel) paramArr.push('rel=0');
+          if (option.loop) paramArr.push('loop=1');
+          if (option.autoplay) paramArr.push('autoplay=1');
+          if (option.mute) paramArr.push('mute=1');
+          paramStr = paramArr.join('&');
+          if (paramStr.length > 0) paramStr = '?' + paramStr;
+
+          //iframe の作成
+          let src = YOUTUBE_EMDEB_PATH + option.videoId + '/'
+          let iframe = $('&lt;iframe&gt;');
+          iframe.attr({
+              src: src,
+              width: option.width,
+              height: option.height,
+              frameborder: option.frameborder,
+              allowfullscreen: option.allowfullscreen,
+          });
+          movie.append(iframe);
+          youtube = movie.find('iframe');
+      };
+      </code></pre>
+      <p>
+        iframe の URL パラメータは autoplay=1 や mute=1 のように変換しています。
+      </p>
+
+      <h3 class="h3">change() の実装</h3>
+      <p>
+        change() は、リンクで切り替えたときに、iframe の src を更新します。
+      </p>
+      <pre class="language-javascript"><code>
+      if (index != videoIndex) {
+          $(links[videoIndex]).removeClass('ac');
+      };
+      videoIndex = index;
+      $(links[videoIndex]).addClass('ac')
+
+      let src = YOUTUBE_EMDEB_PATH + videoId + '/' + paramStr;
+      youtube.attr('src', src);
+      </code></pre>
+      <p>
+        また、現在のリンクを addClass(), removeClass() でナビゲートしています。
+      </p>
+
+      <h3 class="h3">setYoutube() でカスタムパラメータ指定</h3>
+      <p>
+        setYoutube() の第2引数にカスタムパラメータを指定できるようにしています。
+        サイズやプレイスタイルを設定してみましょう。
+      </p>
+      <pre class="language-javascript"><code>
+      setYouTube($('#youtube'), {
+          'width': 880,
+          'height': 495,
+          'autoplay': true,
+          'allowfullscreen': false,
+          'rel': false,
+          'loop': true,
+          'mute': true,
+      });
+      </code></pre>
+      <p>
+        自動再生（autoplay=1） は ミュートが有効（mute=1） にしないと動作しない仕様になっています。
+      </p>
+    </div>
+
   </div>
 
+
   <script src="../js/jquery-3.5.0.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="../js/bootstrap/bootstrap.min.js"></script>
+  <script src="../js/prism.js"></script>
 </body>
 
 </html>

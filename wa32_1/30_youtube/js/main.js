@@ -23,9 +23,7 @@ $(function () {
     });
 
     var OAUTH2_CLIENT_ID = 'AIzaSyAt2EBAy3GXCJk6-yaXjcfG78pDLs1LMf8';
-    var OAUTH2_SCOPES = [
-        'https://www.googleapis.com/auth/youtube'
-    ];
+    var OAUTH2_SCOPES = [ 'https://www.googleapis.com/auth/youtube' ];
 
     googleApiClientReady = function () {
         gapi.auth.init(function () {

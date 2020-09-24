@@ -18,6 +18,7 @@ $(function () {
         $.when(
             $.getJSON(totalUrl),
         ).then(function(totalResponse) {
+                //修正
                 showTotal(totalResponse);
             },
             function() {

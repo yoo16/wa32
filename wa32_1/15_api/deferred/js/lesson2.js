@@ -9,8 +9,8 @@ const shopsUrl = baseUrl + 'js/shops.json';
 $(function () {
     $('#getJson').on('click', function () {
         $.when(
-            $.getJSON(foodsUrl),
-            $.getJSON(shopsUrl),
+            $.getJSON(foodsUrl, {}),
+            $.getJSON(shopsUrl, {}),
         ).then(function (foods, shops) {
             $('#foods').text(JSON.stringify(foods));
             $('#shops').text(JSON.stringify(shops));

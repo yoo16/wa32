@@ -38,7 +38,7 @@ function ready() {
             id: channelID,
             part: "id, snippet, brandingSettings, contentDetails, invideoPromotion, statistics, topicDetails"
         };
-    
+
         let request = gapi.client.request({
             path: "/youtube/v3/channels",
             params: requestOptions
@@ -57,7 +57,7 @@ function ready() {
                 renderStatistics(item);
             });
             $('#results').append(table);
-        } 
+        }
 
         function renderSnippet(item) {
             if (item.snippet) {
@@ -88,7 +88,7 @@ function ready() {
 
         function renderBrandingSettings(item) {
             if (item.brandingSettings) {
-                $.each (item.brandingSettings, function (key, value) {
+                $.each(item.brandingSettings, function (key, value) {
                     let tr = $('<tr>');
                     let th = $('<th>').html('');
                     let td = $('<td>').append(key);
@@ -104,7 +104,7 @@ function ready() {
                 let contentDetails = item.contentDetails;
                 let relatedPlaylists = contentDetails.relatedPlaylists;
                 if (relatedPlaylists) {
-                    $.each(columns.playList, function(key, playList){
+                    $.each(columns.playList, function (key, playList) {
                         let tr = $('<tr>');
                         let th = $('<th>');
                         let td = $('<td>');
@@ -126,7 +126,7 @@ function ready() {
         function renderStatistics(item) {
             if (item.statistics) {
                 let statistics = item.statistics;
-                $.each(columns.statistics, function(key, value){
+                $.each(columns.statistics, function (key, value) {
                     let tr = $('<tr>');
                     let th = $('<th>');
                     let td = $('<td>');
