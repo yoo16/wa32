@@ -80,7 +80,7 @@ $(function () {
         'allowfullscreen': false,
         'rel': false,
         'loop': true,
-        'mute': true,
+        'mute': false,
     });
 
 });

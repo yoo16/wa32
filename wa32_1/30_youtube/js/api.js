@@ -27,6 +27,7 @@ function onJSClientLoad() {
 }
 
 function ready() {
+    console.log(channelID);
     $('#keyword').val(channelID);
     $('#searchChannelBtn').on('click', function () {
         $('#results').html('');
