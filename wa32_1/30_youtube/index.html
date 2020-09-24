@@ -211,14 +211,16 @@
         change() は、リンクで切り替えたときに、iframe の src を更新します。
       </p>
       <pre class="language-javascript"><code>
-      if (index != videoIndex) {
-          $(links[videoIndex]).removeClass('ac');
-      };
-      videoIndex = index;
-      $(links[videoIndex]).addClass('ac')
+      function change(index, videoId) {
+          if (index != videoIndex) {
+              $(links[videoIndex]).removeClass('ac');
+          };
+          videoIndex = index;
+          $(links[videoIndex]).addClass('ac')
 
-      let src = YOUTUBE_EMDEB_PATH + videoId + '/' + paramStr;
-      youtube.attr('src', src);
+          let src = YOUTUBE_EMDEB_PATH + videoId + '/' + paramStr;
+          youtube.attr('src', src);
+      };
       </code></pre>
       <p>
         また、現在のリンクを addClass(), removeClass() でナビゲートしています。
