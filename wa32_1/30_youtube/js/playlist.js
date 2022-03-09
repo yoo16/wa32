@@ -8,7 +8,7 @@ $(function () {
             'videoId': '',
             'width': 420,
             'height': 315,
-            'frameborder': 0,
+            'frameborder': 10,
             'allowfullscreen': true,
             'rel': true,
             'loop': false,
@@ -29,6 +29,7 @@ $(function () {
             $(links[videoIndex]).addClass('ac')
 
             let src = YOUTUBE_EMDEB_PATH + videoId + '/' + paramStr;
+            console.log(src);
             youtube.attr('src', src);
         };
 
@@ -77,10 +78,10 @@ $(function () {
         'width': 880,
         'height': 495,
         'autoplay': true,
-        'allowfullscreen': false,
+        'allowfullscreen': true,
         'rel': false,
         'loop': true,
-        'mute': false,
+        'mute': true,
     });
 
 });

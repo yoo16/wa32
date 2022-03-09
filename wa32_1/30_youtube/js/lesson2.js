@@ -22,6 +22,8 @@ $(function () {
         let videoIndex = 0;
 
         function change(index, videoId) {
+            console.log(index);
+            console.log(videoId);
         };
 
         function createYoutubePlayer() {
